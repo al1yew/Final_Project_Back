@@ -8,3 +8,6 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pu
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.csproj.CoreCompileInputs.cache
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.dll
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.runtimeconfig.json
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.runtimeconfig.dev.json
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.genruntimeconfig.cache

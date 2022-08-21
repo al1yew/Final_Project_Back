@@ -1,0 +1,16 @@
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.deps.json
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.runtimeconfig.json
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.runtimeconfig.dev.json
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.dll
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.pdb
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Core.dll
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.csproj.AssemblyReference.cache
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.AssemblyInfoInputs.cache
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.AssemblyInfo.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.csproj.CopyComplete
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.dll
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.pdb
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.genruntimeconfig.cache

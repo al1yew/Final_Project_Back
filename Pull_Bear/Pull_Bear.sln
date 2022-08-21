@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pull_Bear.MVC", "Pull_Bear.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pull_Bear.Core", "Pull_Bear.Core\Pull_Bear.Core.csproj", "{C8967E52-D755-4CCC-8468-9AA3773D2B2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pull_Bear.Data", "Pull_Bear.Data\Pull_Bear.Data.csproj", "{263229F4-F4AE-406D-82D7-BA8FEABF1BC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C8967E52-D755-4CCC-8468-9AA3773D2B2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8967E52-D755-4CCC-8468-9AA3773D2B2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8967E52-D755-4CCC-8468-9AA3773D2B2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{263229F4-F4AE-406D-82D7-BA8FEABF1BC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263229F4-F4AE-406D-82D7-BA8FEABF1BC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263229F4-F4AE-406D-82D7-BA8FEABF1BC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263229F4-F4AE-406D-82D7-BA8FEABF1BC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

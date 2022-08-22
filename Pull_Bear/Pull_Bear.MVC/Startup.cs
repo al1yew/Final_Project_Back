@@ -13,6 +13,11 @@ using Pull_Bear.Data;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using Pull_Bear.Service.ViewModels.CategoryVM;
+using Pull_Bear.Service.Mappings;
+using Pull_Bear.Core.Repositories;
+using Pull_Bear.Data.Repositories;
+using Pull_Bear.Service.Interfaces;
+using Pull_Bear.Service.Implementations;
 
 namespace Pull_Bear.MVC
 {
@@ -33,6 +38,16 @@ namespace Pull_Bear.MVC
             });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+
+            services.AddAutoMapper(options =>
+            {
+                options.AddProfile(new MappingProfile());
+            });
+
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            services.AddScoped<ICategoryService, CategoryService>();
+
 
             //services.AddIdentity<AppUser, IdentityRole>(options =>
             //{
@@ -66,14 +81,21 @@ namespace Pull_Bear.MVC
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            //app.UseSession();
+
+            //app.UseRouting();
+
+            //app.UseStaticFiles();
+
+            //app.UseAuthentication();
+
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                //endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
             });
         }
     }

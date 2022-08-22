@@ -5,20 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Mappings\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Implementations\" />
     <Folder Include="Extensions\FileManager\" />
     <Folder Include="Extensions\Helpers\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Pull_Bear.Core\Pull_Bear.Core.csproj" />
+    <ProjectReference Include="..\Pull_Bear.Data\Pull_Bear.Data.csproj" />
   </ItemGroup>
 
 </Project>

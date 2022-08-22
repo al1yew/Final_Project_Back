@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Pull_Bear.Service\Pull_Bear.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+
 </Project>

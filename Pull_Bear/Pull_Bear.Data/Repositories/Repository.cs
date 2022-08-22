@@ -46,6 +46,11 @@ namespace Pull_Bear.Data.Repositories
             return await _context.Set<TEntity>().FirstOrDefaultAsync(ex);
         }
 
+        public async Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> ex)
+        {
+            return await _context.Set<TEntity>().AnyAsync(ex);
+        }
+
         public void Remove(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);

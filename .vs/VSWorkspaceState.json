@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Pull_Bear",
+    "\\Pull_Bear\\Pull_Bear.Core",
+    "\\Pull_Bear\\Pull_Bear.Core\\Repositories"
   ],
+  "SelectedNode": "\\Pull_Bear\\Pull_Bear.Core\\Repositories\\IRepository.cs",
   "PreviewInSolutionExplorer": false
 }

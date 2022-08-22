@@ -312,6 +312,9 @@
             "projectReferences": {
               "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
                 "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
+              },
+              "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj"
               }
             }
           }
@@ -326,6 +329,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[11.2.1, )"

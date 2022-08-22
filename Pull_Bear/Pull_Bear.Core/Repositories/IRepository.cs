@@ -12,6 +12,7 @@ namespace Pull_Bear.Core.Repositories
         Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> ex);
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex);
         void Remove(TEntity entity);
+        Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> ex);
         Task<int> CommitAsync();
         int Commit();
     }

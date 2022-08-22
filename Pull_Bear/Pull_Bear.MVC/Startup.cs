@@ -76,6 +76,7 @@ namespace Pull_Bear.MVC
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -83,9 +84,9 @@ namespace Pull_Bear.MVC
 
             //app.UseSession();
 
-            //app.UseRouting();
+            app.UseRouting();
 
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
 
             //app.UseAuthentication();
 
@@ -95,7 +96,7 @@ namespace Pull_Bear.MVC
             {
                 //endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
+                endpoints.MapControllerRoute("Default", "{controller=home}/{action=index}/{id?}");
             });
         }
     }

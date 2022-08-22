@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
+    <None Include="wwwroot\assets\styles\plugins\click-tap-image\.github\workflows\codeql-analysis.yml" />
   </ItemGroup>
 
 </Project>

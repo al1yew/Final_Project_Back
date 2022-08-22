@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DZHl7W+oNsepc4YdeB2W66I7tnR19nHuZyGGkV3xvRZCD+KUxtmxKJHv/eZKpjVfolA/gdTZa85Tkrd30tpPgw==",
+  "dgSpecHash": "evwgywme1fcx1luIb7OtvBZdfvziK6k6lUbVrAjyRrFEV1c5M6nY9L5Jn6o0pdYAQCl71GHOakYZgp5F78LmPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.1\\fluentvalidation.aspnetcore.11.2.1.nupkg.sha512",
@@ -16,10 +16,8 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.28\\microsoft.entityframeworkcore.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\3.1.28\\microsoft.entityframeworkcore.abstractions.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.28\\microsoft.entityframeworkcore.analyzers.3.1.28.nupkg.sha512",
-    "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.design\\3.1.28\\microsoft.entityframeworkcore.design.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.28\\microsoft.entityframeworkcore.relational.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.28\\microsoft.entityframeworkcore.sqlserver.3.1.28.nupkg.sha512",
-    "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.28\\microsoft.entityframeworkcore.tools.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.28\\microsoft.extensions.caching.abstractions.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.28\\microsoft.extensions.caching.memory.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.28\\microsoft.extensions.configuration.3.1.28.nupkg.sha512",

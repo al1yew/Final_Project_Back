@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pull_Bear.Data;
 using Microsoft.EntityFrameworkCore;
+using FluentValidation.AspNetCore;
+using Pull_Bear.Service.ViewModels.CategoryVM;
 
 namespace Pull_Bear.MVC
 {
@@ -23,7 +25,9 @@ namespace Pull_Bear.MVC
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+            services.AddControllersWithViews()
+                .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<CategoryCreateVMValidator>())
+                .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });

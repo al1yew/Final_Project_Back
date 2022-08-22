@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Pull_Bear.Data\Pull_Bear.Data.csproj" />
+    <ProjectReference Include="..\Pull_Bear.Service\Pull_Bear.Service.csproj" />
   </ItemGroup>
 
 </Project>

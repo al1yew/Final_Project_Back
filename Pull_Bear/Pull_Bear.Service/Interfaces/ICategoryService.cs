@@ -12,9 +12,9 @@ namespace Pull_Bear.Service.Interfaces
     {
         IQueryable<CategoryListVM> GetAllAsync(int? status, int? type);
         List<CategoryListVM> GetMainAsync();
-        Task<CategoryGetVM> GetById(int id);
+        Task<CategoryGetVM> GetById(int? id);
         Task CreateAsync(CategoryCreateVM categoryCreateVM);
-        Task UpdateAsync(int id, CategoryUpdateVM categoryUpdateVM);
+        Task UpdateAsync(int? id, CategoryUpdateVM categoryUpdateVM);
         Task DeleteAsync(int id);
         Task RestoreAsync(int id);
 

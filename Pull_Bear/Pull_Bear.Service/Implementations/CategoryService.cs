@@ -76,9 +76,12 @@ namespace Pull_Bear.Service.Implementations
             return categoryListVMs;
         }
 
-        public async Task<CategoryGetVM> GetById(int id)
+        public async Task<CategoryGetVM> GetById(int? id)
         {
             Category category = await _categoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
+
+            if (id == null)
+                throw new NotFoundException($"Category Cannot be found By id = {id}");
 
             CategoryGetVM categoryGetVM = _mapper.Map<CategoryGetVM>(category);
 
@@ -96,24 +99,44 @@ namespace Pull_Bear.Service.Implementations
             await _categoryRepository.CommitAsync();
         }
 
+        public async Task UpdateAsync(int? id, CategoryUpdateVM categoryUpdateVM)
+        {
+            if (id == null)
+                throw new BadRequestException($"Id is null!");
+
+            if (id != categoryUpdateVM.Id)
+                throw new BadRequestException($"Id is null!");
+
+            if (!categoryUpdateVM.IsMain)
+            {
+                if (await _categoryRepository.IsExistAsync(c => c.Id == categoryUpdateVM.ParentId && c.IsMain && !c.IsDeleted))
+                    throw new BadRequestException($"You Cannot set Parent Category to already updating category!");
+            }
+
+            Category dbCategory = await _categoryRepository.GetAsync(c => !c.IsDeleted && c.Id == categoryUpdateVM.Id);
+
+            if (dbCategory == null)
+                throw new NotFoundException($"Category Cannot be found By id = {id}");
+
+            if (await _categoryRepository.IsExistAsync(c => c.Id != categoryUpdateVM.Id && c.Name.ToLower() == categoryUpdateVM.Name.Trim().ToLower()))
+                throw new RecordDublicateException($"Category Already Exist By Name = {categoryUpdateVM.Name}");
+
+            //dbCategory = _mapper.Map<Category>(categoryUpdateVM); muellimnen sorushmaq
+            dbCategory.Name = categoryUpdateVM.Name.Trim();
+            dbCategory.IsMain = categoryUpdateVM.IsMain;
+            dbCategory.ParentId = categoryUpdateVM.IsMain ? null : categoryUpdateVM.ParentId;
+            dbCategory.IsUpdated = true;
+            dbCategory.UpdatedAt = DateTime.UtcNow.AddHours(4);
+
+            await _categoryRepository.CommitAsync();
+        }
+
         public Task RestoreAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task UpdateAsync(int id, CategoryUpdateVM categoryUpdateVM)
-        {
-            Category category = await _categoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
 
-            category.Name = categoryUpdateVM.Name;
-            category.IsMain = categoryUpdateVM.IsMain;
-            category.ParentId = categoryUpdateVM.ParentId;
-            //category.image = nese krc
-
-            category.UpdatedAt = DateTime.UtcNow.AddHours(4);
-
-            await _categoryRepository.CommitAsync();
-        }
 
     }
 }

@@ -10,7 +10,7 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsMain { get; set; }
-        public int ParentId { get; set; }
+        public Nullable<int> ParentId { get; set; }
     }
 
     public class CategoryUpdateVMValidator : AbstractValidator<CategoryUpdateVM>
@@ -21,7 +21,7 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
 
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Category name is required!")
-                .MinimumLength(30).WithMessage("Category name must be at most 30 character!")
+                .MaximumLength(30).WithMessage("Category name must be at most 30 character!")
                 .MinimumLength(1).WithMessage("Category name must be at least 1 character!");
 
             RuleFor(x => x).Custom((x, y) =>
@@ -35,6 +35,9 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
                 {
                     y.AddFailure("ParentId", "Parent id cannot be same as Id!");
                 }
+                //oz idsi ozune parent id olmasin - shtobi jquery validate na xodu proveral
+                //problemi s dropdaunami v osnovnoy shop stranice
+                //sdes ismaininput toje baraxlit pcm to, nado shto b pri zagruzke update view on delal d-none ego
             });
         }
     }

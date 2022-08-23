@@ -19,7 +19,7 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Category name is required!")
-                .MinimumLength(30).WithMessage("Category name must be at most 30 character!")
+                .MaximumLength(30).WithMessage("Category name must be at most 30 character!")
                 .MinimumLength(1).WithMessage("Category name must be at least 1 character!");
 
             RuleFor(x => x).Custom((x, y) =>

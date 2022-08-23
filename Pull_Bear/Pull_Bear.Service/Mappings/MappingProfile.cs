@@ -14,6 +14,9 @@ namespace Pull_Bear.Service.Mappings
         {
             CreateMap<Category, CategoryListVM>();
 
+            CreateMap<CategoryCreateVM, Category>()
+                .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))
+                .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
         }
     }
 }

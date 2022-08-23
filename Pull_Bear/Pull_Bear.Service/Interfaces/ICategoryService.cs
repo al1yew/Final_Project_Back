@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace Pull_Bear.Service.Interfaces
     public interface ICategoryService
     {
         IQueryable<CategoryListVM> GetAllAsync(int? status, int? type);
+        List<CategoryListVM> GetMainAsync();
         Task<CategoryGetVM> GetById(int id);
         Task CreateAsync(CategoryCreateVM categoryCreateVM);
         Task UpdateAsync(int id, CategoryUpdateVM categoryUpdateVM);

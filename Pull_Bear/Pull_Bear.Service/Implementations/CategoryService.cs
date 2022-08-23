@@ -41,7 +41,7 @@ namespace Pull_Bear.Service.Implementations
             List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted).Result);
 
             IQueryable<CategoryListVM> query = categoryListVMs.AsQueryable();
-            
+
             if (status != null && status > 0)
             {
                 if (status == 1)
@@ -69,6 +69,13 @@ namespace Pull_Bear.Service.Implementations
             return query;
         }
 
+        public List<CategoryListVM> GetMainAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted && c.IsMain).Result);
+
+            return categoryListVMs;
+        }
+
         public async Task<CategoryGetVM> GetById(int id)
         {
             Category category = await _categoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
@@ -80,9 +87,10 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(CategoryCreateVM categoryCreateVM)
         {
-            Category category = _mapper.Map<Category>(categoryCreateVM);
+            if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted && c.Name.ToLower() == categoryCreateVM.Name.Trim().ToLower()))
+                throw new RecordDublicateException($"Category Already Exist By Name = {categoryCreateVM.Name}");
 
-            //category.image = nese
+            Category category = _mapper.Map<Category>(categoryCreateVM);
 
             await _categoryRepository.AddAsync(category);
             await _categoryRepository.CommitAsync();
@@ -106,5 +114,6 @@ namespace Pull_Bear.Service.Implementations
 
             await _categoryRepository.CommitAsync();
         }
+
     }
 }

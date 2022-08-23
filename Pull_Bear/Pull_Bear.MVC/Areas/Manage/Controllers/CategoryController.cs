@@ -38,7 +38,21 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            ViewBag.MainCategories = _categoryService.GetMainAsync();
+
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CategoryCreateVM categoryCreateVM)
+        {
+            ViewBag.MainCategories = _categoryService.GetMainAsync();
+
+            if (!ModelState.IsValid) return View();
+
+            await _categoryService.CreateAsync(categoryCreateVM);
+
+            return RedirectToAction("Index");
         }
 
 

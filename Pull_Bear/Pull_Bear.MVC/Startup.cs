@@ -18,6 +18,9 @@ using Pull_Bear.Core.Repositories;
 using Pull_Bear.Data.Repositories;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.Implementations;
+using Microsoft.AspNetCore.Diagnostics;
+using Pull_Bear.Service.Exceptions;
+using Pull_Bear.MVC.Extensions;
 
 namespace Pull_Bear.MVC
 {
@@ -81,6 +84,8 @@ namespace Pull_Bear.MVC
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.ExceptionHandling();
 
             //app.UseSession();
 

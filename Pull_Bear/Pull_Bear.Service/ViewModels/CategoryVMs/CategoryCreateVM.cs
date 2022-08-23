@@ -7,9 +7,10 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
 {
     public class CategoryCreateVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool IsMain { get; set; }
-        public int ParentId { get; set; }
+        public Nullable<int> ParentId { get; set; }
     }
 
     public class CategoryCreateVMValidator : AbstractValidator<CategoryCreateVM>

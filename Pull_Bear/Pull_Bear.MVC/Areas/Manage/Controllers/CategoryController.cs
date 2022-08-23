@@ -21,31 +21,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
         public IActionResult Index(int? status, int? type, int select, int page = 1)
         {
-            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync().AsQueryable();
-
-            if (status != null && status > 0)
-            {
-                if (status == 1)
-                {
-                    categoryListVMs = categoryListVMs.Where(b => b.IsDeleted);
-                }
-                else if (status == 2)
-                {
-                    categoryListVMs = categoryListVMs.Where(b => !b.IsDeleted);
-                }
-            }
-
-            if (type != null && type > 0)
-            {
-                if (type == 1)
-                {
-                    categoryListVMs = categoryListVMs.Where(c => !c.IsMain);
-                }
-                else if (type == 2)
-                {
-                    categoryListVMs = categoryListVMs.Where(c => c.IsMain);
-                }
-            }
+            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync(status, type);
 
             if (select <= 0)
             {
@@ -53,12 +29,16 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             }
 
             ViewBag.Select = select;
-
             ViewBag.Status = status;
-
             ViewBag.Type = type;
 
             return View(PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            return View();
         }
 
 

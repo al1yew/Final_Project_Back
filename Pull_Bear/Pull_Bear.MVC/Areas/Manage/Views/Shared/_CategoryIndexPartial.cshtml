@@ -43,3 +43,24 @@
         }
     </tbody>
 </table>
+
+
+<div class="row justify-content-center w-100 align-items-center d-flex mt-2">
+    <ul class="pagination d-flex justify-content-center align-content-center">
+        @if (Model.HasPrev)
+        {
+            <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Category" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="1">@("<<")</a></li>
+
+            <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Category" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@(Model.Page-1)">@("<")</a></li>
+        }
+        @for (int i = 1; i <= Model.PageCount; i++)
+        {
+            <li class="page-item @(Model.Page == i ? "active":"")"><a class="page-link" asp-area="Manage" asp-controller="Category" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@i">@i</a></li>
+        }
+        @if (Model.HasNext)
+        {
+            <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Category" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@(Model.Page+1)">@(">")</a></li>
+            <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Category" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@Model.PageCount">@(">>")</a></li>
+        }
+    </ul>
+</div>

@@ -36,11 +36,37 @@ namespace Pull_Bear.Service.Implementations
             await _categoryRepository.CommitAsync();
         }
 
-        public List<CategoryListVM> GetAllAsync()
+        public IQueryable<CategoryListVM> GetAllAsync(int? status, int? type)
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted).Result.ToList());
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted).Result);
 
-            return categoryListVMs;
+            IQueryable<CategoryListVM> query = categoryListVMs.AsQueryable();
+            
+            if (status != null && status > 0)
+            {
+                if (status == 1)
+                {
+                    query = query.Where(b => b.IsDeleted);
+                }
+                else if (status == 2)
+                {
+                    query = query.Where(b => !b.IsDeleted);
+                }
+            }
+
+            if (type != null && type > 0)
+            {
+                if (type == 1)
+                {
+                    query = query.Where(c => !c.IsMain);
+                }
+                else if (type == 2)
+                {
+                    query = query.Where(c => c.IsMain);
+                }
+            }
+
+            return query;
         }
 
         public async Task<CategoryGetVM> GetById(int id)

@@ -9,7 +9,7 @@ namespace Pull_Bear.Service.Interfaces
 {
     public interface ICategoryService
     {
-        List<CategoryListVM> GetAllAsync();
+        IQueryable<CategoryListVM> GetAllAsync(int? status, int? type);
         Task<CategoryGetVM> GetById(int id);
         Task CreateAsync(CategoryCreateVM categoryCreateVM);
         Task UpdateAsync(int id, CategoryUpdateVM categoryUpdateVM);

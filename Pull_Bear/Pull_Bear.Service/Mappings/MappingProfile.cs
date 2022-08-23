@@ -14,11 +14,6 @@ namespace Pull_Bear.Service.Mappings
         {
             CreateMap<Category, CategoryListVM>();
 
-            CreateMap<CategoryListVM, Category>();
-
-            CreateMap<List<Category>, List<CategoryListVM>>();
-
-            CreateMap<List<CategoryListVM>, List<Category>>();
         }
     }
 }

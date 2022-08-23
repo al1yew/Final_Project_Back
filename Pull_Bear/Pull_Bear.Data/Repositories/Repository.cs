@@ -37,7 +37,6 @@ namespace Pull_Bear.Data.Repositories
         public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> ex)
         {
             return await _context.Set<TEntity>().Where(ex).ToListAsync();
-            //returns queryable 
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex)

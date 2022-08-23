@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 using Pull_Bear.Data;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
-using Pull_Bear.Service.ViewModels.CategoryVM;
+using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.Mappings;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Data.Repositories;

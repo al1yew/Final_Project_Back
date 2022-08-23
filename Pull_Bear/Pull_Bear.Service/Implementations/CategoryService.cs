@@ -3,9 +3,10 @@ using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Exceptions;
 using Pull_Bear.Service.Interfaces;
-using Pull_Bear.Service.ViewModels.CategoryVM;
+using Pull_Bear.Service.ViewModels.CategoryVMs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,9 +36,9 @@ namespace Pull_Bear.Service.Implementations
             await _categoryRepository.CommitAsync();
         }
 
-        public async Task<List<CategoryListVM>> GetAllAsync()
+        public List<CategoryListVM> GetAllAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllAsync(x => !x.IsDeleted));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted).Result.ToList());
 
             return categoryListVMs;
         }
@@ -51,7 +52,7 @@ namespace Pull_Bear.Service.Implementations
             return categoryGetVM;
         }
 
-        public async Task PostAsync(CategoryCreateVM categoryCreateVM)
+        public async Task CreateAsync(CategoryCreateVM categoryCreateVM)
         {
             Category category = _mapper.Map<Category>(categoryCreateVM);
 
@@ -59,6 +60,11 @@ namespace Pull_Bear.Service.Implementations
 
             await _categoryRepository.AddAsync(category);
             await _categoryRepository.CommitAsync();
+        }
+
+        public Task RestoreAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task UpdateAsync(int id, CategoryUpdateVM categoryUpdateVM)

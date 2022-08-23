@@ -22,7 +22,6 @@ namespace Pull_Bear.Data.Repositories
         public async Task AddAsync(TEntity entity)
         {
             await _context.Set<TEntity>().AddAsync(entity);
-
         }
 
         public int Commit()
@@ -30,15 +29,15 @@ namespace Pull_Bear.Data.Repositories
             return _context.SaveChanges();
         }
 
-        public Task<int> CommitAsync()
+        public async Task<int> CommitAsync()
         {
-            return _context.SaveChangesAsync();
-
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> ex)
         {
             return await _context.Set<TEntity>().Where(ex).ToListAsync();
+            //returns queryable 
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex)

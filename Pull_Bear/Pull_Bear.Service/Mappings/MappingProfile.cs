@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using Pull_Bear.Core.Models;
-using Pull_Bear.Service.ViewModels.CategoryVM;
+using Pull_Bear.Service.ViewModels.CategoryVMs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Pull_Bear.Service.Mappings
@@ -11,11 +12,13 @@ namespace Pull_Bear.Service.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<CategoryCreateVM, Category>()
-                .ForMember(des => des.CreatedAt, src => src.MapFrom(x=> DateTime.UtcNow.AddHours(4)));
-
-            CreateMap<Category, CategoryGetVM>();
             CreateMap<Category, CategoryListVM>();
+
+            CreateMap<CategoryListVM, Category>();
+
+            CreateMap<List<Category>, List<CategoryListVM>>();
+
+            CreateMap<List<CategoryListVM>, List<Category>>();
         }
     }
 }

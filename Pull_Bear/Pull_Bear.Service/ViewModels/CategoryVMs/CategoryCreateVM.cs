@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pull_Bear.Service.ViewModels.CategoryVM
+namespace Pull_Bear.Service.ViewModels.CategoryVMs
 {
     public class CategoryCreateVM
     {

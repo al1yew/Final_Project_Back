@@ -28,6 +28,16 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
                 {
                     y.AddFailure("IsMain", "You cannot choose Parent category for Main Category.");
                 }
+
+                if (!x.IsMain && x.ParentId == null)
+                {
+                    y.AddFailure("ParentId", "You must choose Parent Category for Child Category!");
+                }
+
+                if (x.Id == x.ParentId)
+                {
+                    y.AddFailure("ParentId", "Parent id cannot be same as Id!");
+                }
             });
         }
     }

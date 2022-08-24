@@ -105,23 +105,23 @@ namespace Pull_Bear.Service.Implementations
                 throw new BadRequestException($"Id is null!");
 
             if (id != categoryUpdateVM.Id)
-                throw new BadRequestException($"Id is null!");
+                throw new BadRequestException($"Id's are not the same!");
 
             if (!categoryUpdateVM.IsMain)
             {
                 if (await _categoryRepository.IsExistAsync(c => c.Id == categoryUpdateVM.ParentId && c.IsMain && !c.IsDeleted))
-                    throw new BadRequestException($"You Cannot set Parent Category to already updating category!");
+                    throw new BadRequestException($"You Cannot set Parent Category to category you are updating!");
             }
+
+            if (await _categoryRepository.IsExistAsync(c => c.Id != categoryUpdateVM.Id && c.Name.ToLower() == categoryUpdateVM.Name.Trim().ToLower()))
+                throw new RecordDublicateException($"Category Already Exist By Name = {categoryUpdateVM.Name}");
 
             Category dbCategory = await _categoryRepository.GetAsync(c => !c.IsDeleted && c.Id == categoryUpdateVM.Id);
 
             if (dbCategory == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
-
-            if (await _categoryRepository.IsExistAsync(c => c.Id != categoryUpdateVM.Id && c.Name.ToLower() == categoryUpdateVM.Name.Trim().ToLower()))
-                throw new RecordDublicateException($"Category Already Exist By Name = {categoryUpdateVM.Name}");
-
-            //dbCategory = _mapper.Map<Category>(categoryUpdateVM); muellimnen sorushmaq
+            
+            //dbCategory = _mapper.Map<Category>(categoryUpdateVM);
             dbCategory.Name = categoryUpdateVM.Name.Trim();
             dbCategory.IsMain = categoryUpdateVM.IsMain;
             dbCategory.ParentId = categoryUpdateVM.IsMain ? null : categoryUpdateVM.ParentId;

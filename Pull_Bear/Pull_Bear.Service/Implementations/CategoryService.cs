@@ -23,22 +23,9 @@ namespace Pull_Bear.Service.Implementations
             _mapper = mapper;
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            Category category = await _categoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
-
-            if (category == null)
-                throw new NotFoundException($"Cannot find category by id = {id}");
-
-            category.IsDeleted = true;
-            category.DeletedAt = DateTime.UtcNow.AddHours(4);
-
-            await _categoryRepository.CommitAsync();
-        }
-
         public IQueryable<CategoryListVM> GetAllAsync(int? status, int? type)
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted).Result);
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync().Result);
 
             IQueryable<CategoryListVM> query = categoryListVMs.AsQueryable();
 
@@ -71,7 +58,7 @@ namespace Pull_Bear.Service.Implementations
 
         public List<CategoryListVM> GetMainAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync(c => !c.IsDeleted && c.IsMain).Result);
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain).Result);
 
             return categoryListVMs;
         }
@@ -120,8 +107,7 @@ namespace Pull_Bear.Service.Implementations
 
             if (dbCategory == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
-            
-            //dbCategory = _mapper.Map<Category>(categoryUpdateVM);
+
             dbCategory.Name = categoryUpdateVM.Name.Trim();
             dbCategory.IsMain = categoryUpdateVM.IsMain;
             dbCategory.ParentId = categoryUpdateVM.IsMain ? null : categoryUpdateVM.ParentId;
@@ -131,9 +117,58 @@ namespace Pull_Bear.Service.Implementations
             await _categoryRepository.CommitAsync();
         }
 
-        public Task RestoreAsync(int id)
+        public async Task DeleteAsync(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new BadRequestException($"Id is null!");
+
+            Category category = await _categoryRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+
+            if (category == null)
+                throw new NotFoundException($"Category Cannot be found By id = {id}");
+
+            if (category.IsMain)
+            {
+                List<Category> children = await _categoryRepository.GetAllByExAsync(c => c.ParentId == category.Id && !c.IsDeleted);
+
+                foreach (Category child in children)
+                {
+                    child.IsDeleted = true;
+                    child.DeletedAt = DateTime.UtcNow.AddHours(4);
+                }
+            }
+
+            category.IsDeleted = true;
+            category.DeletedAt = DateTime.UtcNow.AddHours(4);
+
+            await _categoryRepository.CommitAsync();
+        }
+
+        public async Task RestoreAsync(int? id)
+        {
+            if (id == null)
+                throw new BadRequestException($"Id is null!");
+
+            Category category = await _categoryRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+
+            if (category == null)
+                throw new NotFoundException($"Category Cannot be found By id = {id}");
+
+            if (category.IsMain)
+            {
+                List<Category> children = await _categoryRepository.GetAllByExAsync(c => c.ParentId == category.Id && c.IsDeleted);
+
+                foreach (Category child in children)
+                {
+                    child.IsDeleted = false;
+                    child.DeletedAt = null;
+                }
+            }
+
+            category.IsDeleted = false;
+            category.DeletedAt = null;
+
+            await _categoryRepository.CommitAsync();
         }
 
 

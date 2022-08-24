@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
@@ -35,6 +36,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             ViewBag.Select = select;
             ViewBag.Status = status;
             ViewBag.Type = type;
+            ViewBag.Page = page;
 
             return View(PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
         }
@@ -79,6 +81,32 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Delete(int? id, int? status, int? type, int select, int page)
+        {
+            ViewBag.Select = select;
+            ViewBag.Status = status;
+            ViewBag.Type = type;
+            ViewBag.Page = page;
 
+            await _categoryService.DeleteAsync(id);
+
+            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync(status, type);
+
+            return PartialView("_CategoryIndexPartial", PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
+        }
+
+        public async Task<IActionResult> Restore(int? id, int? status, int? type, int select, int page)
+        {
+            ViewBag.Select = select;
+            ViewBag.Status = status;
+            ViewBag.Type = type;
+            ViewBag.Page = page;
+
+            await _categoryService.RestoreAsync(id);
+
+            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync(status, type);
+
+            return PartialView("_CategoryIndexPartial", PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
+        }
     }
 }

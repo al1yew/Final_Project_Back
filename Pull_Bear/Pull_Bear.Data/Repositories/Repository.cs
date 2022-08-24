@@ -34,7 +34,12 @@ namespace Pull_Bear.Data.Repositories
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> ex)
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            return await _context.Set<TEntity>().ToListAsync();
+        }
+
+        public async Task<List<TEntity>> GetAllByExAsync(Expression<Func<TEntity, bool>> ex)
         {
             return await _context.Set<TEntity>().Where(ex).ToListAsync();
         }

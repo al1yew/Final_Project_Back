@@ -11,11 +11,6 @@ namespace Pull_Bear.Data.Repositories
         public CategoryRepository(AppDbContext context) : base(context)
         {
 
-        }
-
-
-
-
-
+        }   
     }
 }

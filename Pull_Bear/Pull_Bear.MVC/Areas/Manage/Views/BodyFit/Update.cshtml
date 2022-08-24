@@ -1,0 +1,29 @@
+﻿@model BodyFitUpdateVM
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+<div class="d-flex row justify-content-center w-100">
+    <div class="col-lg-10 col-12">
+        <h1 class="mt-3">Update</h1>
+        <form method="post" enctype="multipart/form-data" class="w-100">
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label asp-for="Photo" class="form-label"></label>
+                <input asp-for="Photo" accept="image/jpeg" class="form-control">
+                <span class="text-danger" asp-validation-for="Photo"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+@section Script{
+    <partial name="_ValidationPartial">
+}

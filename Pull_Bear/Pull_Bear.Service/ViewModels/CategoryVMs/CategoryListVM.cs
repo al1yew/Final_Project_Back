@@ -11,6 +11,5 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public bool IsMain { get; set; }
         public Nullable<int> ParentId { get; set; }
         public bool IsDeleted { get; set; }
-
     }
 }

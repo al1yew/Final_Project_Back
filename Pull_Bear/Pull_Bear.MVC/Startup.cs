@@ -48,8 +48,12 @@ namespace Pull_Bear.MVC
             });
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IBodyFitRepository, BodyFitRepository>();
+
 
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IBodyFitService, BodyFitService>();
+
 
 
             //services.AddIdentity<AppUser, IdentityRole>(options =>

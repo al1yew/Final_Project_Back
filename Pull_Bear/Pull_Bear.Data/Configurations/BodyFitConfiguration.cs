@@ -12,6 +12,7 @@ namespace Pull_Bear.Data.Configurations
         public void Configure(EntityTypeBuilder<BodyFit> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(15);
+            builder.Property(x => x.Image).IsRequired().HasMaxLength(255);
         }
     }
 }

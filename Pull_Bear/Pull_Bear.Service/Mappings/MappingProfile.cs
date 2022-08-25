@@ -37,7 +37,6 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<BodyFitGetVM, BodyFitUpdateVM>();
             #endregion
 
-
         }
     }
 }

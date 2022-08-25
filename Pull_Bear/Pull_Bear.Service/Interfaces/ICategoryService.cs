@@ -12,7 +12,11 @@ namespace Pull_Bear.Service.Interfaces
     {
         IQueryable<CategoryListVM> GetAllAsync(int? status, int? type);
 
+        List<CategoryListVM> GetMainMaleAsync();
+
         List<CategoryListVM> GetMainAsync();
+
+        List<CategoryListVM> GetMainFemaleAsync();
 
         Task<CategoryGetVM> GetById(int? id);
 

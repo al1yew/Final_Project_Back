@@ -55,6 +55,8 @@ namespace Pull_Bear.Core.Models
         public int CategoryId { get; set; }
         public BodyFit BodyFit { get; set; }
         public int BodyFitId { get; set; }
+        public Gender Gender { get; set; }
+        public int GenderId { get; set; }
 
 
         //relations many products - many...

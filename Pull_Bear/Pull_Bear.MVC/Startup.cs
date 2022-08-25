@@ -33,11 +33,15 @@ namespace Pull_Bear.MVC
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews()
-                .AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<CategoryCreateVMValidator>())
-                .AddNewtonsoftJson(options =>
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
+
+            services.AddFluentValidation(options =>
+            {
+                options.RegisterValidatorsFromAssemblyContaining<CategoryCreateVMValidator>();
+                options.DisableDataAnnotationsValidation = true;
             });
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));

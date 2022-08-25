@@ -4,12 +4,42 @@
 
     $(document).on('change', '.isMaininput', function () {
         if ($(this).is(":checked")) {
-            $('.parentcontainer').addClass('d-none');
+            $('.parentcontainer').hide();
+            $('.ismaleselect').val('');
+            $('.isfemaleselect').val('');
         } else {
-            $('.parentcontainer').removeClass('d-none');
+            $('.parentcontainer').show();
         }
     })
 
+    //----------------------------------------------- Toggle Gender Select option in Category Create View
+
+    //$(document).on('change', '.genderselect', function () {
+
+    //    if ($(this).val() == 1) {
+
+    //        $('.ismale').hide();
+
+    //        $('.isfemale').show();
+    //    }
+    //    else if ($(this).val() == 2) {
+
+    //        $('.ismale').show();
+
+    //        $('.isfemale').hide();
+    //    }
+
+    //});
+
+    ////----------------------------------------------- Clear another select option val in Category Create view
+
+    //$(document).on('change', '.ismaleselect', function () {
+    //    $('.isfemaleselect').val('');
+    //});
+
+    //$(document).on('change', '.isfemaleselect', function () {
+    //    $('.ismaleselect').val('');
+    //});
 
     //----------------------------------------------- Delete element
 
@@ -75,4 +105,7 @@
             }
         });
     });
+
+
+
 });

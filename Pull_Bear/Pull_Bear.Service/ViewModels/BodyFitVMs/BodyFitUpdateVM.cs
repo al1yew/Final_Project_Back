@@ -11,6 +11,7 @@ namespace Pull_Bear.Service.ViewModels.BodyFitVMs
         public int Id { get; set; }
         public string Name { get; set; }
         public IFormFile Photo { get; set; }
+        public int GenderId { get; set; }
     }
 
     public class BodyFitUpdateVMValidator : AbstractValidator<BodyFitUpdateVM>
@@ -22,7 +23,7 @@ namespace Pull_Bear.Service.ViewModels.BodyFitVMs
                 .MaximumLength(30).WithMessage("Body Fit name must be at most 30 character!")
                 .MinimumLength(1).WithMessage("Body Fit name must be at least 1 character!");
 
-            //RuleFor(x => x.Photo).NotEmpty().WithMessage("Image is required!");
+            RuleFor(x => x.GenderId).NotEmpty().WithMessage("Gender is required!");
         }
     }
 }

@@ -12,8 +12,14 @@ namespace Pull_Bear.Core.Models
         public Category Parent { get; set; }
         public IEnumerable<Category> Children { get; set; }
 
-        //relations 
+
+        //relations one bodyfit - many ...
         public List<Product> Products { get; set; }
+
+
+        //relations one ... - many bodyfits
+        public Gender Gender { get; set; }
+        public Nullable<int> GenderId { get; set; }
 
     }
 }

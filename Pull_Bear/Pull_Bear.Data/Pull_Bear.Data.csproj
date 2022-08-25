@@ -9,6 +9,28 @@
     <Compile Remove="Migrations\20220821164932_InitialMigration2.Designer.cs" />
     <Compile Remove="Migrations\20220823095509_AddedTables.cs" />
     <Compile Remove="Migrations\20220823095509_AddedTables.Designer.cs" />
+    <Compile Remove="Migrations\20220825101002_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825101002_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825101539_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825101539_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825101657_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825101657_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825101854_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825101854_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825102445_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825102445_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825102648_UpdatedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825102648_UpdatedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825102837_UpdatedGenderTable_2.cs" />
+    <Compile Remove="Migrations\20220825102837_UpdatedGenderTable_2.Designer.cs" />
+    <Compile Remove="Migrations\20220825104018_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825104018_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825104419_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825104419_AddedGenderTable.Designer.cs" />
+    <Compile Remove="Migrations\20220825104614_AddedGenderTable_2.cs" />
+    <Compile Remove="Migrations\20220825104614_AddedGenderTable_2.Designer.cs" />
+    <Compile Remove="Migrations\20220825104957_AddedGenderTable.cs" />
+    <Compile Remove="Migrations\20220825104957_AddedGenderTable.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

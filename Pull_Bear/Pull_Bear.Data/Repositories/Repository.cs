@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Pull_Bear.Data.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseModel
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly AppDbContext _context;
 

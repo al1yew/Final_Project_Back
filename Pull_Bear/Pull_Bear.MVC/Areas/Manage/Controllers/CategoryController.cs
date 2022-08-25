@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pull_Bear.Core.Models;
+using Pull_Bear.Service.Enums;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,17 +47,23 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.MainCategories = _categoryService.GetMainAsync();
+            ViewBag.MainMaleCategories = _categoryService.GetMainMaleAsync();
+            ViewBag.MainFemaleCategories = _categoryService.GetMainFemaleAsync();
 
-            return View();
+            return View(new CategoryCreateVM());
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(CategoryCreateVM categoryCreateVM)
         {
-            ViewBag.MainCategories = _categoryService.GetMainAsync();
+            ViewBag.MainMaleCategories = _categoryService.GetMainMaleAsync();
+            ViewBag.MainFemaleCategories = _categoryService.GetMainFemaleAsync();
 
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
 
             await _categoryService.CreateAsync(categoryCreateVM);
 
@@ -64,7 +73,8 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int? id)
         {
-            ViewBag.MainCategories = _categoryService.GetMainAsync();
+            ViewBag.MainMaleCategories = _categoryService.GetMainMaleAsync();
+            ViewBag.MainFemaleCategories = _categoryService.GetMainFemaleAsync();
 
             return View(_mapper.Map<CategoryUpdateVM>(await _categoryService.GetById(id)));
         }
@@ -72,9 +82,14 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(int? id, CategoryUpdateVM categoryUpdateVM)
         {
-            ViewBag.MainCategories = _categoryService.GetMainAsync();
+            ViewBag.MainMaleCategories = _categoryService.GetMainMaleAsync();
+            ViewBag.MainFemaleCategories = _categoryService.GetMainFemaleAsync();
 
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
 
             await _categoryService.UpdateAsync(id, categoryUpdateVM);
 
@@ -108,5 +123,6 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             return PartialView("_CategoryIndexPartial", PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
         }
+
     }
 }

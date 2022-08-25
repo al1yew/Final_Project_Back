@@ -11,6 +11,7 @@ namespace Pull_Bear.Service.ViewModels.BodyFitVMs
         public int Id { get; set; }
         public string Name { get; set; }
         public IFormFile Photo { get; set; }
+        public int GenderId { get; set; }
     }
 
     public class BodyFitCreateVMValidator : AbstractValidator<BodyFitCreateVM>
@@ -42,6 +43,7 @@ namespace Pull_Bear.Service.ViewModels.BodyFitVMs
                 }
             });
 
+            RuleFor(x => x.GenderId).NotEmpty().WithMessage("Gender is required!");
 
         }
     }

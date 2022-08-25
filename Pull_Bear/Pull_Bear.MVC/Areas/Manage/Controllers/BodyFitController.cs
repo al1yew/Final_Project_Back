@@ -47,12 +47,52 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(BodyFitCreateVM bodyFitCreateVM)
         {
-            if (!ModelState.IsValid) return View();
-
             await _bodyFitService.CreateAsync(bodyFitCreateVM);
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int? id)
+        {
+            return View(_mapper.Map<BodyFitUpdateVM>(await _bodyFitService.GetById(id)));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int? id, BodyFitUpdateVM bodyFitUpdateVM)
+        {
+            await _bodyFitService.UpdateAsync(id, bodyFitUpdateVM);
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(int? id, int? status, int select, int page)
+        {
+            ViewBag.Select = select;
+            ViewBag.Status = status;
+            ViewBag.Page = page;
+
+            await _bodyFitService.DeleteAsync(id);
+
+            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status);
+
+            return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
+        }
+
+        public async Task<IActionResult> Restore(int? id, int? status, int select, int page)
+        {
+            ViewBag.Select = select;
+            ViewBag.Status = status;
+            ViewBag.Page = page;
+
+            await _bodyFitService.RestoreAsync(id);
+
+            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status);
+
+            return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
+        }
+
+
 
 
     }

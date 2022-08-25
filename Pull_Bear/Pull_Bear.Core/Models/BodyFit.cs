@@ -11,7 +11,13 @@ namespace Pull_Bear.Core.Models
         public string Name { get; set; }
         public string Image { get; set; }
 
-        //relations 
+
+        //relations one bodyfit - many ...
         public List<Product> Products { get; set; }
+
+
+        //relations one ... - many bodyfits
+        public Gender Gender { get; set; }
+        public Nullable<int> GenderId { get; set; }
     }
 }

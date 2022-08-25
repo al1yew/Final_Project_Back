@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Pull_Bear.Service.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,6 +12,10 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public string Name { get; set; }
         public bool IsMain { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public Nullable<int> MaleParentId { get; set; }
+        public Nullable<int> FemaleParentId { get; set; }
+        public int GenderId { get; set; }
+
     }
 
     public class CategoryCreateVMValidator : AbstractValidator<CategoryCreateVM>
@@ -24,21 +29,38 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
 
             RuleFor(x => x).Custom((x, y) =>
             {
-                if (x.IsMain && x.ParentId != null)
+                if (x.IsMain)
                 {
-                    y.AddFailure("IsMain", "You cannot choose Parent category for Main Category.");
+                    if (x.MaleParentId != null || x.FemaleParentId != null)
+                    {
+                        y.AddFailure("You cannot choose parent category!");
+                    }
                 }
-
-                if (!x.IsMain && x.ParentId == null)
+                else
                 {
-                    y.AddFailure("ParentId", "You must choose Parent Category for Child Category!");
-                }
+                    if (x.MaleParentId == null && x.FemaleParentId == null)
+                    {
+                        y.AddFailure("You Must choose parent category!");
+                    }
 
-                if (x.Id == x.ParentId)
-                {
-                    y.AddFailure("ParentId", "Parent id cannot be same as Id!");
+                    if (x.FemaleParentId != null && x.MaleParentId != null)
+                    {
+                        y.AddFailure("You Must choose only one gender parent!");
+                    }
+
+                    if (x.GenderId == 1 && x.FemaleParentId == null && x.MaleParentId != null)
+                    {
+                        y.AddFailure("You must choose Female Parent Category!");
+                    }
+
+                    if (x.GenderId == 2 && x.FemaleParentId != null && x.MaleParentId == null)
+                    {
+                        y.AddFailure("You must choose Male Parent Category!");
+                    }
                 }
             });
+
+            RuleFor(x => x.GenderId).NotEmpty().WithMessage("Gender is required!");
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Pull_Bear.Service.ViewModels.BodyFitVMs
         public int Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+        public int GenderId { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

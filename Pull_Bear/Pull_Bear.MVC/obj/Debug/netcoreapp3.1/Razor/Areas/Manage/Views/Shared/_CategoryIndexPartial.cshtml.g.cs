@@ -33,8 +33,15 @@ using Pull_Bear.Service.ViewModels;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.Enums;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee", @"/Areas/Manage/Views/Shared/_CategoryIndexPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f996855cd9d8af896f11201ff2b84d0d656e9274", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1f3a4934372e3f5fee2e639c9dee47b0078b24df", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Shared__CategoryIndexPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<PaginationList<CategoryListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-warning"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -145,7 +152,7 @@ WriteAttributeValue("", 930, category.IsDeleted ? "red" : "green", 930, 39, fals
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                <td class=\"col-lg-1 col-1\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee9197", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee9401", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -190,7 +197,7 @@ WriteAttributeValue("", 930, category.IsDeleted ? "red" : "green", 930, 39, fals
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee12328", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee12532", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -280,7 +287,7 @@ WriteAttributeValue("", 930, category.IsDeleted ? "red" : "green", 930, 39, fals
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee18653", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4ef8ddb6a214cb041e9981c2a4f0315bc9e31dee18857", async() => {
                 WriteLiteral("Delete");
             }
             );

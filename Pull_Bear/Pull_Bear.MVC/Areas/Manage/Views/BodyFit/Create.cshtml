@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3 form-group">
                 <label asp-for="Photo" class="form-label"></label>
-                <input asp-for="Photo" accept="image/jpeg" class="form-control">
+                <input asp-for="Photo" class="form-control p-2" type="file" accept="image/*">
                 <span class="text-danger" asp-validation-for="Photo"></span>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>

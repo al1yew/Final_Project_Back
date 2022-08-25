@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
+using Pull_Bear.Service.Enums;
 using Pull_Bear.Service.Exceptions;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
@@ -51,9 +52,31 @@ namespace Pull_Bear.Service.Implementations
                 {
                     query = query.Where(c => c.IsMain);
                 }
+                else if (type == 3)
+                {
+                    query = query.Where(c => c.GenderId == 2);
+                }
+                else if (type == 4)
+                {
+                    query = query.Where(c => c.GenderId == 1);
+                }
             }
 
             return query;
+        }
+
+        public List<CategoryListVM> GetMainMaleAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 2).Result);
+
+            return categoryListVMs;
+        }
+
+        public List<CategoryListVM> GetMainFemaleAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 1).Result);
+
+            return categoryListVMs;
         }
 
         public List<CategoryListVM> GetMainAsync()
@@ -77,8 +100,20 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(CategoryCreateVM categoryCreateVM)
         {
-            if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted && c.Name.ToLower() == categoryCreateVM.Name.Trim().ToLower()))
+            if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted
+            && (c.Name.ToLower() == categoryCreateVM.Name.Trim().ToLower() && c.GenderId == categoryCreateVM.GenderId)))
                 throw new RecordDublicateException($"Category Already Exist By Name = {categoryCreateVM.Name}");
+
+            if (categoryCreateVM.FemaleParentId == null)
+            {
+                categoryCreateVM.ParentId = categoryCreateVM.MaleParentId;
+                categoryCreateVM.MaleParentId = null;
+            }
+            else
+            {
+                categoryCreateVM.ParentId = categoryCreateVM.FemaleParentId;
+                categoryCreateVM.FemaleParentId = null;
+            }
 
             Category category = _mapper.Map<Category>(categoryCreateVM);
 
@@ -94,14 +129,16 @@ namespace Pull_Bear.Service.Implementations
             if (id != categoryUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            if (!categoryUpdateVM.IsMain)
+            if (categoryUpdateVM.FemaleParentId == null)
             {
-                if (await _categoryRepository.IsExistAsync(c => c.Id == categoryUpdateVM.ParentId && c.IsMain && !c.IsDeleted))
-                    throw new BadRequestException($"You Cannot set Parent Category to category you are updating!");
+                categoryUpdateVM.ParentId = categoryUpdateVM.MaleParentId;
+                categoryUpdateVM.MaleParentId = null;
             }
-
-            if (await _categoryRepository.IsExistAsync(c => c.Id != categoryUpdateVM.Id && c.Name.ToLower() == categoryUpdateVM.Name.Trim().ToLower()))
-                throw new RecordDublicateException($"Category Already Exist By Name = {categoryUpdateVM.Name}");
+            else
+            {
+                categoryUpdateVM.ParentId = categoryUpdateVM.FemaleParentId;
+                categoryUpdateVM.FemaleParentId = null;
+            }
 
             Category dbCategory = await _categoryRepository.GetAsync(c => !c.IsDeleted && c.Id == categoryUpdateVM.Id);
 
@@ -109,6 +146,7 @@ namespace Pull_Bear.Service.Implementations
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
 
             dbCategory.Name = categoryUpdateVM.Name.Trim();
+            dbCategory.GenderId = categoryUpdateVM.GenderId;
             dbCategory.IsMain = categoryUpdateVM.IsMain;
             dbCategory.ParentId = categoryUpdateVM.IsMain ? null : categoryUpdateVM.ParentId;
             dbCategory.IsUpdated = true;
@@ -170,8 +208,6 @@ namespace Pull_Bear.Service.Implementations
 
             await _categoryRepository.CommitAsync();
         }
-
-
 
     }
 }

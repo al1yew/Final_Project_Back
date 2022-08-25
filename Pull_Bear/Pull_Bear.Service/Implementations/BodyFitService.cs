@@ -47,9 +47,16 @@ namespace Pull_Bear.Service.Implementations
             return query;
         }
 
-        public Task<BodyFitGetVM> GetById(int? id)
+        public async Task<BodyFitGetVM> GetById(int? id)
         {
-            throw new NotImplementedException();
+            BodyFit bodyFit = await _bodyFitRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
+
+            if (id == null)
+                throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
+
+            BodyFitGetVM bodyFitGetVM = _mapper.Map<BodyFitGetVM>(bodyFit);
+
+            return bodyFitGetVM;
         }
 
         public async Task CreateAsync(BodyFitCreateVM bodyFitCreateVM)
@@ -65,19 +72,63 @@ namespace Pull_Bear.Service.Implementations
             await _bodyFitRepository.CommitAsync();
         }
 
-        public Task UpdateAsync(int? id, BodyFitUpdateVM bodyFitCreateVM)
+        public async Task UpdateAsync(int? id, BodyFitUpdateVM bodyFitUpdateVM)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new BadRequestException($"Id is null!");
+
+            if (id != bodyFitUpdateVM.Id)
+                throw new BadRequestException($"Id's are not the same!");
+
+            BodyFit dbBodyFit = await _bodyFitRepository.GetAsync(c => !c.IsDeleted && c.Id == bodyFitUpdateVM.Id);
+
+            if (dbBodyFit == null)
+                throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
+
+            if (bodyFitUpdateVM.Photo != null)
+            {
+                FileManager.DeleteFile(_env, dbBodyFit.Image, "assets", "images", "bodyfit");
+
+                dbBodyFit.Image = await bodyFitUpdateVM.Photo.CreateAsync(_env, "assets", "images", "bodyfit");
+            }
+
+            dbBodyFit.Name = bodyFitUpdateVM.Name.Trim();
+            dbBodyFit.IsUpdated = true;
+            dbBodyFit.UpdatedAt = DateTime.UtcNow.AddHours(4);
+
+            await _bodyFitRepository.CommitAsync();
         }
 
-        public Task DeleteAsync(int? id)
+        public async Task DeleteAsync(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new BadRequestException($"Id is null!");
+
+            BodyFit dbbodyFit = await _bodyFitRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+
+            if (dbbodyFit == null)
+                throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
+
+            dbbodyFit.IsDeleted = true;
+            dbbodyFit.DeletedAt = DateTime.UtcNow.AddHours(4);
+
+            await _bodyFitRepository.CommitAsync();
         }
 
-        public Task RestoreAsync(int? id)
+        public async Task RestoreAsync(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+                throw new BadRequestException($"Id is null!");
+
+            BodyFit dbbodyFit = await _bodyFitRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+
+            if (dbbodyFit == null)
+                throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
+
+            dbbodyFit.IsDeleted = false;
+            dbbodyFit.DeletedAt = null;
+
+            await _bodyFitRepository.CommitAsync();
         }
     }
 }

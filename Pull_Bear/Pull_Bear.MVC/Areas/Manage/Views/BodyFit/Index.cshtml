@@ -4,14 +4,22 @@
     <div class="content-wrapper pt-0 pb-2">
         <div class="container">
             <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-lg-2 col-12">
-                    <h1>Body Fit</h1>
+                <div class="col-lg-3 col-12">
+                    <h3>Body Fit</h3>
                 </div>
                 <div class="col-lg-6 col-12">
                     <form class="">
                         <div class="row justify-content-center align-items-center col-12">
 
-                            <div class="col-lg-4 col-4 align-items-center py-2">
+                            <div class="col-lg-3 col-3 align-items-center py-2">
+                                <label class="form-label">Type:</label>
+                                <select name="type" class="form-select" aria-label="Default select example">
+                                    <option selected value="0">All</option>
+                                    <option value="1">Man</option>
+                                    <option value="2">Woman</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3 col-3 align-items-center py-2">
                                 <label class="form-label">Sort By</label>
                                 <select name="status" class="form-select" aria-label="Default select example">
                                     <option selected value="0">All</option>
@@ -19,14 +27,13 @@
                                     <option value="2">Active</option>
                                 </select>
                             </div>
-                            <div class="col-lg-4 col-4 align-items-center py-2">
+                            <div class="col-lg-3 col-3 align-items-center py-2">
                                 <label class="form-label">Select:</label>
                                 <select name="select" class="form-select" aria-label="Default select example">
                                     <option selected value="5">5</option>
                                     <option value="10">10</option>
                                     <option value="15">15</option>
                                     <option value="20">20</option>
-                                    <option value="30">30</option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-3">
@@ -51,18 +58,18 @@
         <ul class="pagination d-flex justify-content-center align-content-center">
             @if (Model.HasPrev)
             {
-                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="1">@("<<")</a></li>
+                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-type="@ViewBag.Type" asp-route-page="1">@("<<")</a></li>
 
-                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@(Model.Page-1)">@("<")</a></li>
+                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-type="@ViewBag.Type" asp-route-page="@(Model.Page-1)">@("<")</a></li>
             }
             @for (int i = 1; i <= Model.PageCount; i++)
             {
-                <li class="page-item @(Model.Page == i ? "active":"")"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@i">@i</a></li>
+                <li class="page-item @(Model.Page == i ? "active":"")"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-type="@ViewBag.Type" asp-route-status="@ViewBag.Status" asp-route-page="@i">@i</a></li>
             }
             @if (Model.HasNext)
             {
-                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@(Model.Page+1)">@(">")</a></li>
-                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@Model.PageCount">@(">>")</a></li>
+                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-type="@ViewBag.Type" asp-route-page="@(Model.Page+1)">@(">")</a></li>
+                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="BodyFit" asp-action="Index" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-type="@ViewBag.Type" asp-route-page="@Model.PageCount">@(">>")</a></li>
             }
         </ul>
     </div>

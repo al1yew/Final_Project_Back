@@ -123,6 +123,5 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             return PartialView("_CategoryIndexPartial", PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
         }
-
     }
 }

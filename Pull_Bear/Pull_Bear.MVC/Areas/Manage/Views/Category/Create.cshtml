@@ -24,6 +24,7 @@
                 <select asp-for="GenderId" class="form-control col-lg-6 col-6 w-75 genderselect" asp-items="Html.GetEnumSelectList<GenderList>()">
                     <option value="">Select Gender</option>
                 </select>
+                <span class="text-danger" asp-validation-for="GenderId"></span>
             </div>
 
             <div class="col-lg-6 col-6 d-flex justify-content-center align-items-center mb-3 ">

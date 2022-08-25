@@ -14,32 +14,32 @@
 
     //----------------------------------------------- Toggle Gender Select option in Category Create View
 
-    //$(document).on('change', '.genderselect', function () {
+    $(document).on('change', '.genderselect', function () {
 
-    //    if ($(this).val() == 1) {
+        if ($(this).val() == 1) {
 
-    //        $('.ismale').hide();
+            $('.ismale').hide();
 
-    //        $('.isfemale').show();
-    //    }
-    //    else if ($(this).val() == 2) {
+            $('.isfemale').show();
+        }
+        else if ($(this).val() == 2) {
 
-    //        $('.ismale').show();
+            $('.ismale').show();
 
-    //        $('.isfemale').hide();
-    //    }
+            $('.isfemale').hide();
+        }
 
-    //});
+    });
 
-    ////----------------------------------------------- Clear another select option val in Category Create view
+    //----------------------------------------------- Clear another select option val in Category Create view
 
-    //$(document).on('change', '.ismaleselect', function () {
-    //    $('.isfemaleselect').val('');
-    //});
+    $(document).on('change', '.ismaleselect', function () {
+        $('.isfemaleselect').val('');
+    });
 
-    //$(document).on('change', '.isfemaleselect', function () {
-    //    $('.ismaleselect').val('');
-    //});
+    $(document).on('change', '.isfemaleselect', function () {
+        $('.ismaleselect').val('');
+    });
 
     //----------------------------------------------- Delete element
 

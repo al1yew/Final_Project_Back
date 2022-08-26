@@ -9,7 +9,7 @@ namespace Pull_Bear.Service.Interfaces
 {
     public interface IBodyFitService
     {
-        IQueryable<BodyFitListVM> GetAllAsync(int? status);
+        IQueryable<BodyFitListVM> GetAllAsync(int? status, int? type);
 
         Task<BodyFitGetVM> GetById(int? id);
 

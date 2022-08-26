@@ -11,6 +11,7 @@ namespace Pull_Bear.Core.Models
         public Nullable<int> ParentId { get; set; }
         public Category Parent { get; set; }
         public IEnumerable<Category> Children { get; set; }
+        public string Image { get; set; }
 
 
         //relations one bodyfit - many ...

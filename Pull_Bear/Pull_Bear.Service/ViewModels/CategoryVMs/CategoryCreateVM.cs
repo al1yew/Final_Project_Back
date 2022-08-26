@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Pull_Bear.Service.Enums;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public Nullable<int> MaleParentId { get; set; }
         public Nullable<int> FemaleParentId { get; set; }
         public int GenderId { get; set; }
+        public IFormFile Photo { get; set; }
 
     }
 
@@ -35,9 +37,29 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
                     {
                         y.AddFailure("You cannot choose parent category!");
                     }
+
+                    if (x.Photo == null)
+                    {
+                        y.AddFailure("Photo Is Required");
+                    }
+
+                    if (!x.Photo.ContentType.ToString().Contains("image/"))
+                    {
+                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
+                    }
+
+                    if (x.Photo.Length / 1024 > 10000)
+                    {
+                        y.AddFailure("Image must be at most 10mb!");
+                    }
                 }
                 else
                 {
+                    if (x.Photo != null)
+                    {
+                        y.AddFailure("Photo Is Required only for Main Category!");
+                    }
+
                     if (x.MaleParentId == null && x.FemaleParentId == null)
                     {
                         y.AddFailure("You Must choose parent category!");

@@ -4,11 +4,13 @@
 
     $(document).on('change', '.isMaininput', function () {
         if ($(this).is(":checked")) {
+            $('.imagecont').show();
             $('.parentcontainer').hide();
             $('.ismaleselect').val('');
             $('.isfemaleselect').val('');
         } else {
             $('.parentcontainer').show();
+            $('.imagecont').hide();
         }
     })
 

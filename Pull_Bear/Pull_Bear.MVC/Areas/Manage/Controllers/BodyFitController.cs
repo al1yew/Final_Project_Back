@@ -22,9 +22,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _bodyFitService = bodyFitService;
         }
 
-        public IActionResult Index(int? status, int select, int page = 1)
+        public IActionResult Index(int? status, int? type, int select, int page = 1)
         {
-            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status);
+            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status, type);
 
             if (select <= 0)
             {
@@ -32,6 +32,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             }
 
             ViewBag.Select = select;
+            ViewBag.Type = type;
             ViewBag.Status = status;
             ViewBag.Page = page;
 
@@ -47,6 +48,12 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(BodyFitCreateVM bodyFitCreateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
+
             await _bodyFitService.CreateAsync(bodyFitCreateVM);
 
             return RedirectToAction("Index");
@@ -61,33 +68,41 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(int? id, BodyFitUpdateVM bodyFitUpdateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
+
             await _bodyFitService.UpdateAsync(id, bodyFitUpdateVM);
 
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Delete(int? id, int? status, int select, int page)
+        public async Task<IActionResult> Delete(int? id, int? status, int? type, int select, int page)
         {
             ViewBag.Select = select;
             ViewBag.Status = status;
+            ViewBag.Type = type;
             ViewBag.Page = page;
 
             await _bodyFitService.DeleteAsync(id);
 
-            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status);
+            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status, type);
 
             return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
         }
 
-        public async Task<IActionResult> Restore(int? id, int? status, int select, int page)
+        public async Task<IActionResult> Restore(int? id, int? status, int? type, int select, int page)
         {
             ViewBag.Select = select;
+            ViewBag.Type = type;
             ViewBag.Status = status;
             ViewBag.Page = page;
 
             await _bodyFitService.RestoreAsync(id);
 
-            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status);
+            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status, type);
 
             return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
         }

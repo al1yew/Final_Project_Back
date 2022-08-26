@@ -27,7 +27,8 @@ namespace Pull_Bear.Service.Mappings
             #endregion
 
             #region BodyFit
-            CreateMap<BodyFit, BodyFitListVM>();
+            CreateMap<BodyFit, BodyFitListVM>()
+                .ForMember(des => des.GenderName, src => src.MapFrom(x => x.Gender.Name));
 
             CreateMap<BodyFitCreateVM, BodyFit>()
                 .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))

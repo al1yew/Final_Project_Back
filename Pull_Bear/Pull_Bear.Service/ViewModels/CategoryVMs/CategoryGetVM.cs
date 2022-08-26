@@ -16,5 +16,6 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public List<CategoryGetVM> Children { get; set; }
         public string GenderName { get; set; }
         public int GenderId { get; set; }
+        public string Image { get; set; }
     }
 }

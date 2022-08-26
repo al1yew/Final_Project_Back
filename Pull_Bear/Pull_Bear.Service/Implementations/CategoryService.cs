@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Enums;
 using Pull_Bear.Service.Exceptions;
+using Pull_Bear.Service.Extensions;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using System;
@@ -17,11 +19,13 @@ namespace Pull_Bear.Service.Implementations
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _env;
 
-        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
+        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper, IWebHostEnvironment env)
         {
             _categoryRepository = categoryRepository;
             _mapper = mapper;
+            _env = env;
         }
 
         public IQueryable<CategoryListVM> GetAllAsync(int? status, int? type)
@@ -102,7 +106,7 @@ namespace Pull_Bear.Service.Implementations
         {
             if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == categoryCreateVM.Name.Trim().ToLower() && c.GenderId == categoryCreateVM.GenderId)))
-                throw new RecordDublicateException($"Category Already Exist By Name = {categoryCreateVM.Name}");
+                throw new RecordDublicateException($"Category Already Exists By Name = {categoryCreateVM.Name}");
 
             if (categoryCreateVM.FemaleParentId == null)
             {
@@ -117,6 +121,11 @@ namespace Pull_Bear.Service.Implementations
 
             Category category = _mapper.Map<Category>(categoryCreateVM);
 
+            if (category.IsMain)
+            {
+                category.Image = await categoryCreateVM.Photo.CreateAsync(_env, "assets", "images", "categories");
+            }
+
             await _categoryRepository.AddAsync(category);
             await _categoryRepository.CommitAsync();
         }
@@ -128,6 +137,10 @@ namespace Pull_Bear.Service.Implementations
 
             if (id != categoryUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
+
+            if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted
+             && (c.Name.ToLower() == categoryUpdateVM.Name.Trim().ToLower() && c.GenderId == categoryUpdateVM.GenderId && c.Id != categoryUpdateVM.Id)))
+                throw new RecordDublicateException($"Category Already Exists By Name = {categoryUpdateVM.Name}");
 
             if (categoryUpdateVM.FemaleParentId == null)
             {
@@ -144,6 +157,13 @@ namespace Pull_Bear.Service.Implementations
 
             if (dbCategory == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
+
+            if (categoryUpdateVM.Photo != null)
+            {
+                FileManager.DeleteFile(_env, dbCategory.Image, "assets", "images", "categories");
+
+                dbCategory.Image = await categoryUpdateVM.Photo.CreateAsync(_env, "assets", "images", "categories");
+            }
 
             dbCategory.Name = categoryUpdateVM.Name.Trim();
             dbCategory.GenderId = categoryUpdateVM.GenderId;

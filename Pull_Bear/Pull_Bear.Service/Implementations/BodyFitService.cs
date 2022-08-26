@@ -26,9 +26,9 @@ namespace Pull_Bear.Service.Implementations
             _env = env;
         }
 
-        public IQueryable<BodyFitListVM> GetAllAsync(int? status)
+        public IQueryable<BodyFitListVM> GetAllAsync(int? status, int? type)
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllAsync().Result);
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllAsync("Gender").Result);
 
             IQueryable<BodyFitListVM> query = bodyFitListVMs.AsQueryable();
 
@@ -41,6 +41,18 @@ namespace Pull_Bear.Service.Implementations
                 else if (status == 2)
                 {
                     query = query.Where(b => !b.IsDeleted);
+                }
+            }
+
+            if (type != null && type > 0)
+            {
+                if (type == 1)
+                {
+                    query = query.Where(c => c.GenderId == 2);
+                }
+                else if (type == 2)
+                {
+                    query = query.Where(c => c.GenderId == 1);
                 }
             }
 
@@ -61,8 +73,9 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(BodyFitCreateVM bodyFitCreateVM)
         {
-            if (await _bodyFitRepository.IsExistAsync(c => !c.IsDeleted && c.Name.ToLower() == bodyFitCreateVM.Name.Trim().ToLower()))
-                throw new RecordDublicateException($"Body Fit Already Exist By Name = {bodyFitCreateVM.Name}");
+            if (await _bodyFitRepository.IsExistAsync(c => !c.IsDeleted
+            && (c.Name.ToLower() == bodyFitCreateVM.Name.Trim().ToLower() && c.GenderId == bodyFitCreateVM.GenderId)))
+                throw new RecordDublicateException($"Body Fit Already Exists By Name = {bodyFitCreateVM.Name}");
 
             BodyFit bodyFit = _mapper.Map<BodyFit>(bodyFitCreateVM);
 
@@ -80,6 +93,10 @@ namespace Pull_Bear.Service.Implementations
             if (id != bodyFitUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
+            if (await _bodyFitRepository.IsExistAsync(c => !c.IsDeleted
+            && (c.Name.ToLower() == bodyFitUpdateVM.Name.Trim().ToLower() && c.GenderId == bodyFitUpdateVM.GenderId && c.Id != bodyFitUpdateVM.Id)))
+                throw new RecordDublicateException($"Body Fit Already Exists By Name = {bodyFitUpdateVM.Name}");
+
             BodyFit dbBodyFit = await _bodyFitRepository.GetAsync(c => !c.IsDeleted && c.Id == bodyFitUpdateVM.Id);
 
             if (dbBodyFit == null)
@@ -93,6 +110,7 @@ namespace Pull_Bear.Service.Implementations
             }
 
             dbBodyFit.Name = bodyFitUpdateVM.Name.Trim();
+            dbBodyFit.GenderId = bodyFitUpdateVM.GenderId;
             dbBodyFit.IsUpdated = true;
             dbBodyFit.UpdatedAt = DateTime.UtcNow.AddHours(4);
 

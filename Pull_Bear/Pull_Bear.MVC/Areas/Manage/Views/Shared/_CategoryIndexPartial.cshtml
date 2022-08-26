@@ -7,13 +7,16 @@
 <table class="table table-bordered table-striped tblContent">
     <thead>
         <tr>
-            <th class="col-lg-1 col-1">№</th>
-            <th class="col-lg-3 col-3">Name</th>
-            <th class="col-lg-1 col-1">Category Type</th>
-            <th class="col-lg-1 col-1">Category Gender</th>
-            <th class="col-lg-1 col-1">Status</th>
-            <th class="col-lg-1 col-1">Update</th>
-            <th class="col-lg-1 col-1">Delete/Restore</th>
+            <th class="col-lg-1 col-1 text-wrap">№</th>
+            <th class="col-lg-1 col-1 text-wrap">Name</th>
+            <th class="col-lg-1 col-1 text-wrap">Image</th>
+            <th class="col-lg-1 col-1 text-wrap">Category Type</th>
+            <th class="col-lg-1 col-1 text-wrap">Category's Parent</th>
+            <th class="col-lg-1 col-1 text-wrap">Category's Children</th>
+            <th class="col-lg-1 col-1 text-wrap">Gender</th>
+            <th class="col-lg-1 col-1 text-wrap">Status</th>
+            <th class="col-lg-1 col-1 text-wrap">Update</th>
+            <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
         </tr>
     </thead>
     <tbody>
@@ -21,15 +24,44 @@
         {
             no++;
             <tr>
-                <td class="col-lg-1 col-1">@no</td>
-                <td class="col-lg-3 col-3">@category.Name</td>
-                <td class="col-lg-1 col-1">@(category.IsMain ? "Main Category"  :"Sub Category")</td>
-                <td class="col-lg-1 col-1">@category.GenderName</td>
-                <td class="col-lg-1 col-1" style="color:@(category.IsDeleted ? "red" : "green")">@(category.IsDeleted ? "Deleted" : "Active")</td>
-                <td class="col-lg-1 col-1">
+                <td class="col-lg-1 col-1 text-wrap">@no</td>
+                <td class="col-lg-1 col-1 text-wrap">@category.Name</td>
+                <td class="col-lg-2 col-2 "><img class="img-fluid" src="~/assets/images/categories/@category.Image" /></td>
+                <td class="col-lg-1 col-1 text-wrap">@(category.IsMain ? "Main Category"  :"Sub Category")</td>
+                <td class="col-lg-1 col-1 text-wrap text-success">
+                    @if (category.ParentId != null && category.IsMain == false)
+                    {
+                        @category.Parent.Name
+                    }
+                    else
+                    {
+                        <span class="text-danger">Parent category</span>
+                    }
+                </td>
+                <td class="col-lg-1 col-1 text-wrap text-success">
+                    @if (category.IsMain && category.ParentId == null)
+                    {
+                        if (category.Children.Count > 0 && category.Children != null)
+                        {
+                            @foreach (CategoryListVM categoryListVM in category.Children)
+                            {
+                                <span>
+                                    @categoryListVM.Name,&nbsp;
+                                </span>
+                            }
+                        }
+                        else
+                        {
+                            <span class="text-danger">No Children</span>
+                        }
+                    }
+                </td>
+                <td class="col-lg-1 col-1 text-wrap">@category.GenderName</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(category.IsDeleted ? "red" : "green")">@(category.IsDeleted ? "Deleted" : "Active")</td>
+                <td class="col-lg-1 col-1 text-wrap">
                     <a class="btn btn-warning" asp-area="Manage" asp-controller="Category" asp-action="Update" asp-route-id="@category.Id">Update</a>
                 </td>
-                <td class="col-lg-1 col-1">
+                <td class="col-lg-1 col-1 text-wrap">
                     @if (category.IsDeleted)
                     {
                         <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Category"

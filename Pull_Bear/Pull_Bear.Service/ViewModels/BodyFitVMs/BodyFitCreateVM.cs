@@ -27,18 +27,18 @@ namespace Pull_Bear.Service.ViewModels.BodyFitVMs
             {
                 if (x.Photo == null)
                 {
-                    y.AddFailure("Photo", "Photo Is Reuired");
+                    y.AddFailure("Photo Is Required");
                 }
                 else
                 {
                     if (!x.Photo.ContentType.ToString().Contains("image/"))
                     {
-                        y.AddFailure("Photo", "Image must be only accepted IMAGE MIME types!");
+                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
                     }
 
-                    if (x.Photo.Length / 1024 > 15)
+                    if (x.Photo.Length / 1024 > 10000)
                     {
-                        y.AddFailure("Photo", "Image must be at most 15mb!!");
+                        y.AddFailure("Image must be at most 10mb!");
                     }
                 }
             });

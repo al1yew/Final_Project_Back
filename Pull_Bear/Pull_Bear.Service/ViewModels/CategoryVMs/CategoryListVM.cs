@@ -15,5 +15,7 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public string GenderName { get; set; }
         public bool IsDeleted { get; set; }
         public int GenderId { get; set; }
+        public string Image { get; set; }
+
     }
 }

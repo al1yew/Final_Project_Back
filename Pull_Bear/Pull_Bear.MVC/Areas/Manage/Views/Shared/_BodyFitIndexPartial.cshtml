@@ -7,12 +7,13 @@
 <table class="table table-bordered table-striped tblContent">
     <thead>
         <tr>
-            <th class="col-lg-1 col-1">№</th>
+            <th class="col-lg-1 col-1 text-wrap">№</th>
             <th class="col-lg-2 col-2">Image</th>
-            <th class="col-lg-3 col-3">Name</th>
-            <th class="col-lg-1 col-1">Status</th>
-            <th class="col-lg-1 col-1">Update</th>
-            <th class="col-lg-1 col-1">Delete/Restore</th>
+            <th class="col-lg-1 col-1 text-wrap">Name</th>
+            <th class="col-lg-1 col-1 text-wrap">Gender</th>
+            <th class="col-lg-1 col-1 text-wrap">Status</th>
+            <th class="col-lg-1 col-1 text-wrap">Update</th>
+            <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
         </tr>
     </thead>
     <tbody>
@@ -20,14 +21,15 @@
         {
             no++;
             <tr>
-                <td class="col-lg-1 col-1">@no</td>
+                <td class="col-lg-1 col-1 text-wrap">@no</td>
                 <td class="col-lg-2 col-2"><img class="img-fluid" src="~/assets/images/bodyfit/@bodyfit.Image" /></td>
-                <td class="col-lg-3 col-3">@bodyfit.Name</td>
-                <td class="col-lg-1 col-1" style="color:@(bodyfit.IsDeleted ? "red" : "green")">@(bodyfit.IsDeleted ? "Deleted" : "Active")</td>
-                <td class="col-lg-1 col-1">
+                <td class="col-lg-3 col-3 text-wrap">@bodyfit.Name</td>
+                <td class="col-lg-3 col-3 text-wrap">@bodyfit.GenderName</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(bodyfit.IsDeleted ? "red" : "green")">@(bodyfit.IsDeleted ? "Deleted" : "Active")</td>
+                <td class="col-lg-1 col-1 text-wrap">
                     <a class="btn btn-warning" asp-area="Manage" asp-controller="BodyFit" asp-action="Update" asp-route-id="@bodyfit.Id">Update</a>
                 </td>
-                <td class="col-lg-1 col-1">
+                <td class="col-lg-1 col-1 text-wrap">
                     @if (bodyfit.IsDeleted)
                     {
                         <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="BodyFit"

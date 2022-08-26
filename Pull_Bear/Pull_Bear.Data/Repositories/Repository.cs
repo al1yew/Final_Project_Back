@@ -34,19 +34,48 @@ namespace Pull_Bear.Data.Repositories
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<TEntity>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync(params string[] includes)
         {
-            return await _context.Set<TEntity>().ToListAsync();
+            IQueryable<TEntity> query = _context.Set<TEntity>();
+
+            if (includes != null && includes.Length > 0)
+            {
+                foreach (string inc in includes)
+                {
+                    query = query.Include(inc);
+                }
+            }
+            return await query.ToListAsync();
         }
 
-        public async Task<List<TEntity>> GetAllByExAsync(Expression<Func<TEntity, bool>> ex)
+        public async Task<List<TEntity>> GetAllByExAsync(Expression<Func<TEntity, bool>> ex, params string[] includes)
         {
-            return await _context.Set<TEntity>().Where(ex).ToListAsync();
+            IQueryable<TEntity> query = _context.Set<TEntity>().Where(ex);
+
+            if (includes != null && includes.Length > 0)
+            {
+                foreach (string inc in includes)
+                {
+                    query = query.Include(inc);
+                }
+            }
+
+            return await query.ToListAsync();
         }
 
-        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex, params string[] includes)
         {
-            return await _context.Set<TEntity>().FirstOrDefaultAsync(ex);
+            IQueryable<TEntity> query = _context.Set<TEntity>().Where(ex);
+
+            if (includes != null && includes.Length > 0)
+            {
+                foreach (string inc in includes)
+                {
+                    query = query.Include(inc);
+                }
+            }
+
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> ex)

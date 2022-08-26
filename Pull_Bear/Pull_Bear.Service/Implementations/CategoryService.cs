@@ -26,7 +26,7 @@ namespace Pull_Bear.Service.Implementations
 
         public IQueryable<CategoryListVM> GetAllAsync(int? status, int? type)
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync().Result);
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllAsync("Gender", "Children", "Parent").Result);
 
             IQueryable<CategoryListVM> query = categoryListVMs.AsQueryable();
 

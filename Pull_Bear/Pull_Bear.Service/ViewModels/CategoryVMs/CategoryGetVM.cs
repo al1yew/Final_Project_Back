@@ -11,8 +11,10 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsMain { get; set; }
+        public CategoryGetVM Parent { get; set; }
         public Nullable<int> ParentId { get; set; }
-        public List<Category> Children { get; set; }
+        public List<CategoryGetVM> Children { get; set; }
+        public string GenderName { get; set; }
         public int GenderId { get; set; }
     }
 }

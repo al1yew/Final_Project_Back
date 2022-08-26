@@ -10,9 +10,9 @@ namespace Pull_Bear.Core.Repositories
     public interface IRepository<TEntity>
     {
         Task AddAsync(TEntity entity);
-        Task<List<TEntity>> GetAllAsync();
-        Task<List<TEntity>> GetAllByExAsync(Expression<Func<TEntity, bool>> ex);
-        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex);
+        Task<List<TEntity>> GetAllAsync(params string[] includes);
+        Task<List<TEntity>> GetAllByExAsync(Expression<Func<TEntity, bool>> ex, params string[] includes);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex, params string[] includes);
         void Remove(TEntity entity);
         Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> ex);
         Task<int> CommitAsync();

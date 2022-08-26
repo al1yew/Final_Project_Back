@@ -10,8 +10,10 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
         public string Name { get; set; }
         public bool IsMain { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public CategoryListVM Parent { get; set; }
+        public List<CategoryListVM> Children { get; set; }
+        public string GenderName { get; set; }
         public bool IsDeleted { get; set; }
         public int GenderId { get; set; }
-
     }
 }

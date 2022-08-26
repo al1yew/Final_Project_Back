@@ -14,13 +14,14 @@ namespace Pull_Bear.Service.Mappings
         public MappingProfile()
         {
             #region Category
-            CreateMap<Category, CategoryListVM>();
+            CreateMap<Category, CategoryListVM>()
+                .ForMember(des => des.GenderName, src => src.MapFrom(x => x.Gender.Name));
+
+            CreateMap<Category, CategoryGetVM>();
 
             CreateMap<CategoryCreateVM, Category>()
                 .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))
                 .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
-
-            CreateMap<Category, CategoryGetVM>();
 
             CreateMap<CategoryGetVM, CategoryUpdateVM>();
             #endregion

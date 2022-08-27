@@ -48,13 +48,24 @@
     //----------------------------------------------- Search Layout
 
     $(".layoutsearch").keyup(function () {
+
         let inputvalue = $(this).val();
-        console.log(inputvalue)
+
+        $('.closesearch').show();
+
         let url = $(this).data('url');
 
         url = url + '?search=' + inputvalue;
 
-        console.log(url)
+        //if (!($('.list-group-layout').find('.est').length > 0)) {
+        //    console.log('salsmasm')
+        //    $('.search-body-adminarea').addClass('d-none');
+        //    $(".search-body-adminarea .list-group-layout").addClass('d-none');
+        //}
+        //else {
+        //    $('.search-body-adminarea').removeClass('d-none');
+        //    $(".search-body-adminarea .list-group-layout").removeClass('d-none');
+        //}
 
         if (inputvalue) {
 
@@ -62,13 +73,20 @@
                 .then(res => res.text())
                 .then(data => {
                     $(".search-body-adminarea .list-group-layout").html(data);
-                    $('.search-body-adminarea').removeClass("d-none");
+                    $('.search-body-adminarea').removeClass("d-none")
                 })
         }
         else {
             $(".search-body-adminarea .list-group-layout").html('');
             $('.search-body-adminarea').addClass("d-none");
+            $('.closesearch').hide();
         }
+    });
+
+    $(document).on('click', '.closesearch', function () {
+        $('.search-body-adminarea').addClass("d-none");
+        $('.layoutsearch').val('');
+        $('.closesearch').hide();
     });
 
 

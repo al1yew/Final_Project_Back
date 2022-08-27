@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Star Admin2 </title>
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="~/manage/vendors/feather/feather.css">
     <link rel="stylesheet" href="~/manage/vendors/mdi/css/materialdesignicons.min.css">
@@ -13,18 +14,30 @@
     <link rel="stylesheet" href="~/manage/vendors/typicons/typicons.css">
     <link rel="stylesheet" href="~/manage/vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="~/manage/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
+
+    <!-- MDBootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
+          rel="stylesheet" />
+    @* ionicons *@
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
+
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="~/manage/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="~/manage/js/select.dataTables.min.css">
     <link href="~/manage/css/sweetalert2.min.css" />
+
     <!-- End plugin css for this page -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <!-- inject:css -->
+
     <link rel="stylesheet" href="~/manage/css/vertical-layout-light/style.css">
     <!-- endinject -->
+
     <link rel="shortcut icon" href="~/manage/images/favicon.png" />
+
+    <link rel="stylesheet" href="~/manage/css/CustomCSS.css">
+
 </head>
 
 <body>
@@ -47,7 +60,21 @@
                     </a>
                 </div>
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-top">
+            <div class="navbar-menu-wrapper d-flex align-items-top keeper">
+
+                <div class=" p-2 shadow animated--grow-in position-relative"
+                     aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+                            <input data-url="http://localhost:53427/Manage/Search/Search" type="text" class="layoutsearch form-control bg-light border-0 small" placeholder="Search...">
+                        </div>
+                    </form>
+                    <div class="search-body-adminarea d-none">
+                        <ul class="list-group-layout" style="border-radius: 21px;height: 250px;background-color: #e5d5d5;position:absolute;width: 40%;left: -10px; z-index:500;overflow-y: scroll;top: 58px;">
+                        </ul>
+                    </div>
+                </div>
+
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
@@ -212,6 +239,13 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Manage" asp-controller="Tag" asp-action="Index">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title">Tags</span>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
             <!-- partial -->
@@ -249,6 +283,11 @@
     <script src="~/manage/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @* md bootstrap select option search *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js" integrity="sha512-JLkwaZ4wv4rmL3O3OoWF1ODQonz8mJgOwA3MxH6nLZTNgHbelnzk1xnsY74Ri+WWW1ZNaqHfg0KBQyMmi5vtbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Ion icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     @* MY SCRIPT *@
     <script src="~/manage/CustomJS/Custom.js" asp-append-version="true"></script>
 

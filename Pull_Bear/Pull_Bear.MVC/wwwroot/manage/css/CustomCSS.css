@@ -1,0 +1,36 @@
+﻿/*.serch {
+    position: relative;
+}
+
+.closesearchadmin {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-44%);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.keeper {
+    position: relative;
+    width: 100%;
+}
+
+.searchdrop {
+    position: absolute;
+    top: 75%;
+    left: 54px;
+    width: 92%;
+    padding: 10px;
+    height: 70vh;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+    .searchdrop p {
+        font-size: 18px;
+        color: blue;
+        padding: 10px 0;
+    }
+*/

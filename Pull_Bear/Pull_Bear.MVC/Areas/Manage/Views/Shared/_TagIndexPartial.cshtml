@@ -1,0 +1,43 @@
+﻿@model PaginationList<TagListVM>
+
+@{
+    int no = Model.ItemsCount * (Model.Page - 1);
+}
+
+<table class="table table-bordered table-striped tblContent">
+    <thead>
+        <tr>
+            <th class="col-lg-1 col-1 text-wrap">№</th>
+            <th class="col-lg-1 col-1 text-wrap">Name</th>
+            <th class="col-lg-1 col-1 text-wrap">Status</th>
+            <th class="col-lg-1 col-1 text-wrap">Update</th>
+            <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TagListVM tagListVM in Model)
+        {
+            no++;
+            <tr>
+                <td class="col-lg-1 col-1 text-wrap">@no</td>
+                <td class="col-lg-1 col-1 text-wrap">@tagListVM.Name</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(tagListVM.IsDeleted ? "red" : "green")">@(tagListVM.IsDeleted ? "Deleted" : "Active")</td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    <a class="btn btn-warning" asp-area="Manage" asp-controller="Tag" asp-action="Update" asp-route-id="@tagListVM.Id">Update</a>
+                </td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    @if (tagListVM.IsDeleted)
+                    {
+                        <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Tag"
+                           asp-action="Restore" asp-route-id="@tagListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Tag"
+                           asp-action="Delete" asp-route-id="@tagListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

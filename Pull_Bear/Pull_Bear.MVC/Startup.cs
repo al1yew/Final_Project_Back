@@ -55,6 +55,7 @@ namespace Pull_Bear.MVC
             services.AddScoped<IBodyFitRepository, BodyFitRepository>();
             services.AddScoped<IColorRepository, ColorRepository>();
             services.AddScoped<ISizeRepository, SizeRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
 
 
 
@@ -62,6 +63,7 @@ namespace Pull_Bear.MVC
             services.AddScoped<IBodyFitService, BodyFitService>();
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<ISizeService, SizeService>();
+            services.AddScoped<ITagService, TagService>();
 
 
 

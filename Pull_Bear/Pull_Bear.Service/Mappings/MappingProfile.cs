@@ -4,6 +4,7 @@ using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
 using Pull_Bear.Service.ViewModels.SizeVMs;
+using Pull_Bear.Service.ViewModels.TagVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,18 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<Size, SizeGetVM>();
 
             CreateMap<SizeGetVM, SizeUpdateVM>();
+            #endregion
+
+            #region Tag
+            CreateMap<Tag, TagListVM>();
+
+            CreateMap<TagCreateVM, Tag>()
+                .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))
+                .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
+
+            CreateMap<Tag, TagGetVM>();
+
+            CreateMap<TagGetVM, TagUpdateVM>();
             #endregion
 
         }

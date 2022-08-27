@@ -2,48 +2,74 @@
 
     //----------------------------------------------- Category toggle class when it is main or child
 
-    //$(document).on('change', '.isMaininput', function () {
-    //    if ($(this).is(":checked")) {
-    //        $('.imagecont').show();
-    //        $('.parentcontainer').hide();
-    //        $('.ismaleselect').val('');
-    //        $('.isfemaleselect').val('');
-    //    } else {
-    //        $('.parentcontainer').show();
-    //        $('.imagecont').hide();
-    //    }
-    //})
+    $(document).on('change', '.isMaininput', function () {
+        if ($(this).is(":checked")) {
+            $('.imagecont').show();
+            $('.parentcontainer').hide();
+            $('.ismaleselect').val('');
+            $('.isfemaleselect').val('');
+        } else {
+            $('.parentcontainer').show();
+            $('.imagecont').hide();
+        }
+    })
 
 
-    ////----------------------------------------------- Toggle Gender Select option in Category Create View
+    //----------------------------------------------- Toggle Gender Select option in Category Create View
 
-    //$(document).on('change', '.genderselect', function () {
+    $(document).on('change', '.genderselect', function () {
 
-    //    if ($(this).val() == 1) {
+        if ($(this).val() == 1) {
 
-    //        $('.ismale').hide();
+            $('.ismale').hide();
 
-    //        $('.isfemale').show();
-    //    }
-    //    else if ($(this).val() == 2) {
+            $('.isfemale').show();
+        }
+        else if ($(this).val() == 2) {
 
-    //        $('.ismale').show();
+            $('.ismale').show();
 
-    //        $('.isfemale').hide();
-    //    }
+            $('.isfemale').hide();
+        }
+    });
 
-    //});
+
+    //----------------------------------------------- Clear another select option val in Category Create view 
+
+    $(document).on('change', '.ismaleselect', function () {
+        $('.isfemaleselect').val('');
+    });
+
+    $(document).on('change', '.isfemaleselect', function () {
+        $('.ismaleselect').val('');
+    });
 
 
-    ////----------------------------------------------- Clear another select option val in Category Create view 
+    //----------------------------------------------- Search Layout
 
-    //$(document).on('change', '.ismaleselect', function () {
-    //    $('.isfemaleselect').val('');
-    //});
+    $(".layoutsearch").keyup(function () {
+        let inputvalue = $(this).val();
 
-    //$(document).on('change', '.isfemaleselect', function () {
-    //    $('.ismaleselect').val('');
-    //});
+        let url = $(this).data('url');
+
+        url = url + '?search=' + inputvalue;
+
+        console.log(url)
+
+        if (inputvalue) {
+
+            fetch(url)
+                .then(res => res.text())
+                .then(data => {
+                    $(".search-body-adminarea .list-group-layout").html(data);
+                    $('.search-body-adminarea').removeClass("d-none");
+                })
+        }
+        else {
+            $(".search-body-adminarea .list-group-layout").html('');
+            $('.search-body-adminarea').addClass("d-none");
+        }
+    });
 
 
     //----------------------------------------------- get color name with api 

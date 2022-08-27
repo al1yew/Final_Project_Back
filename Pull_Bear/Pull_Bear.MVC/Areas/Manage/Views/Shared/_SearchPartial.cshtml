@@ -1,0 +1,274 @@
+﻿@model SearchListVM
+
+@{
+    int colorno = 0;
+    int categoryno = 0;
+    int sizeno = 0;
+    int bodyno = 0;
+    int tagno = 0;
+}
+
+@if (Model.Categories.Count > 0)
+{
+    <h4>Categories</h4>
+
+    <table class="table table-bordered table-striped tblContent">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Image</th>
+                <th class="col-lg-1 col-1 text-wrap">Category Type</th>
+                <th class="col-lg-1 col-1 text-wrap">Category's Parent</th>
+                <th class="col-lg-1 col-1 text-wrap">Category's Children</th>
+                <th class="col-lg-1 col-1 text-wrap">Gender</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CategoryListVM category in Model.Categories)
+            {
+                categoryno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@categoryno</td>
+                    <td class="col-lg-1 col-1 text-wrap">@category.Name</td>
+                    <td class="col-lg-2 col-2 "><img class="img-fluid" src="~/assets/images/categories/@category.Image" /></td>
+                    <td class="col-lg-1 col-1 text-wrap">@(category.IsMain ? "Main Category"  :"Sub Category")</td>
+                    <td class="col-lg-1 col-1 text-wrap text-success">
+                        @if (category.ParentId != null && category.IsMain == false)
+                        {
+                            @category.Parent.Name
+                        }
+                        else
+                        {
+                            <span class="text-danger">Parent category</span>
+                        }
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap text-success">
+                        @if (category.IsMain && category.ParentId == null)
+                        {
+                            if (category.Children.Count > 0 && category.Children != null)
+                            {
+                                @foreach (CategoryListVM categoryListVM in category.Children)
+                                {
+                                    <span>
+                                        @categoryListVM.Name,&nbsp;
+                                    </span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-danger">No Children</span>
+                            }
+                        }
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">@category.GenderName</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(category.IsDeleted ? "red" : "green")">@(category.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a class="btn btn-warning" asp-area="Manage" asp-controller="Category" asp-action="Update" asp-route-id="@category.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @if (category.IsDeleted)
+                        {
+                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Category"
+                               asp-action="Restore" asp-route-id="@category.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Category"
+                               asp-action="Delete" asp-route-id="@category.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.Tags.Count > 0)
+{
+    <h4>Tags</h4>
+
+    <table class="table table-bordered table-striped tblContent">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TagListVM tagListVM in Model.Tags)
+            {
+                tagno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@tagno</td>
+                    <td class="col-lg-1 col-1 text-wrap">@tagListVM.Name</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(tagListVM.IsDeleted ? "red" : "green")">@(tagListVM.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a class="btn btn-warning" asp-area="Manage" asp-controller="Tag" asp-action="Update" asp-route-id="@tagListVM.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @if (tagListVM.IsDeleted)
+                        {
+                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Tag"
+                               asp-action="Restore" asp-route-id="@tagListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Tag"
+                               asp-action="Delete" asp-route-id="@tagListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.BodyFits.Count > 0)
+{
+    <h4>BodyFits</h4>
+
+    <table class="table table-bordered table-striped tblContent">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-2 col-2">Image</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Gender</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (BodyFitListVM bodyfit in Model.BodyFits)
+            {
+                bodyno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@bodyno</td>
+                    <td class="col-lg-2 col-2"><img class="img-fluid" src="~/assets/images/bodyfit/@bodyfit.Image" /></td>
+                    <td class="col-lg-3 col-3 text-wrap">@bodyfit.Name</td>
+                    <td class="col-lg-3 col-3 text-wrap">@bodyfit.GenderName</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(bodyfit.IsDeleted ? "red" : "green")">@(bodyfit.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a class="btn btn-warning" asp-area="Manage" asp-controller="BodyFit" asp-action="Update" asp-route-id="@bodyfit.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @if (bodyfit.IsDeleted)
+                        {
+                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="BodyFit"
+                               asp-action="Restore" asp-route-id="@bodyfit.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="BodyFit"
+                               asp-action="Delete" asp-route-id="@bodyfit.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.Sizes.Count > 0)
+{
+    <h4>Sizes</h4>
+
+    <table class="table table-bordered table-striped tblContent">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SizeListVM sizeListVM in Model.Sizes)
+            {
+                sizeno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@sizeno</td>
+                    <td class="col-lg-1 col-1 text-wrap">@sizeListVM.Name</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(sizeListVM.IsDeleted ? "red" : "green")">@(sizeListVM.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a class="btn btn-warning" asp-area="Manage" asp-controller="Size" asp-action="Update" asp-route-id="@sizeListVM.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @if (sizeListVM.IsDeleted)
+                        {
+                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Size"
+                               asp-action="Restore" asp-route-id="@sizeListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Size"
+                               asp-action="Delete" asp-route-id="@sizeListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.Colors.Count > 0)
+{
+    <h4>Colors</h4>
+
+    <table class="table table-bordered table-striped tblContent">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Hex</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ColorListVM colorListVM in Model.Colors)
+            {
+                colorno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@colorno</td>
+                    <td class="col-lg-3 col-3 text-wrap">@colorListVM.Name</td>
+                    <td class="col-lg-3 col-3 text-wrap">
+                        @colorListVM.HexCode
+                        <span style="margin-left: 10px; color:@colorListVM.HexCode ;padding: 1px 10px;background-color:@colorListVM.HexCode "></span>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(colorListVM.IsDeleted ? "red" : "green")">@(colorListVM.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a class="btn btn-warning" asp-area="Manage" asp-controller="Color" asp-action="Update" asp-route-id="@colorListVM.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @if (colorListVM.IsDeleted)
+                        {
+                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Color"
+                               asp-action="Restore" asp-route-id="@colorListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Color"
+                               asp-action="Delete" asp-route-id="@colorListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

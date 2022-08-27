@@ -64,6 +64,7 @@ namespace Pull_Bear.MVC
             services.AddScoped<IColorService, ColorService>();
             services.AddScoped<ISizeService, SizeService>();
             services.AddScoped<ITagService, TagService>();
+            services.AddScoped<ISearchService, SearchService>();
 
 
 

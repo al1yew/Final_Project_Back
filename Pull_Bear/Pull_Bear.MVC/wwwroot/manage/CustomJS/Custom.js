@@ -49,7 +49,7 @@
 
     $(".layoutsearch").keyup(function () {
         let inputvalue = $(this).val();
-
+        console.log(inputvalue)
         let url = $(this).data('url');
 
         url = url + '?search=' + inputvalue;

@@ -57,16 +57,6 @@
 
         url = url + '?search=' + inputvalue;
 
-        //if (!($('.list-group-layout').find('.est').length > 0)) {
-        //    console.log('salsmasm')
-        //    $('.search-body-adminarea').addClass('d-none');
-        //    $(".search-body-adminarea .list-group-layout").addClass('d-none');
-        //}
-        //else {
-        //    $('.search-body-adminarea').removeClass('d-none');
-        //    $(".search-body-adminarea .list-group-layout").removeClass('d-none');
-        //}
-
         if (inputvalue) {
 
             fetch(url)
@@ -74,11 +64,19 @@
                 .then(data => {
                     $(".search-body-adminarea .list-group-layout").html(data);
                     $('.search-body-adminarea').removeClass("d-none")
+                    if (data.trim() == '') {
+                        $('.search-body-adminarea').addClass("d-none")
+                        $('.search-body-adminarea ul').addClass("d-none")
+                    }
+                    else {
+                        $('.search-body-adminarea').removeClass("d-none")
+                        $('.search-body-adminarea ul').removeClass("d-none")
+                    }
                 })
         }
         else {
             $(".search-body-adminarea .list-group-layout").html('');
-            $('.search-body-adminarea').addClass("d-none");
+            $('.search-body-adminarea').addClass("d-none")
             $('.closesearch').hide();
         }
     });

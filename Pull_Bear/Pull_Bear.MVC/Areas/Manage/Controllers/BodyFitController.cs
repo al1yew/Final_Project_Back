@@ -106,9 +106,5 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
         }
-
-
-
-
     }
 }

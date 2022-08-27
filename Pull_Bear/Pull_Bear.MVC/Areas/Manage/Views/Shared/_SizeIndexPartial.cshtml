@@ -1,0 +1,43 @@
+﻿@model PaginationList<SizeListVM>
+
+@{
+    int no = Model.ItemsCount * (Model.Page - 1);
+}
+
+<table class="table table-bordered table-striped tblContent">
+    <thead>
+        <tr>
+            <th class="col-lg-1 col-1 text-wrap">№</th>
+            <th class="col-lg-1 col-1 text-wrap">Name</th>
+            <th class="col-lg-1 col-1 text-wrap">Status</th>
+            <th class="col-lg-1 col-1 text-wrap">Update</th>
+            <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SizeListVM sizeListVM in Model)
+        {
+            no++;
+            <tr>
+                <td class="col-lg-1 col-1 text-wrap">@no</td>
+                <td class="col-lg-1 col-1 text-wrap">@sizeListVM.Name</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(sizeListVM.IsDeleted ? "red" : "green")">@(sizeListVM.IsDeleted ? "Deleted" : "Active")</td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    <a class="btn btn-warning" asp-area="Manage" asp-controller="Size" asp-action="Update" asp-route-id="@sizeListVM.Id">Update</a>
+                </td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    @if (sizeListVM.IsDeleted)
+                    {
+                        <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Size"
+                           asp-action="Restore" asp-route-id="@sizeListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Size"
+                           asp-action="Delete" asp-route-id="@sizeListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

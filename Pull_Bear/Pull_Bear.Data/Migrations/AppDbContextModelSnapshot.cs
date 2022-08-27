@@ -122,6 +122,10 @@ namespace Pull_Bear.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("HexCode")
+                        .HasColumnType("nvarchar(8)")
+                        .HasMaxLength(8);
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 

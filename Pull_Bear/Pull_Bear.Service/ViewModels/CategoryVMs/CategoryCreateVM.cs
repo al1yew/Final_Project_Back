@@ -43,14 +43,17 @@ namespace Pull_Bear.Service.ViewModels.CategoryVMs
                         y.AddFailure("Photo Is Required");
                     }
 
-                    if (!x.Photo.ContentType.ToString().Contains("image/"))
+                    if (x.Photo != null)
                     {
-                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
-                    }
+                        if (!x.Photo.ContentType.ToString().Contains("image/"))
+                        {
+                            y.AddFailure("Image must be only accepted IMAGE MIME types!");
+                        }
 
-                    if (x.Photo.Length / 1024 > 10000)
-                    {
-                        y.AddFailure("Image must be at most 10mb!");
+                        if (x.Photo.Length / 1024 > 10000)
+                        {
+                            y.AddFailure("Image must be at most 10mb!");
+                        }
                     }
                 }
                 else

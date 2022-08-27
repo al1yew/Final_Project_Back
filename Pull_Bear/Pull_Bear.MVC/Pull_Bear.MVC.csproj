@@ -29,8 +29,4 @@
     <None Include="wwwroot\assets\styles\plugins\click-tap-image\.github\workflows\codeql-analysis.yml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Manage\ViewModels\" />
-  </ItemGroup>
-
 </Project>

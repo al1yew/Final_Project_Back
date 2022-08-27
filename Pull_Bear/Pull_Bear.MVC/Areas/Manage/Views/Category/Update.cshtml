@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "Update";
-    SelectList selectListItemsmales = new SelectList(ViewBag.MainMaleCategories, nameof(CategoryCreateVM.Id), nameof(CategoryCreateVM.Name));
-    SelectList selectListItemsfemales = new SelectList(ViewBag.MainFemaleCategories, nameof(CategoryCreateVM.Id), nameof(CategoryCreateVM.Name));
+    SelectList selectListItemsmales = new SelectList(ViewBag.MainMaleCategories, nameof(CategoryUpdateVM.Id), nameof(CategoryUpdateVM.Name));
+    SelectList selectListItemsfemales = new SelectList(ViewBag.MainFemaleCategories, nameof(CategoryUpdateVM.Id), nameof(CategoryUpdateVM.Name));
 }
 
 
@@ -30,11 +30,13 @@
             <div class="col-lg-6 col-6 d-flex justify-content-center align-items-center mb-3 ">
                 <label asp-for="IsMain" class="form-check-label pe-3"></label>
                 <input asp-for="IsMain" class="form-check-input isMaininput " checked>
+                <span class="text-danger" asp-validation-for="IsMain"></span>
             </div>
 
             <div class="mb-3 col-12 col-lg-12 form-group imagecont">
                 <label asp-for="Photo" class="form-label"></label>
                 <input asp-for="Photo" class="form-control p-2" type="file" accept="image/*">
+                <span class="text-danger" asp-validation-for="Photo"></span>
             </div>
 
             <p class="col-lg-12 col-12">If is main, select Gender to get Parent Categories</p>
@@ -59,7 +61,7 @@
 
             </div>
 
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">Update</button>
 
         </form>
 

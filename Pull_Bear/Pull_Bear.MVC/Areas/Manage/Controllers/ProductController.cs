@@ -45,5 +45,11 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             return View(productGetVM);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }

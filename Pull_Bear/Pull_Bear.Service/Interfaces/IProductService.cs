@@ -11,7 +11,7 @@ namespace Pull_Bear.Service.Interfaces
     {
         IQueryable<ProductListVM> GetAllAsync(int? status, int? type);
 
-        Task<ProductGetVM> GetById(int? id);
+        ProductGetVM GetById(int? id);
 
         Task CreateAsync(ProductCreateVM productCreateVM);
 

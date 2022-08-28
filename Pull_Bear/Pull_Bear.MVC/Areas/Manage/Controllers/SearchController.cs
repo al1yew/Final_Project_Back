@@ -13,12 +13,10 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
     public class SearchController : Controller
     {
         private readonly ISearchService _searchService;
-        private readonly IMapper _mapper;
 
-        public SearchController(ISearchService searchService, IMapper mapper)
+        public SearchController(ISearchService searchService)
         {
             _searchService = searchService;
-            _mapper = mapper;
         }
 
         public async Task<IActionResult> Search(string search)

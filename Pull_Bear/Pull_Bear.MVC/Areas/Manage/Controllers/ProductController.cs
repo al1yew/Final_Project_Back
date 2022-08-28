@@ -38,5 +38,12 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             return View(PaginationList<ProductListVM>.Create(productListVMs, page, select));
         }
+
+        public IActionResult Detail(int? id)
+        {
+            ProductGetVM productGetVM = _productService.GetById(id);
+
+            return View(productGetVM);
+        }
     }
 }

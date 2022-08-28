@@ -17,6 +17,9 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public string Name { get; set; }
         public double Price { get; set; }
         public double DiscountPrice { get; set; }
+        public int ReviewCount { get; set; }
+        public double AverageRating { get; set; }
+        public string Seria { get; set; }
         public string PhotoModelIndicators { get; set; }
         public string Composition { get; set; }
         public string Care { get; set; }
@@ -28,6 +31,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public bool IsNew { get; set; }
         public bool IsPreOrder { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsUpdated { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
+        public Nullable<DateTime> UpdatedAt { get; set; }
+        public Nullable<DateTime> DeletedAt { get; set; }
 
 
         //images
@@ -41,7 +48,6 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public int CategoryId { get; set; }
         public BodyFitGetVM BodyFit { get; set; }
         public int BodyFitId { get; set; }
-        public GenderGetVM Gender { get; set; }
         public int GenderId { get; set; }
         public string GenderName { get; set; }
 
@@ -53,5 +59,6 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
 
         //relations many products - many...
         public List<ProductToTagGetVM> ProductToTags { get; set; }
+        public List<ProductColorSizeGetVM> ProductColorSizes { get; set; }
     }
 }

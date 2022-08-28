@@ -1,0 +1,157 @@
+﻿@model ProductGetVM
+
+<div class="col-lg-8 col-8 d-flex justify-content-center flex-wrap" style="margin: 0 auto;">
+
+    <h6 class="col-lg-8 col-8 d-flex justify-content-between" style="font-size: 25px; padding: 30px;color: red;">
+        @Model.Name
+    </h6>
+
+    <div class="col-lg-8 col-8 row d-flex justify-content-between flex-wrap"
+         style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center " style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Id: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px; padding-left: 20px;">@Model.Id</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center " style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Seria: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px; padding-left: 20px;">@Model.Seria</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Is it deleted: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.IsDeleted</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Is it updated: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.IsUpdated</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Was created at: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.CreatedAt</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Was updated at: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.UpdatedAt</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Was deleted at: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.DeletedAt</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Price: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.Price</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Discount Price: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.DiscountPrice</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Review's count: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.ReviewCount</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Average Rating <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.AverageRating</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Photo model indicators <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                @Model.PhotoModelIndicators
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Composition: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                @Model.Composition
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Care: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                @Model.Care
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Description: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                @Model.Description
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Category: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.Category.Name</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Body Fit: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.BodyFit.Name</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Gender: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.GenderName</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Is it hot sale: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.IsHotSale</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Is it preorder: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.IsPreOrder</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Is It new: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@Model.IsNew</span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            <span class="col-lg-4 col-4 text-center">
+                @foreach (ProductColorSizeGetVM colorSizeGetVM in @Model.ProductColorSizes.Where(x => x.ProductId == Model.Id))
+                {
+                    <span class="col-lg-12 col-12 d-flex justify-content-between p-1">
+                        Color:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@colorSizeGetVM.Color.Name</span>
+                    </span>
+                }
+            </span>
+            <span class="col-lg-4 col-4 text-center">
+                @foreach (ProductColorSizeGetVM colorSizeGetVM in @Model.ProductColorSizes.Where(x => x.ProductId == Model.Id))
+                {
+                    <span class="col-lg-12 col-12 d-flex justify-content-between p-1">
+                        Size:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@colorSizeGetVM.Size.Name</span>
+                    </span>
+                }
+            </span>
+            <span class="col-lg-4 col-4 text-center">
+                @foreach (ProductColorSizeGetVM colorSizeGetVM in @Model.ProductColorSizes.Where(x => x.ProductId == Model.Id))
+                {
+                    <span class="col-lg-12 col-12 d-flex justify-content-between p-1">
+                        Count:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@colorSizeGetVM.Count</span>
+                    </span>
+                }
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Main Image: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                <img class="img-fluid" src="~/assets/images/Products/@Model.ProductImage" alt="">
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Big Image1: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                <img class="img-fluid" src="~/assets/images/Products/@Model.MainImage1" alt="">
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style="border-bottom:1px solid black; padding: 0; padding-bottom: 8px;">
+            Big Image2: <span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">
+                <img class="img-fluid" src="~/assets/images/Products/@Model.MainImage2" alt="">
+            </span>
+        </span>
+        <span class="col-lg-12 col-12 d-flex justify-content-between align-items-center"
+              style=" padding: 0; padding-bottom: 8px;">
+            All Images:
+        </span>
+        @foreach (ProductImageGetVM img in Model.ProductImages)
+        {
+            <span class="col-lg-12 col-12" style="margin-bottom:10px">
+                <img class="img-fluid" src="~/assets/images/Products/@img.Image" alt="">
+            </span>
+        }
+    </div>
+</div>

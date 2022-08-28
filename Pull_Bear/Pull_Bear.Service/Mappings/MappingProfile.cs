@@ -95,7 +95,8 @@ namespace Pull_Bear.Service.Mappings
                 .ForMember(des => des.PhotoModelIndicators, src => src.MapFrom(x => x.PhotoModelIndicators.Trim()))
                 .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
 
-            CreateMap<Product, ProductGetVM>();
+            CreateMap<Product, ProductGetVM>()
+                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
 
             CreateMap<ProductGetVM, ProductUpdateVM>();
             #endregion

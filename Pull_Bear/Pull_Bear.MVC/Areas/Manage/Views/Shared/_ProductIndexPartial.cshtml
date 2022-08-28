@@ -27,7 +27,11 @@
             no++;
             <tr>
                 <td class="col-lg-1 col-1 text-wrap">@no</td>
-                <td class="col-lg-1 col-1 text-wrap">@product.Name</td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    <a asp-area="Manage" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
+                        @product.Name
+                    </a>
+                </td>
                 <td class="col-lg-1 col-1 text-wrap">@product.Category.Name</td>
                 <td class="col-lg-1 col-1 text-wrap">@product.BodyFit.Name</td>
                 <td class="col-lg-1 col-1 text-wrap">@product.GenderName</td>

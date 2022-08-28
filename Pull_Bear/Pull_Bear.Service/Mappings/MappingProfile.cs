@@ -3,6 +3,8 @@ using Pull_Bear.Core.Models;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
+using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductVMs;
 using Pull_Bear.Service.ViewModels.SizeVMs;
 using Pull_Bear.Service.ViewModels.TagVMs;
 using System;
@@ -64,7 +66,7 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<Size, SizeGetVM>();
 
             CreateMap<SizeGetVM, SizeUpdateVM>();
-            #endregion
+            #endregion                                                                                  
 
             #region Tag
             CreateMap<Tag, TagListVM>();
@@ -78,6 +80,25 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<TagGetVM, TagUpdateVM>();
             #endregion
 
+            #region Product
+
+            CreateMap<Product, ProductListVM>()
+                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
+
+            CreateMap<ProductColorSize, ProductColorSizeListVM>();
+
+            CreateMap<ProductCreateVM, Product>()
+                .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))
+                .ForMember(des => des.Description, src => src.MapFrom(x => x.Description.Trim()))
+                .ForMember(des => des.Care, src => src.MapFrom(x => x.Care.Trim()))
+                .ForMember(des => des.Composition, src => src.MapFrom(x => x.Composition.Trim()))
+                .ForMember(des => des.PhotoModelIndicators, src => src.MapFrom(x => x.PhotoModelIndicators.Trim()))
+                .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
+
+            CreateMap<Product, ProductGetVM>();
+
+            CreateMap<ProductGetVM, ProductUpdateVM>();
+            #endregion
         }
     }
 }

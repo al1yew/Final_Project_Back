@@ -12,7 +12,6 @@ namespace Pull_Bear.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-
             builder.Property(x => x.Name).IsRequired().HasMaxLength(40);
             builder.Property(x => x.Care).IsRequired().HasMaxLength(255);
             builder.Property(x => x.CategoryId).IsRequired();

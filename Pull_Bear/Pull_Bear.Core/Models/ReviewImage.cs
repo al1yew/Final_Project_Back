@@ -12,6 +12,5 @@ namespace Pull_Bear.Core.Models
         public ProductReview ProductReview { get; set; }
         public int ProductReviewId { get; set; }
 
-        //no configuration needed - image is not required
     }
 }

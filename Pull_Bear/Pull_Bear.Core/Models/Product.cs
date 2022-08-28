@@ -33,21 +33,10 @@ namespace Pull_Bear.Core.Models
         public string MainImage2 { get; set; }
 
 
-        //image loading 
-        [NotMapped]
-        public IFormFile ProductPhoto { get; set; }
-        [NotMapped]
-        public IFormFile MainPhoto1 { get; set; }
-        [NotMapped]
-        public IFormFile MainPhoto2 { get; set; }
-        [NotMapped]
-        public IEnumerable<IFormFile> Files { get; set; }
-
 
         //relations one product - many ...
         public List<ProductImage> ProductImages { get; set; }
         public List<ProductReview> ProductReviews { get; set; }
-
 
 
         //realtions one ... - many products
@@ -60,21 +49,7 @@ namespace Pull_Bear.Core.Models
 
 
         //relations many products - many...
-        public IEnumerable<ProductToTag> ProductToTags { get; set; }
-        public IEnumerable<ProductColorSize> ProductColorSizes { get; set; }
-
-
-
-        //props for help notmapped
-        [NotMapped]
-        public IEnumerable<int> TagIds { get; set; }
-        [NotMapped]
-        public IEnumerable<int> ColorIds { get; set; }
-        [NotMapped]
-        public IEnumerable<int> SizeIds { get; set; }
-        [NotMapped]
-        public IEnumerable<int> Counts { get; set; }
-
-
+        public List<ProductToTag> ProductToTags { get; set; }
+        public List<ProductColorSize> ProductColorSizes { get; set; }
     }
 }

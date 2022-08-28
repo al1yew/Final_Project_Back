@@ -56,20 +56,48 @@ using Pull_Bear.Service.ViewModels.SearchVMs;
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 9 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.ProductImageVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.ProductToTagVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.ProductVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 13 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
 using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42a58b05939c7d820523a25ac8b90cb0793a671f", @"/Areas/Manage/Views/Shared/_SearchPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a6e322223bb8407e91fb39161803112c4406816a", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d951c4149f7dbe612f9c429d611f476410ddace8", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Shared__SearchPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<SearchListVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -184,7 +212,7 @@ using Pull_Bear.Service.Enums;
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-2 col-2 \">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "42a58b05939c7d820523a25ac8b90cb0793a671f14607", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "42a58b05939c7d820523a25ac8b90cb0793a671f15510", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -333,7 +361,7 @@ WriteAttributeValue("", 3106, category.IsDeleted ? "red" : "green", 3106, 39, fa
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-1 col-1 text-wrap\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f21539", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f22442", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -378,7 +406,7 @@ WriteAttributeValue("", 3106, category.IsDeleted ? "red" : "green", 3106, 39, fa
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f24691", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f25594", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -468,7 +496,7 @@ WriteAttributeValue("", 3106, category.IsDeleted ? "red" : "green", 3106, 39, fa
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f31010", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f31913", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -638,7 +666,7 @@ WriteAttributeValue("", 5395, tagListVM.IsDeleted ? "red" : "green", 5395, 40, f
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-1 col-1 text-wrap\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f40663", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f41566", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -683,7 +711,7 @@ WriteAttributeValue("", 5395, tagListVM.IsDeleted ? "red" : "green", 5395, 40, f
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f43814", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f44717", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -762,7 +790,7 @@ WriteAttributeValue("", 5395, tagListVM.IsDeleted ? "red" : "green", 5395, 40, f
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f49276", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f50179", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -896,7 +924,7 @@ WriteAttributeValue("", 5395, tagListVM.IsDeleted ? "red" : "green", 5395, 40, f
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-2 col-2\">");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "42a58b05939c7d820523a25ac8b90cb0793a671f56897", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "42a58b05939c7d820523a25ac8b90cb0793a671f57800", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -955,7 +983,7 @@ WriteAttributeValue("", 7955, bodyfit.IsDeleted ? "red" : "green", 7955, 38, fal
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-1 col-1 text-wrap\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f60229", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f61132", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -1000,7 +1028,7 @@ WriteAttributeValue("", 7955, bodyfit.IsDeleted ? "red" : "green", 7955, 38, fal
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f63382", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f64285", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -1090,7 +1118,7 @@ WriteAttributeValue("", 7955, bodyfit.IsDeleted ? "red" : "green", 7955, 38, fal
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f69705", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f70608", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -1260,7 +1288,7 @@ WriteAttributeValue("", 10243, sizeListVM.IsDeleted ? "red" : "green", 10243, 41
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-1 col-1 text-wrap\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f79382", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f80285", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -1305,7 +1333,7 @@ WriteAttributeValue("", 10243, sizeListVM.IsDeleted ? "red" : "green", 10243, 41
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f82538", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f83441", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -1384,7 +1412,7 @@ WriteAttributeValue("", 10243, sizeListVM.IsDeleted ? "red" : "green", 10243, 41
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f88006", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f88909", async() => {
                 WriteLiteral("Delete");
             }
             );
@@ -1576,7 +1604,7 @@ WriteAttributeValue("", 12832, colorListVM.IsDeleted ? "red" : "green", 12832, 4
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                    <td class=\"col-lg-1 col-1 text-wrap\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f98503", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f99406", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -1621,7 +1649,7 @@ WriteAttributeValue("", 12832, colorListVM.IsDeleted ? "red" : "green", 12832, 4
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f101662", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f102565", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -1700,7 +1728,7 @@ WriteAttributeValue("", 12832, colorListVM.IsDeleted ? "red" : "green", 12832, 4
 #line hidden
 #nullable disable
             WriteLiteral("                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f107135", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "42a58b05939c7d820523a25ac8b90cb0793a671f108038", async() => {
                 WriteLiteral("Delete");
             }
             );

@@ -6,6 +6,7 @@
     int sizeno = 0;
     int bodyno = 0;
     int tagno = 0;
+    int prodno = 0;
 }
 
 
@@ -266,6 +267,81 @@
                         {
                             <a class="btn btn-danger fordel color deleteBtncol" asp-area="Manage" asp-controller="Color"
                                asp-action="Delete" asp-route-id="@colorListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.Products.Count > 0)
+{
+    <h4 class="p-3 text-success fs-3 est">Colors</h4>
+
+
+    <table class="table table-bordered table-striped tblpro">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Category</th>
+                <th class="col-lg-1 col-1 text-wrap">Body Fit</th>
+                <th class="col-lg-1 col-1 text-wrap">Gender</th>
+                <th class="col-lg-1 col-1 text-wrap">Colors</th>
+                <th class="col-lg-1 col-1 text-wrap">Sizes</th>
+                <th class="col-lg-1 col-1 text-wrap">Price/Disc. price</th>
+                <th class="col-lg-1 col-1 text-wrap">Count</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/ Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ProductListVM product in Model.Products)
+            {
+                prodno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@prodno</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a asp-area="Manage" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
+                            @product.Name
+                        </a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">@product.Category.Name</td>
+                    <td class="col-lg-1 col-1 text-wrap">@product.BodyFit.Name</td>
+                    <td class="col-lg-1 col-1 text-wrap">@product.GenderName</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @foreach (ProductColorSizeGetVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
+                        {
+                            <span style="color:  @item.Color.HexCode"> @item.Color.Name</span>
+                            <span>,&nbsp;</span>
+                        }
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @foreach (ProductColorSizeGetVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
+                        {
+                            @item.Size.Name
+                            <span>,&nbsp;</span>
+                        }
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">@product.Price/@product.DiscountPrice</td>
+                    <td class="col-lg-1 col-1 text-wrap">@product.ProductColorSizes.Sum(x => x.Count)</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(product.IsDeleted ? "red" : "green")">@(product.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        <a style="padding: 10px; margin: 0 auto; font-size: 10px;" class="btn btn-warning" asp-area="Manage" asp-controller="Product" asp-action="Update" asp-route-id="@product.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap">
+                        @if (product.IsDeleted)
+                        {
+                            <a style="padding: 10px; margin: 0 auto; font-size: 10px;" class="btn btn-primary forres prod restoreBtnprod" asp-area="Manage" asp-controller="Product"
+                               asp-action="Restore" asp-route-id="@product.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a style="padding: 10px; margin: 0 auto; font-size: 10px;" class="btn btn-danger fordel prod deleteBtnprod" asp-area="Manage" asp-controller="Product"
+                               asp-action="Delete" asp-route-id="@product.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
                 </tr>

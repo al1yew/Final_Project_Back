@@ -5,6 +5,7 @@ using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
+using Pull_Bear.Service.ViewModels.ProductVMs;
 using Pull_Bear.Service.ViewModels.SearchVMs;
 using Pull_Bear.Service.ViewModels.SizeVMs;
 using Pull_Bear.Service.ViewModels.TagVMs;
@@ -22,9 +23,10 @@ namespace Pull_Bear.Service.Implementations
         private readonly IColorRepository _colorRepository;
         private readonly ISizeRepository _sizeRepository;
         private readonly ITagRepository _tagRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
 
-        public SearchService(ICategoryRepository categoryRepository, IMapper mapper, IBodyFitRepository bodyFitRepository, IColorRepository colorRepository, ISizeRepository sizeRepository, ITagRepository tagRepository)
+        public SearchService(ICategoryRepository categoryRepository, IMapper mapper, IBodyFitRepository bodyFitRepository, IColorRepository colorRepository, ISizeRepository sizeRepository, ITagRepository tagRepository, IProductRepository productRepository)
         {
             _mapper = mapper;
             _categoryRepository = categoryRepository;
@@ -32,6 +34,7 @@ namespace Pull_Bear.Service.Implementations
             _colorRepository = colorRepository;
             _sizeRepository = sizeRepository;
             _tagRepository = tagRepository;
+            _productRepository = productRepository;
         }
 
         public SearchListVM GetAllAsync(string search)
@@ -42,8 +45,9 @@ namespace Pull_Bear.Service.Implementations
                 BodyFits = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender").Result),
                 Colors = _mapper.Map<List<ColorListVM>>(_colorRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result),
                 Sizes = _mapper.Map<List<SizeListVM>>(_sizeRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result),
-                Tags = _mapper.Map<List<TagListVM>>(_tagRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result)
-            };
+                Tags = _mapper.Map<List<TagListVM>>(_tagRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result),
+                Products = _mapper.Map<List<ProductListVM>>(_productRepository.GetAllAsync("ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender").Result)
+        };
 
             return searchVM;
         }

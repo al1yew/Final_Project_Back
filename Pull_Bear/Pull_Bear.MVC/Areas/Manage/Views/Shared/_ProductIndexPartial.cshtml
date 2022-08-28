@@ -32,14 +32,14 @@
                 <td class="col-lg-1 col-1 text-wrap">@product.BodyFit.Name</td>
                 <td class="col-lg-1 col-1 text-wrap">@product.GenderName</td>
                 <td class="col-lg-1 col-1 text-wrap">
-                    @foreach (ProductColorSizeListVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
+                    @foreach (ProductColorSizeGetVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
                     {
                         <span style="color:  @item.Color.HexCode"> @item.Color.Name</span>
                         <span>,&nbsp;</span>
                     }
                 </td>
                 <td class="col-lg-1 col-1 text-wrap">
-                    @foreach (ProductColorSizeListVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
+                    @foreach (ProductColorSizeGetVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
                     {
                         @item.Size.Name
                         <span>,&nbsp;</span>

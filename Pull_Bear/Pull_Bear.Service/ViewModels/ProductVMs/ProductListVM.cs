@@ -29,6 +29,6 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public int GenderId { get; set; }
 
         //relations many products - many...
-        public List<ProductColorSizeListVM> ProductColorSizes { get; set; }
+        public List<ProductColorSizeGetVM> ProductColorSizes { get; set; }
     }
 }

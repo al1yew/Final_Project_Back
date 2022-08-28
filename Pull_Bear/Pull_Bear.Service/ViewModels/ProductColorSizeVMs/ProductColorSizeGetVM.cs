@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Pull_Bear.Service.ViewModels.ProductColorSizeVMs
 {
-    public class ProductColorSizeListVM
+    public class ProductColorSizeGetVM
     {
         public int Id { get; set; }
 

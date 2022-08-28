@@ -88,6 +88,30 @@
     });
 
 
+    //----------------------------------------------- catch element update delete restore and set in search menu
+
+    $(document).on('click', '.fordel, .forres', function (e) {
+
+        e.preventDefault();
+
+        url = $(this).attr('href');
+
+        let inputvalue = $('.layoutsearch').val();
+
+        let searchurl = $('.layoutsearch').data('url');
+
+        searchurl = searchurl + '?search=' + inputvalue;
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                fetch(searchurl)
+                    .then(res => res.text())
+                    .then(data => $(".search-body-adminarea .list-group-layout").html(data))
+            })
+    });
+
+
     //----------------------------------------------- get color name with api 
 
     $(document).on("click", ".apiclick", function () {

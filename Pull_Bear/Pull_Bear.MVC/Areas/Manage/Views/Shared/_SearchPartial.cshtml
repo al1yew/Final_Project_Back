@@ -8,11 +8,13 @@
     int tagno = 0;
 }
 
+
+
 @if (Model.Categories.Count > 0)
 {
     <h4 class="p-3 text-success fs-3 est">Categories</h4>
 
-    <table class="table table-bordered table-striped tblContent">
+    <table class="table table-bordered table-striped tblcat ">
         <thead>
             <tr>
                 <th class="col-lg-1 col-1 text-wrap">№</th>
@@ -72,12 +74,12 @@
                     <td class="col-lg-1 col-1 text-wrap">
                         @if (category.IsDeleted)
                         {
-                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Category"
+                            <a class="btn btn-primary forres cat restoreBtncat" asp-area="Manage" asp-controller="Category"
                                asp-action="Restore" asp-route-id="@category.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
                         }
                         else
                         {
-                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Category"
+                            <a class="btn btn-danger fordel cat deleteBtncat" asp-area="Manage" asp-controller="Category"
                                asp-action="Delete" asp-route-id="@category.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
@@ -92,7 +94,7 @@
 {
     <h4 class="p-3 text-success fs-3 est">Tags</h4>
 
-    <table class="table table-bordered table-striped tblContent">
+    <table class="table table-bordered table-striped tbltag">
         <thead>
             <tr>
                 <th class="col-lg-1 col-1 text-wrap">№</th>
@@ -116,12 +118,12 @@
                     <td class="col-lg-1 col-1 text-wrap">
                         @if (tagListVM.IsDeleted)
                         {
-                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Tag"
+                            <a class="btn btn-primary forres tag restoreBtntag" asp-area="Manage" asp-controller="Tag"
                                asp-action="Restore" asp-route-id="@tagListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
                         }
                         else
                         {
-                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Tag"
+                            <a class="btn btn-danger fordel tag deleteBtntag" asp-area="Manage" asp-controller="Tag"
                                asp-action="Delete" asp-route-id="@tagListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
@@ -136,7 +138,7 @@
 {
     <h4 class="p-3 text-success fs-3 est">BodyFits</h4>
 
-    <table class="table table-bordered table-striped tblContent">
+    <table class="table table-bordered table-striped tblbod">
         <thead>
             <tr>
                 <th class="col-lg-1 col-1 text-wrap">№</th>
@@ -164,12 +166,12 @@
                     <td class="col-lg-1 col-1 text-wrap">
                         @if (bodyfit.IsDeleted)
                         {
-                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="BodyFit"
+                            <a class="btn btn-primary forres bod restoreBtnbod" asp-area="Manage" asp-controller="BodyFit"
                                asp-action="Restore" asp-route-id="@bodyfit.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
                         }
                         else
                         {
-                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="BodyFit"
+                            <a class="btn btn-danger fordel bod deleteBtnbod" asp-area="Manage" asp-controller="BodyFit"
                                asp-action="Delete" asp-route-id="@bodyfit.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
@@ -184,7 +186,7 @@
 {
     <h4 class="p-3 text-success fs-3 est">Sizes</h4>
 
-    <table class="table table-bordered table-striped tblContent">
+    <table class="table table-bordered table-striped tblsiz">
         <thead>
             <tr>
                 <th class="col-lg-1 col-1 text-wrap">№</th>
@@ -208,12 +210,12 @@
                     <td class="col-lg-1 col-1 text-wrap">
                         @if (sizeListVM.IsDeleted)
                         {
-                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Size"
+                            <a class="btn btn-primary forres siz restoreBtnsiz" asp-area="Manage" asp-controller="Size"
                                asp-action="Restore" asp-route-id="@sizeListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
                         }
                         else
                         {
-                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Size"
+                            <a class="btn btn-danger fordel siz deleteBtnsiz" asp-area="Manage" asp-controller="Size"
                                asp-action="Delete" asp-route-id="@sizeListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
@@ -228,7 +230,7 @@
 {
     <h4 class="p-3 text-success fs-3 est">Colors</h4>
 
-    <table class="table table-bordered table-striped tblContent">
+    <table class="table table-bordered table-striped tblcol">
         <thead>
             <tr>
                 <th class="col-lg-1 col-1 text-wrap">№</th>
@@ -257,12 +259,12 @@
                     <td class="col-lg-1 col-1 text-wrap">
                         @if (colorListVM.IsDeleted)
                         {
-                            <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="Color"
+                            <a class="btn btn-primary forres color restoreBtncol" asp-area="Manage" asp-controller="Color"
                                asp-action="Restore" asp-route-id="@colorListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
                         }
                         else
                         {
-                            <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="Color"
+                            <a class="btn btn-danger fordel color deleteBtncol" asp-area="Manage" asp-controller="Color"
                                asp-action="Delete" asp-route-id="@colorListVM.Id" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
@@ -271,4 +273,3 @@
         </tbody>
     </table>
 }
-

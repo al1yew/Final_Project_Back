@@ -9,9 +9,9 @@ namespace Pull_Bear.Service.Interfaces
 {
     public interface ISizeService
     {
-        IQueryable<SizeListVM> GetAllAsync(int? status);
+        Task<IQueryable<SizeListVM>> GetAllAsync(int? status);
 
-        IQueryable<SizeListVM> GetAllAsync();
+        Task<IQueryable<SizeListVM>> GetAllAsync();
 
         Task<SizeGetVM> GetById(int? id);
 

@@ -9,9 +9,9 @@ namespace Pull_Bear.Service.Interfaces
 {
     public interface IProductService
     {
-        IQueryable<ProductListVM> GetAllAsync(int? status, int? type);
+        Task<IQueryable<ProductListVM>> GetAllAsync(int? status, int? type);
 
-        ProductGetVM GetById(int? id);
+        Task<ProductGetVM> GetById(int? id);
 
         Task CreateAsync(ProductCreateVM productCreateVM);
 

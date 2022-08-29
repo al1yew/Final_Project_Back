@@ -9,9 +9,9 @@ namespace Pull_Bear.Service.Interfaces
 {
     public interface IColorService
     {
-        IQueryable<ColorListVM> GetAllAsync(int? status);
+        Task<IQueryable<ColorListVM>> GetAllAsync(int? status);
 
-        IQueryable<ColorListVM> GetAllAsync();
+        Task<IQueryable<ColorListVM>> GetAllAsync();
 
         Task<ColorGetVM> GetById(int? id);
 

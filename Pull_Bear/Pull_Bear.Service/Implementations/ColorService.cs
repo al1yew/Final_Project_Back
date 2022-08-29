@@ -22,16 +22,16 @@ namespace Pull_Bear.Service.Implementations
             _mapper = mapper;
         }
 
-        public IQueryable<ColorListVM> GetAllAsync()
+        public async Task<IQueryable<ColorListVM>> GetAllAsync()
         {
-            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(_colorRepository.GetAllAsync().Result);
+            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(await _colorRepository.GetAllAsync());
 
             return colorListVMs.AsQueryable();
         }
 
-        public IQueryable<ColorListVM> GetAllAsync(int? status)
+        public async Task<IQueryable<ColorListVM>> GetAllAsync(int? status)
         {
-            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(_colorRepository.GetAllAsync().Result);
+            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(await _colorRepository.GetAllAsync());
 
             IQueryable<ColorListVM> query = colorListVMs.AsQueryable();
 
@@ -131,6 +131,5 @@ namespace Pull_Bear.Service.Implementations
 
             await _colorRepository.CommitAsync();
         }
-
     }
 }

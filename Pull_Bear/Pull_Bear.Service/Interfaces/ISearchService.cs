@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Pull_Bear.Service.Interfaces
 {
     public interface ISearchService
     {
-        SearchListVM GetAllAsync(string search);
+        Task<SearchListVM> GetAllAsync(string search);
     }
 }

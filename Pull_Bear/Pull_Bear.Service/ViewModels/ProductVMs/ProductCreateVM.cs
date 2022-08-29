@@ -41,8 +41,12 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public CategoryGetVM Category { get; set; }
         public int CategoryId { get; set; }
         public int ParentCategoryId { get; set; }
+        public int MaleCategoryId { get; set; }
+        public int FemaleCategoryId { get; set; }
         public BodyFitGetVM BodyFit { get; set; }
         public int BodyFitId { get; set; }
+        public int MaleBodyFitId { get; set; }
+        public int FemaleBodyFitId { get; set; }
         public GenderGetVM Gender { get; set; }
         public int GenderId { get; set; }
         public string GenderName { get; set; }

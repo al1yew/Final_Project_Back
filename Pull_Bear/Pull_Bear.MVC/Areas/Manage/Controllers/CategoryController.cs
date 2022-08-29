@@ -27,9 +27,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index(int? status, int? type, int select, int page = 1)
+        public async Task<IActionResult> Index(int? status, int? type, int select, int page = 1)
         {
-            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync(status, type);
+            IQueryable<CategoryListVM> categoryListVMs = await _categoryService.GetAllAsync(status, type);
 
             if (select <= 0)
             {
@@ -45,10 +45,10 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.MainMaleCategories = _categoryService.GetMainMaleAsync();
-            ViewBag.MainFemaleCategories = _categoryService.GetMainFemaleAsync();
+            ViewBag.MainMaleCategories = await _categoryService.GetMainMaleAsync();
+            ViewBag.MainFemaleCategories = await _categoryService.GetMainFemaleAsync();
 
             return View(new CategoryCreateVM());
         }
@@ -105,7 +105,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _categoryService.DeleteAsync(id);
 
-            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync(status, type);
+            IQueryable<CategoryListVM> categoryListVMs = await _categoryService.GetAllAsync(status, type);
 
             return PartialView("_CategoryIndexPartial", PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
         }
@@ -119,7 +119,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _categoryService.RestoreAsync(id);
 
-            IQueryable<CategoryListVM> categoryListVMs = _categoryService.GetAllAsync(status, type);
+            IQueryable<CategoryListVM> categoryListVMs = await _categoryService.GetAllAsync(status, type);
 
             return PartialView("_CategoryIndexPartial", PaginationList<CategoryListVM>.Create(categoryListVMs, page, select));
         }

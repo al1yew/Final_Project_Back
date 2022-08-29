@@ -28,9 +28,9 @@ namespace Pull_Bear.Service.Implementations
             _env = env;
         }
 
-        public IQueryable<ProductListVM> GetAllAsync(int? status, int? type)
+        public async Task<IQueryable<ProductListVM>> GetAllAsync(int? status, int? type)
         {
-            List<ProductListVM> productListVMs = _mapper.Map<List<ProductListVM>>(_productRepository.GetAllAsync("ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender").Result);
+            List<ProductListVM> productListVMs = _mapper.Map<List<ProductListVM>>(await _productRepository.GetAllAsync("ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender"));
 
             IQueryable<ProductListVM> query = productListVMs.AsQueryable();
 
@@ -69,12 +69,12 @@ namespace Pull_Bear.Service.Implementations
             return query;
         }
 
-        public ProductGetVM GetById(int? id)
+        public async Task<ProductGetVM> GetById(int? id)
         {
             if (id == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");
 
-            Product product = _productRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender").Result;
+            Product product = await _productRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender");
 
             ProductGetVM productGetVM = _mapper.Map<ProductGetVM>(product);
 

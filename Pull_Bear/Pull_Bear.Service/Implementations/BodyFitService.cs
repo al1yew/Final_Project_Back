@@ -9,6 +9,7 @@ using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,16 +27,30 @@ namespace Pull_Bear.Service.Implementations
             _env = env;
         }
 
-        public IQueryable<BodyFitListVM> GetAllAsync()
+        public async Task<IQueryable<BodyFitListVM>> GetAllAsync()
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllAsync().Result);
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllAsync());
 
             return bodyFitListVMs.AsQueryable();
         }
 
-        public IQueryable<BodyFitListVM> GetAllAsync(int? status, int? type)
+        public async Task<List<BodyFitListVM>> GetMaleBodyFitsAsync()
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllAsync("Gender").Result);
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllByExAsync(c => !c.IsDeleted && c.GenderId == 2));
+
+            return bodyFitListVMs;
+        }
+
+        public async Task<List<BodyFitListVM>> GetFemaleBodyFitsAsync()
+        {
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllByExAsync(c => !c.IsDeleted && c.GenderId == 1));
+
+            return bodyFitListVMs;
+        }
+
+        public async Task<IQueryable<BodyFitListVM>> GetAllAsync(int? status, int? type)
+        {
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllAsync("Gender"));
 
             IQueryable<BodyFitListVM> query = bodyFitListVMs.AsQueryable();
 

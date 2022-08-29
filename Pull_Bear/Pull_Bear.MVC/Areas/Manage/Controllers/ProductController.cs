@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.ColorVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
+using Pull_Bear.Service.ViewModels.SizeVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +35,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _tagService = tagService;
         }
 
-        public IActionResult Index(int? status, int? type, int select, int page = 1)
+        public async Task<IActionResult> Index(int? status, int? type, int select, int page = 1)
         {
-            IQueryable<ProductListVM> productListVMs = _productService.GetAllAsync(status, type);
+            IQueryable<ProductListVM> productListVMs = await _productService.GetAllAsync(status, type);
 
             if (select <= 0)
             {
@@ -49,21 +52,23 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             return View(PaginationList<ProductListVM>.Create(productListVMs, page, select));
         }
 
-        public IActionResult Detail(int? id)
+        public async Task<IActionResult> Detail(int? id)
         {
-            ProductGetVM productGetVM = _productService.GetById(id);
+            ProductGetVM productGetVM = await _productService.GetById(id);
 
             return View(productGetVM);
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewBag.ChildCategories = _categoryService.GetChildrenAsync();
-            ViewBag.BodyFits = _bodyFitService.GetAllAsync();
-            ViewBag.Tags = _tagService.GetAllAsync();
-            ViewBag.Colors = _colorService.GetAllAsync();
-            ViewBag.Sizes = _sizeService.GetAllAsync();
+            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
+            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
+            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
+            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
+            ViewBag.Tags = await _tagService.GetAllAsync();
+            ViewBag.Colors = await _colorService.GetAllAsync();
+            ViewBag.Sizes = await _sizeService.GetAllAsync();
 
             return View();
         }
@@ -71,10 +76,13 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ProductCreateVM productCreateVM)
         {
-            ViewBag.ChildCategories = _categoryService.GetChildrenAsync();
-            ViewBag.BodyFits = _bodyFitService.GetAllAsync();
-            ViewBag.Tags = _tagService.GetAllAsync();
-
+            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
+            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
+            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
+            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
+            ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
+            ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
+            ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
             if (!ModelState.IsValid)
             {
@@ -89,10 +97,10 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
         public IActionResult GetInputs()
         {
-            ViewBag.Colors = _colorService.GetAllAsync();
-            ViewBag.Sizes = _sizeService.GetAllAsync();
+            ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
+            ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
-            return PartialView("_ProductColorSizePatial");
+            return PartialView("_ProductColorSizePartial");
         }
     }
 }

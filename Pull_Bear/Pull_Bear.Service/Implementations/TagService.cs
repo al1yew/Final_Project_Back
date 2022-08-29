@@ -23,16 +23,16 @@ namespace Pull_Bear.Service.Implementations
             _mapper = mapper;
         }
 
-        public IQueryable<TagListVM> GetAllAsync()
+        public async Task<IQueryable<TagListVM>> GetAllAsync()
         {
-            List<TagListVM> taglistvms = _mapper.Map<List<TagListVM>>(_tagRepository.GetAllAsync().Result);
+            List<TagListVM> taglistvms = _mapper.Map<List<TagListVM>>(await _tagRepository.GetAllAsync());
 
             return taglistvms.AsQueryable();
         }
 
-        public IQueryable<TagListVM> GetAllAsync(int? status)
+        public async Task<IQueryable<TagListVM>> GetAllAsync(int? status)
         {
-            List<TagListVM> taglistvms = _mapper.Map<List<TagListVM>>(_tagRepository.GetAllAsync().Result);
+            List<TagListVM> taglistvms = _mapper.Map<List<TagListVM>>(await _tagRepository.GetAllAsync());
 
             IQueryable<TagListVM> query = taglistvms.AsQueryable();
 

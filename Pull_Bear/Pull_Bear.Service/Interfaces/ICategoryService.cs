@@ -10,24 +10,19 @@ namespace Pull_Bear.Service.Interfaces
 {
     public interface ICategoryService
     {
-        IQueryable<CategoryListVM> GetAllAsync(int? status, int? type);
+        Task<IQueryable<CategoryListVM>> GetAllAsync(int? status, int? type);
 
-        List<CategoryListVM> GetMainMaleAsync();
-
-        List<CategoryListVM> GetMainAsync();
-
-        List<CategoryListVM> GetChildrenAsync();
-
-        List<CategoryListVM> GetMainFemaleAsync();
-
+        Task<List<CategoryListVM>> GetMainMaleAsync();
+        Task<List<CategoryListVM>> GetMainFemaleAsync();
+        Task<List<CategoryListVM>> GetChildrenMaleAsync();
+        Task<List<CategoryListVM>> GetChildrenFemaleAsync();
+        Task<List<CategoryListVM>> GetMainAsync();
+        Task<List<CategoryListVM>> GetChildrenAsync();
         Task<CategoryGetVM> GetById(int? id);
-
         Task CreateAsync(CategoryCreateVM categoryCreateVM);
 
         Task UpdateAsync(int? id, CategoryUpdateVM categoryUpdateVM);
-
         Task DeleteAsync(int? id);
-
         Task RestoreAsync(int? id);
     }
 }

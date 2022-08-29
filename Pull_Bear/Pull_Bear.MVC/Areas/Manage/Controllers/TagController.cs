@@ -22,9 +22,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _tagService = tagService;
         }
 
-        public IActionResult Index(int? status, int select, int page = 1)
+        public async Task<IActionResult> Index(int? status, int select, int page = 1)
         {
-            IQueryable<TagListVM> tagListVMs = _tagService.GetAllAsync(status);
+            IQueryable<TagListVM> tagListVMs = await _tagService.GetAllAsync(status);
 
             if (select <= 0)
             {
@@ -39,7 +39,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -86,7 +86,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _tagService.DeleteAsync(id);
 
-            IQueryable<TagListVM> tagListVMs = _tagService.GetAllAsync(status);
+            IQueryable<TagListVM> tagListVMs = await _tagService.GetAllAsync(status);
 
             return PartialView("_TagIndexPartial", PaginationList<TagListVM>.Create(tagListVMs, page, select));
         }
@@ -99,7 +99,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _tagService.RestoreAsync(id);
 
-            IQueryable<TagListVM> tagListVMs = _tagService.GetAllAsync(status);
+            IQueryable<TagListVM> tagListVMs = await _tagService.GetAllAsync(status);
 
             return PartialView("_TagIndexPartial", PaginationList<TagListVM>.Create(tagListVMs, page, select));
         }

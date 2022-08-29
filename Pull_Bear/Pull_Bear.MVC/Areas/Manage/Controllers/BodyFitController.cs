@@ -22,9 +22,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _bodyFitService = bodyFitService;
         }
 
-        public IActionResult Index(int? status, int? type, int select, int page = 1)
+        public async Task<IActionResult> Index(int? status, int? type, int select, int page = 1)
         {
-            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status, type);
+            IQueryable<BodyFitListVM> bodyFitListVMs = await _bodyFitService.GetAllAsync(status, type);
 
             if (select <= 0)
             {
@@ -40,7 +40,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -88,7 +88,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _bodyFitService.DeleteAsync(id);
 
-            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status, type);
+            IQueryable<BodyFitListVM> bodyFitListVMs = await _bodyFitService.GetAllAsync(status, type);
 
             return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
         }
@@ -102,7 +102,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _bodyFitService.RestoreAsync(id);
 
-            IQueryable<BodyFitListVM> bodyFitListVMs = _bodyFitService.GetAllAsync(status, type);
+            IQueryable<BodyFitListVM> bodyFitListVMs = await _bodyFitService.GetAllAsync(status, type);
 
             return PartialView("_BodyFitIndexPartial", PaginationList<BodyFitListVM>.Create(bodyFitListVMs, page, select));
         }

@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
 
+
     //----------------------------------------------- Category toggle class when it is main or child
 
     $(document).on('change', '.isMaininput', function () {
@@ -22,13 +23,15 @@
         if ($(this).val() == 1) {
 
             $('.ismale').hide();
-
             $('.isfemale').show();
         }
         else if ($(this).val() == 2) {
 
             $('.ismale').show();
-
+            $('.isfemale').hide();
+        }
+        else if ($(this).val() == 0) {
+            $('.ismale').hide()();
             $('.isfemale').hide();
         }
     });
@@ -138,7 +141,7 @@
 
     //----------------------------------------------- Add additional input fields for product create view
 
-    $(document).on('click', '.addfields', function () {
+    $(document).on('click', '.addfields', function (e) {
 
         e.preventDefault();
 

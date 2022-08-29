@@ -2,8 +2,10 @@
 
 @{
     ViewData["Title"] = "Create";
-    SelectList categories = new SelectList(ViewBag.ChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList bodyfits = new SelectList(ViewBag.BodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
     SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
     SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
     SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
@@ -35,18 +37,18 @@
             </div>
 
             <div class="mb-3 form-group col-lg-6 col-6 d-flex justify-content-between p-2">
-                <div class="col-lg-4 col-4">
-                    <label asp-for="IsNew" class="form-check-label pe-3"></label>
+                <div class="col-lg-4 col-4 d-flex justify-content-center align-items-center">
+                    <label style="margin: 0" asp-for="IsNew" class="form-check-label pe-3"></label>
                     <input asp-for="IsNew" class="form-check">
                     <span class="text-danger" asp-validation-for="IsNew"></span>
                 </div>
-                <div class="col-lg-4 col-4">
-                    <label asp-for="IsPreOrder" class="form-check-label pe-3"></label>
+                <div class="col-lg-4 col-4 d-flex justify-content-center align-items-center">
+                    <label style="margin: 0" asp-for="IsPreOrder" class="form-check-label pe-3"></label>
                     <input asp-for="IsPreOrder" class="form-check">
                     <span class="text-danger" asp-validation-for="IsPreOrder"></span>
                 </div>
-                <div class="col-lg-4 col-4">
-                    <label asp-for="IsHotSale" class="form-check-label pe-3"></label>
+                <div class="col-lg-4 col-4 d-flex justify-content-center align-items-center">
+                    <label style="margin: 0" asp-for="IsHotSale" class="form-check-label pe-3"></label>
                     <input asp-for="IsHotSale" class="form-check">
                     <span class="text-danger" asp-validation-for="IsHotSale"></span>
                 </div>
@@ -76,28 +78,46 @@
                 <span class="text-danger" asp-validation-for="Composition"></span>
             </div>
 
-            <div class="mb-3 form-group col-lg-12 col-12">
-                <label asp-for="CategoryId" class="form-label">Main Category</label>
-                <select asp-for="CategoryId" class="form-control" asp-items="@categories">
-                    <option value="">Select category</option>
-                </select>
-                <span class="text-danger" asp-validation-for="CategoryId"></span>
-            </div>
-
-            <div class="mb-3 form-group  col-lg-12 col-12">
-                <label asp-for="BodyFitId" class="form-label">Main Category</label>
-                <select asp-for="BodyFitId" class="form-control" asp-items="@bodyfits">
-                    <option value="">Select body fit</option>
-                </select>
-                <span class="text-danger" asp-validation-for="BodyFitId"></span>
-            </div>
-
             <div class="mb-3 form-group  col-lg-12 col-12">
                 <label asp-for="GenderId" class="form-label">Gender</label>
-                <select asp-for="GenderId" class="form-control" asp-items="Html.GetEnumSelectList<GenderList>()">
+                <select asp-for="GenderId" class="form-control genderselect" asp-items="Html.GetEnumSelectList<GenderList>()">
                     <option value="">Select Gender</option>
                 </select>
                 <span class="text-danger" asp-validation-for="GenderId"></span>
+            </div>
+
+            <p>Select Gender for getting Categories and Body Fits</p>
+
+            <div class="mb-3 form-group isfemale col-lg-12 col-12" style="display:none">
+                <label asp-for="FemaleCategoryId" class="form-label">Category</label>
+                <select asp-for="FemaleCategoryId" class="form-control isfemaleselect" asp-items="@femaleCategories">
+                    <option value="">Select category</option>
+                </select>
+                <span class="text-danger" asp-validation-for="FemaleCategoryId"></span>
+            </div>
+
+            <div class="mb-3 form-group ismale col-lg-12 col-12" style="display:none">
+                <label asp-for="MaleCategoryId" class="form-label">Category</label>
+                <select asp-for="MaleCategoryId" class="form-control ismaleselect" asp-items="@maleCategories">
+                    <option value="">Select category</option>
+                </select>
+                <span class="text-danger" asp-validation-for="MaleCategoryId"></span>
+            </div>
+
+            <div class="mb-3 form-group isfemale col-lg-12 col-12" style="display:none">
+                <label asp-for="FemaleBodyFitId" class="form-label">Body Fit</label>
+                <select asp-for="FemaleBodyFitId" class="form-control isfemaleselect" asp-items="@femaleBodyfits">
+                    <option value="">Select body fit</option>
+                </select>
+                <span class="text-danger" asp-validation-for="FemaleBodyFitId"></span>
+            </div>
+
+            <div class="mb-3 form-group ismale col-lg-12 col-12" style="display:none">
+                <label asp-for="MaleBodyFitId" class="form-label">Body Fit</label>
+                <select asp-for="MaleBodyFitId" class="form-control ismaleselect" asp-items="@maleBodyfits">
+                    <option value="">Select body fit</option>
+                </select>
+                <span class="text-danger" asp-validation-for="MaleBodyFitId"></span>
             </div>
 
             <div class="mb-3 col-12 col-lg-12 form-group imagecont">
@@ -133,7 +153,7 @@
             </div>
 
             <div class="row d-flex justify-content-center flex-wrap w-100">
-                <div class="inpustcontainer row d-flex col-lg-12">
+                <div class="inpustcontainer row d-flex col-lg-12 flex-wrap">
                     <div class="form-group col-lg-4">
                         <label>Color:</label>
                         <select name="ColorIds" class="form-control" asp-items="@colors">

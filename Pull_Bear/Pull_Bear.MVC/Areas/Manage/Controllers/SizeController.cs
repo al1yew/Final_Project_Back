@@ -22,9 +22,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _sizeService = sizeService;
         }
 
-        public IActionResult Index(int? status, int select, int page = 1)
+        public async Task<IActionResult> Index(int? status, int select, int page = 1)
         {
-            IQueryable<SizeListVM> sizeListVMs = _sizeService.GetAllAsync(status);
+            IQueryable<SizeListVM> sizeListVMs = await _sizeService.GetAllAsync(status);
 
             if (select <= 0)
             {
@@ -39,7 +39,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -86,7 +86,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _sizeService.DeleteAsync(id);
 
-            IQueryable<SizeListVM> sizeListVMs = _sizeService.GetAllAsync(status);
+            IQueryable<SizeListVM> sizeListVMs = await _sizeService.GetAllAsync(status);
 
             return PartialView("_SizeIndexPartial", PaginationList<SizeListVM>.Create(sizeListVMs, page, select));
         }
@@ -99,7 +99,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _sizeService.RestoreAsync(id);
 
-            IQueryable<SizeListVM> sizeListVMs = _sizeService.GetAllAsync(status);
+            IQueryable<SizeListVM> sizeListVMs = await _sizeService.GetAllAsync(status);
 
             return PartialView("_SizeIndexPartial", PaginationList<SizeListVM>.Create(sizeListVMs, page, select));
         }

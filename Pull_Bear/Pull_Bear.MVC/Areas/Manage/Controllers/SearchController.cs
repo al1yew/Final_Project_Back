@@ -21,7 +21,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
         public async Task<IActionResult> Search(string search)
         {
-            SearchListVM searchListVM = _searchService.GetAllAsync(search);
+            SearchListVM searchListVM = await _searchService.GetAllAsync(search);
 
             return PartialView("_SearchPartial", searchListVM);
         }

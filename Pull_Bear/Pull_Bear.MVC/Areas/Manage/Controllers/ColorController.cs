@@ -26,9 +26,9 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             _colorService = colorService;
         }
 
-        public IActionResult Index(int? status, int select, int page = 1)
+        public async Task<IActionResult> Index(int? status, int select, int page = 1)
         {
-            IQueryable<ColorListVM> colorListVMs = _colorService.GetAllAsync(status);
+            IQueryable<ColorListVM> colorListVMs = await _colorService.GetAllAsync(status);
 
             if (select <= 0)
             {
@@ -43,7 +43,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             return View();
         }
@@ -90,7 +90,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _colorService.DeleteAsync(id);
 
-            IQueryable<ColorListVM> colorListVMs = _colorService.GetAllAsync(status);
+            IQueryable<ColorListVM> colorListVMs = await _colorService.GetAllAsync(status);
 
             return PartialView("_ColorIndexPartial", PaginationList<ColorListVM>.Create(colorListVMs, page, select));
         }
@@ -103,7 +103,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _colorService.RestoreAsync(id);
 
-            IQueryable<ColorListVM> colorListVMs = _colorService.GetAllAsync(status);
+            IQueryable<ColorListVM> colorListVMs = await _colorService.GetAllAsync(status);
 
             return PartialView("_ColorIndexPartial", PaginationList<ColorListVM>.Create(colorListVMs, page, select));
         }

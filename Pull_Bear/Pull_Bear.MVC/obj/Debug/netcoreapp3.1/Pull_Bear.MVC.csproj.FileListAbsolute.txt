@@ -195,3 +195,4 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Raz
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_ProductIndexPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Detail.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Product\Create.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_ProductColorSizePartial.cshtml.g.cs

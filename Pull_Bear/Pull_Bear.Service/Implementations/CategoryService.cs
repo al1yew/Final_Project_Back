@@ -90,6 +90,12 @@ namespace Pull_Bear.Service.Implementations
             return categoryListVMs;
         }
 
+        public List<CategoryListVM> GetChildrenAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain, "Parent").Result);
+
+            return categoryListVMs;
+        }
         public async Task<CategoryGetVM> GetById(int? id)
         {
             Category category = await _categoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);

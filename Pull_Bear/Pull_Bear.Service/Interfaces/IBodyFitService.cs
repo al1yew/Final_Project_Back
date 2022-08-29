@@ -11,6 +11,8 @@ namespace Pull_Bear.Service.Interfaces
     {
         IQueryable<BodyFitListVM> GetAllAsync(int? status, int? type);
 
+        IQueryable<BodyFitListVM> GetAllAsync();
+
         Task<BodyFitGetVM> GetById(int? id);
 
         Task CreateAsync(BodyFitCreateVM bodyFitCreateVM);

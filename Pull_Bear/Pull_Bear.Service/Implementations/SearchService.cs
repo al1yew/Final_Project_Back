@@ -42,12 +42,28 @@ namespace Pull_Bear.Service.Implementations
             SearchListVM searchVM = new SearchListVM
             {
                 Categories = _mapper.Map<List<CategoryListVM>>(_categoryRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender", "Children", "Parent").Result),
+               
                 BodyFits = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender").Result),
+               
                 Colors = _mapper.Map<List<ColorListVM>>(_colorRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result),
+               
                 Sizes = _mapper.Map<List<SizeListVM>>(_sizeRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result),
+               
                 Tags = _mapper.Map<List<TagListVM>>(_tagRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower())).Result),
-                Products = _mapper.Map<List<ProductListVM>>(_productRepository.GetAllAsync("ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender").Result)
-        };
+                
+                Products = _mapper.Map<List<ProductListVM>>(_productRepository.GetAllByExAsync(
+                    c => c.Name.ToLower().Contains(search.ToLower()) ||
+                    c.Description.ToLower().Contains(search.ToLower()) ||
+                    c.Price.ToString().Contains(search.ToLower()) ||
+                    c.DiscountPrice.ToString().Contains(search.ToLower()) ||
+                    c.Composition.ToLower().Contains(search.ToLower()) ||
+                    c.PhotoModelIndicators.ToLower().Contains(search.ToLower()) ||
+                    c.BodyFit.Name.ToLower().Contains(search.ToLower()) ||
+                    c.Category.Name.ToLower().Contains(search.ToLower()) ||
+                    c.Gender.Name.ToLower().Contains(search.ToLower()) ||
+                    c.Care.ToLower().Contains(search.ToLower()),
+                    "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender").Result)
+            };
 
             return searchVM;
         }

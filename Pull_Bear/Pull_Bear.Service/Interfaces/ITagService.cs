@@ -10,7 +10,7 @@ namespace Pull_Bear.Service.Interfaces
     public interface ITagService
     {
         IQueryable<TagListVM> GetAllAsync(int? status);
-
+        IQueryable<TagListVM> GetAllAsync();
         Task<TagGetVM> GetById(int? id);
 
         Task CreateAsync(TagCreateVM tagCreateVM);

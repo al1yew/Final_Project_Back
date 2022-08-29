@@ -42,6 +42,7 @@ namespace Pull_Bear.Core.Models
         //realtions one ... - many products
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+        public int ParentCategoryId { get; set; }
         public BodyFit BodyFit { get; set; }
         public int BodyFitId { get; set; }
         public Gender Gender { get; set; }

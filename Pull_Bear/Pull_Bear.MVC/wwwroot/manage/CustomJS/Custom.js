@@ -136,6 +136,37 @@
     });
 
 
+    //----------------------------------------------- Add additional input fields for product create view
+
+    $(document).on('click', '.addfields', function () {
+
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.inpustcontainer').append(data)
+            })
+
+    });
+
+    $(document).on('click', '.addinputs', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.inputsContainer').append(data)
+            })
+    })
+
+
+
+
+
+
+
+
     //----------------------------------------------- Delete element
 
     $(document).on('click', '.deleteBtn', function (e) {

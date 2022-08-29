@@ -22,6 +22,13 @@ namespace Pull_Bear.Service.Implementations
             _mapper = mapper;
         }
 
+        public IQueryable<ColorListVM> GetAllAsync()
+        {
+            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(_colorRepository.GetAllAsync().Result);
+
+            return colorListVMs.AsQueryable();
+        }
+
         public IQueryable<ColorListVM> GetAllAsync(int? status)
         {
             List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(_colorRepository.GetAllAsync().Result);

@@ -26,6 +26,13 @@ namespace Pull_Bear.Service.Implementations
             _env = env;
         }
 
+        public IQueryable<BodyFitListVM> GetAllAsync()
+        {
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllAsync().Result);
+
+            return bodyFitListVMs.AsQueryable();
+        }
+
         public IQueryable<BodyFitListVM> GetAllAsync(int? status, int? type)
         {
             List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(_bodyFitRepository.GetAllAsync("Gender").Result);

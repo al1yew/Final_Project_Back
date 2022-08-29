@@ -16,6 +16,8 @@ namespace Pull_Bear.Service.Interfaces
 
         List<CategoryListVM> GetMainAsync();
 
+        List<CategoryListVM> GetChildrenAsync();
+
         List<CategoryListVM> GetMainFemaleAsync();
 
         Task<CategoryGetVM> GetById(int? id);

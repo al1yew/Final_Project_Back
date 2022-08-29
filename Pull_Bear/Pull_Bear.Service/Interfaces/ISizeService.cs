@@ -11,6 +11,8 @@ namespace Pull_Bear.Service.Interfaces
     {
         IQueryable<SizeListVM> GetAllAsync(int? status);
 
+        IQueryable<SizeListVM> GetAllAsync();
+
         Task<SizeGetVM> GetById(int? id);
 
         Task CreateAsync(SizeCreateVM sizeCreateVM);

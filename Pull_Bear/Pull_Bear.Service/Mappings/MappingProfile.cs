@@ -83,7 +83,8 @@ namespace Pull_Bear.Service.Mappings
             #region Product
 
             CreateMap<Product, ProductListVM>()
-                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
+                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes))
+                .ForPath(des => des.ProductToTags, src => src.MapFrom(x => x.ProductToTags));
 
             CreateMap<ProductColorSize, ProductColorSizeGetVM>();
 

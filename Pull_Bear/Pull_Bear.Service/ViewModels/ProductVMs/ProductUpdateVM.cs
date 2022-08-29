@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.GenderVMs;
+using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductImageVMs;
+using Pull_Bear.Service.ViewModels.ProductToTagVMs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,11 +40,20 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         //realtions one ... - many products
         public CategoryGetVM Category { get; set; }
         public int CategoryId { get; set; }
+        public int ParentCategoryId { get; set; }
         public BodyFitGetVM BodyFit { get; set; }
         public int BodyFitId { get; set; }
         public GenderGetVM Gender { get; set; }
         public int GenderId { get; set; }
         public string GenderName { get; set; }
+
+
+        //relations one product - many ...
+        public List<ProductImageGetVM> ProductImages { get; set; }
+
+        //relations many to many
+        public List<ProductColorSizeGetVM> ProductColorSizes { get; set; }
+        public List<ProductToTagGetVM> ProductToTags { get; set; }
 
 
         //props for help 

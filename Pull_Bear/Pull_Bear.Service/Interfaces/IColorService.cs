@@ -11,6 +11,8 @@ namespace Pull_Bear.Service.Interfaces
     {
         IQueryable<ColorListVM> GetAllAsync(int? status);
 
+        IQueryable<ColorListVM> GetAllAsync();
+
         Task<ColorGetVM> GetById(int? id);
 
         Task CreateAsync(ColorCreateVM colorCreateVM);

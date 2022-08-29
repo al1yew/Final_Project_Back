@@ -1,0 +1,24 @@
+﻿@model ProductCreateVM
+
+@{
+    SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
+    SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
+}
+
+
+<div class="form-group col-lg-4">
+    <label>Color:</label>
+    <select name="ColorIds" class="form-control" asp-items="@colors">
+        <option value="">Select Color</option>
+    </select>
+</div>
+<div class="form-group col-lg-4">
+    <label>Size:</label>
+    <select name="SizeIds" class="form-control" asp-items="@sizes">
+        <option value="">Select Size</option>
+    </select>
+</div>
+<div class="form-group col-lg-4">
+    <label>Count:</label>
+    <input name="Counts" class="form-control" placeholder="Count for this size and color...">
+</div>

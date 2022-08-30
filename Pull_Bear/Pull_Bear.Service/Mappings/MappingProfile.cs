@@ -99,32 +99,21 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<ProductCreateVM, Product>()
                 .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))
-                .ForMember(des => des.BodyFitId, src => src.MapFrom(x => x.BodyFitId))
-                .ForMember(des => des.CategoryId, src => src.MapFrom(x => x.CategoryId))
-                .ForMember(des => des.GenderId, src => src.MapFrom(x => x.GenderId))
-                .ForMember(des => des.Count, src => src.MapFrom(x => 0))
-                .ForMember(des => des.DiscountPrice, src => src.MapFrom(x => x.DiscountPrice))
-                .ForMember(des => des.Price, src => src.MapFrom(x => x.Price))
-                .ForMember(des => des.IsHotSale, src => src.MapFrom(x => x.IsHotSale))
-                .ForMember(des => des.IsNew, src => src.MapFrom(x => x.IsNew))
-                .ForMember(des => des.IsPreOrder, src => src.MapFrom(x => x.IsPreOrder))
-                .ForMember(des => des.MainImage1, src => src.MapFrom(x => ""))
-                .ForMember(des => des.MainImage2, src => src.MapFrom(x => ""))
-                .ForMember(des => des.ProductImage, src => src.MapFrom(x => ""))
-                .ForMember(des => des.Seria, src => src.MapFrom(x => ""))
-                .ForMember(des => des.Count, src => src.MapFrom(x => 0))
                 .ForMember(des => des.Description, src => src.MapFrom(x => x.Description.Trim()))
                 .ForMember(des => des.Care, src => src.MapFrom(x => x.Care.Trim()))
                 .ForMember(des => des.Composition, src => src.MapFrom(x => x.Composition.Trim()))
                 .ForMember(des => des.PhotoModelIndicators, src => src.MapFrom(x => x.PhotoModelIndicators.Trim()))
-                .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)))
-                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes))
-                .ForPath(des => des.ProductToTags, src => src.MapFrom(x => x.ProductToTags));
+                .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
 
             CreateMap<Product, ProductGetVM>()
                 .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
 
-            CreateMap<ProductGetVM, ProductUpdateVM>();
+            CreateMap<ProductGetVM, ProductUpdateVM>()
+                .ForMember(des => des.MaleBodyFitId, src => src.MapFrom(x => (x.GenderId == 2) ? x.BodyFitId : 0))
+                .ForMember(des => des.FemaleBodyFitId, src => src.MapFrom(x => (x.GenderId == 1) ? x.BodyFitId : 0))
+                .ForMember(des => des.MaleCategoryId, src => src.MapFrom(x => (x.GenderId == 2) ? x.CategoryId : 0))
+                .ForMember(des => des.FemaleCategoryId, src => src.MapFrom(x => (x.GenderId == 1) ? x.CategoryId : 0));
+
             #endregion
         }
     }

@@ -1,0 +1,203 @@
+﻿@model ProductUpdateVM
+
+@{
+    ViewData["Title"] = "Update";
+    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
+    SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
+    SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
+}
+
+
+<div class="d-flex row justify-content-center w-100">
+    <div class="col-lg-10">
+        <h1 class="mt-3">Update</h1>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" enctype="multipart/form-data" class="w-100 d-flex justify-content-between flex-wrap">
+
+            <div class="mb-3 form-group col-lg-12 col-12 p-2">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+
+            <div class="mb-3 form-group col-lg-3 col-3 p-2">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control">
+                <span class="text-danger" asp-validation-for="Price"></span>
+            </div>
+
+            <div class="mb-3 form-group col-lg-3 col-3 p-2">
+                <label asp-for="DiscountPrice" class="form-label"></label>
+                <input asp-for="DiscountPrice" class="form-control">
+                <span class="text-danger" asp-validation-for="DiscountPrice"></span>
+            </div>
+
+            <div class="mb-3 form-group col-lg-6 col-6 d-flex justify-content-between p-2">
+                <div class="col-lg-4 col-4 d-flex justify-content-center align-items-center">
+                    <label style="margin: 0" asp-for="IsNew" class="form-check-label pe-3"></label>
+                    <input asp-for="IsNew" class="form-check">
+                    <span class="text-danger" asp-validation-for="IsNew"></span>
+                </div>
+                <div class="col-lg-4 col-4 d-flex justify-content-center align-items-center">
+                    <label style="margin: 0" asp-for="IsPreOrder" class="form-check-label pe-3"></label>
+                    <input asp-for="IsPreOrder" class="form-check">
+                    <span class="text-danger" asp-validation-for="IsPreOrder"></span>
+                </div>
+                <div class="col-lg-4 col-4 d-flex justify-content-center align-items-center">
+                    <label style="margin: 0" asp-for="IsHotSale" class="form-check-label pe-3"></label>
+                    <input asp-for="IsHotSale" class="form-check">
+                    <span class="text-danger" asp-validation-for="IsHotSale"></span>
+                </div>
+            </div>
+
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="PhotoModelIndicators" class="form-label"></label>
+                <textarea asp-for="PhotoModelIndicators" class="form-control" style="height:80px;"></textarea>
+                <span class="text-danger" asp-validation-for="PhotoModelIndicators"></span>
+            </div>
+
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="Care" class="form-label"></label>
+                <textarea asp-for="Care" class="form-control" style="height:80px;"></textarea>
+                <span class="text-danger" asp-validation-for="Care"></span>
+            </div>
+
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" style="height:80px;"></textarea>
+                <span class="text-danger" asp-validation-for="Description"></span>
+            </div>
+
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="Composition" class="form-label"></label>
+                <textarea asp-for="Composition" class="form-control" style="height:80px;"></textarea>
+                <span class="text-danger" asp-validation-for="Composition"></span>
+            </div>
+
+            <div class="mb-3 form-group  col-lg-12 col-12">
+                <label asp-for="GenderId" class="form-label">Gender</label>
+                <select asp-for="GenderId" class="form-control genderselect" asp-items="Html.GetEnumSelectList<GenderList>()">
+                    <option value="">Select Gender</option>
+                </select>
+                <span class="text-danger" asp-validation-for="GenderId"></span>
+            </div>
+
+            <p>Select Gender for getting Categories and Body Fits</p>
+
+            <div class="mb-3 form-group isfemale col-lg-12 col-12" style="display:none">
+                <label asp-for="FemaleCategoryId" class="form-label">Category</label>
+                <select asp-for="FemaleCategoryId" class="form-control isfemaleselect isfemsel" asp-items="@femaleCategories">
+                    <option value="">Select category</option>
+                </select>
+                <span class="text-danger" asp-validation-for="FemaleCategoryId"></span>
+            </div>
+
+            <div class="mb-3 form-group ismale col-lg-12 col-12" style="display:none">
+                <label asp-for="MaleCategoryId" class="form-label">Category</label>
+                <select asp-for="MaleCategoryId" class="form-control ismaleselect ismalsel" asp-items="@maleCategories">
+                    <option value="">Select category</option>
+                </select>
+                <span class="text-danger" asp-validation-for="MaleCategoryId"></span>
+            </div>
+
+            <div class="mb-3 form-group isfemale col-lg-12 col-12" style="display:none">
+                <label asp-for="FemaleBodyFitId" class="form-label">Body Fit</label>
+                <select asp-for="FemaleBodyFitId" class="form-control isfemaleselect isfemsel" asp-items="@femaleBodyfits">
+                    <option value="">Select body fit</option>
+                </select>
+                <span class="text-danger" asp-validation-for="FemaleBodyFitId"></span>
+            </div>
+
+            <div class="mb-3 form-group ismale col-lg-12 col-12" style="display:none">
+                <label asp-for="MaleBodyFitId" class="form-label">Body Fit</label>
+                <select asp-for="MaleBodyFitId" class="form-control ismaleselect ismalsel" asp-items="@maleBodyfits">
+                    <option value="">Select body fit</option>
+                </select>
+                <span class="text-danger" asp-validation-for="MaleBodyFitId"></span>
+            </div>
+
+            <div class="mb-3 col-12 col-lg-12 form-group imagecont">
+                <label asp-for="ProductPhoto" class="form-label"></label>
+                <input asp-for="ProductPhoto" class="form-control p-2" type="file" accept="image/*">
+                <span class="text-danger" asp-validation-for="ProductPhoto"></span>
+            </div>
+
+            <div class="mb-3 col-12 col-lg-12 form-group imagecont">
+                <label asp-for="MainPhoto1" class="form-label"></label>
+                <input asp-for="MainPhoto1" class="form-control p-2" type="file" accept="image/*">
+                <span class="text-danger" asp-validation-for="MainPhoto1"></span>
+            </div>
+
+            <div class="mb-3 col-12 col-lg-12 form-group imagecont">
+                <label asp-for="MainPhoto2" class="form-label"></label>
+                <input asp-for="MainPhoto2" class="form-control p-2" type="file" accept="image/*">
+                <span class="text-danger" asp-validation-for="MainPhoto2"></span>
+            </div>
+
+            <div class="mb-3 col-12 col-lg-12 form-group imagecont">
+                <label asp-for="Files" class="form-label"></label>
+                <input asp-for="Files" class="form-control p-2" multiple type="file" accept="image/*">
+                <span class="text-danger" asp-validation-for="Files"></span>
+            </div>
+
+            <div class="d-flex productImages">
+                @await Html.PartialAsync("_ProductImagePartial", Model.ProductImages)
+            </div>
+
+            <div class="form-group col-lg-12 col-12 p-1">
+                <label asp-for="TagIds"></label>
+                <select asp-for="TagIds" multiple class="form-control" asp-items="@tags" style="height:200px;">
+                </select>
+                <span class="text text-danger" asp-validation-for="TagIds"></span>
+            </div>
+
+            <div class="d-flex productTags">
+                @await Html.PartialAsync("_ProductTagPartial", Model.ProductToTags)
+            </div>
+
+            <div class="row d-flex justify-content-center flex-wrap w-100">
+                <div class="inpustcontainer row d-flex col-lg-12 flex-wrap">
+                    @foreach (ProductColorSizeGetVM item in Model.ProductColorSizes)
+                    {
+                        <div class="col-lg-12 col-12 row d-flex flex-wrap hamsi" style="position: relative">
+                            <div class="form-group col-lg-4">
+                                <label>Color:</label>
+                                <select name="ColorIds" class="form-control" asp-items="@colors">
+                                    <option value="@item.Color.Id" selected>@item.Color.Name</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Size:</label>
+                                <select name="SizeIds" class="form-control" asp-items="@sizes">
+                                    <option value="@item.Size.Id" selected>@item.Size.Name</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Count:</label>
+                                <input name="Counts" class="form-control" value="@item.Count">
+                            </div>
+                            <span class="removeinps" style="position: absolute; top:0; right:0; width: 30px;font-size:20px; cursor: pointer;"><ion-icon name="close-outline"></ion-icon></span>
+                        </div>
+                    }
+                </div>
+                <div class="col-lg-1">
+                    <a asp-area="Manage" asp-controller="Product" asp-action="GetInputs" class="btn btn-primary addfields">Add fields</a>
+                </div>
+            </div>
+
+
+
+            <button type="submit" class="btn btn-primary">Update</button>
+
+        </form>
+    </div>
+</div>
+
+
+@section Script{
+    <partial name="_ValidationPartial">
+}

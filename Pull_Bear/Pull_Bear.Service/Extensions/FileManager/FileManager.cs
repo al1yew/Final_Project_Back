@@ -12,13 +12,18 @@ namespace Pull_Bear.Service.Extensions
     {
         public async static Task<string> CreateAsync(this IFormFile file, IWebHostEnvironment env, params string[] folders)
         {
-            string fileName = file.FileName + "_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+            string fileName = Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + file.FileName;
 
             string path = Path.Combine(env.WebRootPath);
 
             foreach (string folder in folders)
             {
                 path = Path.Combine(path, folder);
+            }
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
             }
 
             path = Path.Combine(path, fileName);

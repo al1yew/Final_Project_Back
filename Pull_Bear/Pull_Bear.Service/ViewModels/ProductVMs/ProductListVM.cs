@@ -23,6 +23,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         //realtions one ... - many products
         public CategoryGetVM Category { get; set; }
         public int CategoryId { get; set; }
+        public int ParentCategoryId { get; set; }
         public BodyFitGetVM BodyFit { get; set; }
         public int BodyFitId { get; set; }
         public string GenderName { get; set; }

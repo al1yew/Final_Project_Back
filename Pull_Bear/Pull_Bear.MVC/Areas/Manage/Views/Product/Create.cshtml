@@ -56,25 +56,25 @@
 
             <div class="mb-3 form-group col-lg-12 col-12">
                 <label asp-for="PhotoModelIndicators" class="form-label"></label>
-                <textarea asp-for="PhotoModelIndicators" class="form-control" style="height:200px;"></textarea>
+                <textarea asp-for="PhotoModelIndicators" class="form-control" style="height:80px;"></textarea>
                 <span class="text-danger" asp-validation-for="PhotoModelIndicators"></span>
             </div>
 
             <div class="mb-3 form-group col-lg-12 col-12">
                 <label asp-for="Care" class="form-label"></label>
-                <textarea asp-for="Care" class="form-control" style="height:200px;"></textarea>
+                <textarea asp-for="Care" class="form-control" style="height:80px;"></textarea>
                 <span class="text-danger" asp-validation-for="Care"></span>
             </div>
 
             <div class="mb-3 form-group col-lg-12 col-12">
                 <label asp-for="Description" class="form-label"></label>
-                <textarea asp-for="Description" class="form-control" style="height:200px;"></textarea>
+                <textarea asp-for="Description" class="form-control" style="height:80px;"></textarea>
                 <span class="text-danger" asp-validation-for="Description"></span>
             </div>
 
             <div class="mb-3 form-group col-lg-12 col-12">
                 <label asp-for="Composition" class="form-label"></label>
-                <textarea asp-for="Composition" class="form-control" style="height:200px;"></textarea>
+                <textarea asp-for="Composition" class="form-control" style="height:80px;"></textarea>
                 <span class="text-danger" asp-validation-for="Composition"></span>
             </div>
 
@@ -144,9 +144,9 @@
                 <span class="text-danger" asp-validation-for="Files"></span>
             </div>
 
-            <div class="form-group col-lg-12 col-12 p-5">
+            <div class="form-group col-lg-12 col-12 p-1">
                 <label asp-for="TagIds"></label>
-                <select asp-for="TagIds" multiple class="form-control" asp-items="@tags" style="height:200px;">
+                <select asp-for="TagIds" multiple class="form-control" asp-items="@tags" style="height:200px; font-size: 18px;">
                 </select>
                 <span class="text text-danger" asp-validation-for="TagIds"></span>
             </div>

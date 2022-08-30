@@ -7,6 +7,7 @@ namespace Pull_Bear.Service.ViewModels.ProductImageVMs
 {
     public class ProductImageGetVM
     {
+        public int Id { get; set; }
         public string Image { get; set; }
 
         //relations

@@ -34,18 +34,21 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public IFormFile ProductPhoto { get; set; }
         public IFormFile MainPhoto1 { get; set; }
         public IFormFile MainPhoto2 { get; set; }
-        public IEnumerable<IFormFile> Files { get; set; }
+        public List<IFormFile> Files { get; set; }
 
 
-        //realtions one ... - many products
+        //relations one ... - many products
         public CategoryGetVM Category { get; set; }
         public int CategoryId { get; set; }
         public int ParentCategoryId { get; set; }
+        public Nullable<int> MaleCategoryId { get; set; }
+        public Nullable<int> FemaleCategoryId { get; set; }
         public BodyFitGetVM BodyFit { get; set; }
         public int BodyFitId { get; set; }
+        public Nullable<int> MaleBodyFitId { get; set; }
+        public Nullable<int> FemaleBodyFitId { get; set; }
         public GenderGetVM Gender { get; set; }
         public int GenderId { get; set; }
-        public string GenderName { get; set; }
 
 
         //relations one product - many ...
@@ -57,10 +60,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
 
 
         //props for help 
-        public IEnumerable<int> TagIds { get; set; }
-        public IEnumerable<int> ColorIds { get; set; }
-        public IEnumerable<int> SizeIds { get; set; }
-        public IEnumerable<int> Counts { get; set; }
+        public List<int> TagIds { get; set; }
+        public List<int> ColorIds { get; set; }
+        public List<int> SizeIds { get; set; }
+        public List<int> Counts { get; set; }
     }
 
     public class ProductUpdateVMValidator : AbstractValidator<ProductUpdateVM>
@@ -90,11 +93,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
 
             RuleFor(x => x.Price).NotEmpty().WithMessage("Price is required!");
 
-            RuleFor(x => x.CategoryId).NotEmpty().WithMessage("Category must be choosen!");
-
-            RuleFor(x => x.GenderId).NotEmpty().WithMessage("Category must be choosen!");
-
-            RuleFor(x => x.BodyFitId).NotEmpty().WithMessage("Category must be choosen!");
+            RuleFor(x => x.GenderId).NotEmpty().WithMessage("Gender must be choosen!");
 
             RuleFor(x => x).Custom((x, y) =>
             {
@@ -111,19 +110,6 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
                 }
 
-                if (x.MainPhoto1 != null)
-                {
-                    if (!x.MainPhoto1.ContentType.ToString().Contains("image/"))
-                    {
-                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
-                    }
-
-                    if (x.MainPhoto1.Length / 1024 > 10000)
-                    {
-                        y.AddFailure("Image must be at most 10mb!");
-                    }
-                }
-
                 if (x.MainPhoto2 != null)
                 {
                     if (!x.MainPhoto2.ContentType.ToString().Contains("image/"))
@@ -132,6 +118,19 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
 
                     if (x.MainPhoto2.Length / 1024 > 10000)
+                    {
+                        y.AddFailure("Image must be at most 10mb!");
+                    }
+                }
+
+                if (x.MainPhoto1 != null)
+                {
+                    if (!x.MainPhoto1.ContentType.ToString().Contains("image/"))
+                    {
+                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
+                    }
+
+                    if (x.MainPhoto1.Length / 1024 > 10000)
                     {
                         y.AddFailure("Image must be at most 10mb!");
                     }
@@ -153,6 +152,16 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
                 }
 
+                if (x.GenderId == 1 && !(x.FemaleBodyFitId == null && x.FemaleCategoryId == null) && (x.MaleCategoryId != null || x.MaleBodyFitId != null))
+                {
+                    y.AddFailure("For choosen Female gender there must be female body fit and female category!");
+                }
+
+                if (x.GenderId == 2 && !(x.MaleBodyFitId == null && x.MaleCategoryId == null) && (x.FemaleCategoryId != null || x.FemaleBodyFitId != null))
+                {
+                    y.AddFailure("For choosen Female gender there must be female body fit and female category!");
+                }
+
                 if (x.Price <= x.DiscountPrice)
                 {
                     y.AddFailure("Discount price must be less than real price!");
@@ -165,6 +174,12 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                         y.AddFailure("To add product you must enter count!");
                     }
                 }
+
+                if (x.ColorIds.Count != x.Counts.Count && x.ColorIds.Count != x.SizeIds.Count && x.Counts.Count != x.SizeIds.Count)
+                {
+                    y.AddFailure("You must enter Count, Size and Color values respectively!");
+                }
+
             });
 
         }

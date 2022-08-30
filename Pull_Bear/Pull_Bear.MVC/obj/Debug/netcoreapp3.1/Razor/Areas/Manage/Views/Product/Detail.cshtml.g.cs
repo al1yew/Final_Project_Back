@@ -62,13 +62,6 @@ using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.ProductImageVMs;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 10 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
 using Pull_Bear.Service.ViewModels.ProductToTagVMs;
 
@@ -84,20 +77,27 @@ using Pull_Bear.Service.ViewModels.ProductVMs;
 #nullable disable
 #nullable restore
 #line 12 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.ProductImageVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 14 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
 using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"55c2243929bd40395f6de9381184597cb36bd9d7", @"/Areas/Manage/Views/Product/Detail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d951c4149f7dbe612f9c429d611f476410ddace8", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b91420a1a874c54e88c263f42a78b646fd37c400", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Product_Detail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProductGetVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -481,7 +481,7 @@ using Pull_Bear.Service.Enums;
               style=""border-bottom:1px solid black; padding: 0; padding-bottom: 8px;"">
             Main Image: <span style=""text-align:end; font-size: 16px; color: red; padding-left: 20px;"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d724407", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d724408", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -512,7 +512,7 @@ AddHtmlAttributeValue("", 9431, Model.ProductImage, 9431, 19, false);
               style=""border-bottom:1px solid black; padding: 0; padding-bottom: 8px;"">
             Big Image1: <span style=""text-align:end; font-size: 16px; color: red; padding-left: 20px;"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d726436", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d726437", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -543,7 +543,7 @@ AddHtmlAttributeValue("", 9851, Model.MainImage1, 9851, 17, false);
               style=""border-bottom:1px solid black; padding: 0; padding-bottom: 8px;"">
             Big Image2: <span style=""text-align:end; font-size: 16px; color: red; padding-left: 20px;"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d728463", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d728464", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -577,7 +577,7 @@ AddHtmlAttributeValue("", 10269, Model.MainImage2, 10269, 17, false);
 #line hidden
 #nullable disable
             WriteLiteral("            <span class=\"col-lg-12 col-12\" style=\"margin-bottom:10px\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d730773", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "55c2243929bd40395f6de9381184597cb36bd9d730774", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

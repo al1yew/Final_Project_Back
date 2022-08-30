@@ -1,0 +1,23 @@
+﻿@model List<ProductToTagGetVM>
+
+@{
+    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
+    SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
+    SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
+}
+
+@if (Model != null)
+{
+    foreach (ProductToTagGetVM productToTag in Model)
+    {
+        <div class="col-lg-1" style="padding:5px; border: 0.3px solid red; margin-right:5px">
+            <a class="close deletetag" asp-area="Manage" asp-controller="Product" asp-action="DeleteTag" asp-route-id="@productToTag.Id">
+                @productToTag.Tag.Name
+            </a>
+        </div>
+    }
+}

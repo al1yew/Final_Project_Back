@@ -57,6 +57,9 @@ namespace Pull_Bear.MVC
             services.AddScoped<ISizeRepository, SizeRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductImageRepository, ProductImageRepository>();
+            services.AddScoped<IProductToTagRepository, ProductToTagRepository>();
+            services.AddScoped<IProductColorSizeRepository, ProductColorSizeRepository>();
 
 
 

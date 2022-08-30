@@ -9,6 +9,7 @@ using Pull_Bear.Service.ViewModels.ProductReviewVMs;
 using Pull_Bear.Service.ViewModels.ProductToTagVMs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Pull_Bear.Service.ViewModels.ProductVMs
@@ -37,7 +38,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public List<IFormFile> Files { get; set; }
 
 
-        //realtions one ... - many products
+        //relations one ... - many products
         public CategoryGetVM Category { get; set; }
         public int CategoryId { get; set; }
         public int ParentCategoryId { get; set; }
@@ -49,6 +50,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public Nullable<int> FemaleBodyFitId { get; set; }
         public GenderGetVM Gender { get; set; }
         public int GenderId { get; set; }
+
 
         //relations one product - many ...
         public List<ProductImageGetVM> ProductImages { get; set; }
@@ -97,9 +99,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
             {
                 if (x.ProductPhoto == null && x.MainPhoto1 == null && x.MainPhoto2 == null && x.Files == null)
                 {
-                    y.AddFailure(" All Photos are required for better sales!");
+                    y.AddFailure("All Photos are required for better sales!");
                 }
-                else
+
+                if (x.MainPhoto1 != null)
                 {
                     if (!x.MainPhoto1.ContentType.ToString().Contains("image/"))
                     {
@@ -110,7 +113,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     {
                         y.AddFailure("Image must be at most 10mb!");
                     }
+                }
 
+                if (x.MainPhoto1 != null)
+                {
                     if (!x.MainPhoto2.ContentType.ToString().Contains("image/"))
                     {
                         y.AddFailure("Image must be only accepted IMAGE MIME types!");
@@ -120,7 +126,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     {
                         y.AddFailure("Image must be at most 10mb!");
                     }
+                }
 
+                if (x.MainPhoto1 != null)
+                {
                     if (!x.ProductPhoto.ContentType.ToString().Contains("image/"))
                     {
                         y.AddFailure("Image must be only accepted IMAGE MIME types!");
@@ -130,7 +139,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     {
                         y.AddFailure("Image must be at most 10mb!");
                     }
+                }
 
+                if (x.Files != null)
+                {
                     if (x.Files.Count > 4)
                     {
                         y.AddFailure("You can select only 4 Product Images!");
@@ -177,6 +189,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                 {
                     y.AddFailure("You must enter Count, Size and Color values respectively!");
                 }
+
             });
 
         }

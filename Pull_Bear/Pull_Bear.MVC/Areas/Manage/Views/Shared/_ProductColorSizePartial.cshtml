@@ -1,6 +1,4 @@
-﻿@model ProductCreateVM
-
-@{
+﻿@{
     SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
     SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
 }
@@ -22,5 +20,5 @@
         <label>Count:</label>
         <input name="Counts" class="form-control" placeholder="Count for this size and color...">
     </div>
-    <span class="removeinps" style="position: absolute; top:0; right:0; width: 30px;font-size:20px; cursor: pointer;"><ion-icon name="close-outline"></ion-icon></span>
+    <span class="removeinps " style="position: absolute; top:0; right:0; width: 30px;font-size:20px; cursor: pointer;"><ion-icon name="close-outline"></ion-icon></span>
 </div>

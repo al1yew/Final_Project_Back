@@ -18,6 +18,15 @@
 
     //----------------------------------------------- Toggle Gender Select option in Category Create View
 
+    if ($('.genderselect').val() == 1) {
+        $('.ismale').hide();
+        $('.isfemale').show();
+    }
+    else if ($(this).val() == 2) {
+        $('.ismale').show();
+        $('.isfemale').hide();
+    }
+
     $(document).on('change', '.genderselect', function () {
 
         if ($(this).val() == 1) {
@@ -33,7 +42,8 @@
             $('.isfemale').hide();
         }
         else if ($(this).val() == 0) {
-            $('.ismale').hide()();
+
+            $('.ismale').hide();
             $('.isfemale').hide();
             $('.isfemaleselect').val('');
             $('.ismaleselect').val('');
@@ -62,6 +72,38 @@
         }
     });
 
+
+    //----------------------------------------------- remove product create onclick added fields
+
+    $(document).on('click', '.deleteproductimage', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.productImages').html(data);
+            })
+    });
+
+    $(document).on('click', '.deletetag', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.productImages').html(data);
+            })
+    });
+
+    $(document).on('click', '.deletecolorsizedb', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.productImages').html(data);
+            })
+    });
 
     //----------------------------------------------- Search Layout
 

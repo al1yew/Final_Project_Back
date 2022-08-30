@@ -1,0 +1,24 @@
+﻿@model List<ProductImageGetVM>
+
+@{
+    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
+    SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
+    SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
+}
+
+@if (Model != null)
+{
+    foreach (ProductImageGetVM productImage in Model)
+    {
+        <div class="col-lg-1">
+            <a class="close deleteproductimage" asp-area="Manage" asp-controller="Product" asp-action="DeleteImage" asp-route-id="@productImage.Id">
+                <span>&times;</span>
+            </a>
+            <img class="img-fluid" src="~/assets/images/productimages/@productImage.ProductId/@productImage.Image">
+        </div>
+    }
+}

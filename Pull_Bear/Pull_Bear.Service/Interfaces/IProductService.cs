@@ -1,4 +1,7 @@
-﻿using Pull_Bear.Service.ViewModels.ProductVMs;
+﻿using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductImageVMs;
+using Pull_Bear.Service.ViewModels.ProductToTagVMs;
+using Pull_Bear.Service.ViewModels.ProductVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +23,9 @@ namespace Pull_Bear.Service.Interfaces
         Task DeleteAsync(int? id);
 
         Task RestoreAsync(int? id);
+
+        Task<List<ProductImageGetVM>> DeleteImage(int? id);
+        Task<List<ProductToTagGetVM>> DeleteTag(int? id);
+        Task<List<ProductColorSizeGetVM>> DeleteColorSize(int? id);
     }
 }

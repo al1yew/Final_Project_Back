@@ -83,7 +83,6 @@ namespace Pull_Bear.Service.Implementations
                 throw new BadRequestException($"Id's are not the same!");
 
             if (await _colorRepository.IsExistAsync(c => !c.IsDeleted
-            && c.Name.ToLower() == colorUpdateVM.Name.Trim().ToLower()
             && (c.Name.ToLower() == colorUpdateVM.Name.Trim().ToLower() || c.HexCode.ToLower() == colorUpdateVM.HexCode.ToLower().Trim())))
                 throw new RecordDublicateException($"Color Already Exists By Name or Hexcode!");
 

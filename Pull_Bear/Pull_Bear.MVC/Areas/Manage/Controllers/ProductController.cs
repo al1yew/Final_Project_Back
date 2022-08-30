@@ -92,7 +92,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
             await _productService.CreateAsync(productCreateVM);
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public IActionResult GetInputs()

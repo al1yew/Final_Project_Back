@@ -11,14 +11,14 @@ namespace Pull_Bear.Core.Models
         public string Name { get; set; }
         public double Price { get; set; }
         public double DiscountPrice { get; set; }
-        public int ReviewCount { get; set; }
-        public double AverageRating { get; set; }
+        public Nullable<int> ReviewCount { get; set; }
+        public Nullable<double> AverageRating { get; set; }
         public string Seria { get; set; }
         public string PhotoModelIndicators { get; set; }
         public string Composition { get; set; }
         public string Care { get; set; }
         public string Description { get; set; }
-        public int Count { get; set; }
+        public Nullable<int> Count { get; set; }
 
 
         //boolean

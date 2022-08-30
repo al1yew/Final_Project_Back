@@ -23,16 +23,20 @@
         if ($(this).val() == 1) {
 
             $('.ismale').hide();
+            $('.ismaleselect').val('');
             $('.isfemale').show();
         }
         else if ($(this).val() == 2) {
 
+            $('.isfemaleselect').val('');
             $('.ismale').show();
             $('.isfemale').hide();
         }
         else if ($(this).val() == 0) {
             $('.ismale').hide()();
             $('.isfemale').hide();
+            $('.isfemaleselect').val('');
+            $('.ismaleselect').val('');
         }
     });
 
@@ -45,6 +49,17 @@
 
     $(document).on('change', '.isfemaleselect', function () {
         $('.ismaleselect').val('');
+    });
+
+
+    //----------------------------------------------- remove product create onclick added fields
+
+    $(document).on('click', '.removeinps', function () {
+        console.log($('.hamsi').length)
+        if ($('.hamsi').length >= 2) {
+
+            $(this).parent().remove();
+        }
     });
 
 

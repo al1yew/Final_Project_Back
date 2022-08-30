@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Exceptions;
 using Pull_Bear.Service.Extensions;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductImageVMs;
+using Pull_Bear.Service.ViewModels.ProductToTagVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
 using System;
 using System.Collections.Generic;
@@ -18,14 +21,20 @@ namespace Pull_Bear.Service.Implementations
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IColorRepository _colorRepository;
+        private readonly ISizeRepository _sizeRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
 
-        public ProductService(IProductRepository productRepository, IMapper mapper, IWebHostEnvironment env)
+        public ProductService(IProductRepository productRepository, IMapper mapper, IWebHostEnvironment env, IColorRepository colorRepository, ISizeRepository sizeRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _env = env;
+            _colorRepository = colorRepository;
+            _sizeRepository = sizeRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public async Task<IQueryable<ProductListVM>> GetAllAsync(int? status, int? type)
@@ -87,7 +96,113 @@ namespace Pull_Bear.Service.Implementations
             && (c.Name.ToLower() == productCreateVM.Name.Trim().ToLower() && c.GenderId == productCreateVM.GenderId)))
                 throw new RecordDublicateException($"Product Already Exists By Name = {productCreateVM.Name}");
 
+            #region Product Color Sizes
+
+            List<ProductColorSizeGetVM> productColorSizes = new List<ProductColorSizeGetVM>();
+
+            for (int i = 0; i < productCreateVM.Counts.Count(); i++)
+            {
+                if (!(await _colorRepository.IsExistAsync(c => c.Id == productCreateVM.ColorIds[i])))
+                    throw new NotFoundException($"Color cannot be found by id = {productCreateVM.ColorIds[i]}");
+
+                if (!(await _sizeRepository.IsExistAsync(c => c.Id == productCreateVM.SizeIds[i])))
+                    throw new NotFoundException($"Size cannot be found by id = {productCreateVM.SizeIds[i]}");
+
+                ProductColorSizeGetVM productColorSize = new ProductColorSizeGetVM
+                {
+                    ColorId = productCreateVM.ColorIds[i],
+                    SizeId = productCreateVM.SizeIds[i],
+                    Count = productCreateVM.Counts[i]
+                };
+
+                productColorSizes.Add(productColorSize);
+            }
+
+            productCreateVM.ProductColorSizes = productColorSizes;
+
+            #endregion
+
+            #region Product Tags
+
+            List<ProductToTagGetVM> productToTags = new List<ProductToTagGetVM>();
+
+            for (int i = 0; i < productCreateVM.TagIds.Count; i++)
+            {
+                if (!(await _colorRepository.IsExistAsync(c => c.Id == productCreateVM.TagIds[i])))
+                    throw new NotFoundException($"Tag cannot be found by id = {productCreateVM.TagIds[i]}");
+
+                ProductToTagGetVM productTag = new ProductToTagGetVM
+                {
+                    TagId = productCreateVM.TagIds[i]
+                };
+
+                productToTags.Add(productTag);
+            }
+
+            productCreateVM.ProductToTags = productToTags;
+
+            #endregion
+
+            #region Product Images
+
+            List<ProductImageGetVM> productImages = new List<ProductImageGetVM>();
+
+            foreach (IFormFile file in productCreateVM.Files)
+            {
+                ProductImageGetVM productImage = new ProductImageGetVM
+                {
+                    Image = await file.CreateAsync(_env, "assets", "images", "products")
+                };
+
+                productImages.Add(productImage);
+            }
+
+            productCreateVM.ProductImages = productImages;
+
+            #endregion
+
+            #region Category and Body Fit
+
+            if (productCreateVM.FemaleCategoryId == null)
+            {
+                productCreateVM.CategoryId = (int)productCreateVM.MaleCategoryId;
+                productCreateVM.MaleCategoryId = null;
+                productCreateVM.FemaleCategoryId = null;
+            }
+            else
+            {
+                productCreateVM.CategoryId = (int)productCreateVM.FemaleCategoryId;
+                productCreateVM.MaleCategoryId = null;
+                productCreateVM.FemaleCategoryId = null;
+            }
+
+            if (productCreateVM.FemaleBodyFitId == null)
+            {
+                productCreateVM.BodyFitId = (int)productCreateVM.MaleBodyFitId;
+                productCreateVM.FemaleBodyFitId = null;
+                productCreateVM.MaleBodyFitId = null;
+            }
+            else
+            {
+                productCreateVM.BodyFitId = (int)productCreateVM.FemaleBodyFitId;
+                productCreateVM.FemaleBodyFitId = null;
+                productCreateVM.MaleBodyFitId = null;
+            }
+
+
+            #endregion
+
+            productCreateVM.ParentCategoryId = (int)_categoryRepository.GetAsync(c => !c.IsMain && c.Id == productCreateVM.CategoryId).Result.ParentId;
+
             Product product = _mapper.Map<Product>(productCreateVM);
+
+            int seria = int.Parse(_productRepository.GetAllAsync().Result.OrderByDescending(x => x.Seria).FirstOrDefault().ToString()[4..]);
+
+            product.Seria = "ref" + seria;
+            product.Count = productColorSizes.Sum(x => x.Count);
+            product.ProductImage = await productCreateVM.ProductPhoto.CreateAsync(_env, "assets", "images", "products");
+            product.MainImage1 = await productCreateVM.MainPhoto1.CreateAsync(_env, "assets", "images", "products");
+            product.MainImage2 = await productCreateVM.MainPhoto2.CreateAsync(_env, "assets", "images", "products");
 
             await _productRepository.AddAsync(product);
             await _productRepository.CommitAsync();

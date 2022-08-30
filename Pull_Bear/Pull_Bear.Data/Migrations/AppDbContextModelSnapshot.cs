@@ -167,7 +167,7 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("AverageRating")
+                    b.Property<double?>("AverageRating")
                         .HasColumnType("float");
 
                     b.Property<int>("BodyFitId")
@@ -186,7 +186,7 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int>("Count")
+                    b.Property<int?>("Count")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -249,7 +249,7 @@ namespace Pull_Bear.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReviewCount")
+                    b.Property<int?>("ReviewCount")
                         .HasColumnType("int");
 
                     b.Property<string>("Seria")

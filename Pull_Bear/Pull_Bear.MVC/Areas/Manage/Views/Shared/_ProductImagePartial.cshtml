@@ -14,8 +14,8 @@
 {
     foreach (ProductImageGetVM productImage in Model)
     {
-        <div class="col-lg-1">
-            <a class="close deleteproductimage" asp-area="Manage" asp-controller="Product" asp-action="DeleteImage" asp-route-id="@productImage.Id">
+        <div class="col-lg-2 imgpartial" style="position: relative; padding: 5px;">
+            <a class="close deleteproductimage" asp-area="Manage" asp-controller="Product" asp-action="DeleteImage" asp-route-id="@productImage.Id" style="border: none; position: absolute;font-size: 30px;text-decoration: none;color: black;cursor: pointer;top: 0px;left: 10px;">
                 <span>&times;</span>
             </a>
             <img class="img-fluid" src="~/assets/images/productimages/@productImage.ProductId/@productImage.Image">

@@ -212,7 +212,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
             ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
-            return PartialView("_ProductColorSizePartial", await _productService.DeleteColorSize(id));
+            return PartialView("_ProductColorSizeDeletePartial", await _productService.DeleteColorSize(id));
         }
     }
 }

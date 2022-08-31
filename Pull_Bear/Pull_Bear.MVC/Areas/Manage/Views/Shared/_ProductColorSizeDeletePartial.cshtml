@@ -1,41 +1,41 @@
 ﻿@model List<ProductColorSizeGetVM>
 
 @{
-    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
-    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
-    SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
     SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
     SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
 }
 
 @if (Model != null)
 {
-    foreach (ProductColorSizeGetVM productColorSize in Model)
+    @foreach (ProductColorSizeGetVM item in Model)
     {
-        <div class="col-lg-12 col-12 row d-flex flex-wrap hamsi" style="position: relative">
-            <div class="form-group col-lg-4">
-                <label>Color:</label>
-                <select name="ColorIds" class="form-control" asp-items="@colors">
-                    <option value="@productColorSize.Color.Id" selected>@productColorSize.Color.Name</option>
+        <div class="col-lg-12 col-12 d-flex flex-wrap justify-content-between align-items-center" style="position: relative;">
+            <span class="col-lg-3 col-3 colorclick text-center d-flex justify-content-between align-items-center">
+                <select name="newcolor" class="form-control  col-lg-9" asp-items="@colors" style="display: none">
+                    <option value="">Select Color</option>
                 </select>
-            </div>
-            <div class="form-group col-lg-4">
-                <label>Size:</label>
-                <select name="SizeIds" class="form-control" asp-items="@sizes">
-                    <option value="@productColorSize.Size.Id" selected>@productColorSize.Size.Name</option>
-                </select>
-            </div>
-            <div class="form-group col-lg-4">
-                <label>Count:</label>
-                <input name="Counts" class="form-control" value="@productColorSize.Count">
-            </div>
-            <span class="removeinps" style="position: absolute; top:0; right:0; width: 30px;font-size:20px; cursor: pointer;">
-                <ion-icon name="close-outline">
-                    <a class="deletecolorsizedb" asp-area="Manage" asp-controller="Product" asp-action="DeleteColorSize"></a>
-                </ion-icon>
+                <a class=" col-lg-2" style="display: none" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" asp-route-id="@item.Id" asp-route-color="true" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
+                <span style="" class="col-lg-12 col-12 d-flex justify-content-between p-1">
+                    Color:<span style="text-align:end; font-size: 16px; color: @item.Color.HexCode; padding-left: 20px;">@item.Color.Name</span>
+                </span>
             </span>
+            <span class="col-lg-3 col-3 sizeclick text-center d-flex justify-content-between align-items-center">
+                <select name="newsize" class="form-control col-lg-9 " asp-items="@sizes" style="display: none">
+                    <option value="">Select Size</option>
+                </select>
+                <a style="display: none" class=" col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" asp-route-id="@item.Id" asp-route-size="true" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
+                <span style="" class="col-lg-12 col-12 d-flex justify-content-between p-1">
+                    Size:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@item.Size.Name</span>
+                </span>
+            </span>
+            <span class="col-lg-3 col-3 text-center countclick d-flex justify-content-between align-items-center">
+                <input name="newcount" class="form-control col-lg-9" placeholder="Count" style="display: none">
+                <a style="display: none" class=" col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" asp-route-id="@item.Id" asp-route-count="true" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
+                <span style="" class="col-lg-12 col-12 d-flex  justify-content-between p-1">
+                    Count:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@item.Count</span>
+                </span>
+            </span>
+            <a asp-area="Manage" asp-controller="Product" asp-action="DeleteColorSize" asp-route-id="@item.Id" class="deletecolorsizedb" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="trash-outline"></ion-icon></a>
         </div>
     }
 }

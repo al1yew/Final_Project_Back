@@ -75,6 +75,8 @@
 
     //----------------------------------------------- remove product create onclick added fields
 
+    $('.imgpartial').length >= 4 ? $('.multiplephotoinp').attr('disabled', 'disabled') : $('.multiplephotoinp').removeAttr('disabled');
+
     $(document).on('click', '.deleteproductimage', function (e) {
         e.preventDefault();
 
@@ -82,6 +84,7 @@
             .then(res => res.text())
             .then(data => {
                 $('.productImages').html(data);
+                $('.imgpartial').length >= 4 ? $('.multiplephotoinp').attr('disabled', 'disabled') : $('.multiplephotoinp').removeAttr('disabled');
             })
     });
 
@@ -91,7 +94,7 @@
         fetch($(this).attr('href'))
             .then(res => res.text())
             .then(data => {
-                $('.productImages').html(data);
+                $('.productTags').html(data);
             })
     });
 
@@ -101,9 +104,22 @@
         fetch($(this).attr('href'))
             .then(res => res.text())
             .then(data => {
-                $('.productImages').html(data);
+                $('.prodcolsiz').html(data);
             })
     });
+
+    $(document).on('click', '.countclick, .sizeclick, .colorclick', function () {
+
+        $(this).children().eq(2).remove();
+        $(this).children().eq(0).show();
+        $(this).children().eq(1).show();
+        $(this).next('.deletecolorsizedb').hide();
+    });
+
+
+    //----------------------------------------------- product update view drag images jquery ui sortable
+
+    //$(".productImages").sortable();
 
     //----------------------------------------------- Search Layout
 
@@ -219,8 +235,6 @@
                 $('.inputsContainer').append(data)
             })
     })
-
-
 
 
 

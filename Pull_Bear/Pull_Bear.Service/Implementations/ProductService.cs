@@ -180,7 +180,8 @@ namespace Pull_Bear.Service.Implementations
 
             #endregion
 
-            int lastId = _productRepository.GetAllAsync().Result.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            int lastId = _productRepository.GetAllAsync().Result.Count == 0 ? 1 : _productRepository.GetAllAsync().Result.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            int lastSeria = _productRepository.GetAllAsync().Result.Count == 0 ? 1 : int.Parse(_productRepository.GetAllAsync().Result.OrderByDescending(x => x.Seria).FirstOrDefault().Seria.Substring(3));
 
             #region Product Images
 
@@ -204,7 +205,7 @@ namespace Pull_Bear.Service.Implementations
 
             Product product = _mapper.Map<Product>(productCreateVM);
 
-            product.Seria = "ref" + int.Parse(_productRepository.GetAllAsync().Result.OrderByDescending(x => x.Seria).FirstOrDefault().Seria.Substring(3)) + 1;
+            product.Seria = "ref" + +1;
             product.Count = productColorSizes.Sum(x => x.Count);
             product.ProductImage = await productCreateVM.ProductPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.MainImage1 = await productCreateVM.MainPhoto1.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");

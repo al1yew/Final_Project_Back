@@ -14,8 +14,8 @@
 {
     foreach (ProductToTagGetVM productToTag in Model)
     {
-        <div class="col-lg-1" style="padding:5px; border: 0.3px solid red; margin-right:5px">
-            <a class="close deletetag" asp-area="Manage" asp-controller="Product" asp-action="DeleteTag" asp-route-id="@productToTag.Id">
+        <div style="padding:5px; border: 0.3px solid red; margin-right:5px">
+            <a class="close deletetag" asp-area="Manage" asp-controller="Product" asp-action="DeleteTag" asp-route-id="@productToTag.Id" style="text-decoration: none;color: black;cursor: pointer;">
                 @productToTag.Tag.Name
             </a>
         </div>

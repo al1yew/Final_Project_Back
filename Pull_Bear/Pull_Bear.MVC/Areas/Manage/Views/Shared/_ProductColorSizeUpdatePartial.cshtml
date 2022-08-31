@@ -4,7 +4,7 @@
     SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
     SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
 }
-
+<div asp-validation-summary="ModelOnly"></div>
 @if (Model != null)
 {
     @foreach (ProductColorSizeGetVM item in Model)

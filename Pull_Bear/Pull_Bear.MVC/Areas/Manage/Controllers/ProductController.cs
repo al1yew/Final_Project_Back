@@ -212,9 +212,10 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
             ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
-            return PartialView("_ProductColorSizeDeletePartial", await _productService.DeleteColorSize(id));
+            return PartialView("_ProductColorSizeUpdatePartial", await _productService.DeleteColorSize(id));
         }
 
+        [HttpPost]
         public async Task<IActionResult> UpdateProductColorSize([FromBody] ProductColorSizeUpdateVM productColorSizeUpdateVM)
         {
             ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
@@ -225,7 +226,13 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
             ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
-            return PartialView("_ProductColorSizeDeletePartial", await _productService.UpdateProductColorSize(productColorSizeUpdateVM));
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return PartialView("_ProductColorSizeUpdatePartial", await _productService.UpdateProductColorSize(productColorSizeUpdateVM));
+            }
+
+            return PartialView("_ProductColorSizeUpdatePartial", await _productService.UpdateProductColorSize(productColorSizeUpdateVM));
         }
     }
 }

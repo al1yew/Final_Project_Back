@@ -421,13 +421,7 @@ namespace Pull_Bear.Service.Implementations
         {
             if (productColorSizeUpdateVM == null)
                 throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
-
-            if (productColorSizeUpdateVM.Id == null)
-                throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
-
-            if (productColorSizeUpdateVM.ChangeValue <= 0)
-                throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
-
+            //yoxlamag belke eyni adda eyni size da eledi, olari birleshdirmek lazimdi ve dbya gondermek, dla etogo est IsExistAsync
             int color = productColorSizeUpdateVM.Color ? 1 : 0;
             int size = productColorSizeUpdateVM.Size ? 1 : 0;
             int count = productColorSizeUpdateVM.Count ? 1 : 0;
@@ -437,12 +431,17 @@ namespace Pull_Bear.Service.Implementations
 
             ProductColorSize productColorSize = await _productColorSizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.Id);
 
+            if (productColorSize == null)
+                throw new NotFoundException("ProductColorSize cannot be found!");
+
             switch (1)
             {
-                case var value when value == color:
+                case int value when value == color:
 
-                    if (!await _productColorSizeRepository.IsExistAsync(x => x.ColorId == productColorSizeUpdateVM.ChangeValue))
-                        throw new NotFoundException("Color cannot be found!");
+                    Color clr = await _colorRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.ChangeValue);
+
+                    if (clr == null)
+                        throw new NotFoundException("Selected color cannot be found in database. Enter right value from Select Option!");
 
                     productColorSize.ColorId = productColorSizeUpdateVM.ChangeValue;
 
@@ -450,10 +449,12 @@ namespace Pull_Bear.Service.Implementations
 
                     return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
 
-                case var value when value == size:
+                case int value when value == size:
 
-                    if (!await _productColorSizeRepository.IsExistAsync(x => x.SizeId == productColorSizeUpdateVM.ChangeValue))
-                        throw new NotFoundException("Size cannot be found!");
+                    Size sz = await _sizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.ChangeValue);
+
+                    if (sz == null)
+                        throw new NotFoundException("Selected size cannot be found in database. Enter right value from Select Option!");
 
                     productColorSize.SizeId = productColorSizeUpdateVM.ChangeValue;
 
@@ -461,7 +462,7 @@ namespace Pull_Bear.Service.Implementations
 
                     return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
 
-                case var value when value == count:
+                case int value when value == count:
 
                     productColorSize.Count = productColorSizeUpdateVM.ChangeValue;
 
@@ -470,7 +471,7 @@ namespace Pull_Bear.Service.Implementations
                     return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
 
                 default:
-                    throw new NotFoundException("ProductColorSize cannot be found!");
+                    throw new NotFoundException("Enter acceptable values from Select Options!!!");
             }
         }
     }

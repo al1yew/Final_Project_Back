@@ -144,7 +144,7 @@
                 <span class="text-danger" asp-validation-for="Files"></span>
             </div>
 
-            <div class="d-flex productImages">
+            <div class="d-flex productImages col-lg-12 ">
                 @await Html.PartialAsync("_ProductImagePartial", Model.ProductImages)
             </div>
 
@@ -163,7 +163,7 @@
             <p class="col-lg-12 col-12"> You must update data in order! If you attempt to update multiple values, they will not be sent! Each button works only for his input!</p>
 
             <div class="col-lg-12 col-12 d-flex justify-content-between prodcolsiz align-items-center flex-wrap" style=" margin: 20px 0">
-                @await Html.PartialAsync("_ProductColorSizeDeletePartial", Model.ProductColorSizes)
+                @await Html.PartialAsync("_ProductColorSizeUpdatePartial", Model.ProductColorSizes)
             </div>
 
             <div class="row d-flex justify-content-center flex-wrap w-100">

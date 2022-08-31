@@ -109,6 +109,8 @@
 
     $(document).on('click', '.countclick, .sizeclick, .colorclick', function () {
 
+        $('.prodcolsiz').find('.togglespan').hide();
+
         $(this).prev().prev().show();
         $(this).prev().hide();
         $(this).hide();
@@ -131,25 +133,28 @@
 
         let id = $(this).attr('data-val');
 
-        let bodyObj = {
-            id: id,
-            color: true,
-            size: false,
-            count: false,
-            changevalue: changevalue
+        if (changevalue > 0) {
+            let bodyObj = {
+                id: id,
+                color: true,
+                size: false,
+                count: false,
+                changevalue: changevalue
+            }
+
+            fetch(url, {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyObj)
+            })
+                .then(res => res.text())
+                .then(data => {
+                    $('.prodcolsiz').html(data)
+                })
         }
 
-        fetch(url, {
-            method: 'Post',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(bodyObj)
-        })
-            .then(res => res.text())
-            .then(data => {
-                $('.prodcolsiz').html(data)
-            })
     });
 
     $(document).on('click', '.changesize', function (e) {
@@ -161,25 +166,29 @@
 
         let id = $(this).attr('data-val');
 
-        let bodyObj = {
-            id: id,
-            color: false,
-            size: true,
-            count: false,
-            changevalue: changevalue
+        if (changevalue > 0) {
+
+            let bodyObj = {
+                id: id,
+                color: false,
+                size: true,
+                count: false,
+                changevalue: changevalue
+            }
+
+            fetch(url, {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyObj)
+            })
+                .then(res => res.text())
+                .then(data => {
+                    $('.prodcolsiz').html(data)
+                })
         }
 
-        fetch(url, {
-            method: 'Post',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(bodyObj)
-        })
-            .then(res => res.text())
-            .then(data => {
-                $('.prodcolsiz').html(data)
-            })
     });
 
     $(document).on('click', '.changecount', function (e) {
@@ -191,25 +200,28 @@
 
         let id = $(this).attr('data-val');
 
-        let bodyObj = {
-            id: id,
-            color: false,
-            size: false,
-            count: true,
-            changevalue: changevalue
-        }
+        if (changevalue > 0) {
 
-        fetch(url, {
-            method: 'Post',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(bodyObj)
-        })
-            .then(res => res.text())
-            .then(data => {
-                $('.prodcolsiz').html(data)
+            let bodyObj = {
+                id: id,
+                color: false,
+                size: false,
+                count: true,
+                changevalue: changevalue
+            }
+
+            fetch(url, {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyObj)
             })
+                .then(res => res.text())
+                .then(data => {
+                    $('.prodcolsiz').html(data)
+                })
+        }
     });
 
 

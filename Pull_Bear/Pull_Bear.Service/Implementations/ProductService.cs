@@ -416,5 +416,62 @@ namespace Pull_Bear.Service.Implementations
 
             return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
         }
+
+        public async Task<List<ProductColorSizeGetVM>> UpdateProductColorSize(ProductColorSizeUpdateVM productColorSizeUpdateVM)
+        {
+            if (productColorSizeUpdateVM == null)
+                throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
+
+            if (productColorSizeUpdateVM.Id == null)
+                throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
+
+            if (productColorSizeUpdateVM.ChangeValue <= 0)
+                throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
+
+            int color = productColorSizeUpdateVM.Color ? 1 : 0;
+            int size = productColorSizeUpdateVM.Size ? 1 : 0;
+            int count = productColorSizeUpdateVM.Count ? 1 : 0;
+
+            if (color + size + count > 1)
+                throw new BadRequestException("You cannot update more than 1 Product-Color-Size property!");
+
+            ProductColorSize productColorSize = await _productColorSizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.Id);
+
+            switch (1)
+            {
+                case var value when value == color:
+
+                    if (!await _productColorSizeRepository.IsExistAsync(x => x.ColorId == productColorSizeUpdateVM.ChangeValue))
+                        throw new NotFoundException("Color cannot be found!");
+
+                    productColorSize.ColorId = productColorSizeUpdateVM.ChangeValue;
+
+                    await _productColorSizeRepository.CommitAsync();
+
+                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
+
+                case var value when value == size:
+
+                    if (!await _productColorSizeRepository.IsExistAsync(x => x.SizeId == productColorSizeUpdateVM.ChangeValue))
+                        throw new NotFoundException("Size cannot be found!");
+
+                    productColorSize.SizeId = productColorSizeUpdateVM.ChangeValue;
+
+                    await _productColorSizeRepository.CommitAsync();
+
+                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
+
+                case var value when value == count:
+
+                    productColorSize.Count = productColorSizeUpdateVM.ChangeValue;
+
+                    await _productColorSizeRepository.CommitAsync();
+
+                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllAsync());
+
+                default:
+                    throw new NotFoundException("ProductColorSize cannot be found!");
+            }
+        }
     }
 }

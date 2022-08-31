@@ -27,5 +27,6 @@ namespace Pull_Bear.Service.Interfaces
         Task<List<ProductImageGetVM>> DeleteImage(int? id);
         Task<List<ProductToTagGetVM>> DeleteTag(int? id);
         Task<List<ProductColorSizeGetVM>> DeleteColorSize(int? id);
+        Task<List<ProductColorSizeGetVM>> UpdateProductColorSize(ProductColorSizeUpdateVM productColorSizeUpdateVM);
     }
 }

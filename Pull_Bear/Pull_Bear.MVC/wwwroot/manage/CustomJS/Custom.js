@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 
-
     //----------------------------------------------- Category toggle class when it is main or child
 
     $(document).on('change', '.isMaininput', function () {
@@ -110,10 +109,107 @@
 
     $(document).on('click', '.countclick, .sizeclick, .colorclick', function () {
 
-        $(this).children().eq(2).remove();
-        $(this).children().eq(0).show();
-        $(this).children().eq(1).show();
-        $(this).next('.deletecolorsizedb').hide();
+        $(this).prev().prev().show();
+        $(this).prev().hide();
+        $(this).hide();
+    });
+
+    $(document).on('click', '.closetoggleinp', function () {
+
+        $(this).prev().prev().val('');
+        $(this).parent().hide();
+        $(this).parent().next().show();
+        $(this).parent().next().next().show();
+    });
+
+    $(document).on('click', '.changecolor', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        let changevalue = $(this).prev().val();
+
+        let id = $(this).attr('data-val');
+
+        let bodyObj = {
+            id: id,
+            color: true,
+            size: false,
+            count: false,
+            changevalue: changevalue
+        }
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bodyObj)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.prodcolsiz').html(data)
+            })
+    });
+
+    $(document).on('click', '.changesize', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        let changevalue = $(this).prev().val();
+
+        let id = $(this).attr('data-val');
+
+        let bodyObj = {
+            id: id,
+            color: false,
+            size: true,
+            count: false,
+            changevalue: changevalue
+        }
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bodyObj)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.prodcolsiz').html(data)
+            })
+    });
+
+    $(document).on('click', '.changecount', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        let changevalue = $(this).prev().val();
+
+        let id = $(this).attr('data-val');
+
+        let bodyObj = {
+            id: id,
+            color: false,
+            size: false,
+            count: true,
+            changevalue: changevalue
+        }
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bodyObj)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.prodcolsiz').html(data)
+            })
     });
 
 

@@ -10,32 +10,52 @@
     @foreach (ProductColorSizeGetVM item in Model)
     {
         <div class="col-lg-12 col-12 d-flex flex-wrap justify-content-between align-items-center" style="position: relative;">
-            <span class="col-lg-3 col-3 colorclick text-center d-flex justify-content-between align-items-center">
-                <select name="newcolor" class="form-control  col-lg-9" asp-items="@colors" style="display: none">
-                    <option value="">Select Color</option>
-                </select>
-                <a class=" col-lg-2" style="display: none" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" asp-route-id="@item.Id" asp-route-color="true" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
-                <span style="" class="col-lg-12 col-12 d-flex justify-content-between p-1">
+            <span class="col-lg-3 col-3  text-center d-flex justify-content-between align-items-center position-relative">
+
+                <span class="col-lg-12 flex-wrap togglespan " style="display: none;">
+                    <select name="newcolor" class="form-control fortoggle col-lg-8" asp-items="@colors">
+                        <option value="">Select Color</option>
+                    </select>
+                    <a class="changecolor col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" data-val="@item.Id" style="position: absolute; top:10px; right:-30px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
+                    <span class="closetoggleinp" style="cursor: pointer; position: absolute; top: -10px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black;"><ion-icon name="close-outline"></ion-icon></span>
+                </span>
+
+                <span style="" class="col-lg-12 col-12 text-start p-1 fortogglespan">
                     Color:<span style="text-align:end; font-size: 16px; color: @item.Color.HexCode; padding-left: 20px;">@item.Color.Name</span>
                 </span>
+                <span class="colorclick col-lg-2" style="position: absolute; top: 4px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black; cursor: pointer "><ion-icon name="create-outline"></ion-icon></span>
             </span>
-            <span class="col-lg-3 col-3 sizeclick text-center d-flex justify-content-between align-items-center">
-                <select name="newsize" class="form-control col-lg-9 " asp-items="@sizes" style="display: none">
-                    <option value="">Select Size</option>
-                </select>
-                <a style="display: none" class=" col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" asp-route-id="@item.Id" asp-route-size="true" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
-                <span style="" class="col-lg-12 col-12 d-flex justify-content-between p-1">
+
+            <span class="col-lg-3 col-3  text-center d-flex justify-content-between align-items-center position-relative">
+
+                <span class="col-lg-12 flex-wrap togglespan " style="display: none;">
+                    <select name="newsize" class="form-control col-lg-8 fortoggle" asp-items="@sizes">
+                        <option value="">Select Size</option>
+                    </select>
+                    <a class="changesize col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" data-val="@item.Id" style="position: absolute; top: 10px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
+                    <span class="closetoggleinp" style="cursor: pointer; position: absolute; top: -10px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black;"><ion-icon name="close-outline"></ion-icon></span>
+                </span>
+
+                <span style="" class="col-lg-12 col-12 text-start fortogglespan p-1">
                     Size:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@item.Size.Name</span>
                 </span>
+                <span class="sizeclick col-lg-2" style="position: absolute; top: 4px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black; cursor: pointer "><ion-icon name="create-outline"></ion-icon></span>
             </span>
-            <span class="col-lg-3 col-3 text-center countclick d-flex justify-content-between align-items-center">
-                <input name="newcount" class="form-control col-lg-9" placeholder="Count" style="display: none">
-                <a style="display: none" class=" col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" asp-route-id="@item.Id" asp-route-count="true" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
-                <span style="" class="col-lg-12 col-12 d-flex  justify-content-between p-1">
+
+            <span class="col-lg-3 col-3 text-center  d-flex justify-content-between align-items-center position-relative">
+
+                <span class="col-lg-12 flex-wrap togglespan " style="display: none;">
+                    <input name="newcount" class="fortoggle form-control col-lg-8" placeholder="Count">
+                    <a class="changecount col-lg-2" asp-area="Manage" asp-controller="Product" asp-action="UpdateProductColorSize" data-val="@item.Id" style=" position: absolute; top: 10px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black;"><ion-icon name="refresh-outline"></ion-icon></a>
+                    <span class="closetoggleinp" style="cursor: pointer; position: absolute; top: -10px; right: -30px; width: 30px; font-size: 20px; text-decoration: none; color: black;"><ion-icon name="close-outline"></ion-icon></span>
+                </span>
+
+                <span style="" class="col-lg-12 col-12 text-start fortogglespan p-1">
                     Count:<span style="text-align:end; font-size: 16px; color: red; padding-left: 20px;">@item.Count</span>
                 </span>
+                <span class="countclick col-lg-2" style="position: absolute; top:4px; right:-30px; width: 30px;font-size:20px; text-decoration: none; color: black; cursor:pointer"><ion-icon name="create-outline"></ion-icon></span>
             </span>
-            <a asp-area="Manage" asp-controller="Product" asp-action="DeleteColorSize" asp-route-id="@item.Id" class="deletecolorsizedb" style="position: absolute; top:4px; right:-40px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="trash-outline"></ion-icon></a>
+            <a asp-area="Manage" asp-controller="Product" asp-action="DeleteColorSize" asp-route-id="@item.Id" class="deletecolorsizedb" style="position: absolute; top:4px; right:-60px; width: 30px;font-size:20px; text-decoration: none; color: black;"><ion-icon name="trash-outline"></ion-icon></a>
         </div>
     }
 }

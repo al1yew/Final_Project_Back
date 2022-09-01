@@ -224,7 +224,7 @@ namespace Pull_Bear.Service.Implementations
                 throw new BadRequestException($"Id's are not the same!");
 
             if (await _productRepository.IsExistAsync(c => !c.IsDeleted
-            && (c.Name.ToLower() == productUpdateVM.Name.Trim().ToLower() && c.GenderId == productUpdateVM.GenderId)))
+            && (c.Name.ToLower() == productUpdateVM.Name.Trim().ToLower() && c.GenderId == productUpdateVM.GenderId && c.Id != productUpdateVM.Id)))
                 throw new RecordDublicateException($"Product Already Exists By Name = {productUpdateVM.Name}");
 
             Product dbProduct = await _productRepository.GetAsync(x => !x.IsDeleted && x.Id == productUpdateVM.Id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
@@ -253,14 +253,12 @@ namespace Pull_Bear.Service.Implementations
                         Count = productUpdateVM.Counts[i]
                     };
 
-                    bool exists = await _productColorSizeRepository.IsExistAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
+                    //bool exists = await _productColorSizeRepository.IsExistAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
+                    ProductColorSize pcs = await _productColorSizeRepository.GetAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
 
-                    if (exists)
+                    if (pcs != null)
                     {
-                        ProductColorSize pcs = await _productColorSizeRepository.GetAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
-
                         pcs.Count += productColorSize.Count;
-
                         await _productColorSizeRepository.CommitAsync();
                     }
                     else
@@ -357,7 +355,7 @@ namespace Pull_Bear.Service.Implementations
             dbProduct.CategoryId = productUpdateVM.CategoryId;
             dbProduct.BodyFitId = productUpdateVM.BodyFitId;
             dbProduct.ParentCategoryId = productUpdateVM.ParentCategoryId;
-            dbProduct.Count = (int)_productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productUpdateVM.Id).Result.Select(x => x.Count).Sum();
+            dbProduct.Count = (int)_productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productUpdateVM.Id).Result.Select(x => x.Count).Sum() + productColorSizes.Sum(x => x.Count);
             dbProduct.IsUpdated = true;
             dbProduct.UpdatedAt = DateTime.UtcNow.AddHours(4);
 

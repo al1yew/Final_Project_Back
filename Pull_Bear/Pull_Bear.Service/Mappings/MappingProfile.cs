@@ -7,6 +7,7 @@ using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
 using Pull_Bear.Service.ViewModels.ProductImageVMs;
 using Pull_Bear.Service.ViewModels.ProductToTagVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
+using Pull_Bear.Service.ViewModels.SettingVMs;
 using Pull_Bear.Service.ViewModels.SizeVMs;
 using Pull_Bear.Service.ViewModels.TagVMs;
 using System;
@@ -113,6 +114,13 @@ namespace Pull_Bear.Service.Mappings
                 .ForMember(des => des.FemaleBodyFitId, src => src.MapFrom(x => (x.GenderId == 1) ? x.BodyFitId : 0))
                 .ForMember(des => des.MaleCategoryId, src => src.MapFrom(x => (x.GenderId == 2) ? x.CategoryId : 0))
                 .ForMember(des => des.FemaleCategoryId, src => src.MapFrom(x => (x.GenderId == 1) ? x.CategoryId : 0));
+
+            #endregion
+
+            #region Setting
+
+            CreateMap<Setting, SettingUpdateVM>();
+            CreateMap<SettingUpdateVM, Setting>();
 
             #endregion
         }

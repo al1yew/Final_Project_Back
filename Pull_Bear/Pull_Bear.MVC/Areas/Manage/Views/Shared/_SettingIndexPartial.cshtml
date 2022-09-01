@@ -7,10 +7,10 @@
         <td class="col-lg-6">@item.Value</td>
         <td class="col-lg-4">
             <div class="">
-                <a class="Updatebtn btn btn-primary">Update</a>
+                <a style="padding: 7px;" class="Updatebtn btn btn-primary">Update</a>
             </div>
             <div class="d-none">
-                <form class="updateForm d-flex justify-content-between flex-wrap"  asp-area="Manage" asp-controller="Setting" asp-action="Update">
+                <form class="updateForm d-flex justify-content-between flex-wrap" asp-area="Manage" asp-controller="Setting" asp-action="Update">
                     <input class="form-control" name="@item.Key" value="@item.Value" style="width: 280px;" />
                     <button class="btn btn-primary settingUpdatebtn">Update</button>
                 </form>

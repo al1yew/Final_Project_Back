@@ -123,6 +123,7 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("HexCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(8)")
                         .HasMaxLength(8);
 

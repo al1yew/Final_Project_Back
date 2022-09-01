@@ -24,9 +24,9 @@
         {
             no++;
             <tr>
-                <td class="col-lg-1 col-1 text-wrap">@no</td>
-                <td class="col-lg-1 col-1 text-wrap">@category.Name</td>
-                <td class="col-lg-2 col-2 "><img class="img-fluid" src="~/assets/images/categories/@category.Image" /></td>
+                <td class="col-lg-1 col-1 text-wrap text-center p-1">@no</td>
+                <td class="col-lg-1 col-1 text-wrap text-center p-1">@category.Name</td>
+                <td class="col-lg-2 col-2 text-center p-2"><img class="img-fluid" src="~/assets/images/categories/@category.Image" /></td>
                 <td class="col-lg-1 col-1 text-wrap">@(category.IsMain ? "Main Category"  :"Sub Category")</td>
                 <td class="col-lg-1 col-1 text-wrap text-success">
                     @if (category.ParentId != null && category.IsMain == false)

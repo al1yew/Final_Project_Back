@@ -12,7 +12,7 @@ namespace Pull_Bear.Data.Configurations
         public void Configure(EntityTypeBuilder<Color> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
-            builder.Property(x => x.HexCode).HasMaxLength(8);
+            builder.Property(x => x.HexCode).IsRequired().HasMaxLength(8);
         }
     }
 }

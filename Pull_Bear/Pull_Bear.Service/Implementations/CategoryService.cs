@@ -77,47 +77,6 @@ namespace Pull_Bear.Service.Implementations
             return query;
         }
 
-        public async Task<List<CategoryListVM>> GetChildrenMaleAsync()
-        {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 2));
-
-            return categoryListVMs;
-        }
-
-        public async Task<List<CategoryListVM>> GetChildrenFemaleAsync()
-        {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 1));
-
-            return categoryListVMs;
-        }
-
-        public async Task<List<CategoryListVM>> GetMainMaleAsync()
-        {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 2));
-
-            return categoryListVMs;
-        }
-
-        public async Task<List<CategoryListVM>> GetMainFemaleAsync()
-        {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 1));
-
-            return categoryListVMs;
-        }
-
-        public async Task<List<CategoryListVM>> GetMainAsync()
-        {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain));
-
-            return categoryListVMs;
-        }
-
-        public async Task<List<CategoryListVM>> GetChildrenAsync()
-        {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain, "Parent"));
-
-            return categoryListVMs;
-        }
 
         public async Task<CategoryGetVM> GetById(int? id)
         {
@@ -189,7 +148,10 @@ namespace Pull_Bear.Service.Implementations
 
             if (categoryUpdateVM.Photo != null)
             {
-                FileManager.DeleteFile(_env, dbCategory.Image, "assets", "images", "categories");
+                if (dbCategory.Image != null)
+                {
+                    FileManager.DeleteFile(_env, dbCategory.Image, "assets", "images", "categories");
+                }
 
                 dbCategory.Image = await categoryUpdateVM.Photo.CreateAsync(_env, "assets", "images", "categories");
             }
@@ -257,5 +219,48 @@ namespace Pull_Bear.Service.Implementations
 
             await _categoryRepository.CommitAsync();
         }
+
+        public async Task<List<CategoryListVM>> GetChildrenMaleAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 2));
+
+            return categoryListVMs;
+        }
+
+        public async Task<List<CategoryListVM>> GetChildrenFemaleAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 1));
+
+            return categoryListVMs;
+        }
+
+        public async Task<List<CategoryListVM>> GetMainMaleAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 2));
+
+            return categoryListVMs;
+        }
+
+        public async Task<List<CategoryListVM>> GetMainFemaleAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 1));
+
+            return categoryListVMs;
+        }
+
+        public async Task<List<CategoryListVM>> GetMainAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain));
+
+            return categoryListVMs;
+        }
+
+        public async Task<List<CategoryListVM>> GetChildrenAsync()
+        {
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain, "Parent"));
+
+            return categoryListVMs;
+        }
+
     }
 }

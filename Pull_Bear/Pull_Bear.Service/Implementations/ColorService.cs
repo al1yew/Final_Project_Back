@@ -65,7 +65,7 @@ namespace Pull_Bear.Service.Implementations
         public async Task CreateAsync(ColorCreateVM colorCreateVM)
         {
             if (await _colorRepository.IsExistAsync(c => !c.IsDeleted
-            && (c.Name.ToLower() == colorCreateVM.Name.Trim().ToLower() || c.HexCode.ToLower() == colorCreateVM.HexCode.ToLower().Trim())))
+            && (c.Name.ToLower() == colorCreateVM.Name.Trim().ToLower() && c.HexCode.ToLower() == colorCreateVM.HexCode.ToLower().Trim())))
                 throw new RecordDublicateException($"Color Already Exists By Name or Hexcode!");
 
             Color color = _mapper.Map<Color>(colorCreateVM);
@@ -83,7 +83,7 @@ namespace Pull_Bear.Service.Implementations
                 throw new BadRequestException($"Id's are not the same!");
 
             if (await _colorRepository.IsExistAsync(c => !c.IsDeleted
-            && (c.Name.ToLower() == colorUpdateVM.Name.Trim().ToLower() || c.HexCode.ToLower() == colorUpdateVM.HexCode.ToLower().Trim())))
+            && (c.Name.ToLower() == colorUpdateVM.Name.Trim().ToLower() && c.HexCode.ToLower() == colorUpdateVM.HexCode.ToLower().Trim())))
                 throw new RecordDublicateException($"Color Already Exists By Name or Hexcode!");
 
             Color dbColor = await _colorRepository.GetAsync(c => !c.IsDeleted && c.Id == colorUpdateVM.Id);

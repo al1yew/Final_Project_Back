@@ -421,7 +421,7 @@ namespace Pull_Bear.Service.Implementations
         {
             if (productColorSizeUpdateVM == null)
                 throw new BadRequestException("Something went wrong! The model passed to Post method is false!");
-            //yoxlamag belke eyni adda eyni size da eledi, olari birleshdirmek lazimdi ve dbya gondermek, dla etogo est IsExistAsync
+
             int color = productColorSizeUpdateVM.Color ? 1 : 0;
             int size = productColorSizeUpdateVM.Size ? 1 : 0;
             int count = productColorSizeUpdateVM.Count ? 1 : 0;

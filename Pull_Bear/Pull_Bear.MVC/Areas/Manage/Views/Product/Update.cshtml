@@ -2,10 +2,8 @@
 
 @{
     ViewData["Title"] = "Update";
-    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
-    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
+    SelectList categories = new SelectList(ViewBag.ChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
+    SelectList bodyfits = new SelectList(ViewBag.BodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
     SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
     SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
     SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
@@ -78,7 +76,7 @@
                 <span class="text-danger" asp-validation-for="Composition"></span>
             </div>
 
-            <div class="mb-3 form-group  col-lg-12 col-12">
+            <div class="mb-3 form-group d-none col-lg-12 col-12" style="display: none;">
                 <label asp-for="GenderId" class="form-label">Gender</label>
                 <select asp-for="GenderId" class="form-control genderselect" asp-items="Html.GetEnumSelectList<GenderList>()">
                     <option value="">Select Gender</option>
@@ -86,38 +84,20 @@
                 <span class="text-danger" asp-validation-for="GenderId"></span>
             </div>
 
-            <p>Select Gender for getting Categories and Body Fits</p>
-
-            <div class="mb-3 form-group isfemale col-lg-12 col-12" style="display:none">
-                <label asp-for="FemaleCategoryId" class="form-label">Category</label>
-                <select asp-for="FemaleCategoryId" class="form-control isfemaleselect isfemsel" asp-items="@femaleCategories">
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select asp-for="CategoryId" class="form-control" asp-items="@categories">
                     <option value="">Select category</option>
                 </select>
-                <span class="text-danger" asp-validation-for="FemaleCategoryId"></span>
+                <span class="text-danger" asp-validation-for="CategoryId"></span>
             </div>
 
-            <div class="mb-3 form-group ismale col-lg-12 col-12" style="display:none">
-                <label asp-for="MaleCategoryId" class="form-label">Category</label>
-                <select asp-for="MaleCategoryId" class="form-control ismaleselect ismalsel" asp-items="@maleCategories">
-                    <option value="">Select category</option>
-                </select>
-                <span class="text-danger" asp-validation-for="MaleCategoryId"></span>
-            </div>
-
-            <div class="mb-3 form-group isfemale col-lg-12 col-12" style="display:none">
-                <label asp-for="FemaleBodyFitId" class="form-label">Body Fit</label>
-                <select asp-for="FemaleBodyFitId" class="form-control isfemaleselect isfemsel" asp-items="@femaleBodyfits">
+            <div class="mb-3 form-group col-lg-12 col-12">
+                <label asp-for="BodyFitId" class="form-label">Body Fit</label>
+                <select asp-for="BodyFitId" class="form-control" asp-items="@bodyfits">
                     <option value="">Select body fit</option>
                 </select>
-                <span class="text-danger" asp-validation-for="FemaleBodyFitId"></span>
-            </div>
-
-            <div class="mb-3 form-group ismale col-lg-12 col-12" style="display:none">
-                <label asp-for="MaleBodyFitId" class="form-label">Body Fit</label>
-                <select asp-for="MaleBodyFitId" class="form-control ismaleselect ismalsel" asp-items="@maleBodyfits">
-                    <option value="">Select body fit</option>
-                </select>
-                <span class="text-danger" asp-validation-for="MaleBodyFitId"></span>
+                <span class="text-danger" asp-validation-for="BodyFitId"></span>
             </div>
 
             <div class="mb-3 col-12 col-lg-12 form-group imagecont">

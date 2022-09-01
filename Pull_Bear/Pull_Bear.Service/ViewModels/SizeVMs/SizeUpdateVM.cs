@@ -17,7 +17,7 @@ namespace Pull_Bear.Service.ViewModels.SizeVMs
         {
             RuleFor(x => x.Name)
                 .NotEmpty().WithMessage("Size name is required!")
-                .MaximumLength(5).WithMessage("Size name must be at most 5 character!")
+                .MaximumLength(20).WithMessage("Size name must be at most 20 character!")
                 .MinimumLength(1).WithMessage("Size name must be at least 1 character!");
         }
     }

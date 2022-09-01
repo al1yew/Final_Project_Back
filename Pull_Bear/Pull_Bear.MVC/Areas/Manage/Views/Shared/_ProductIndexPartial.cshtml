@@ -36,16 +36,17 @@
                 <td class="col-lg-1 col-1 text-wrap">@product.BodyFit.Name</td>
                 <td class="col-lg-1 col-1 text-wrap">@product.GenderName</td>
                 <td class="col-lg-1 col-1 text-wrap" style="padding:5px">
-                    @*@String.Join(", ", @product.ProductColorSizes.Where(x => x.ProductId == product.Id).Select(x => x.Color.Name))*@
                     @foreach (ProductColorSizeGetVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
                     {
-                        <span style="color:@item.Color.HexCode">@item.Color.Name,&nbsp;</span>
+                        <span style="color:@item.Color.HexCode">@item.Color.Name,</span>
+                        <br />
                     }
                 </td>
                 <td class="col-lg-1 col-1 text-wrap">
                     @foreach (ProductColorSizeGetVM item in @product.ProductColorSizes.Where(x => x.ProductId == product.Id))
                     {
-                        @item.Size.Name<span>,&nbsp;</span>
+                        @item.Size.Name<span>,</span>
+                        <br />
                     }
                 </td>
                 <td class="col-lg-1 col-1 text-wrap">@product.Price/@product.DiscountPrice</td>

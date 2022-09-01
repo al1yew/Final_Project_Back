@@ -11,7 +11,7 @@ namespace Pull_Bear.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Size> builder)
         {
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(5);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(20);
         }
     }
 }

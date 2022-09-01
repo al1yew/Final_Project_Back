@@ -44,7 +44,7 @@ namespace Pull_Bear.MVC
                 options.DisableDataAnnotationsValidation = true;
             });
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")), ServiceLifetime.Transient);
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.AddAutoMapper(options =>
             {

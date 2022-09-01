@@ -102,15 +102,22 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int? id)
         {
-            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
-            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
-            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
-            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
             ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
             ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
             ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
             ProductUpdateVM productUpdateVM = _mapper.Map<ProductUpdateVM>(await _productService.GetById(id));
+
+            if (productUpdateVM.GenderId == 1)
+            {
+                ViewBag.ChildCategories = await _categoryService.GetChildrenFemaleAsync();
+                ViewBag.BodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
+            }
+            else
+            {
+                ViewBag.ChildCategories = await _categoryService.GetChildrenMaleAsync();
+                ViewBag.BodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
+            }
 
             return View(productUpdateVM);
         }
@@ -118,18 +125,10 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(int? id, ProductUpdateVM productUpdateVM)
         {
-            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
-            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
-            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
-            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
-            ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
-            ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
-            ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
-
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "");
-                return View();
+                return RedirectToAction("Update");
             }
 
             await _productService.UpdateAsync(id, productUpdateVM);
@@ -176,27 +175,13 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteImage(int? id)
         {
-            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
-            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
-            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
-            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
-            ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
-            ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
-            ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
-
             return PartialView("_ProductImagePartial", await _productService.DeleteImage(id));
         }
 
         [HttpGet]
         public async Task<IActionResult> DeleteTag(int? id)
         {
-            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
-            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
-            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
-            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
             ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
-            ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
-            ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
             return PartialView("_ProductTagPartial", await _productService.DeleteTag(id));
         }
@@ -204,11 +189,6 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteColorSize(int? id)
         {
-            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
-            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
-            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
-            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
-            ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
             ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
             ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 
@@ -218,11 +198,6 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProductColorSize([FromBody] ProductColorSizeUpdateVM productColorSizeUpdateVM)
         {
-            ViewBag.MaleChildCategories = await _categoryService.GetChildrenMaleAsync();
-            ViewBag.FemaleChildCategories = await _categoryService.GetChildrenFemaleAsync();
-            ViewBag.MaleBodyFits = await _bodyFitService.GetMaleBodyFitsAsync();
-            ViewBag.FemaleBodyFits = await _bodyFitService.GetFemaleBodyFitsAsync();
-            ViewBag.Tags = _tagService.GetAllAsync().Result.ToList();
             ViewBag.Colors = _colorService.GetAllAsync().Result.ToList();
             ViewBag.Sizes = _sizeService.GetAllAsync().Result.ToList();
 

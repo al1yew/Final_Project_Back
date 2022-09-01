@@ -1,15 +1,5 @@
 ﻿@model List<ProductToTagGetVM>
 
-@{
-    SelectList maleCategories = new SelectList(ViewBag.MaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList femaleCategories = new SelectList(ViewBag.FemaleChildCategories, nameof(CategoryListVM.Id), nameof(CategoryListVM.Name));
-    SelectList maleBodyfits = new SelectList(ViewBag.MaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
-    SelectList femaleBodyfits = new SelectList(ViewBag.FemaleBodyFits, nameof(BodyFitListVM.Id), nameof(BodyFitListVM.Name));
-    SelectList tags = new SelectList(ViewBag.Tags, nameof(TagListVM.Id), nameof(TagListVM.Name));
-    SelectList colors = new SelectList(ViewBag.Colors, nameof(ColorListVM.Id), nameof(ColorListVM.Name));
-    SelectList sizes = new SelectList(ViewBag.Sizes, nameof(SizeListVM.Id), nameof(SizeListVM.Name));
-}
-
 @if (Model != null)
 {
     foreach (ProductToTagGetVM productToTag in Model)

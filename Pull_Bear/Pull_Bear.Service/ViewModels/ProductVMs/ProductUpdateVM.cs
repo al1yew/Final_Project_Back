@@ -47,7 +47,6 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public int BodyFitId { get; set; }
         public Nullable<int> MaleBodyFitId { get; set; }
         public Nullable<int> FemaleBodyFitId { get; set; }
-        public GenderGetVM Gender { get; set; }
         public int GenderId { get; set; }
 
 
@@ -92,8 +91,6 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
              .MaximumLength(255).WithMessage("Photo Model Indicators must be at most 255 symbols!");
 
             RuleFor(x => x.Price).NotEmpty().WithMessage("Price is required!");
-
-            RuleFor(x => x.GenderId).NotEmpty().WithMessage("Gender must be choosen!");
 
             RuleFor(x => x).Custom((x, y) =>
             {
@@ -152,33 +149,37 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
                 }
 
-                if (x.GenderId == 1 && !(x.FemaleBodyFitId == null && x.FemaleCategoryId == null) && (x.MaleCategoryId != null || x.MaleBodyFitId != null))
-                {
-                    y.AddFailure("For choosen Female gender there must be female body fit and female category!");
-                }
-
-                if (x.GenderId == 2 && !(x.MaleBodyFitId == null && x.MaleCategoryId == null) && (x.FemaleCategoryId != null || x.FemaleBodyFitId != null))
-                {
-                    y.AddFailure("For choosen Female gender there must be female body fit and female category!");
-                }
-
                 if (x.Price <= x.DiscountPrice)
                 {
                     y.AddFailure("Discount price must be less than real price!");
                 }
 
-                foreach (int count in x.Counts)
+                if (x.Counts != null && x.Counts.Count > 0)
                 {
-                    if (count <= 0)
+                    foreach (int count in x.Counts)
                     {
-                        y.AddFailure("To add product you must enter count!");
+                        if (count <= 0)
+                        {
+                            y.AddFailure("To add product you must enter count!");
+                        }
                     }
                 }
 
-                if (x.ColorIds.Count != x.Counts.Count && x.ColorIds.Count != x.SizeIds.Count && x.Counts.Count != x.SizeIds.Count)
+                if (x.ColorIds != null && x.SizeIds != null && x.Counts != null)
                 {
-                    y.AddFailure("You must enter Count, Size and Color values respectively!");
+                    if (x.ColorIds.Count > 0 && x.SizeIds.Count > 0 && x.Counts.Count > 0)
+                    {
+                        if (x.ColorIds.Count != x.Counts.Count || x.ColorIds.Count != x.SizeIds.Count || x.Counts.Count != x.SizeIds.Count)
+                        {
+                            y.AddFailure("You must enter Count, Size and Color values respectively!");
+                        }
+                    }
+                    else if (!(x.SizeIds.Count >= 0 && x.Counts.Count >= 0 && x.ColorIds.Count >= 0))
+                    {
+                        y.AddFailure("You must enter Count, Size and Color values respectively!");
+                    }
                 }
+
 
             });
 

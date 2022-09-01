@@ -177,19 +177,31 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     y.AddFailure("Discount price must be less than real price!");
                 }
 
-                foreach (int count in x.Counts)
+                if (x.Counts != null && x.Counts.Count > 0)
                 {
-                    if (count <= 0)
+                    foreach (int count in x.Counts)
                     {
-                        y.AddFailure("To add product you must enter count!");
+                        if (count <= 0)
+                        {
+                            y.AddFailure("To add product you must enter count!");
+                        }
                     }
                 }
 
-                if (x.ColorIds.Count != x.Counts.Count && x.ColorIds.Count != x.SizeIds.Count && x.Counts.Count != x.SizeIds.Count)
+                if (x.ColorIds != null && x.SizeIds != null && x.Counts != null)
                 {
-                    y.AddFailure("You must enter Count, Size and Color values respectively!");
+                    if (x.ColorIds.Count > 0 && x.SizeIds.Count > 0 && x.Counts.Count > 0)
+                    {
+                        if (x.ColorIds.Count != x.Counts.Count || x.ColorIds.Count != x.SizeIds.Count || x.Counts.Count != x.SizeIds.Count)
+                        {
+                            y.AddFailure("You must enter Count, Size and Color values respectively!");
+                        }
+                    }
+                    else if (!(x.SizeIds.Count >= 0 && x.Counts.Count >= 0 && x.ColorIds.Count >= 0))
+                    {
+                        y.AddFailure("You must enter Count, Size and Color values respectively!");
+                    }
                 }
-
             });
 
         }

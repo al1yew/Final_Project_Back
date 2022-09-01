@@ -225,9 +225,42 @@
     });
 
 
-    //----------------------------------------------- product update view drag images jquery ui sortable
+    //----------------------------------------------- Setting table fetch and opening input
 
-    //$(".productImages").sortable();
+    $(document).on('click', '.Updatebtn', function (e) {
+        e.preventDefault();
+
+        $(this).parent().addClass('d-none');
+        $(this).parent().next().removeClass('d-none');
+    })
+
+    $(document).on('click', '.settingUpdatebtn', function (e) {
+        e.preventDefault();
+
+        let url = $('.updateForm').attr('action');
+
+        let key = $(this).prev().attr('name');
+        let value = $(this).prev().val();
+
+        let bodyObj = {
+            key: key,
+            value: value
+        }
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(bodyObj)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.settings').html(data)
+            })
+    })
+
 
     //----------------------------------------------- Search Layout
 

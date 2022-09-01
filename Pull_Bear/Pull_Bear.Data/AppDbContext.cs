@@ -30,6 +30,7 @@ namespace Pull_Bear.Data
         public DbSet<ProductColorSize> ProductColorSizes { get; set; }
         public DbSet<ProductToTag> ProductToTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
     }
 }

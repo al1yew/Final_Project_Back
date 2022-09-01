@@ -60,7 +60,7 @@ namespace Pull_Bear.MVC
             services.AddScoped<IProductImageRepository, ProductImageRepository>();
             services.AddScoped<IProductToTagRepository, ProductToTagRepository>();
             services.AddScoped<IProductColorSizeRepository, ProductColorSizeRepository>();
-
+            services.AddScoped<ISettingRepository, SettingRepository>();
 
 
             services.AddScoped<ICategoryService, CategoryService>();
@@ -70,6 +70,7 @@ namespace Pull_Bear.MVC
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISearchService, SearchService>();
+            services.AddScoped<ISettingService, SettingService>();
 
 
 

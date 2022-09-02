@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Areas.Manage.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     [Area("Manage")]
     public class BodyFitController : Controller
     {

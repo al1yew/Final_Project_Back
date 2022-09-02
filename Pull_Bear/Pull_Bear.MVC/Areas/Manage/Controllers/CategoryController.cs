@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pull_Bear.Core.Models;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Areas.Manage.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     [Area("Manage")]
     public class CategoryController : Controller
     {

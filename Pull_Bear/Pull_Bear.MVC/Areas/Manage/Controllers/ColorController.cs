@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Pull_Bear.Service.Interfaces;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Areas.Manage.Controllers
 {
+    [Authorize(Roles = "SuperAdmin, Admin")]
     [Area("Manage")]
     public class ColorController : Controller
     {

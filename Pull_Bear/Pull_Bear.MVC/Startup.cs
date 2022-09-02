@@ -21,6 +21,8 @@ using Pull_Bear.Service.Implementations;
 using Microsoft.AspNetCore.Diagnostics;
 using Pull_Bear.Service.Exceptions;
 using Pull_Bear.MVC.Extensions;
+using Pull_Bear.Core.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pull_Bear.MVC
 {
@@ -46,6 +48,21 @@ namespace Pull_Bear.MVC
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+
             services.AddAutoMapper(options =>
             {
                 options.AddProfile(new MappingProfile());
@@ -61,6 +78,7 @@ namespace Pull_Bear.MVC
             services.AddScoped<IProductToTagRepository, ProductToTagRepository>();
             services.AddScoped<IProductColorSizeRepository, ProductColorSizeRepository>();
             services.AddScoped<ISettingRepository, SettingRepository>();
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
 
 
             services.AddScoped<ICategoryService, CategoryService>();
@@ -70,33 +88,18 @@ namespace Pull_Bear.MVC
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISearchService, SearchService>();
-            services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<IAppUserService, AppUserService>();
+            services.AddScoped<IAccountService, AccountService>();
 
 
-
-            //services.AddIdentity<AppUser, IdentityRole>(options =>
-            //{
-            //    options.User.RequireUniqueEmail = true;
-            //    options.Password.RequireDigit = true;
-            //    options.Password.RequiredLength = 8;
-            //    options.Password.RequireUppercase = true;
-            //    options.Password.RequireLowercase = true;
-            //    options.Password.RequireNonAlphanumeric = false;
-
-            //    options.Lockout.AllowedForNewUsers = true;
-            //    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            //    options.Lockout.MaxFailedAccessAttempts = 5;
-
-            //}).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
-
-            //services.AddSession(options =>
-            //{
-            //    options.IdleTimeout = TimeSpan.FromSeconds(10);
-            //});
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+            });
 
             //services.AddScoped<ILayoutService, LayoutService>();
 
-            //services.AddHttpContextAccessor();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -115,9 +118,9 @@ namespace Pull_Bear.MVC
 
             app.UseStaticFiles();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

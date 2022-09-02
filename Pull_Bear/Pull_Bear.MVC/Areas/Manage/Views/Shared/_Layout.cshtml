@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/manage/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
-    
+
     <!-- MDBootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
           rel="stylesheet" />
@@ -166,26 +166,13 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
-                                <img class="img-md rounded-circle img-fluid" src="https://i.pinimg.com/originals/f9/11/d3/f911d38579709636499618b6b3d9b6f6.jpg" alt="Profile image">
-                                <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                                <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
+                                <p class="mb-1 mt-3 font-weight-semibold">@User.Identity.Name</p>
                             </div>
-                            <a class="dropdown-item">
-                                <i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My
-                                Profile <span class="badge badge-pill badge-danger">1</span>
-                            </a>
                             <a class="dropdown-item">
                                 <i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i>
                                 Messages
                             </a>
-                            <a class="dropdown-item">
-                                <i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity
-                            </a>
-                            <a class="dropdown-item">
-                                <i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i>
-                                FAQ
-                            </a>
-                            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                            <a class="dropdown-item" asp-area="Manage" asp-controller="Account" asp-action="Logout"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
                         </div>
                     </li>
                 </ul>
@@ -270,7 +257,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="~/manage/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->

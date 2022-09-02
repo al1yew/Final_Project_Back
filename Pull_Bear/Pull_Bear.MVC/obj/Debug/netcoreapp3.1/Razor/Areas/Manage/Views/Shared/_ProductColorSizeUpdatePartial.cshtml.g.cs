@@ -84,20 +84,34 @@ using Pull_Bear.Service.ViewModels.ProductImageVMs;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.AccountVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.AppUserVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
 using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3f71b426883ff9311e5eeddbe6efa899b5edc7e0", @"/Areas/Manage/Views/Shared/_ProductColorSizeUpdatePartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b91420a1a874c54e88c263f42a78b646fd37c400", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f0142f1bcfe29b95b33bf8ba10793e331d1a9ee9", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Shared__ProductColorSizeUpdatePartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<ProductColorSizeGetVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -155,7 +169,7 @@ using Pull_Bear.Service.Enums;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e012516", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e012958", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -198,9 +212,9 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
 
                 <span class=""col-lg-12 flex-wrap togglespan "" style=""display: none;"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e014964", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e015406", async() => {
                 WriteLiteral("\r\n                        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e015249", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e015691", async() => {
                     WriteLiteral("Select Color");
                 }
                 );
@@ -239,7 +253,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = colors;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e017989", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e018431", async() => {
                 WriteLiteral("<ion-icon name=\"refresh-outline\"></ion-icon>");
             }
             );
@@ -311,9 +325,9 @@ WriteAttributeValue(" ", 1677, item.Color.HexCode, 1678, 19, false);
 
                 <span class=""col-lg-12 flex-wrap togglespan "" style=""display: none;"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e022773", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("select", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e023215", async() => {
                 WriteLiteral("\r\n                        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e023058", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e023500", async() => {
                     WriteLiteral("Select Size");
                 }
                 );
@@ -352,7 +366,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = sizes;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e025796", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e026238", async() => {
                 WriteLiteral("<ion-icon name=\"refresh-outline\"></ion-icon>");
             }
             );
@@ -408,7 +422,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = sizes;
                 <span class=""col-lg-12 flex-wrap togglespan "" style=""display: none;"">
                     <input name=""newcount"" class=""fortoggle form-control col-lg-8"" placeholder=""Count"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e029833", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e030275", async() => {
                 WriteLiteral("<ion-icon name=\"refresh-outline\"></ion-icon>");
             }
             );
@@ -459,7 +473,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.Items = sizes;
                 <span class=""countclick col-lg-2"" style=""position: absolute; top:4px; right:-30px; width: 30px;font-size:20px; text-decoration: none; color: black; cursor:pointer""><ion-icon name=""create-outline""></ion-icon></span>
             </span>
             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e033524", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3f71b426883ff9311e5eeddbe6efa899b5edc7e033966", async() => {
                 WriteLiteral("<ion-icon name=\"trash-outline\"></ion-icon>");
             }
             );

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "R5OmErIggzlFELUSmR/CVUwMhdHDsCR/Dg1msvu3hp0B/Y9M69QfDIi5cXIy1VCdRDKkgSN1CRAhecCoUkOOvA==",
+  "dgSpecHash": "Cg78vUYMa5PzzoALoCGwt6O2Hy3ilUh5qMuz+OM8AMBm6Ai/tU6+VJCmb0HcGLR/yWntGT9Ittw7IXKSWOkguw==",
   "success": true,
   "projectFilePath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,9 @@
     "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation\\11.2.0\\fluentvalidation.11.2.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.2.1\\fluentvalidation.aspnetcore.11.2.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.2.0\\fluentvalidation.dependencyinjectionextensions.11.2.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.28\\microsoft.aspnetcore.cryptography.internal.3.1.28.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.28\\microsoft.aspnetcore.cryptography.keyderivation.3.1.28.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.28\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.28\\microsoft.aspnetcore.jsonpatch.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.28\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
@@ -27,6 +30,8 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.28\\microsoft.extensions.configuration.binder.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.28\\microsoft.extensions.dependencyinjection.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.28\\microsoft.extensions.identity.core.3.1.28.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.28\\microsoft.extensions.identity.stores.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.logging\\3.1.28\\microsoft.extensions.logging.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.28\\microsoft.extensions.logging.abstractions.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",

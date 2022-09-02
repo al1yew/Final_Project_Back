@@ -32,11 +32,16 @@ namespace Pull_Bear.MVC.Extensions
                         statuscode = 409;
                         errormsg = feature.Error.Message;
                     }
+                    else if (feature.Error is BadRequestException)
+                    {
+                        statuscode = 400;
+                        errormsg = feature.Error.Message;
+                    }
 
                     context.Response.StatusCode = statuscode;
                     await context.Response.WriteAsync(errormsg);
                 });
             });
-        } 
+        }
     }
 }

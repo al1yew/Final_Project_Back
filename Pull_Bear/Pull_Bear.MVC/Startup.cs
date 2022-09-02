@@ -41,52 +41,23 @@ namespace Pull_Bear.MVC
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            services.AddFluentValidation(options =>
-            {
-                options.RegisterValidatorsFromAssemblyContaining<CategoryCreateVMValidator>();
-                options.DisableDataAnnotationsValidation = true;
-            });
+            services.FluentValidatorBuilder();
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
-            services.AddIdentity<AppUser, IdentityRole>(options =>
-            {
-                options.User.RequireUniqueEmail = true;
-                options.Password.RequireDigit = true;
-                options.Password.RequiredLength = 8;
-                options.Password.RequireUppercase = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = false;
-
-                options.Lockout.AllowedForNewUsers = true;
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-
-            }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+            services.IdentityBuilder();
 
             services.AddAutoMapper(options =>
             {
                 options.AddProfile(new MappingProfile());
             });
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IBodyFitService, BodyFitService>();
-            services.AddScoped<IColorService, ColorService>();
-            services.AddScoped<ISizeService, SizeService>();
-            services.AddScoped<ITagService, TagService>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<ISearchService, SearchService>();
-            services.AddScoped<IAppUserService, AppUserService>();
-
+            services.ServicesBuilder();
 
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
             });
-
-            //services.AddScoped<ILayoutService, LayoutService>();
 
             services.AddHttpContextAccessor();
         }
@@ -99,7 +70,7 @@ namespace Pull_Bear.MVC
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.ExceptionHandling();
+            app.ExceptionHandling();
 
             //app.UseSession();
 
@@ -111,12 +82,7 @@ namespace Pull_Bear.MVC
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("areas", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapControllerRoute("Default", "{controller=home}/{action=index}/{id?}");
-            });
+            app.EndpointBuilder();
         }
     }
 }

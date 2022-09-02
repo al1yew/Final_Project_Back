@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Exceptions;
@@ -14,24 +15,24 @@ namespace Pull_Bear.Service.Implementations
 {
     public class ColorService : IColorService
     {
-        private readonly IColorRepository _colorRepository;
         private readonly IMapper _mapper;
-        public ColorService(IColorRepository colorRepository, IMapper mapper)
+        private readonly IUnitOfWork _unitOfWork;
+        public ColorService(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _colorRepository = colorRepository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IQueryable<ColorListVM>> GetAllAsync()
         {
-            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(await _colorRepository.GetAllAsync());
+            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(await _unitOfWork.ColorRepository.GetAllAsync());
 
             return colorListVMs.AsQueryable();
         }
 
         public async Task<IQueryable<ColorListVM>> GetAllAsync(int? status)
         {
-            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(await _colorRepository.GetAllAsync());
+            List<ColorListVM> colorListVMs = _mapper.Map<List<ColorListVM>>(await _unitOfWork.ColorRepository.GetAllAsync());
 
             IQueryable<ColorListVM> query = colorListVMs.AsQueryable();
 
@@ -52,7 +53,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<ColorGetVM> GetById(int? id)
         {
-            Color color = await _colorRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
+            Color color = await _unitOfWork.ColorRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
 
             if (id == null)
                 throw new NotFoundException($"Color Cannot be found By id = {id}");
@@ -64,14 +65,14 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(ColorCreateVM colorCreateVM)
         {
-            if (await _colorRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.ColorRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == colorCreateVM.Name.Trim().ToLower() && c.HexCode.ToLower() == colorCreateVM.HexCode.ToLower().Trim())))
                 throw new RecordDublicateException($"Color Already Exists By Name or Hexcode!");
 
             Color color = _mapper.Map<Color>(colorCreateVM);
 
-            await _colorRepository.AddAsync(color);
-            await _colorRepository.CommitAsync();
+            await _unitOfWork.ColorRepository.AddAsync(color);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task UpdateAsync(int? id, ColorUpdateVM colorUpdateVM)
@@ -82,11 +83,11 @@ namespace Pull_Bear.Service.Implementations
             if (id != colorUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            if (await _colorRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.ColorRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == colorUpdateVM.Name.Trim().ToLower() && c.HexCode.ToLower() == colorUpdateVM.HexCode.ToLower().Trim())))
                 throw new RecordDublicateException($"Color Already Exists By Name or Hexcode!");
 
-            Color dbColor = await _colorRepository.GetAsync(c => !c.IsDeleted && c.Id == colorUpdateVM.Id);
+            Color dbColor = await _unitOfWork.ColorRepository.GetAsync(c => !c.IsDeleted && c.Id == colorUpdateVM.Id);
 
             if (dbColor == null)
                 throw new NotFoundException($"Color Cannot be found By id = {id}");
@@ -96,7 +97,7 @@ namespace Pull_Bear.Service.Implementations
             dbColor.IsUpdated = true;
             dbColor.UpdatedAt = DateTime.UtcNow.AddHours(4);
 
-            await _colorRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteAsync(int? id)
@@ -104,7 +105,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            Color dbColor = await _colorRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+            Color dbColor = await _unitOfWork.ColorRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
 
             if (dbColor == null)
                 throw new NotFoundException($"Color Cannot be found By id = {id}");
@@ -112,7 +113,7 @@ namespace Pull_Bear.Service.Implementations
             dbColor.IsDeleted = true;
             dbColor.DeletedAt = DateTime.UtcNow.AddHours(4);
 
-            await _colorRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task RestoreAsync(int? id)
@@ -120,7 +121,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            Color dbColor = await _colorRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+            Color dbColor = await _unitOfWork.ColorRepository.GetAsync(c => c.Id == id && c.IsDeleted);
 
             if (dbColor == null)
                 throw new NotFoundException($"Color Cannot be found By id = {id}");
@@ -128,7 +129,7 @@ namespace Pull_Bear.Service.Implementations
             dbColor.IsDeleted = false;
             dbColor.DeletedAt = null;
 
-            await _colorRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Exceptions;
@@ -17,19 +18,19 @@ namespace Pull_Bear.Service.Implementations
 {
     public class AppUserService : IAppUserService
     {
-        private readonly IAppUserRepository _appUserRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
 
-        public AppUserService(IAppUserRepository appUserRepository, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IMapper mapper)
+        public AppUserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _appUserRepository = appUserRepository;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         public IQueryable<AppUserListVM> GetAllAsync(ClaimsPrincipal user)
@@ -166,7 +167,7 @@ namespace Pull_Bear.Service.Implementations
             if (id != appUserCreateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            AppUser dbAppUser = await _appUserRepository.GetAsync(x => x.Id == id);
+            AppUser dbAppUser = await _unitOfWork.AppUserRepository.GetAsync(x => x.Id == id);
 
             if (dbAppUser == null)
                 throw new NotFoundException($"App User Cannot be found By id = {id}");
@@ -212,7 +213,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            AppUser dbAppUser = await _appUserRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+            AppUser dbAppUser = await _unitOfWork.AppUserRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
 
             if (dbAppUser == null)
                 throw new NotFoundException($"App User Cannot be found By id = {id}");
@@ -220,7 +221,7 @@ namespace Pull_Bear.Service.Implementations
             dbAppUser.IsDeleted = true;
             dbAppUser.DeletedAt = DateTime.UtcNow.AddHours(4);
 
-            await _appUserRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task RestoreAsync(string id)
@@ -228,7 +229,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            AppUser dbAppUser = await _appUserRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+            AppUser dbAppUser = await _unitOfWork.AppUserRepository.GetAsync(c => c.Id == id && c.IsDeleted);
 
             if (dbAppUser == null)
                 throw new NotFoundException($"App User Cannot be found By id = {id}");
@@ -236,7 +237,7 @@ namespace Pull_Bear.Service.Implementations
             dbAppUser.IsDeleted = false;
             dbAppUser.DeletedAt = null;
 
-            await _appUserRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
     }
 }

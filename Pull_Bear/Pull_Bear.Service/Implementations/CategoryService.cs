@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Enums;
@@ -18,27 +19,27 @@ namespace Pull_Bear.Service.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper, IWebHostEnvironment env)
+        public CategoryService(IMapper mapper, IWebHostEnvironment env, IUnitOfWork unitOfWork)
         {
-            _categoryRepository = categoryRepository;
             _mapper = mapper;
             _env = env;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IQueryable<CategoryListVM>> GetAllAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllAsync("Gender", "Children", "Parent"));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllAsync("Gender", "Children", "Parent"));
 
             return categoryListVMs.AsQueryable();
         }
 
         public async Task<IQueryable<CategoryListVM>> GetAllAsync(int? status, int? type)
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllAsync("Gender", "Children", "Parent"));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllAsync("Gender", "Children", "Parent"));
 
             IQueryable<CategoryListVM> query = categoryListVMs.AsQueryable();
 
@@ -80,7 +81,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<CategoryGetVM> GetById(int? id)
         {
-            Category category = await _categoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
+            Category category = await _unitOfWork.CategoryRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
 
             if (id == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
@@ -92,7 +93,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(CategoryCreateVM categoryCreateVM)
         {
-            if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.CategoryRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == categoryCreateVM.Name.Trim().ToLower() && c.GenderId == categoryCreateVM.GenderId)))
                 throw new RecordDublicateException($"Category Already Exists By Name = {categoryCreateVM.Name}");
 
@@ -114,8 +115,8 @@ namespace Pull_Bear.Service.Implementations
                 category.Image = await categoryCreateVM.Photo.CreateAsync(_env, "assets", "images", "categories");
             }
 
-            await _categoryRepository.AddAsync(category);
-            await _categoryRepository.CommitAsync();
+            await _unitOfWork.CategoryRepository.AddAsync(category);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task UpdateAsync(int? id, CategoryUpdateVM categoryUpdateVM)
@@ -126,7 +127,7 @@ namespace Pull_Bear.Service.Implementations
             if (id != categoryUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            if (await _categoryRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.CategoryRepository.IsExistAsync(c => !c.IsDeleted
              && (c.Name.ToLower() == categoryUpdateVM.Name.Trim().ToLower() && c.GenderId == categoryUpdateVM.GenderId && c.Id != categoryUpdateVM.Id)))
                 throw new RecordDublicateException($"Category Already Exists By Name = {categoryUpdateVM.Name}");
 
@@ -141,7 +142,7 @@ namespace Pull_Bear.Service.Implementations
                 categoryUpdateVM.FemaleParentId = null;
             }
 
-            Category dbCategory = await _categoryRepository.GetAsync(c => !c.IsDeleted && c.Id == categoryUpdateVM.Id);
+            Category dbCategory = await _unitOfWork.CategoryRepository.GetAsync(c => !c.IsDeleted && c.Id == categoryUpdateVM.Id);
 
             if (dbCategory == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
@@ -163,7 +164,7 @@ namespace Pull_Bear.Service.Implementations
             dbCategory.IsUpdated = true;
             dbCategory.UpdatedAt = DateTime.UtcNow.AddHours(4);
 
-            await _categoryRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteAsync(int? id)
@@ -171,14 +172,14 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            Category category = await _categoryRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+            Category category = await _unitOfWork.CategoryRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
 
             if (category == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
 
             if (category.IsMain)
             {
-                List<Category> children = await _categoryRepository.GetAllByExAsync(c => c.ParentId == category.Id && !c.IsDeleted);
+                List<Category> children = await _unitOfWork.CategoryRepository.GetAllByExAsync(c => c.ParentId == category.Id && !c.IsDeleted);
 
                 foreach (Category child in children)
                 {
@@ -190,7 +191,7 @@ namespace Pull_Bear.Service.Implementations
             category.IsDeleted = true;
             category.DeletedAt = DateTime.UtcNow.AddHours(4);
 
-            await _categoryRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task RestoreAsync(int? id)
@@ -198,14 +199,14 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            Category category = await _categoryRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+            Category category = await _unitOfWork.CategoryRepository.GetAsync(c => c.Id == id && c.IsDeleted);
 
             if (category == null)
                 throw new NotFoundException($"Category Cannot be found By id = {id}");
 
             if (category.IsMain)
             {
-                List<Category> children = await _categoryRepository.GetAllByExAsync(c => c.ParentId == category.Id && c.IsDeleted);
+                List<Category> children = await _unitOfWork.CategoryRepository.GetAllByExAsync(c => c.ParentId == category.Id && c.IsDeleted);
 
                 foreach (Category child in children)
                 {
@@ -217,47 +218,47 @@ namespace Pull_Bear.Service.Implementations
             category.IsDeleted = false;
             category.DeletedAt = null;
 
-            await _categoryRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<List<CategoryListVM>> GetChildrenMaleAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 2));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 2));
 
             return categoryListVMs;
         }
 
         public async Task<List<CategoryListVM>> GetChildrenFemaleAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 1));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain && c.GenderId == 1));
 
             return categoryListVMs;
         }
 
         public async Task<List<CategoryListVM>> GetMainMaleAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 2));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 2));
 
             return categoryListVMs;
         }
 
         public async Task<List<CategoryListVM>> GetMainFemaleAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 1));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain && c.GenderId == 1));
 
             return categoryListVMs;
         }
 
         public async Task<List<CategoryListVM>> GetMainAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => !c.IsDeleted && c.IsMain));
 
             return categoryListVMs;
         }
 
         public async Task<List<CategoryListVM>> GetChildrenAsync()
         {
-            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain, "Parent"));
+            List<CategoryListVM> categoryListVMs = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => !c.IsDeleted && !c.IsMain, "Parent"));
 
             return categoryListVMs;
         }

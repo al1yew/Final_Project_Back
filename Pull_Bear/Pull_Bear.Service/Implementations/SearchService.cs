@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Pull_Bear.Core;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Data.Repositories;
 using Pull_Bear.Service.Interfaces;
@@ -20,42 +21,30 @@ namespace Pull_Bear.Service.Implementations
 {
     public class SearchService : ISearchService
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IBodyFitRepository _bodyFitRepository;
-        private readonly IColorRepository _colorRepository;
-        private readonly ISizeRepository _sizeRepository;
-        private readonly ITagRepository _tagRepository;
-        private readonly IProductRepository _productRepository;
-        private readonly IAppUserRepository _appUserRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public SearchService(ICategoryRepository categoryRepository, IMapper mapper, IBodyFitRepository bodyFitRepository, IColorRepository colorRepository, ISizeRepository sizeRepository, ITagRepository tagRepository, IProductRepository productRepository, IAppUserRepository appUserRepository)
+        public SearchService(IMapper mapper, IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
-            _categoryRepository = categoryRepository;
-            _bodyFitRepository = bodyFitRepository;
-            _colorRepository = colorRepository;
-            _sizeRepository = sizeRepository;
-            _tagRepository = tagRepository;
-            _productRepository = productRepository;
-            _appUserRepository = appUserRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<SearchListVM> GetAllAsync(string search)
         {
             SearchListVM searchVM = new SearchListVM
             {
-                Categories = _mapper.Map<List<CategoryListVM>>(await _categoryRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender", "Children", "Parent")),
+                Categories = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender", "Children", "Parent")),
 
-                BodyFits = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender")),
+                BodyFits = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()), "Gender")),
 
-                Colors = _mapper.Map<List<ColorListVM>>(await _colorRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()))),
+                Colors = _mapper.Map<List<ColorListVM>>(await _unitOfWork.ColorRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()))),
 
-                Sizes = _mapper.Map<List<SizeListVM>>(await _sizeRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()))),
+                Sizes = _mapper.Map<List<SizeListVM>>(await _unitOfWork.SizeRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()))),
 
-                Tags = _mapper.Map<List<TagListVM>>(await _tagRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()))),
+                Tags = _mapper.Map<List<TagListVM>>(await _unitOfWork.TagRepository.GetAllByExAsync(c => c.Name.ToLower().Contains(search.ToLower()))),
 
-                Products = _mapper.Map<List<ProductListVM>>(await _productRepository.GetAllByExAsync(
+                Products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(
                     c => c.Name.ToLower().Contains(search.ToLower()) ||
                     c.Description.ToLower().Contains(search.ToLower()) ||
                     c.Price.ToString().Contains(search.ToLower()) ||
@@ -68,7 +57,7 @@ namespace Pull_Bear.Service.Implementations
                     c.Care.ToLower().Contains(search.ToLower()),
                     "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender")),
 
-                Users = _mapper.Map<List<AppUserListVM>>(await _appUserRepository.GetAllByExAsync(x=>x.UserName.ToLower().Trim() == search.Trim().ToLower()))
+                Users = _mapper.Map<List<AppUserListVM>>(await _unitOfWork.AppUserRepository.GetAllByExAsync(x => x.UserName.ToLower().Trim() == search.Trim().ToLower()))
             };
 
             return searchVM;

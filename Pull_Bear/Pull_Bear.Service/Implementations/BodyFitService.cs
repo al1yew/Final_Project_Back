@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
+using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Service.Exceptions;
@@ -17,40 +18,40 @@ namespace Pull_Bear.Service.Implementations
 {
     public class BodyFitService : IBodyFitService
     {
-        private readonly IBodyFitRepository _bodyFitRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
-        public BodyFitService(IBodyFitRepository bodyFitRepository, IMapper mapper, IWebHostEnvironment env)
+        public BodyFitService(IMapper mapper, IWebHostEnvironment env, IUnitOfWork unitOfWork)
         {
-            _bodyFitRepository = bodyFitRepository;
             _mapper = mapper;
             _env = env;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IQueryable<BodyFitListVM>> GetAllAsync()
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllAsync());
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllAsync());
 
             return bodyFitListVMs.AsQueryable();
         }
 
         public async Task<List<BodyFitListVM>> GetMaleBodyFitsAsync()
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllByExAsync(c => !c.IsDeleted && c.GenderId == 2));
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllByExAsync(c => !c.IsDeleted && c.GenderId == 2));
 
             return bodyFitListVMs;
         }
 
         public async Task<List<BodyFitListVM>> GetFemaleBodyFitsAsync()
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllByExAsync(c => !c.IsDeleted && c.GenderId == 1));
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllByExAsync(c => !c.IsDeleted && c.GenderId == 1));
 
             return bodyFitListVMs;
         }
 
         public async Task<IQueryable<BodyFitListVM>> GetAllAsync(int? status, int? type)
         {
-            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _bodyFitRepository.GetAllAsync("Gender"));
+            List<BodyFitListVM> bodyFitListVMs = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllAsync("Gender"));
 
             IQueryable<BodyFitListVM> query = bodyFitListVMs.AsQueryable();
 
@@ -83,7 +84,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<BodyFitGetVM> GetById(int? id)
         {
-            BodyFit bodyFit = await _bodyFitRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
+            BodyFit bodyFit = await _unitOfWork.BodyFitRepository.GetAsync(x => x.Id == id && !x.IsDeleted);
 
             if (id == null)
                 throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
@@ -95,7 +96,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(BodyFitCreateVM bodyFitCreateVM)
         {
-            if (await _bodyFitRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.BodyFitRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == bodyFitCreateVM.Name.Trim().ToLower() && c.GenderId == bodyFitCreateVM.GenderId)))
                 throw new RecordDublicateException($"Body Fit Already Exists By Name = {bodyFitCreateVM.Name}");
 
@@ -103,8 +104,8 @@ namespace Pull_Bear.Service.Implementations
 
             bodyFit.Image = await bodyFitCreateVM.Photo.CreateAsync(_env, "assets", "images", "bodyfit");
 
-            await _bodyFitRepository.AddAsync(bodyFit);
-            await _bodyFitRepository.CommitAsync();
+            await _unitOfWork.BodyFitRepository.AddAsync(bodyFit);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task UpdateAsync(int? id, BodyFitUpdateVM bodyFitUpdateVM)
@@ -115,11 +116,11 @@ namespace Pull_Bear.Service.Implementations
             if (id != bodyFitUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            if (await _bodyFitRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.BodyFitRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == bodyFitUpdateVM.Name.Trim().ToLower() && c.GenderId == bodyFitUpdateVM.GenderId && c.Id != bodyFitUpdateVM.Id)))
                 throw new RecordDublicateException($"Body Fit Already Exists By Name = {bodyFitUpdateVM.Name}");
 
-            BodyFit dbBodyFit = await _bodyFitRepository.GetAsync(c => !c.IsDeleted && c.Id == bodyFitUpdateVM.Id);
+            BodyFit dbBodyFit = await _unitOfWork.BodyFitRepository.GetAsync(c => !c.IsDeleted && c.Id == bodyFitUpdateVM.Id);
 
             if (dbBodyFit == null)
                 throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
@@ -136,7 +137,7 @@ namespace Pull_Bear.Service.Implementations
             dbBodyFit.IsUpdated = true;
             dbBodyFit.UpdatedAt = DateTime.UtcNow.AddHours(4);
 
-            await _bodyFitRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteAsync(int? id)
@@ -144,7 +145,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            BodyFit dbbodyFit = await _bodyFitRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+            BodyFit dbbodyFit = await _unitOfWork.BodyFitRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
 
             if (dbbodyFit == null)
                 throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
@@ -152,7 +153,7 @@ namespace Pull_Bear.Service.Implementations
             dbbodyFit.IsDeleted = true;
             dbbodyFit.DeletedAt = DateTime.UtcNow.AddHours(4);
 
-            await _bodyFitRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task RestoreAsync(int? id)
@@ -160,7 +161,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            BodyFit dbbodyFit = await _bodyFitRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+            BodyFit dbbodyFit = await _unitOfWork.BodyFitRepository.GetAsync(c => c.Id == id && c.IsDeleted);
 
             if (dbbodyFit == null)
                 throw new NotFoundException($"Body Fit Cannot be found By id = {id}");
@@ -168,7 +169,7 @@ namespace Pull_Bear.Service.Implementations
             dbbodyFit.IsDeleted = false;
             dbbodyFit.DeletedAt = null;
 
-            await _bodyFitRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
     }
 }

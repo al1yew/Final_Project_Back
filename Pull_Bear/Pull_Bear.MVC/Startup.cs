@@ -23,6 +23,7 @@ using Pull_Bear.Service.Exceptions;
 using Pull_Bear.MVC.Extensions;
 using Pull_Bear.Core.Models;
 using Microsoft.AspNetCore.Identity;
+using Pull_Bear.Core;
 
 namespace Pull_Bear.MVC
 {
@@ -68,18 +69,7 @@ namespace Pull_Bear.MVC
                 options.AddProfile(new MappingProfile());
             });
 
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IBodyFitRepository, BodyFitRepository>();
-            services.AddScoped<IColorRepository, ColorRepository>();
-            services.AddScoped<ISizeRepository, SizeRepository>();
-            services.AddScoped<ITagRepository, TagRepository>();
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductImageRepository, ProductImageRepository>();
-            services.AddScoped<IProductToTagRepository, ProductToTagRepository>();
-            services.AddScoped<IProductColorSizeRepository, ProductColorSizeRepository>();
-            services.AddScoped<ISettingRepository, SettingRepository>();
-            services.AddScoped<IAppUserRepository, AppUserRepository>();
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IBodyFitService, BodyFitService>();

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Data.Repositories;
@@ -21,32 +22,20 @@ namespace Pull_Bear.Service.Implementations
 {
     public class ProductService : IProductService
     {
-        private readonly IProductRepository _productRepository;
-        private readonly IColorRepository _colorRepository;
-        private readonly ISizeRepository _sizeRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IProductImageRepository _productImageRepository;
-        private readonly IProductToTagRepository _productToTagRepository;
-        private readonly IProductColorSizeRepository _productColorSizeRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
 
-        public ProductService(IProductRepository productRepository, IMapper mapper, IWebHostEnvironment env, IColorRepository colorRepository, ISizeRepository sizeRepository, ICategoryRepository categoryRepository, IProductImageRepository productImageRepository, IProductToTagRepository productToTagRepository, IProductColorSizeRepository productColorSizeRepository)
+        public ProductService(IUnitOfWork unitOfWork, IWebHostEnvironment env, IMapper mapper)
         {
-            _productRepository = productRepository;
-            _mapper = mapper;
+            _unitOfWork = unitOfWork;
             _env = env;
-            _colorRepository = colorRepository;
-            _sizeRepository = sizeRepository;
-            _categoryRepository = categoryRepository;
-            _productImageRepository = productImageRepository;
-            _productToTagRepository = productToTagRepository;
-            _productColorSizeRepository = productColorSizeRepository;
+            _mapper = mapper;
         }
 
         public async Task<IQueryable<ProductListVM>> GetAllAsync(int? status, int? type)
         {
-            List<ProductListVM> productListVMs = _mapper.Map<List<ProductListVM>>(await _productRepository.GetAllAsync("ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender"));
+            List<ProductListVM> productListVMs = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllAsync("ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender"));
 
             IQueryable<ProductListVM> query = productListVMs.AsQueryable();
 
@@ -90,7 +79,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");
 
-            Product product = await _productRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
 
             ProductGetVM productGetVM = _mapper.Map<ProductGetVM>(product);
 
@@ -99,12 +88,12 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(ProductCreateVM productCreateVM)
         {
-            if (await _productRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.ProductRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == productCreateVM.Name.Trim().ToLower() && c.GenderId == productCreateVM.GenderId)))
                 throw new RecordDublicateException($"Product Already Exists By Name = {productCreateVM.Name}");
 
-            int lastId = _productRepository.GetAllAsync().Result.Count == 0 ? 1 : _productRepository.GetAllAsync().Result.OrderByDescending(x => x.Id).FirstOrDefault().Id;
-            int lastSeria = _productRepository.GetAllAsync().Result.Count == 0 ? 1 : int.Parse(_productRepository.GetAllAsync().Result.OrderByDescending(x => x.Seria).FirstOrDefault().Seria.Substring(3));
+            int lastId = _unitOfWork.ProductRepository.GetAllAsync().Result.Count == 0 ? 1 : _unitOfWork.ProductRepository.GetAllAsync().Result.OrderByDescending(x => x.Id).FirstOrDefault().Id;
+            int lastSeria = _unitOfWork.ProductRepository.GetAllAsync().Result.Count == 0 ? 1 : int.Parse(_unitOfWork.ProductRepository.GetAllAsync().Result.OrderByDescending(x => x.Seria).FirstOrDefault().Seria.Substring(3));
 
             #region Product Color Sizes
 
@@ -112,10 +101,10 @@ namespace Pull_Bear.Service.Implementations
 
             for (int i = 0; i < productCreateVM.Counts.Count(); i++)
             {
-                if (!(await _colorRepository.IsExistAsync(c => c.Id == productCreateVM.ColorIds[i])))
+                if (!(await _unitOfWork.ColorRepository.IsExistAsync(c => c.Id == productCreateVM.ColorIds[i])))
                     throw new NotFoundException($"Color cannot be found by id = {productCreateVM.ColorIds[i]}");
 
-                if (!(await _sizeRepository.IsExistAsync(c => c.Id == productCreateVM.SizeIds[i])))
+                if (!(await _unitOfWork.SizeRepository.IsExistAsync(c => c.Id == productCreateVM.SizeIds[i])))
                     throw new NotFoundException($"Size cannot be found by id = {productCreateVM.SizeIds[i]}");
 
                 ProductColorSizeGetVM productColorSize = new ProductColorSizeGetVM
@@ -138,7 +127,7 @@ namespace Pull_Bear.Service.Implementations
 
             for (int i = 0; i < productCreateVM.TagIds.Count; i++)
             {
-                if (!(await _colorRepository.IsExistAsync(c => c.Id == productCreateVM.TagIds[i])))
+                if (!(await _unitOfWork.ColorRepository.IsExistAsync(c => c.Id == productCreateVM.TagIds[i])))
                     throw new NotFoundException($"Tag cannot be found by id = {productCreateVM.TagIds[i]}");
 
                 ProductToTagGetVM productTag = new ProductToTagGetVM
@@ -201,7 +190,7 @@ namespace Pull_Bear.Service.Implementations
 
             #endregion
 
-            productCreateVM.ParentCategoryId = (int)_categoryRepository.GetAsync(c => !c.IsMain && c.Id == productCreateVM.CategoryId).Result.ParentId;
+            productCreateVM.ParentCategoryId = (int)_unitOfWork.CategoryRepository.GetAsync(c => !c.IsMain && c.Id == productCreateVM.CategoryId).Result.ParentId;
 
             Product product = _mapper.Map<Product>(productCreateVM);
 
@@ -211,8 +200,8 @@ namespace Pull_Bear.Service.Implementations
             product.MainImage1 = await productCreateVM.MainPhoto1.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.MainImage2 = await productCreateVM.MainPhoto2.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
 
-            await _productRepository.AddAsync(product);
-            await _productRepository.CommitAsync();
+            await _unitOfWork.ProductRepository.AddAsync(product);
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task UpdateAsync(int? id, ProductUpdateVM productUpdateVM)
@@ -223,11 +212,11 @@ namespace Pull_Bear.Service.Implementations
             if (id != productUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            if (await _productRepository.IsExistAsync(c => !c.IsDeleted
+            if (await _unitOfWork.ProductRepository.IsExistAsync(c => !c.IsDeleted
             && (c.Name.ToLower() == productUpdateVM.Name.Trim().ToLower() && c.GenderId == productUpdateVM.GenderId && c.Id != productUpdateVM.Id)))
                 throw new RecordDublicateException($"Product Already Exists By Name = {productUpdateVM.Name}");
 
-            Product dbProduct = await _productRepository.GetAsync(x => !x.IsDeleted && x.Id == productUpdateVM.Id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
+            Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => !x.IsDeleted && x.Id == productUpdateVM.Id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
 
             if (dbProduct == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");
@@ -240,10 +229,10 @@ namespace Pull_Bear.Service.Implementations
             {
                 for (int i = 0; i < productUpdateVM.Counts.Count(); i++)
                 {
-                    if (!(await _colorRepository.IsExistAsync(c => c.Id == productUpdateVM.ColorIds[i])))
+                    if (!(await _unitOfWork.ColorRepository.IsExistAsync(c => c.Id == productUpdateVM.ColorIds[i])))
                         throw new NotFoundException($"Color cannot be found by id = {productUpdateVM.ColorIds[i]}");
 
-                    if (!(await _sizeRepository.IsExistAsync(c => c.Id == productUpdateVM.SizeIds[i])))
+                    if (!(await _unitOfWork.SizeRepository.IsExistAsync(c => c.Id == productUpdateVM.SizeIds[i])))
                         throw new NotFoundException($"Size cannot be found by id = {productUpdateVM.SizeIds[i]}");
 
                     ProductColorSizeGetVM productColorSize = new ProductColorSizeGetVM
@@ -253,13 +242,13 @@ namespace Pull_Bear.Service.Implementations
                         Count = productUpdateVM.Counts[i]
                     };
 
-                    //bool exists = await _productColorSizeRepository.IsExistAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
-                    ProductColorSize pcs = await _productColorSizeRepository.GetAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
+                    //bool exists = await _unitOfWork.ProductColorSizeRepository.IsExistAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
+                    ProductColorSize pcs = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == productUpdateVM.Id && x.ColorId == productColorSize.ColorId && x.SizeId == productColorSize.SizeId);
 
                     if (pcs != null)
                     {
                         pcs.Count += productColorSize.Count;
-                        await _productColorSizeRepository.CommitAsync();
+                        await _unitOfWork.CommitAsync();
                     }
                     else
                     {
@@ -280,7 +269,7 @@ namespace Pull_Bear.Service.Implementations
 
                 for (int i = 0; i < productUpdateVM.TagIds.Count; i++)
                 {
-                    if (!(await _colorRepository.IsExistAsync(c => c.Id == productUpdateVM.TagIds[i])))
+                    if (!(await _unitOfWork.ColorRepository.IsExistAsync(c => c.Id == productUpdateVM.TagIds[i])))
                         throw new NotFoundException($"Tag cannot be found by id = {productUpdateVM.TagIds[i]}");
 
                     ProductToTagGetVM productTag = new ProductToTagGetVM
@@ -288,7 +277,7 @@ namespace Pull_Bear.Service.Implementations
                         TagId = productUpdateVM.TagIds[i]
                     };
 
-                    bool exists = await _productToTagRepository.IsExistAsync(x => x.ProductId == productUpdateVM.Id && x.TagId == productTag.TagId);
+                    bool exists = await _unitOfWork.ProductToTagRepository.IsExistAsync(x => x.ProductId == productUpdateVM.Id && x.TagId == productTag.TagId);
 
                     if (!exists)
                     {
@@ -340,7 +329,7 @@ namespace Pull_Bear.Service.Implementations
                 dbProduct.MainImage2 = await productUpdateVM.MainPhoto2.CreateAsync(_env, "assets", "images", "products", $"{productUpdateVM.Id}");
             }
 
-            productUpdateVM.ParentCategoryId = (int)_categoryRepository.GetAsync(c => !c.IsMain && c.Id == productUpdateVM.CategoryId).Result.ParentId;
+            productUpdateVM.ParentCategoryId = (int)_unitOfWork.CategoryRepository.GetAsync(c => !c.IsMain && c.Id == productUpdateVM.CategoryId).Result.ParentId;
 
             dbProduct.Name = productUpdateVM.Name.Trim();
             dbProduct.Care = productUpdateVM.Care.Trim();
@@ -355,11 +344,11 @@ namespace Pull_Bear.Service.Implementations
             dbProduct.CategoryId = productUpdateVM.CategoryId;
             dbProduct.BodyFitId = productUpdateVM.BodyFitId;
             dbProduct.ParentCategoryId = productUpdateVM.ParentCategoryId;
-            dbProduct.Count = (int)_productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productUpdateVM.Id).Result.Select(x => x.Count).Sum() + productColorSizes.Sum(x => x.Count);
+            dbProduct.Count = (int)_unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == productUpdateVM.Id).Result.Select(x => x.Count).Sum() + productColorSizes.Sum(x => x.Count);
             dbProduct.IsUpdated = true;
             dbProduct.UpdatedAt = DateTime.UtcNow.AddHours(4);
 
-            await _productRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task DeleteAsync(int? id)
@@ -367,7 +356,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            Product product = await _productRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
+            Product product = await _unitOfWork.ProductRepository.GetAsync(c => c.Id == id && !c.IsDeleted);
 
             if (product == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");
@@ -375,7 +364,7 @@ namespace Pull_Bear.Service.Implementations
             product.IsDeleted = true;
             product.DeletedAt = DateTime.UtcNow.AddHours(4);
 
-            await _productRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task RestoreAsync(int? id)
@@ -383,7 +372,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            Product product = await _productRepository.GetAsync(c => c.Id == id && c.IsDeleted);
+            Product product = await _unitOfWork.ProductRepository.GetAsync(c => c.Id == id && c.IsDeleted);
 
             if (product == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");
@@ -391,7 +380,7 @@ namespace Pull_Bear.Service.Implementations
             product.IsDeleted = false;
             product.DeletedAt = null;
 
-            await _productRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
         }
 
         public async Task<List<ProductImageGetVM>> DeleteImage(int? id)
@@ -399,17 +388,17 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            ProductImage productImage = await _productImageRepository.GetAsync(x => x.Id == id);
+            ProductImage productImage = await _unitOfWork.ProductImageRepository.GetAsync(x => x.Id == id);
 
             if (productImage == null)
                 throw new NotFoundException("Image cannot be found!");
 
-            _productImageRepository.Remove(productImage);
-            await _productImageRepository.CommitAsync();
+            _unitOfWork.ProductImageRepository.Remove(productImage);
+            await _unitOfWork.CommitAsync();
 
             FileManager.DeleteFile(_env, productImage.Image, "assets", "images", "productimages", $"{productImage.ProductId}");
 
-            return _mapper.Map<List<ProductImageGetVM>>(await _productImageRepository.GetAllByExAsync(x => x.ProductId == productImage.ProductId));
+            return _mapper.Map<List<ProductImageGetVM>>(await _unitOfWork.ProductImageRepository.GetAllByExAsync(x => x.ProductId == productImage.ProductId));
         }
 
         public async Task<List<ProductToTagGetVM>> DeleteTag(int? id)
@@ -417,15 +406,15 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            ProductToTag productToTag = await _productToTagRepository.GetAsync(x => x.Id == id);
+            ProductToTag productToTag = await _unitOfWork.ProductToTagRepository.GetAsync(x => x.Id == id);
 
             if (productToTag == null)
                 throw new NotFoundException("ProductToTag cannot be found!");
 
-            _productToTagRepository.Remove(productToTag);
-            await _productToTagRepository.CommitAsync();
+            _unitOfWork.ProductToTagRepository.Remove(productToTag);
+            await _unitOfWork.CommitAsync();
 
-            return _mapper.Map<List<ProductToTagGetVM>>(await _productToTagRepository.GetAllByExAsync(x => x.ProductId == productToTag.ProductId));
+            return _mapper.Map<List<ProductToTagGetVM>>(await _unitOfWork.ProductToTagRepository.GetAllByExAsync(x => x.ProductId == productToTag.ProductId));
         }
 
         public async Task<List<ProductColorSizeGetVM>> DeleteColorSize(int? id)
@@ -433,24 +422,24 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new BadRequestException($"Id is null!");
 
-            ProductColorSize productColorSize = await _productColorSizeRepository.GetAsync(x => x.Id == id);
+            ProductColorSize productColorSize = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.Id == id);
 
             if (productColorSize == null)
                 throw new NotFoundException("ProductColorSize cannot be found!");
 
-            _productColorSizeRepository.Remove(productColorSize);
+            _unitOfWork.ProductColorSizeRepository.Remove(productColorSize);
 
-            await _productColorSizeRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
 
-            Product dbProduct = await _productRepository.GetAsync(x => x.Id == productColorSize.ProductId);
+            Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == productColorSize.ProductId);
 
-            List<ProductColorSize> pcss = await _productColorSizeRepository.GetAllByExAsync(x => x.ProductId == dbProduct.Id);
+            List<ProductColorSize> pcss = await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == dbProduct.Id);
 
             dbProduct.Count = pcss.Sum(x => x.Count);
 
-            await _productRepository.CommitAsync();
+            await _unitOfWork.CommitAsync();
 
-            return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
+            return _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
         }
 
         public async Task<List<ProductColorSizeGetVM>> UpdateProductColorSize(ProductColorSizeUpdateVM productColorSizeUpdateVM)
@@ -465,7 +454,7 @@ namespace Pull_Bear.Service.Implementations
             if (color + size + count > 1)
                 throw new BadRequestException("You cannot update more than 1 Product-Color-Size property!");
 
-            ProductColorSize productColorSize = await _productColorSizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.Id);
+            ProductColorSize productColorSize = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.Id);
 
             if (productColorSize == null)
                 throw new NotFoundException("ProductColorSize cannot be found!");
@@ -474,45 +463,45 @@ namespace Pull_Bear.Service.Implementations
             {
                 case int value when value == color:
 
-                    Color clr = await _colorRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.ChangeValue);
+                    Color clr = await _unitOfWork.ColorRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.ChangeValue);
 
                     if (clr == null)
                         throw new NotFoundException("Selected color cannot be found in database. Enter right value from Select Option!");
 
                     productColorSize.ColorId = productColorSizeUpdateVM.ChangeValue;
 
-                    await _productColorSizeRepository.CommitAsync();
+                    await _unitOfWork.CommitAsync();
 
-                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
+                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
 
                 case int value when value == size:
 
-                    Size sz = await _sizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.ChangeValue);
+                    Size sz = await _unitOfWork.SizeRepository.GetAsync(x => x.Id == productColorSizeUpdateVM.ChangeValue);
 
                     if (sz == null)
                         throw new NotFoundException("Selected size cannot be found in database. Enter right value from Select Option!");
 
                     productColorSize.SizeId = productColorSizeUpdateVM.ChangeValue;
 
-                    await _productColorSizeRepository.CommitAsync();
+                    await _unitOfWork.CommitAsync();
 
-                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
+                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
 
                 case int value when value == count:
 
                     productColorSize.Count = productColorSizeUpdateVM.ChangeValue;
 
-                    await _productColorSizeRepository.CommitAsync();
+                    await _unitOfWork.CommitAsync();
 
-                    Product dbProduct = await _productRepository.GetAsync(x => x.Id == productColorSize.ProductId);
+                    Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == productColorSize.ProductId);
 
-                    List<ProductColorSize> pcss = await _productColorSizeRepository.GetAllByExAsync(x => x.ProductId == dbProduct.Id);
+                    List<ProductColorSize> pcss = await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == dbProduct.Id);
 
                     dbProduct.Count = pcss.Sum(x => x.Count);
 
-                    await _productRepository.CommitAsync();
+                    await _unitOfWork.CommitAsync();
 
-                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _productColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
+                    return _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.ProductId == productColorSize.ProductId));
 
                 default:
                     throw new NotFoundException("Enter acceptable values from Select Options!!!");

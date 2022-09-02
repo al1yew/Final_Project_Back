@@ -2,6 +2,7 @@
 using Pull_Bear.Core.Repositories;
 using Pull_Bear.Data.Repositories;
 using Pull_Bear.Service.Interfaces;
+using Pull_Bear.Service.ViewModels.AppUserVMs;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
@@ -25,9 +26,10 @@ namespace Pull_Bear.Service.Implementations
         private readonly ISizeRepository _sizeRepository;
         private readonly ITagRepository _tagRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IAppUserRepository _appUserRepository;
         private readonly IMapper _mapper;
 
-        public SearchService(ICategoryRepository categoryRepository, IMapper mapper, IBodyFitRepository bodyFitRepository, IColorRepository colorRepository, ISizeRepository sizeRepository, ITagRepository tagRepository, IProductRepository productRepository)
+        public SearchService(ICategoryRepository categoryRepository, IMapper mapper, IBodyFitRepository bodyFitRepository, IColorRepository colorRepository, ISizeRepository sizeRepository, ITagRepository tagRepository, IProductRepository productRepository, IAppUserRepository appUserRepository)
         {
             _mapper = mapper;
             _categoryRepository = categoryRepository;
@@ -36,6 +38,7 @@ namespace Pull_Bear.Service.Implementations
             _sizeRepository = sizeRepository;
             _tagRepository = tagRepository;
             _productRepository = productRepository;
+            _appUserRepository = appUserRepository;
         }
 
         public async Task<SearchListVM> GetAllAsync(string search)
@@ -63,7 +66,9 @@ namespace Pull_Bear.Service.Implementations
                     c.Category.Name.ToLower().Contains(search.ToLower()) ||
                     c.Gender.Name.ToLower().Contains(search.ToLower()) ||
                     c.Care.ToLower().Contains(search.ToLower()),
-                    "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender"))
+                    "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender")),
+
+                Users = _mapper.Map<List<AppUserListVM>>(await _appUserRepository.GetAllByExAsync(x=>x.UserName.ToLower().Trim() == search.Trim().ToLower()))
             };
 
             return searchVM;

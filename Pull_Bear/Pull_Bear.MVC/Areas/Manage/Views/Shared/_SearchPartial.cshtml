@@ -7,9 +7,8 @@
     int bodyno = 0;
     int tagno = 0;
     int prodno = 0;
+    int userno = 0;
 }
-
-
 
 @if (Model.Categories.Count > 0)
 {
@@ -341,6 +340,62 @@
                         {
                             <a style="padding: 10px; margin: 0 auto; font-size: 10px;" class="btn btn-danger fordel prod deleteBtnprod" asp-area="Manage" asp-controller="Product"
                                asp-action="Delete" asp-route-id="@product.Id" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@if (Model.Users.Count > 0)
+{
+    <h4 class="p-3 text-success fs-3 est">Users</h4>
+
+    <table class="table table-bordered table-striped tblContent">
+        <thead>
+            <tr>
+                <th class="col-lg-1 col-1 text-wrap">№</th>
+                <th class="col-lg-1 col-1 text-wrap">Name</th>
+                <th class="col-lg-1 col-1 text-wrap">Surname</th>
+                <th class="col-lg-1 col-1 text-wrap">Username</th>
+                <th class="col-lg-1 col-1 text-wrap">Email</th>
+                <th class="col-lg-1 col-1 text-wrap">Is Admin</th>
+                <th class="col-lg-1 col-1 text-wrap">Status</th>
+                <th class="col-lg-1 col-1 text-wrap">Update</th>
+                <th class="col-lg-1 col-1 text-wrap">Reset password</th>
+                <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AppUserListVM user in Model.Users)
+            {
+                userno++;
+                <tr>
+                    <td class="col-lg-1 col-1 text-wrap">@userno</td>
+                    <td class="col-lg-1 col-1 text-wrap">@user.Name</td>
+                    <td class="col-lg-1 col-1 text-wrap">@user.SurName</td>
+                    <td class="col-lg-1 col-1 text-wrap">@user.NormalizedUserName</td>
+                    <td class="col-lg-1 col-1 text-wrap">@user.NormalizedEmail</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(user.IsAdmin ? "green" : "red")">@(user.IsAdmin ? "yes" : "no")</td>
+                    <td class="col-lg-1 col-1 text-wrap" style="color:@(user.IsDeleted ? "red" : "green")">@(user.IsDeleted ? "Deleted" : "Active")</td>
+                    <td class="col-lg-1 col-1 text-wrap p-0 text-center">
+                        <a class="p-1 btn btn-warning" asp-area="Manage" asp-controller="User" asp-action="Update" asp-route-id="@user.Id">Update</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap p-0 text-center">
+                        <a class="p-1 btn btn-primary m-2" asp-area="Manage" asp-controller="User" asp-action="ResetPassword" asp-route-id="@user.Id">Reset Password</a>
+                    </td>
+                    <td class="col-lg-1 col-1 text-wrap p-0 text-center">
+                        @if (user.IsDeleted)
+                        {
+                            <a class="p-1 btn btn-primary restoreBtn" asp-area="Manage" asp-controller="User"
+                               asp-action="Restore" asp-route-id="@user.Id" asp-route-select="@ViewBag.Select" asp-route-role="@ViewBag.Role" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                        }
+                        else
+                        {
+                            <a class="p-1 btn btn-danger deleteBtn" asp-area="Manage" asp-controller="User"
+                               asp-action="Delete" asp-route-id="@user.Id" asp-route-select="@ViewBag.Select" asp-route-role="@ViewBag.Role" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
                         }
                     </td>
                 </tr>

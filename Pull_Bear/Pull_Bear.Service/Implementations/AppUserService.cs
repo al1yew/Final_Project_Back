@@ -39,7 +39,7 @@ namespace Pull_Bear.Service.Implementations
             return appUserListVM.AsQueryable();
         }
 
-        public IQueryable<AppUserListVM> GetAllAsync(int? status, int? type, ClaimsPrincipal user)
+        public IQueryable<AppUserListVM> GetAllAsync(int? status, int? role, ClaimsPrincipal user)
         {
             List<AppUserListVM> appUserListVM = _mapper.Map<List<AppUserListVM>>(_userManager.Users.Where(u => u.UserName != user.Identity.Name));
 
@@ -57,13 +57,13 @@ namespace Pull_Bear.Service.Implementations
                 }
             }
 
-            if (type != null && type > 0)
+            if (role != null && role > 0)
             {
-                if (type == 1)
+                if (role == 1)
                 {
                     query = query.Where(c => c.IsAdmin);
                 }
-                else if (type == 2)
+                else if (role == 2)
                 {
                     query = query.Where(c => !c.IsAdmin);
                 }
@@ -113,10 +113,10 @@ namespace Pull_Bear.Service.Implementations
 
             IdentityResult result = await _userManager.ResetPasswordAsync(appUser, token, resetPasswordVM.Password);
 
+            List<string> errors = new List<string>();
+
             if (!result.Succeeded)
             {
-                List<string> errors = new List<string>();
-
                 foreach (var item in result.Errors)
                 {
                     errors.Add(item.Description);
@@ -125,9 +125,8 @@ namespace Pull_Bear.Service.Implementations
                 return errors;
             }
 
-            return null;
+            return errors;
         }
-
 
         public async Task<List<string>> CreateAsync(AppUserCreateVM appUserCreateVM)
         {
@@ -135,10 +134,10 @@ namespace Pull_Bear.Service.Implementations
 
             IdentityResult result = await _userManager.CreateAsync(appUser, appUserCreateVM.Password);
 
+            List<string> errors = new List<string>();
+
             if (!result.Succeeded)
             {
-                List<string> errors = new List<string>();
-
                 foreach (var item in result.Errors)
                 {
                     errors.Add(item.Description);
@@ -156,9 +155,8 @@ namespace Pull_Bear.Service.Implementations
                 result = await _userManager.AddToRoleAsync(appUser, "Member");
             }
 
-            return null;
+            return errors;
         }
-
 
         public async Task<List<string>> UpdateAsync(string id, AppUserUpdateVM appUserCreateVM)
         {
@@ -167,10 +165,6 @@ namespace Pull_Bear.Service.Implementations
 
             if (id != appUserCreateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
-
-            if (await _appUserRepository.IsExistAsync(c => !c.IsDeleted
-            && (c.NormalizedUserName == appUserCreateVM.UserName.Trim().ToUpperInvariant() && c.NormalizedEmail == appUserCreateVM.UserName.Trim().ToUpperInvariant() && c.Id != appUserCreateVM.Id)))
-                throw new RecordDublicateException("App User Already Exists!");
 
             AppUser dbAppUser = await _appUserRepository.GetAsync(x => x.Id == id);
 
@@ -183,13 +177,14 @@ namespace Pull_Bear.Service.Implementations
             dbAppUser.UserName = appUserCreateVM.UserName;
             dbAppUser.IsAdmin = appUserCreateVM.IsAdmin;
             dbAppUser.PhoneNumber = appUserCreateVM.Phone;
+            dbAppUser.UpdatedAt = DateTime.UtcNow.AddHours(4);
 
             IdentityResult result = await _userManager.UpdateAsync(dbAppUser);
 
+            List<string> errors = new List<string>();
+
             if (!result.Succeeded)
             {
-                List<string> errors = new List<string>();
-
                 foreach (var item in result.Errors)
                 {
                     errors.Add(item.Description);
@@ -209,7 +204,7 @@ namespace Pull_Bear.Service.Implementations
                 await _userManager.AddToRoleAsync(dbAppUser, "Member");
             }
 
-            return null;
+            return errors;
         }
 
         public async Task DeleteAsync(string id)
@@ -243,11 +238,5 @@ namespace Pull_Bear.Service.Implementations
 
             await _appUserRepository.CommitAsync();
         }
-
-
-
-
-
-
     }
 }

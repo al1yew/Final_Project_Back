@@ -102,7 +102,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         //}
         #endregion
 
-        #region Created user
+        #region Created users
 
         //public async Task<IActionResult> Createuser()
         //{

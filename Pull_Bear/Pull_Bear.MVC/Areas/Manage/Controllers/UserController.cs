@@ -44,7 +44,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             }
 
             ViewBag.Select = select;
-            ViewBag.Type = role;
+            ViewBag.Role = role;
             ViewBag.Status = status;
             ViewBag.Page = page;
 
@@ -136,30 +136,30 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Delete(string id, int? status, int? type, int select, int page)
+        public async Task<IActionResult> Delete(string id, int? status, int? role, int select, int page)
         {
             ViewBag.Select = select;
             ViewBag.Status = status;
-            ViewBag.Type = type;
+            ViewBag.Role = role;
             ViewBag.Page = page;
 
             await _appUserService.DeleteAsync(id);
 
-            IQueryable<AppUserListVM> appUserListVMs = _appUserService.GetAllAsync(status, type, User);
+            IQueryable<AppUserListVM> appUserListVMs = _appUserService.GetAllAsync(status, role, User);
 
             return PartialView("_AppUserIndexPartial", PaginationList<AppUserListVM>.Create(appUserListVMs, page, select));
         }
 
-        public async Task<IActionResult> Restore(string id, int? status, int? type, int select, int page)
+        public async Task<IActionResult> Restore(string id, int? status, int? role, int select, int page)
         {
             ViewBag.Select = select;
-            ViewBag.Type = type;
+            ViewBag.Role = role;
             ViewBag.Status = status;
             ViewBag.Page = page;
 
             await _appUserService.RestoreAsync(id);
 
-            IQueryable<AppUserListVM> appUserListVMs = _appUserService.GetAllAsync(status, type, User);
+            IQueryable<AppUserListVM> appUserListVMs = _appUserService.GetAllAsync(status, role, User);
 
             return PartialView("_AppUserIndexPartial", PaginationList<AppUserListVM>.Create(appUserListVMs, page, select));
         }

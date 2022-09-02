@@ -24,7 +24,8 @@ namespace Pull_Bear.Service.ViewModels.AppUserVMs
             RuleFor(x => x.SurName).NotEmpty().WithMessage("SurName is required!");
             RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is required!");
             RuleFor(x => x.Phone).NotEmpty().WithMessage("Phone is required!");
-            RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email is required!");
+            RuleFor(x => x.Phone).Matches(@"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$").WithMessage("Phone is in incorrect variant");
+            RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email is required in right format!");
         }
     }
 }

@@ -208,3 +208,8 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\bin\Debug\netcoreapp3.1\Mic
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Login.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_AppUserIndexPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\User\Create.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\User\Index.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\User\ResetPassword.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\User\Update.cshtml.g.cs

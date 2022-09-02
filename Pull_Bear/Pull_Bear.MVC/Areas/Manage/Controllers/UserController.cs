@@ -1,8 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Pull_Bear.Core.Models;
+using Pull_Bear.Service.Interfaces;
+using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.AccountVMs;
+using Pull_Bear.Service.ViewModels.AppUserVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Areas.Manage.Controllers
@@ -11,379 +19,150 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
     [Area("Manage")]
     public class UserController : Controller
     {
-        //private readonly AppDbContext _context;
-        //private readonly UserManager<AppUser> _userManager;
-        //private readonly SignInManager<AppUser> _signInManager;
-        //private readonly IWebHostEnvironment _env;
-        //private readonly RoleManager<IdentityRole> _roleManager;
-
-        //public UserController(AppDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment env, RoleManager<IdentityRole> roleManager)
-        //{
-        //    _context = context;
-        //    _userManager = userManager;
-        //    _signInManager = signInManager;
-        //    _env = env;
-        //    _roleManager = roleManager;
-        //}
-
-        //public IActionResult Index(int? status, int select, int role, int page = 1)
-        //{
-        //    IQueryable<AppUser> query = _userManager.Users.Where(u => u.UserName != User.Identity.Name);
-
-        //    if (status != null && status > 0)
-        //    {
-        //        if (status == 1)
-        //        {
-        //            query = query.Where(b => b.IsDeleted);
-        //        }
-        //        else if (status == 2)
-        //        {
-        //            query = query.Where(b => !b.IsDeleted);
-        //        }
-        //    }
-
-        //    if (select <= 0)
-        //    {
-        //        select = 5;
-        //    }
-
-        //    if (role != null && role > 0)
-        //    {
-        //        if (role == 1)
-        //        {
-        //            query = query.Where(b => b.IsAdmin);
-        //        }
-        //        else if (role == 2)
-        //        {
-        //            query = query.Where(b => !b.IsAdmin);
-        //        }
-        //    }
-
-        //    ViewBag.Select = select;
-
-        //    ViewBag.Status = status;
-
-        //    ViewBag.Role = role;
-
-        //    return View(PaginationList<AppUser>.Create(query, page, select));
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> ResetPassword(string id)
-        //{
-        //    if (string.IsNullOrWhiteSpace(id)) return BadRequest();
-
-        //    AppUser appUser = await _userManager.FindByIdAsync(id);
-
-        //    if (appUser == null) return NotFound();
-
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> ResetPassword(string id, ResetPasswordVM resetPasswordVM)
-        //{
-        //    if (!ModelState.IsValid) return View();
-
-        //    if (string.IsNullOrWhiteSpace(id)) return BadRequest();
-
-        //    AppUser appUser = await _userManager.FindByIdAsync(id);
-
-        //    if (appUser == null) return NotFound();
-
-        //    if (await _userManager.CheckPasswordAsync(appUser, resetPasswordVM.Password)) return BadRequest();
-
-        //    string token = await _userManager.GeneratePasswordResetTokenAsync(appUser);
-        //    //string emailConfirm = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
-
-        //    IdentityResult identityResult = await _userManager.ResetPasswordAsync(appUser, token, resetPasswordVM.Password);
-        //    //IdentityResult identityResult = await _userManager.ChangeEmailAsync(appUser, token, resetPasswordVM.Password);
-
-        //    if (!identityResult.Succeeded)
-        //    {
-        //        foreach (var item in identityResult.Errors)
-        //        {
-        //            ModelState.AddModelError("", item.Description);
-        //        }
-
-        //        return View();
-        //    }
-        //    //mojet bit ponadobitsa sdes toje polucit status i page v skobkax kak v Index metode
-        //    return RedirectToAction("Index");
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> Create()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Create(CreateUserVM createUserVM)
-        //{
-        //    if (!ModelState.IsValid) return View();
-
-        //    if (createUserVM.Photo != null)
-        //    {
-        //        if (!createUserVM.Photo.CheckContentType("image/jpeg")
-        //            && !createUserVM.Photo.CheckContentType("image/jpg")
-        //            && !createUserVM.Photo.CheckContentType("image/png")
-        //            && !createUserVM.Photo.CheckContentType("image/gif"))
-        //        {
-        //            ModelState.AddModelError("Photo", "You can choose only Image format!");
-        //            return View();
-        //        }
-
-        //        if (createUserVM.Photo.CheckFileLength(15000))
-        //        {
-        //            ModelState.AddModelError("Photo", "File must be 15MB at most!");
-        //            return View();
-        //        }
-
-        //        createUserVM.Image = await createUserVM.Photo.CreateAsync(_env, "manage", "img", "users");
-        //    }
-
-        //    AppUser user = new AppUser
-        //    {
-        //        Name = createUserVM.Name,
-        //        SurName = createUserVM.SurName,
-        //        UserName = createUserVM.UserName,
-        //        Email = createUserVM.Email,
-        //        IsAdmin = createUserVM.IsAdmin,
-        //        PhoneNumber = createUserVM.Phone,
-        //        Image = createUserVM.Image
-        //    };
-
-        //    IdentityResult result = await _userManager.CreateAsync(user, createUserVM.Password);
-
-        //    if (!result.Succeeded)
-        //    {
-        //        foreach (IdentityError error in result.Errors)
-        //        {
-        //            ModelState.AddModelError("", error.Description);
-        //        }
-
-        //        return View();
-        //    }
-
-        //    if (createUserVM.IsAdmin)
-        //    {
-        //        result = await _userManager.AddToRoleAsync(user, "Admin");
-        //    }
-        //    else
-        //    {
-        //        result = await _userManager.AddToRoleAsync(user, "Member");
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
-
-        //[HttpGet]
-        //public async Task<IActionResult> Update(string? id)
-        //{
-        //    AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
-
-        //    UpdateUserVM updateUserVM = new UpdateUserVM
-        //    {
-        //        Name = appUser.Name,
-        //        SurName = appUser.SurName,
-        //        UserName = appUser.UserName,
-        //        Email = appUser.Email,
-        //        IsAdmin = appUser.IsAdmin,
-        //        Phone = appUser.PhoneNumber,
-        //        Image = appUser.Image,
-        //        AppUserId = appUser.Id,
-        //    };
-
-        //    return View(updateUserVM);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> Update(UpdateUserVM updateUserVM, string id)
-        //{
-        //    if (!ModelState.IsValid) return View();
-
-        //    AppUser dbAppUser = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
-
-        //    if (updateUserVM.Photo != null)
-        //    {
-        //        if (!updateUserVM.Photo.CheckContentType("image/jpeg")
-        //            && !updateUserVM.Photo.CheckContentType("image/jpg")
-        //            && !updateUserVM.Photo.CheckContentType("image/png")
-        //            && !updateUserVM.Photo.CheckContentType("image/gif"))
-        //        {
-        //            ModelState.AddModelError("Photo", "You can choose only Image format!");
-        //            return View();
-        //        }
-
-        //        if (updateUserVM.Photo.CheckFileLength(15000))
-        //        {
-        //            ModelState.AddModelError("Photo", "File must be 15MB at most!");
-        //            return View();
-        //        }
-
-        //        updateUserVM.Image = await updateUserVM.Photo.CreateAsync(_env, "manage", "img", "users");
-
-        //        if (dbAppUser.Image != null)
-        //        {
-        //            FileHelper.DeleteFile(_env, dbAppUser.Image, "manage", "img", "users");
-        //        }
-
-        //        dbAppUser.Image = updateUserVM.Image;
-
-        //        IdentityResult identityResult1 = await _userManager.UpdateAsync(dbAppUser);
-
-        //        if (!identityResult1.Succeeded)
-        //        {
-        //            ModelState.AddModelError("", "Upload image in right way!");
-
-        //            return View("Update", updateUserVM);
-        //        }
-
-        //        TempData["success"] = "Account is updated!";
-        //    }
-
-        //    if (dbAppUser.NormalizedUserName != updateUserVM.UserName.Trim().ToUpperInvariant() ||
-        //        dbAppUser.Name.ToUpperInvariant() != updateUserVM.Name.Trim().ToUpperInvariant() ||
-        //        dbAppUser.SurName.ToUpperInvariant() != updateUserVM.SurName.Trim().ToUpperInvariant() ||
-        //        dbAppUser.NormalizedEmail != updateUserVM.Email.Trim().ToUpperInvariant())
-        //    {
-        //        dbAppUser.Name = updateUserVM.Name;
-        //        dbAppUser.SurName = updateUserVM.SurName;
-        //        dbAppUser.Email = updateUserVM.Email;
-        //        dbAppUser.UserName = updateUserVM.UserName;
-        //        dbAppUser.IsAdmin = updateUserVM.IsAdmin;
-        //        dbAppUser.PhoneNumber = updateUserVM.Phone;
-
-        //        IdentityResult identityResult = await _userManager.UpdateAsync(dbAppUser);
-
-        //        if (!identityResult.Succeeded)
-        //        {
-        //            foreach (var item in identityResult.Errors)
-        //            {
-        //                ModelState.AddModelError("", item.Description);
-        //            }
-
-        //            return View("Profile", updateUserVM);
-        //        }
-
-        //        TempData["success"] = "Account is updated!";
-        //    }
-
-        //    if (updateUserVM.IsAdmin && !dbAppUser.IsAdmin)
-        //    {
-        //        await _userManager.RemoveFromRoleAsync(dbAppUser, "Member");
-        //        await _userManager.AddToRoleAsync(dbAppUser, "Admin");
-        //    }
-        //    else if (!updateUserVM.IsAdmin && dbAppUser.IsAdmin)
-        //    {
-        //        await _userManager.RemoveFromRoleAsync(dbAppUser, "Admin");
-        //        await _userManager.AddToRoleAsync(dbAppUser, "Member");
-        //    }
-
-        //    return RedirectToAction("Index");
-        //}
-
-        //public async Task<IActionResult> DeleteProfileImage(string id)
-        //{
-        //    if (id == null) return BadRequest();
-
-        //    AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(p => p.Id == id);
-
-        //    if (appUser == null) return NotFound();
-
-        //    FileHelper.DeleteFile(_env, appUser.Image, "manage", "img", "users");
-
-        //    appUser.Image = null;
-
-        //    IdentityResult identityResult = await _userManager.UpdateAsync(appUser);
-
-        //    CreateUserVM createUserVM = new CreateUserVM
-        //    {
-        //        Name = appUser.Name,
-        //        SurName = appUser.SurName,
-        //        UserName = appUser.UserName,
-        //        Email = appUser.Email,
-        //        IsAdmin = appUser.IsAdmin,
-        //        Phone = appUser.PhoneNumber,
-        //        Image = appUser.Image,
-        //        AppUserId = appUser.Id
-        //    };
-
-        //    return Content("");
-        //}
-
-
-        //public async Task<IActionResult> Delete(string? id, int select, int role, int page = 1)
-        //{
-        //    AppUser appUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-
-        //    if (appUser == null) return NotFound();
-
-        //    appUser.IsDeleted = true;
-        //    appUser.DeletedAt = DateTime.UtcNow.AddHours(4);
-
-        //    await _context.SaveChangesAsync();
-
-        //    IQueryable<AppUser> query = _userManager.Users.Where(u => u.UserName != User.Identity.Name);
-
-        //    if (select <= 0)
-        //    {
-        //        select = 5;
-        //    }
-
-        //    if (role != null && role > 0)
-        //    {
-        //        if (role == 1)
-        //        {
-        //            query = query.Where(b => b.IsAdmin);
-        //        }
-        //        else if (role == 2)
-        //        {
-        //            query = query.Where(b => !b.IsAdmin);
-        //        }
-        //    }
-
-        //    ViewBag.Select = select;
-
-        //    ViewBag.Role = role;
-
-        //    return PartialView("_UserIndexPartial", PaginationList<AppUser>.Create(query, page, select));
-        //}
-
-        //public async Task<IActionResult> Restore(string? id, int select, int role, int page = 1)
-        //{
-        //    AppUser appUser = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-
-        //    if (appUser == null) return NotFound();
-
-        //    appUser.IsDeleted = false;
-        //    appUser.DeletedAt = null;
-
-        //    await _context.SaveChangesAsync();
-
-        //    IQueryable<AppUser> query = _userManager.Users.Where(u => u.UserName != User.Identity.Name);
-
-        //    if (select <= 0)
-        //    {
-        //        select = 5;
-        //    }
-
-        //    if (role != null && role > 0)
-        //    {
-        //        if (role == 1)
-        //        {
-        //            query = query.Where(b => b.IsAdmin);
-        //        }
-        //        else if (role == 2)
-        //        {
-        //            query = query.Where(b => !b.IsAdmin);
-        //        }
-        //    }
-
-        //    ViewBag.Select = select;
-
-        //    return PartialView("_UserIndexPartial", PaginationList<AppUser>.Create(query, page, select));
-        //}
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IAppUserService _appUserService;
+        private readonly IMapper _mapper;
+
+        public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IAppUserService appUserService, IMapper mapper)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
+            _appUserService = appUserService;
+            _mapper = mapper;
+        }
+
+        public IActionResult Index(int? status, int select, int role, int page = 1)
+        {
+            IQueryable<AppUserListVM> appUserListVM = _appUserService.GetAllAsync(status, role, User);
+
+            if (select <= 0)
+            {
+                select = 5;
+            }
+
+            ViewBag.Select = select;
+            ViewBag.Type = role;
+            ViewBag.Status = status;
+            ViewBag.Page = page;
+
+            return View(PaginationList<AppUserListVM>.Create(appUserListVM, page, select));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ResetPassword(string id)
+        {
+            await _appUserService.ResetPassword(id);
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string id, ResetPasswordVM resetPasswordVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
+
+            List<string> errors = await _appUserService.ResetPassword(resetPasswordVM, id);
+
+            if (errors.Count > 0 && errors != null)
+            {
+                foreach (var item in errors)
+                {
+                    ModelState.AddModelError("", item);
+                }
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(AppUserCreateVM appUserCreateVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return View();
+            }
+
+            List<string> errors = await _appUserService.CreateAsync(appUserCreateVM);
+
+            if (errors.Count > 0 && errors != null)
+            {
+                foreach (var item in errors)
+                {
+                    ModelState.AddModelError("", item);
+                }
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(string id)
+        {
+            return View(_mapper.Map<AppUserUpdateVM>(await _appUserService.GetById(id)));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(AppUserUpdateVM appUserUpdateVM, string id)
+        {
+            if (!ModelState.IsValid) return View();
+
+            List<string> errors = await _appUserService.UpdateAsync(id, appUserUpdateVM);
+
+            if (errors.Count > 0 && errors != null)
+            {
+                foreach (var item in errors)
+                {
+                    ModelState.AddModelError("", item);
+                }
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Delete(string id, int? status, int? type, int select, int page)
+        {
+            ViewBag.Select = select;
+            ViewBag.Status = status;
+            ViewBag.Type = type;
+            ViewBag.Page = page;
+
+            await _appUserService.DeleteAsync(id);
+
+            IQueryable<AppUserListVM> appUserListVMs = _appUserService.GetAllAsync(status, type, User);
+
+            return PartialView("_AppUserIndexPartial", PaginationList<AppUserListVM>.Create(appUserListVMs, page, select));
+        }
+
+        public async Task<IActionResult> Restore(string id, int? status, int? type, int select, int page)
+        {
+            ViewBag.Select = select;
+            ViewBag.Type = type;
+            ViewBag.Status = status;
+            ViewBag.Page = page;
+
+            await _appUserService.RestoreAsync(id);
+
+            IQueryable<AppUserListVM> appUserListVMs = _appUserService.GetAllAsync(status, type, User);
+
+            return PartialView("_AppUserIndexPartial", PaginationList<AppUserListVM>.Create(appUserListVMs, page, select));
+        }
+
     }
 }

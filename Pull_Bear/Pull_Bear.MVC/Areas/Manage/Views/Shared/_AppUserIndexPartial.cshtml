@@ -1,0 +1,56 @@
+﻿@model PaginationList<AppUserListVM>
+@{
+    int no = Model.ItemsCount * (Model.Page - 1);
+}
+
+<table class="table table-bordered table-striped tblContent">
+    <thead>
+        <tr>
+            <th class="col-lg-1 col-1 text-wrap">№</th>
+            <th class="col-lg-1 col-1 text-wrap">Name</th>
+            <th class="col-lg-1 col-1 text-wrap">Surname</th>
+            <th class="col-lg-1 col-1 text-wrap">Username</th>
+            <th class="col-lg-1 col-1 text-wrap">Email</th>
+            <th class="col-lg-1 col-1 text-wrap">Phone</th>
+            <th class="col-lg-1 col-1 text-wrap">Email Confirmed</th>
+            <th class="col-lg-1 col-1 text-wrap">Phone Confirmed</th>
+            <th class="col-lg-1 col-1 text-wrap">Is Admin</th>
+            <th class="col-lg-1 col-1 text-wrap">Status</th>
+            <th class="col-lg-1 col-1 text-wrap">Update</th>
+            <th class="col-lg-1 col-1 text-wrap">Delete/Restore</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AppUserListVM user in Model)
+        {
+            no++;
+            <tr>
+                <td class="col-lg-1 col-1 text-wrap">@no</td>
+                <td class="col-lg-1 col-1 text-wrap">@user.Name</td>
+                <td class="col-lg-1 col-1 text-wrap">@user.SurName</td>
+                <td class="col-lg-1 col-1 text-wrap">@user.NormalizedUserName</td>
+                <td class="col-lg-1 col-1 text-wrap">@user.NormalizedEmail</td>
+                <td class="col-lg-1 col-1 text-wrap">@user.PhoneNumber</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(user.EmailConfirmed ? "green" : "red")">@(user.EmailConfirmed ? "yes" : "no")</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(user.EmailConfirmed ? "green" : "red")">@(user.PhoneNumberConfirmed ? "yes" : "no")</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(user.IsAdmin ? "green" : "red")">@(user.IsAdmin ? "yes" : "no")</td>
+                <td class="col-lg-1 col-1 text-wrap" style="color:@(user.IsDeleted ? "red" : "green")">@(user.IsDeleted ? "Deleted" : "Active")</td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    <a class="btn btn-warning" asp-area="Manage" asp-controller="User" asp-action="Update" asp-route-id="@user.Id">Update</a>
+                </td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    @if (user.IsDeleted)
+                    {
+                        <a class="btn btn-primary restoreBtn" asp-area="Manage" asp-controller="User"
+                           asp-action="Restore" asp-route-id="@user.Id" asp-route-select="@ViewBag.Select" asp-route-role="@ViewBag.Type" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Restore</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger deleteBtn" asp-area="Manage" asp-controller="User"
+                           asp-action="Delete" asp-route-id="@user.Id" asp-route-select="@ViewBag.Select" asp-route-role="@ViewBag.Type" asp-route-status="@ViewBag.Status" asp-route-page="@ViewBag.Page">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,47 @@
+﻿@model AppUserUpdateVM
+
+@{ ViewData["Title"] = "Update"; }
+
+<div class="d-flex row justify-content-center w-100">
+    <div class="col-lg-10 col-12">
+        <h1 class="mt-3">Update</h1>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <form method="post" class="w-100 d-flex flex-wrap justify-content-between">
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SurName" class="form-label"></label>
+                <input asp-for="SurName" class="form-control">
+                <span class="text-danger" asp-validation-for="SurName"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control">
+                <span class="text-danger" asp-validation-for="UserName"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control">
+                <span class="text-danger" asp-validation-for="Email"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Phone" class="form-label"></label>
+                <input asp-for="Phone" class="form-control">
+                <span class="text-danger" asp-validation-for="Phone"></span>
+            </div>
+            <div class="col-lg-3 ml-3 form-check">
+                <input asp-for="IsAdmin" class="form-check">
+                <label asp-for="IsAdmin" class="form-check-label">Is admin?</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+@section Script
+{
+    <partial name="_ValidationPartial">
+}

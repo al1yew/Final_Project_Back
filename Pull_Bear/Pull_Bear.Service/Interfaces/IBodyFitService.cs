@@ -18,7 +18,7 @@ namespace Pull_Bear.Service.Interfaces
 
         Task CreateAsync(BodyFitCreateVM bodyFitCreateVM);
 
-        Task UpdateAsync(int? id, BodyFitUpdateVM bodyFitCreateVM);
+        Task UpdateAsync(int? id, BodyFitUpdateVM bodyFitUpdateVM);
 
         Task DeleteAsync(int? id);
 

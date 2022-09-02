@@ -89,7 +89,6 @@ namespace Pull_Bear.MVC
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IAppUserService, AppUserService>();
-            services.AddScoped<IAccountService, AccountService>();
 
 
             services.AddSession(options =>

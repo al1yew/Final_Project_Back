@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,35 +7,28 @@ namespace Pull_Bear.Service.ViewModels.AppUserVMs
 {
     public class AppUserCreateVM
     {
-        /*
-         [StringLength(255)]
         public string Name { get; set; }
-
-        [StringLength(255)]
         public string SurName { get; set; }
-        [Required]
-        [StringLength(255)]
-        [EmailAddress]
         public string Email { get; set; }
-        [Required]
-        [StringLength(255)]
         public string UserName { get; set; }
-        [Phone]
         public string Phone { get; set; }
-        [Required]
-        [StringLength(255)]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
-        [StringLength(255)]
-        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
         public bool IsAdmin { get; set; }
+    }
 
-        public string AppUserId { get; set; }
-
-        public IFormFile Photo { get; set; }
-        public string Image { get; set; }
-         */
+    public class AppUserCreateVMValidator : AbstractValidator<AppUserCreateVM>
+    {
+        public AppUserCreateVMValidator()
+        {
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required!");
+            RuleFor(x => x.SurName).NotEmpty().WithMessage("SurName is required!");
+            RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is required!");
+            RuleFor(x => x.Phone).NotEmpty().WithMessage("Phone is required!");
+            RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email is required!");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Password is required!");
+            RuleFor(x => x.ConfirmPassword).NotEmpty().WithMessage("ConfirmPassword is required!");
+            RuleFor(x => x.Password).Equal(x => x.ConfirmPassword).WithMessage("Password does not match to Confirm Password!");
+        }
     }
 }

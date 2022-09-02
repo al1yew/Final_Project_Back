@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.AccountVMs;
 using System;
@@ -12,11 +15,13 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
     [Area("Manage")]
     public class AccountController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public AccountController(IAccountService accountService)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
-            _accountService = accountService;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [HttpGet]
@@ -30,19 +35,26 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         {
             if (!ModelState.IsValid) return View(loginVM);
 
-            switch (await _accountService.Login(loginVM))
+            AppUser appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == loginVM.Email.Trim().ToUpperInvariant() && u.IsAdmin);
+
+            if (appUser == null)
             {
-                case 1:
-                    ModelState.AddModelError("", "Email or password is wrong!");
-                    return View(loginVM);
+                ModelState.AddModelError("", "Email or password is wrong!");
+                return View(loginVM);
+            }
 
-                case 2:
-                    ModelState.AddModelError("", $"Your account is blocked. Wait {_accountService.GetLockoutTime(loginVM)} minutes to login again!");
-                    return View(loginVM);
+            Microsoft.AspNetCore.Identity.SignInResult signInResult = await _signInManager.PasswordSignInAsync(appUser, loginVM.Password, loginVM.RememberMe, true);
 
-                case 3:
-                    ModelState.AddModelError("", "Email or password is wrong!");
-                    return View(loginVM);
+            if (signInResult.IsLockedOut)
+            {
+                ModelState.AddModelError("", $"Your account is blocked. Wait {((appUser.LockoutEnd.Value - DateTime.UtcNow).TotalMinutes).ToString("0")} minutes to login again!");
+                return View(loginVM);
+            }
+
+            if (!signInResult.Succeeded)
+            {
+                ModelState.AddModelError("", "Email or password is wrong!");
+                return View(loginVM);
             }
 
             return RedirectToAction("Index", "Home", new { area = "Manage" });
@@ -50,7 +62,7 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
 
         public async Task<IActionResult> Logout()
         {
-            await _accountService.Logout();
+            await _signInManager.SignOutAsync();
 
             return RedirectToAction("Login");
         }
@@ -87,6 +99,44 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
         //    await _userManager.AddToRoleAsync(appUser, "SuperAdmin");
 
         //    return Content("Super admin est ");
+        //}
+        #endregion
+
+        #region Created user
+
+        //public async Task<IActionResult> Createuser()
+        //{
+        //    AppUser appUser = new AppUser
+        //    {
+        //        Name = "Vasif",
+        //        SurName = "Aliyev",
+        //        UserName = "Vasya",
+        //        Email = "vasif@vasif"
+        //    };
+
+        //    appUser.IsAdmin = false;
+
+        //    await _userManager.CreateAsync(appUser, "Vasif123");
+
+        //    await _userManager.AddToRoleAsync(appUser, "Member");
+
+        //    return Content("ya yest ");
+
+        //    AppUser appUser = new AppUser
+        //    {
+        //        Name = "Mamed",
+        //        SurName = "Aliyev",
+        //        UserName = "Mamed",
+        //        Email = "mamed@mamed"
+        //    };
+
+        //    appUser.IsAdmin = false;
+
+        //    await _userManager.CreateAsync(appUser, "Mamed123");
+
+        //    await _userManager.AddToRoleAsync(appUser, "Member");
+
+        //    return Content("ya yest mamed");
         //}
         #endregion
 

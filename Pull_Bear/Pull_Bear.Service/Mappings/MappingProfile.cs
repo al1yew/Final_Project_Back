@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Pull_Bear.Core.Models;
+using Pull_Bear.Service.ViewModels.AppUserVMs;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
@@ -123,6 +124,19 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<SettingUpdateVM, Setting>();
 
             #endregion
+
+            #region AppUser
+            CreateMap<AppUser, AppUserListVM>();
+
+            CreateMap<AppUserCreateVM, AppUser>()
+                .ForMember(des => des.Name, src => src.MapFrom(x => x.Name.Trim()))
+                .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
+
+            CreateMap<AppUser, AppUserGetVM>();
+
+            CreateMap<AppUserGetVM, AppUserUpdateVM>();
+            #endregion                                                                                  
+
         }
     }
 }

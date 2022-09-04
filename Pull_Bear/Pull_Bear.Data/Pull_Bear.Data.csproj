@@ -35,6 +35,20 @@
     <Compile Remove="Migrations\20220901203927_Added-Setting-Table.Designer.cs" />
     <Compile Remove="Migrations\20220901204137_Added-Setting-Table.cs" />
     <Compile Remove="Migrations\20220901204137_Added-Setting-Table.Designer.cs" />
+    <Compile Remove="Migrations\20220903102714_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903102714_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220903102929_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903102929_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220903105222_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903105222_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220903111820_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903111820_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220903112201_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903112201_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220903112919_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903112919_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220903150003_ChangedLogicsProductPhoto.cs" />
+    <Compile Remove="Migrations\20220903150003_ChangedLogicsProductPhoto.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

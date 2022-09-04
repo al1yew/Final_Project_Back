@@ -364,7 +364,6 @@
             .then(data => {
                 $('.inpustcontainer').append(data)
             })
-
     });
 
     $(document).on('click', '.addinputs', function (e) {
@@ -375,12 +374,7 @@
             .then(data => {
                 $('.inputsContainer').append(data)
             })
-    })
-
-
-
-
-
+    });
 
     //----------------------------------------------- Delete element
 

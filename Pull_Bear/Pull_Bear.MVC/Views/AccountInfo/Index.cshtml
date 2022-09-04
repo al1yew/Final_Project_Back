@@ -1,0 +1,108 @@
+﻿
+
+<main>
+    <section class="whereareyou">
+        <div class="where">.</div>
+    </section>
+
+    <section class="breadcrumbregsiter">
+        <div class="container">
+            <div class="row keeper">
+                <div class="col-lg-6">
+                    <a asp-controller="Home" asp-action="Index">MAIN PAGE</a>&nbsp;/ INFORMATION CHANGE
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="accountinfoall">
+        <div class="container">
+            <div class="row all">
+
+                <p class="firstp">ACCOUNT INFORMATION</p>
+
+                <form action="" method="post" class="accountform" id="accountform">
+
+                    <div class="col-lg-6 col-12 left">
+
+                        <div class="col-lg-12 col-12 head">
+                            Account information
+                        </div>
+
+                        <div class="col-lg-5-8 col-5-8">
+                            <label for="formname">NAME</label>
+                            <input class="col-lg-12 col-12" type="text" name="formname" id="formname" required>
+                        </div>
+
+                        <div class="col-lg-5-8 col-5-8">
+                            <label for="formsurname">SURNAME</label>
+                            <input class="col-lg-12 col-12" type="text" name="formsurname" id="formsurname"
+                                   required>
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <label for="formemail">EMAIL</label>
+                            <input class="col-lg-12 col-12" type="email" name="formemail" id="formemail" required>
+                        </div>
+
+                        <div class="col-lg-5-8 col-5-8">
+                            <label for="formphone">PHONE</label>
+                            <input class="col-lg-12 col-12" type="tel" name="formphone" id="formphone" required>
+                        </div>
+
+                        <div class="col-lg-5-8 col-5-8 genderdiv">
+                            <div class="col-lg-6 col-6">
+                                <label for="formwoman">WOMAN</label>
+                                <input type="radio" name="gender" id="formwoman">
+                            </div>
+                            <div class="col-lg-6 col-6">
+                                <label for="formman">MAN</label>
+                                <input type="radio" name="gender" id="formman">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" form="accountform" value="saveaccount">
+                                SAVE
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4 col-12 right">
+                        <div class="col-lg-12 col-12 head">
+                            CHANGE PASSWORD
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <label for="foroldpassword">CURRENT PASSWORD</label>
+                            <input class="col-lg-12 col-12" type="text" name="foroldpassword" id="foroldpassword"
+                                   required>
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <label for="fornewpassword">NEW PASSWORD</label>
+                            <input class="col-lg-12 col-12" type="text" name="fornewpassword" id="fornewpassword"
+                                   required>
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <label for="fornewpasswordconfirm">CONFIRM PASSWORD</label>
+                            <input class="col-lg-12 col-12" type="text" name="fornewpasswordconfirm"
+                                   id="fornewpasswordconfirm" required>
+                        </div>
+
+                        <div class="col-lg-12 col-12">
+                            <button type="submit" form="accountform" value="savepassword">
+                                SAVE
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+

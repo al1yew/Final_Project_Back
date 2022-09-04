@@ -1,0 +1,153 @@
+﻿
+<main>
+    <section class="whereareyou">
+        <div class="where">.</div>
+    </section>
+
+    <section class="breadcrumbregsiter">
+        <div class="container">
+            <div class="row keeper">
+                <div class="col-lg-6">
+                    <a asp-controller="Home" asp-action="Index">MAIN PAGE</a>&nbsp;/ CARDS
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mycards">
+        <div class="container">
+            <div class="row all">
+                <p class="firstp col-lg-12 col-12">MY CARDS</p>
+                <div class="carddiv col-lg-12 col-12">
+
+                    <div class="cardinozu col-lg-4 col-12">
+                        <div class="cardozu col-lg-12 col-12">
+                            <span class="col-lg-1-5 col-1-5">
+                                <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                            </span>
+                            <span class="cardno">
+                                5467 89** **** 1290
+                            </span>
+                            <span class="cardexpire">
+                                02/2025
+                            </span>
+                            <span class="cardholder">
+                                QAQASH QAQASHOV
+                            </span>
+                            <span class="deletecard">
+                                <a asp-controller="Card" asp-action="DeleteCard">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.75 4.2998V22.9998H20.25V4.2998H3.75Z" stroke="black"
+                                              stroke-linejoin="round" />
+                                        <path d="M9.8 9.7998V16.9498M14.2 9.7998V16.9498M1 4.2998H23" stroke="black"
+                                              stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M7.60059 4.3L9.40954 1H14.6279L16.4006 4.3H7.60059Z" stroke="black"
+                                              stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="ismain">Main Card</span>
+                            <span class=" headword">International card</span>
+                        </div>
+                    </div>
+
+                    <div class="cardinozu col-lg-4 col-12">
+                        <div class="cardozu col-lg-12 col-12">
+                            <span class="col-lg-1-5 col-1-5">
+                                <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                            </span>
+                            <span class="cardno">
+                                5467 89** **** 1290
+                            </span>
+                            <span class="cardexpire">
+                                02/2025
+                            </span>
+                            <span class="cardholder">
+                                QAQASH QAQASHOV
+                            </span>
+                            <span class="deletecard">
+                                <a asp-controller="Card" asp-action="DeleteCard">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.75 4.2998V22.9998H20.25V4.2998H3.75Z" stroke="black"
+                                              stroke-linejoin="round" />
+                                        <path d="M9.8 9.7998V16.9498M14.2 9.7998V16.9498M1 4.2998H23" stroke="black"
+                                              stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M7.60059 4.3L9.40954 1H14.6279L16.4006 4.3H7.60059Z" stroke="black"
+                                              stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </span>
+                            <span class="makemain">
+                                <a asp-controller="Card" asp-action="MakeMain">
+                                    MAKE MAIN
+                                </a>
+                            </span>
+                            <span class=" headword">International card</span>
+                        </div>
+                    </div>
+
+                    <div class="cardform col-lg-4 col-12">
+
+                        <p class="clicktoaddnewcard">
+                            ADD NEW
+                        </p>
+
+                        <div class="again_allcontent">
+                            <div class="allcontent col-lg-12 col-12">
+
+                                <form action="" method="post" id="addnewcardform"
+                                      class="cardozu col-lg-12 col-12 addnewcardform">
+
+                                    <input name="cardno" id="cardno" class="col-8 col-lg-8 cardno" type="text"
+                                           required placeholder="0000 0000 0000 0000" maxlength="16">
+
+                                    <span class="col-lg-1-2 col-1-5">
+                                        <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                                    </span>
+
+                                    <span class="col-lg-1-2 col-1-5">
+                                        <img class="img-fluid" src="~/assets/images/settings/visa.jpg" alt="">
+                                    </span>
+
+                                    <input name="cardname" id="cardname" class="col-5-8 col-lg-5-8 cardname"
+                                           type="text" required placeholder="NAME"
+                                           title="Name must be contain only letters!">
+
+                                    <input name="cardsurname" id="cardsurname"
+                                           class="col-5-8 col-lg-5-8 cardsurname" type="text" placeholder="SURNAME"
+                                           required title="Surname must be contain only letters!">
+
+                                    <input name="expire" id="expire" class="col-5-8 col-lg-5-8 expire" type="text"
+                                           required placeholder="MM/YYYY" pattern="\d{2}\/\d{4}" maxlength="7">
+
+                                    <input name="cvv" id="cvv" class="col-5-8 col-lg-5-8 cvv" type="text" required
+                                           placeholder="CVV CODE" pattern="^[0-9]{3,4}$" maxlength="4">
+
+                                    <button form="addnewcardform" type="submit"
+                                            class="cardchangebtn col-lg-2-5 col-2-5" value="save">
+                                        SAVE
+                                    </button>
+
+                                    <button type="button" class="cancelnewcard col-lg-2-5 col-2-5"
+                                            value="save">
+                                        CANCEL
+                                    </button>
+
+                                    <button form="addnewcardform" type="submit"
+                                            class="cardchangebtn col-lg-6-5 col-6-5" value="add">
+                                        SAVE AND MAKE MAIN
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ya fetch edib js de `` icinde yaradib set eliyecem,
+                    ya da ki partial view edib actiondan return edecem. -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>

@@ -1,32 +1,30 @@
-﻿
-
-<footer class="footer">
+﻿<footer class="footer">
     <div class="mainpart">
         <div class="container">
             <div class="row footer_row">
                 <div class="col-lg-3 col-6 parent_div formobile1">
                     <p class="footer_header">CUSTOMER SERVICE</p>
                     <div class="child">
-                        <a href="chat.html">CHAT ONLINE</a>
-                        <a href="contact.html">CONTACT US</a>
+                        <a asp-controller="Chat" asp-action="Index">CHAT ONLINE</a>
+                        <a asp-controller="Contact" asp-action="Index">CONTACT US</a>
                     </div>
                 </div>
                 <div class="col-lg-5 col-12 parent_div formobile2">
                     <div class="col-lg-5-5 col-6">
                         <p class="footer_header">SHOP</p>
                         <div class="child">
-                            <a href="policy.html" target="_blank">SHIPPING AND RETURNS</a>
-                            <a href="faq.html">FAQ</a>
-                            <a href="policy.html" target="_blank">TRUCK ORDERS</a>
+                            <a asp-controller="Policy" asp-action="Index" target="_blank">SHIPPING AND RETURNS</a>
+                            <a asp-controller="Faq" asp-action="Index">FAQ</a>
+                            <a asp-controller="Policy" asp-action="Index" target="_blank">TRUCK ORDERS</a>
                         </div>
                     </div>
                     <div class="col-lg-5-5 col-6">
                         <p class="footer_header">BUSINESS</p>
                         <div class="child">
-                            <a href="about.html">ABOUT US</a>
-                            <a href="policy.html" target="_blank">STORE LOCATOR</a>
-                            <a href="policy.html" target="_blank">FRANCHISE</a>
-                            <a href="policy.html" target="_blank">WORK WITH US</a>
+                            <a asp-controller="About" asp-action="Index">ABOUT US</a>
+                            <a asp-controller="Policy" asp-action="Index" target="_blank">STORE LOCATOR</a>
+                            <a asp-controller="Policy" asp-action="Index" target="_blank">FRANCHISE</a>
+                            <a asp-controller="Policy" asp-action="Index" target="_blank">WORK WITH US</a>
                         </div>
                     </div>
                 </div>
@@ -79,33 +77,33 @@
                     <a href="https://firuzaazizova.com" target="_blank">Design by Firuza Azizova</a>
                 </div>
                 <div class="col-lg-6-5 forcompyuter">
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         Privacy &nbsp;
                     </a>
                     |
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         &nbsp;Cookie preferences&nbsp;
                     </a>
                     |
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         &nbsp;Purchase conditions&nbsp;
                     </a>
                     |
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         &nbsp;Cookie policy
                     </a>
                 </div>
                 <div class=" col-12 formobile">
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         Privacy
                     </a>
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         Cookie preferences
                     </a>
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         Purchase conditions
                     </a>
-                    <a href="privacy.html" target="_blank">
+                    <a asp-controller="Policy" asp-action="Index" target="_blank">
                         Cookie policy
                     </a>
                 </div>
@@ -119,9 +117,9 @@
                               stroke="#14181F" stroke-miterlimit="10" stroke-linecap="round"
                               stroke-linejoin="round" />
                     </svg>
-                    <a href="index.html">AZE</a>
-                    <a href="index.html">&nbsp;| ENG</a>
-                    <a href="index.html">&nbsp;| RUS</a>
+                    <a asp-controller="Home" asp-action="Index">AZE</a>
+                    <a asp-controller="Home" asp-action="Index">&nbsp;| ENG</a>
+                    <a asp-controller="Home" asp-action="Index">&nbsp;| RUS</a>
                 </div>
             </div>
         </div>

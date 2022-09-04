@@ -1,28 +1,21 @@
 ﻿
 
-<div class="preloader">
-    <div class="preloader__row">
-        <div class="preloader__item"></div>
-        <div class="preloader__item"></div>
-    </div>
-</div>
-
 <header class="header">
     <div class="container">
         <div class="computer">
             <div class="row d-flex  align-tify-content-between navigation">
                 <div class="gender col-lg-3">
-                    <a href="shop.html">WOMAN</a>
+                    <a asp-controller="Shop" asp-action="Index">WOMAN</a>
                     |
-                    <a href="shop.html">MAN</a>
+                    <a asp-controller="Shop" asp-action="Index">MAN</a>
                 </div>
 
                 <div class="nav col-lg-4-5">
-                    <a href="index.html">HOME</a>
-                    <a href="shop.html">SHOP</a>
-                    <a href="about.html">ABOUT</a>
-                    <a href="contact.html">CONTACT</a>
-                    <a href="faq.html">FAQ</a>
+                    <a asp-controller="Home" asp-action="Index">HOME</a>
+                    <a asp-controller="Shop" asp-action="Index">SHOP</a>
+                    <a asp-controller="About" asp-action="Index">ABOUT</a>
+                    <a asp-controller="Contact" asp-action="Index">CONTACT</a>
+                    <a asp-controller="Faq" asp-action="Index">FAQ</a>
                 </div>
                 <div class="search col-lg-2-2">
                     <input class="search_input " id="header_search" placeholder="SEARCH" type="text">
@@ -33,7 +26,7 @@
                         <div class="searchelements">
                             <ul class="searchul">
                                 <li>
-                                    <a href="detail.html">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <span class="col-lg-2 col-2">
                                             <img src="~/assets/images/Products/product14.jpg" alt=""
                                                  class="img-fluid">
@@ -53,7 +46,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="detail.html">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <span class="col-lg-2 col-2">
                                             <img src="~/assets/images/Products/product14.jpg" alt=""
                                                  class="img-fluid">
@@ -73,7 +66,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="detail.html">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <span class="col-lg-2 col-2">
                                             <img src="~/assets/images/Products/product14.jpg" alt=""
                                                  class="img-fluid">
@@ -93,7 +86,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="detail.html">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <span class="col-lg-2 col-2">
                                             <img src="~/assets/images/Products/product14.jpg" alt=""
                                                  class="img-fluid">
@@ -118,7 +111,7 @@
 
                 </div>
                 <div class="cart col-lg-0-5">
-                    <a class="baskethref" href="basket.html">
+                    <a class="baskethref" asp-controller="Basket" asp-action="Index">
                         <svg width="26" height="31" viewBox="0 0 28 34" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path class="cart_path"
@@ -138,8 +131,8 @@
                         <div class="basket_items ">
                             <div class="basket_item">
 
-                                <div class="col-lg-3 left">
-                                    <a href="detail.html">
+                                <div class="col-lg-2-5 left">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <img class="img-fluid" src="~/assets/images/Products/product18.jpg" alt="">
                                     </a>
                                 </div>
@@ -169,7 +162,7 @@
                                         </li>
                                     </ul>
 
-                                    <a href="" class="deletefrombasket classforbasketscssdelete">
+                                    <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
                                         <svg width="24"
                                              height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -183,10 +176,11 @@
                                     </a>
                                 </div>
                             </div>
+
                             <div class="basket_item">
 
-                                <div class="col-lg-3 left">
-                                    <a href="detail.html">
+                                <div class="col-lg-2-5 left">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <img class="img-fluid" src="~/assets/images/Products/product18.jpg" alt="">
                                     </a>
                                 </div>
@@ -216,7 +210,7 @@
                                         </li>
                                     </ul>
 
-                                    <a href="" class="deletefrombasket classforbasketscssdelete">
+                                    <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
                                         <svg width="24"
                                              height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -230,10 +224,11 @@
                                     </a>
                                 </div>
                             </div>
+
                             <div class="basket_item">
 
-                                <div class="col-lg-3 left">
-                                    <a href="detail.html">
+                                <div class="col-lg-2-5 left">
+                                    <a asp-controller="Shop" asp-action="ProductDetail">
                                         <img class="img-fluid" src="~/assets/images/Products/product5.jpg" alt="">
                                     </a>
                                 </div>
@@ -263,7 +258,7 @@
                                         </li>
                                     </ul>
 
-                                    <a href="" class="deletefrombasket classforbasketscssdelete">
+                                    <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
                                         <svg width="24"
                                              height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -306,10 +301,10 @@
                             </div>
                             <div class="bottom">
                                 <div class="left">
-                                    <a href="basket.html">GO TO CART</a>
+                                    <a asp-controller="Basket" asp-action="Index">GO TO CART</a>
                                 </div>
                                 <div class="right">
-                                    <a href="checkout.html">CHECKOUT</a>
+                                    <a asp-controller="Checkout" asp-action="Index">CHECKOUT</a>
                                 </div>
                             </div>
                         </div>
@@ -328,14 +323,14 @@
                     <div class="accountinfo">
                         <ul>
                             <li>
-                                <a href="login.html">SIGN IN</a>
+                                <a asp-controller="Account" asp-action="Login">SIGN IN</a>
                                 <div>
                                     <span>HAVEN'T GOT AN ACCOUNT? </span>
-                                    <a href="register.html">REGISTER!</a>
+                                    <a asp-controller="Account" asp-action="Register">REGISTER!</a>
                                 </div>
                             </li>
                             <li>
-                                <a href="order.html">
+                                <a asp-controller="Order" asp-action="Index">
                                     <span>MY PURCHASES</span>
                                     <span>
                                         <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -349,7 +344,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="address.html">
+                                <a asp-controller="Address" asp-action="Index">
                                     <span>MY ADDRESSES</span>
                                     <span>
                                         <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -363,7 +358,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="card.html">
+                                <a asp-controller="Card" asp-action="Index">
                                     <span>MY CARDS</span>
                                     <span>
                                         <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -377,7 +372,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="accountinfo.html">
+                                <a asp-controller="AccountInfo" asp-action="Index">
                                     <span>ACCOUNT INFORMATION</span>
                                     <span>
                                         <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -406,24 +401,24 @@
                 <div class="headersidebarmenu">
                     <ul class="tab-menu col-6">
                         <li data-rel="tab1" class="active-tab woman col-6 bcgrgrey">
-                            <a class="sidebar_ahref" href="shop.html">
+                            <a class="sidebar_ahref" asp-controller="Shop" asp-action="Index">
                                 WOMAN
                             </a>
                         </li>
                         <li data-rel="tab2" class="col-6 man bcgrgrey">
-                            <a class="sidebar_ahref" href="shop.html">
+                            <a class="sidebar_ahref" asp-controller="Shop" asp-action="Index">
                                 MAN
                             </a>
                         </li>
                     </ul>
                     <ul class="headermenu col-6">
                         <li class="col-6 home">
-                            <a href="shop.html">
+                            <a asp-controller="Shop" asp-action="Index">
                                 SHOP
                             </a>
                         </li>
                         <li class="col-3 home">
-                            <a href="index.html" class="homehref">
+                            <a asp-controller="Home" asp-action="Index" class="homehref">
                                 <ion-icon name="home-outline" class="sidebar_btn"></ion-icon>
                             </a>
                         </li>
@@ -439,49 +434,49 @@
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman1.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">NEW</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">NEW</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman2.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">CLOTHING</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">CLOTHING</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman3.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">SHOES</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">SHOES</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman4.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">BAGS</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">BAGS</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman5.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">ACCESSORIES</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">ACCESSORIES</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman6.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">WHAT TO WEAR TODAY</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">WHAT TO WEAR TODAY</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman7.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">PACIFIC REPUBLIC</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">PACIFIC REPUBLIC</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categorywoman8.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="woman" href="shop.html" class="col-9">JOIN LIFE</a>
+                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" class="col-9">JOIN LIFE</a>
                         </li>
                     </ul>
                     <ul id="tab2" class="tab_content">
@@ -489,56 +484,53 @@
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categoryman1.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="man" href="shop.html" class="col-9">NEW</a>
+                            <a data-rel="man" asp-controller="Shop" asp-action="Index" class="col-9">NEW</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categoryman2.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="man" href="shop.html" class="col-9">CLOTHING</a>
+                            <a data-rel="man" asp-controller="Shop" asp-action="Index" class="col-9">CLOTHING</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categoryman3.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="man" href="shop.html" class="col-9">SHOES</a>
+                            <a data-rel="man" asp-controller="Shop" asp-action="Index" class="col-9">SHOES</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categoryman4.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="man" href="shop.html" class="col-9">ACCESSORIES</a>
+                            <a data-rel="man" asp-controller="Shop" asp-action="Index" class="col-9">ACCESSORIES</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categoryman5.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="man" href="shop.html" class="col-9">XDYE</a>
+                            <a data-rel="man" asp-controller="Shop" asp-action="Index" class="col-9">XDYE</a>
                         </li>
                         <li class="sidebar_menu_li">
                             <div class="imagekeeper col-2">
                                 <img src="~/assets/images/categories/categoryman6.jpg" class="img-fluid" alt="">
                             </div>
-                            <a data-rel="man" href="shop.html" class="col-9">JOIN LIFE</a>
+                            <a data-rel="man" asp-controller="Shop" asp-action="Index" class="col-9">JOIN LIFE</a>
                         </li>
                     </ul>
                 </div>
 
                 <ul class="footer_sidebar">
                     <li>
-                        <a href="account.html">ACCOUNT</a>
+                        <a asp-controller="Basket" asp-action="Index">CART</a>
                     </li>
                     <li>
-                        <a href="basket.html">CART</a>
+                        <a asp-controller="About" asp-action="Index">ABOUT</a>
                     </li>
                     <li>
-                        <a href="about.html">ABOUT</a>
+                        <a asp-controller="Contact" asp-action="Index">CONTACT</a>
                     </li>
                     <li>
-                        <a href="contact.html">CONTACT</a>
-                    </li>
-                    <li>
-                        <a href="faq.html">FAQ</a>
+                        <a asp-controller="Faq" asp-action="Index">FAQ</a>
                     </li>
                 </ul>
             </div>
@@ -552,7 +544,7 @@
                     <div class="searchelements">
                         <ul>
                             <li>
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <span class="col-lg-2 col-2">
                                         <img src="~/assets/images/Products/product14.jpg" alt="" class="img-fluid">
                                     </span>
@@ -571,7 +563,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <span class="col-lg-2 col-2">
                                         <img src="~/assets/images/Products/product14.jpg" alt="" class="img-fluid">
                                     </span>
@@ -590,7 +582,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <span class="col-lg-2 col-2">
                                         <img src="~/assets/images/Products/product14.jpg" alt="" class="img-fluid">
                                     </span>
@@ -609,7 +601,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <span class="col-lg-2 col-2">
                                         <img src="~/assets/images/Products/product14.jpg" alt="" class="img-fluid">
                                     </span>
@@ -633,7 +625,7 @@
             </div>
 
             <div class="cart col-1 forclosebasket">
-                <a class="openbasket forclosebasket" href="basket.html">
+                <a class="openbasket forclosebasket" asp-controller="Basket" asp-action="Index">
                     <svg class="forclosebasket" width="26" height="31" viewBox="0 0 28 34" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <path class="cart_path"
@@ -654,7 +646,7 @@
                         <div class="basket_item forclosebasket">
 
                             <div class="col-lg-3 col-3 left forclosebasket">
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <img class="img-fluid" src="~/assets/images/Products/product18.jpg" alt="">
                                 </a>
                             </div>
@@ -684,7 +676,7 @@
                                     </li>
                                 </ul>
 
-                                <a href="" class="forclosebasket deletefrombasket classforbasketscssdelete">
+                                <a asp-controller="Basket" asp-action="DeleteFromBasket" class="forclosebasket deletefrombasket classforbasketscssdelete">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
@@ -701,7 +693,7 @@
                         <div class="basket_item">
 
                             <div class="col-lg-3 col-3 left">
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <img class="img-fluid" src="~/assets/images/Products/product18.jpg" alt="">
                                 </a>
                             </div>
@@ -731,7 +723,7 @@
                                     </li>
                                 </ul>
 
-                                <a href="" class="deletefrombasket classforbasketscssdelete">
+                                <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
                                     <svg width="24"
                                          height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -749,7 +741,7 @@
                         <div class="basket_item">
 
                             <div class="col-lg-3 col-3 left">
-                                <a href="detail.html">
+                                <a asp-controller="Shop" asp-action="ProductDetail">
                                     <img class="img-fluid" src="~/assets/images/Products/product8.jpg" alt="">
                                 </a>
                             </div>
@@ -779,7 +771,7 @@
                                     </li>
                                 </ul>
 
-                                <a href="" class="deletefrombasket classforbasketscssdelete">
+                                <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
                                     <svg width="24"
                                          height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -822,10 +814,10 @@
                         </div>
                         <div class="bottom forclosebasket">
                             <div class="left forclosebasket">
-                                <a href="basket.html">GO TO CART</a>
+                                <a asp-controller="Basket" asp-action="Index">GO TO CART</a>
                             </div>
                             <div class="right forclosebasket">
-                                <a href="checkout.html">CHECKOUT</a>
+                                <a asp-controller="Checkout" asp-action="Index">CHECKOUT</a>
                             </div>
                         </div>
                     </div>
@@ -845,14 +837,14 @@
                 <div class="accountinfo forcloseaccount">
                     <ul class="forcloseaccount">
                         <li>
-                            <a href="login.html" class="">SIGN IN</a>
+                            <a asp-controller="Account" asp-action="Login" class="">SIGN IN</a>
                             <div class="">
                                 <span class="">HAVEN'T GOT AN ACCOUNT? </span>
-                                <a href="register.html" class="">REGISTER!</a>
+                                <a asp-controller="Account" asp-action="Register" class="">REGISTER!</a>
                             </div>
                         </li>
                         <li>
-                            <a href="order.html">
+                            <a asp-controller="Order" asp-action="Index">
                                 <span>MY PURCHASES</span>
                                 <span>
                                     <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -866,7 +858,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="address.html">
+                            <a asp-controller="Address" asp-action="Index">
                                 <span>MY ADDRESSES</span>
                                 <span>
                                     <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -880,7 +872,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="card.html">
+                            <a asp-controller="Card" asp-action="Index">
                                 <span>MY CARDS</span>
                                 <span>
                                     <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
@@ -894,7 +886,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="accountinfo.html">
+                            <a asp-controller="AccountInfo" asp-action="Index">
                                 <span>ACCOUNT INFORMATION</span>
                                 <span>
                                     <svg width="43" height="13" viewBox="0 0 43 13" fill="none"

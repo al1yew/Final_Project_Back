@@ -197,7 +197,9 @@ namespace Pull_Bear.Service.Implementations
             product.Seria = "ref" + +1;
             product.Count = productColorSizes.Sum(x => x.Count);
             product.ProductImage = await productCreateVM.ProductPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
+            product.ShopImage = await productCreateVM.ShopPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.MainImage1 = await productCreateVM.MainPhoto1.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
+            product.ShopImage = await productCreateVM.ShopPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.MainImage2 = await productCreateVM.MainPhoto2.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
 
             await _unitOfWork.ProductRepository.AddAsync(product);
@@ -315,6 +317,12 @@ namespace Pull_Bear.Service.Implementations
             {
                 FileManager.DeleteFile(_env, dbProduct.ProductImage, "assets", "images", "products", $"{productUpdateVM.Id}");
                 dbProduct.ProductImage = await productUpdateVM.ProductPhoto.CreateAsync(_env, "assets", "images", "products", $"{productUpdateVM.Id}");
+            }
+
+            if (productUpdateVM.ShopPhoto != null)
+            {
+                FileManager.DeleteFile(_env, dbProduct.ShopImage, "assets", "images", "products", $"{productUpdateVM.Id}");
+                dbProduct.ShopImage = await productUpdateVM.ShopPhoto.CreateAsync(_env, "assets", "images", "products", $"{productUpdateVM.Id}");
             }
 
             if (productUpdateVM.MainPhoto1 != null)

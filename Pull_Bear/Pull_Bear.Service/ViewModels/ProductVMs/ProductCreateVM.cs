@@ -33,6 +33,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
 
         //image loading 
         public IFormFile ProductPhoto { get; set; }
+        public IFormFile ShopPhoto { get; set; }
         public IFormFile MainPhoto1 { get; set; }
         public IFormFile MainPhoto2 { get; set; }
         public List<IFormFile> Files { get; set; }
@@ -97,7 +98,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
 
             RuleFor(x => x).Custom((x, y) =>
             {
-                if (x.ProductPhoto == null && x.MainPhoto1 == null && x.MainPhoto2 == null && x.Files == null)
+                if (x.ProductPhoto == null && x.MainPhoto1 == null && x.MainPhoto2 == null && x.Files == null && x.ShopPhoto == null)
                 {
                     y.AddFailure("All Photos are required for better sales!");
                 }
@@ -115,7 +116,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
                 }
 
-                if (x.MainPhoto1 != null)
+                if (x.MainPhoto2 != null)
                 {
                     if (!x.MainPhoto2.ContentType.ToString().Contains("image/"))
                     {
@@ -128,7 +129,20 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
                 }
 
-                if (x.MainPhoto1 != null)
+                if (x.ShopPhoto != null)
+                {
+                    if (!x.ShopPhoto.ContentType.ToString().Contains("image/"))
+                    {
+                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
+                    }
+
+                    if (x.ShopPhoto.Length / 1024 > 10000)
+                    {
+                        y.AddFailure("Image must be at most 10mb!");
+                    }
+                }
+
+                if (x.ProductPhoto != null)
                 {
                     if (!x.ProductPhoto.ContentType.ToString().Contains("image/"))
                     {

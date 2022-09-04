@@ -33,6 +33,11 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public List<ProductImageGetVM> ProductImages { get; set; }
         public List<ProductReviewGetVM> ProductReviews { get; set; }
 
+        //images
+        public string ProductImage { get; set; }
+        public string ShopImage { get; set; }
+        public string MainImage1 { get; set; }
+        public string MainImage2 { get; set; }
 
         //relations many products - many...
         public List<ProductToTagGetVM> ProductToTags { get; set; }

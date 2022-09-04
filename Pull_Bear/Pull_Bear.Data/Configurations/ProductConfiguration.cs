@@ -21,6 +21,7 @@ namespace Pull_Bear.Data.Configurations
             builder.Property(x => x.DiscountPrice).HasColumnType("money");
             builder.Property(x => x.Price).IsRequired().HasColumnType("money");
             builder.Property(x => x.ProductImage).IsRequired();
+            builder.Property(x => x.ShopImage).IsRequired();
             builder.Property(x => x.MainImage1).IsRequired();
             builder.Property(x => x.MainImage2).IsRequired();
             builder.Property(x => x.PhotoModelIndicators).IsRequired().HasMaxLength(255);

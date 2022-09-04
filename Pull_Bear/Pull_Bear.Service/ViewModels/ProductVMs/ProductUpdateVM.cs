@@ -32,6 +32,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
 
         //image loading 
         public IFormFile ProductPhoto { get; set; }
+        public IFormFile ShopPhoto { get; set; }
         public IFormFile MainPhoto1 { get; set; }
         public IFormFile MainPhoto2 { get; set; }
         public List<IFormFile> Files { get; set; }
@@ -115,6 +116,19 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
                     }
 
                     if (x.MainPhoto2.Length / 1024 > 10000)
+                    {
+                        y.AddFailure("Image must be at most 10mb!");
+                    }
+                }
+
+                if (x.ShopPhoto != null)
+                {
+                    if (!x.ShopPhoto.ContentType.ToString().Contains("image/"))
+                    {
+                        y.AddFailure("Image must be only accepted IMAGE MIME types!");
+                    }
+
+                    if (x.ShopPhoto.Length / 1024 > 10000)
                     {
                         y.AddFailure("Image must be at most 10mb!");
                     }

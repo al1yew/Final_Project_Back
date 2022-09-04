@@ -477,6 +477,10 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("nvarchar(12)")
                         .HasMaxLength(12);
 
+                    b.Property<string>("ShopImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 

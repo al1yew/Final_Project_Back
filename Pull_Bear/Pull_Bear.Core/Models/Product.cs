@@ -29,6 +29,7 @@ namespace Pull_Bear.Core.Models
 
         //images
         public string ProductImage { get; set; }
+        public string ShopImage { get; set; }
         public string MainImage1 { get; set; }
         public string MainImage2 { get; set; }
 

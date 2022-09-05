@@ -1,4 +1,4 @@
-﻿
+﻿@model LoginVM
 
 <main>
 
@@ -23,14 +23,15 @@
                 <p class="secondp">
                     We’re happy to see you again!
                 </p>
-                <form method="post" action="" class="col-lg-6 col-12">
-                    <label for="emaillogin"><span>*</span> EMAIL OR PHONE</label>
-                    <input id="emaillogin" class=" textinp col-12 col-lg-12" required type="text"
+                <div asp-validation-summary="ModelOnly"></div>
+                <form method="post" action="" enctype="multipart/form-data" class="col-lg-6 col-12">
+                    <label asp-for="Email"><span>*</span> EMAIL OR PHONE</label>
+                    <input id="emaillogin" asp-for="Email" class=" textinp col-12 col-lg-12" required type="text"
                            placeholder="Enter your email address">
 
                     <div class="passworddiv col-12 col-lg-12">
-                        <label for="password"><span>*</span> PASSWORD</label>
-                        <input placeholder="Enter your password" id="password" class=" textinp col-12 col-lg-12"
+                        <label asp-for="Password"><span>*</span> PASSWORD</label>
+                        <input asp-for="Password" placeholder="Enter your password" id="password" class=" textinp col-12 col-lg-12"
                                required type="password">
                         <span class="boshduqjsuchun"></span>
                         <span class="seepass">
@@ -49,8 +50,8 @@
 
                     <div class="bottomlogin col-lg-12 col-12">
                         <span class="col-lg-6 col-6 rememberme">
-                            <input class="" type="checkbox" name="" id="rememberme">
-                            <label class="col-lg-9 col-10" for="rememberme">Remember me</label>
+                            <input asp-for="RememberMe" class="" type="checkbox" name="" id="rememberme">
+                            <label asp-for="RememberMe" class="col-lg-9 col-10">Remember me</label>
                         </span>
                         <span class="col-lg-6 col-6 forgot">
                             <a asp-controller="Account" asp-action="ForgotPassword">

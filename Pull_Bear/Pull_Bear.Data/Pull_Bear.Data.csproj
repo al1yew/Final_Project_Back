@@ -49,6 +49,8 @@
     <Compile Remove="Migrations\20220903112919_ChangedLogicsProductPhoto.Designer.cs" />
     <Compile Remove="Migrations\20220903150003_ChangedLogicsProductPhoto.cs" />
     <Compile Remove="Migrations\20220903150003_ChangedLogicsProductPhoto.Designer.cs" />
+    <Compile Remove="Migrations\20220905114321_UpdatedTabless.cs" />
+    <Compile Remove="Migrations\20220905114321_UpdatedTabless.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

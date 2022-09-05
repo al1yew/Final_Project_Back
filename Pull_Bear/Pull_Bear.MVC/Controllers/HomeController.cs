@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Pull_Bear.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,16 @@ namespace Pull_Bear.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IHomeService _homeService;
+
+        public HomeController(IHomeService homeService)
         {
-            return View();
+            _homeService = homeService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _homeService.GetDataAsync());
         }
     }
 }

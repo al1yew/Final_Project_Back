@@ -1548,5 +1548,15 @@ $(document).ready(function () {
 
     //#endregion open close checkout page modals
 
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region main page newprods third element removing on phone
+
+    if ($(window).width() < 576) {
+
+        $($('.newprodcs').children()[2]).addClass('notformobile');
+    }
+    //#endregion main page newprods third element removing on phone
+
 });
 

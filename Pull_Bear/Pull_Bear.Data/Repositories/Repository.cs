@@ -24,6 +24,11 @@ namespace Pull_Bear.Data.Repositories
             await _context.Set<TEntity>().AddAsync(entity);
         }
 
+        public async Task AddRangeAsync(List<TEntity> entities)
+        {
+            await _context.Set<TEntity>().AddRangeAsync(entities);
+        }
+
         public async Task<List<TEntity>> GetAllAsync(params string[] includes)
         {
             IQueryable<TEntity> query = _context.Set<TEntity>();

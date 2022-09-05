@@ -12,6 +12,8 @@ namespace Pull_Bear.Core.Models
         public string SurName { get; set; }
 
         public bool IsAdmin { get; set; }
+        public Gender Gender { get; set; }
+        public int? GenderId { get; set; }
 
 
         //for crud
@@ -22,9 +24,9 @@ namespace Pull_Bear.Core.Models
 
 
         //relations many to many
-        //public List<Basket> Baskets { get; set; }
+        public List<Basket> Baskets { get; set; }
         //public IEnumerable<Order> Orders { get; set; }
-        //public List<Wishlist> Wishlists { get; set; }
-        
+        public List<Wishlist> Wishlists { get; set; }
+
     }
 }

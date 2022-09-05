@@ -175,6 +175,9 @@ namespace Pull_Bear.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("GenderId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
@@ -227,6 +230,8 @@ namespace Pull_Bear.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GenderId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -236,6 +241,42 @@ namespace Pull_Bear.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.Basket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductColorSizeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductColorSizeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.BodyFit", b =>
@@ -363,6 +404,38 @@ namespace Pull_Bear.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.Gender", b =>
@@ -736,6 +809,39 @@ namespace Pull_Bear.Data.Migrations
                     b.ToTable("Tags");
                 });
 
+            modelBuilder.Entity("Pull_Bear.Core.Models.Wishlist", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductColorSizeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ProductColorSizeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Wishlists");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -785,6 +891,30 @@ namespace Pull_Bear.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.AppUser", b =>
+                {
+                    b.HasOne("Pull_Bear.Core.Models.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderId");
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.Basket", b =>
+                {
+                    b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
+                        .WithMany("Baskets")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Pull_Bear.Core.Models.ProductColorSize", "ProductColorSize")
+                        .WithMany()
+                        .HasForeignKey("ProductColorSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pull_Bear.Core.Models.Product", null)
+                        .WithMany("Baskets")
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.BodyFit", b =>
@@ -887,6 +1017,23 @@ namespace Pull_Bear.Data.Migrations
                         .HasForeignKey("ProductReviewId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.Wishlist", b =>
+                {
+                    b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Pull_Bear.Core.Models.ProductColorSize", "ProductColorSize")
+                        .WithMany()
+                        .HasForeignKey("ProductColorSizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pull_Bear.Core.Models.Product", null)
+                        .WithMany("Wishlists")
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

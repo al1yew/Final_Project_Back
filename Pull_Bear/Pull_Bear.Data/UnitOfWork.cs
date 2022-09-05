@@ -21,6 +21,8 @@ namespace Pull_Bear.Data
         private readonly SettingRepository _settingRepository;
         private readonly SizeRepository _sizeRepository;
         private readonly TagRepository _tagRepository;
+        private readonly BasketRepository _basketRepository;
+        private readonly WishlistRepository _wishlistRepository;
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -49,6 +51,10 @@ namespace Pull_Bear.Data
         public ISizeRepository SizeRepository => _sizeRepository != null ? _sizeRepository : new SizeRepository(_context);
 
         public ITagRepository TagRepository => _tagRepository != null ? _tagRepository : new TagRepository(_context);
+
+        public IBasketRepository BasketRepository => _basketRepository != null ? _basketRepository : new BasketRepository(_context);
+
+        public IWishlistRepository WishlistRepository => _wishlistRepository != null ? _wishlistRepository : new WishlistRepository(_context);
 
 
         public int Commit()

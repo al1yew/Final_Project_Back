@@ -29,6 +29,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public string GenderName { get; set; }
         public int GenderId { get; set; }
 
+        public bool IsHotSale { get; set; }
+        public bool IsNew { get; set; }
+        public bool IsPreOrder { get; set; }
+
         //relations one product - many ...
         public List<ProductImageGetVM> ProductImages { get; set; }
         public List<ProductReviewGetVM> ProductReviews { get; set; }

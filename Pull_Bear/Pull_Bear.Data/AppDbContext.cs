@@ -31,8 +31,11 @@ namespace Pull_Bear.Data
         public DbSet<ReviewImage> ReviewImages { get; set; }
         public DbSet<ProductColorSize> ProductColorSizes { get; set; }
         public DbSet<ProductToTag> ProductToTags { get; set; }
-        public DbSet<Tag> Tags { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Wishlist> Wishlists { get; set; }
 
     }
 }

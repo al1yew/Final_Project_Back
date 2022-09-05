@@ -18,7 +18,7 @@ namespace Pull_Bear.Service.ViewModels.AccountVMs
     {
         public LoginVMValidator()
         {
-            RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("You must enter Email address!");
+            RuleFor(x => x.Email).NotEmpty().WithMessage("You must enter Email or login!");
             RuleFor(x => x.Password).NotEmpty().WithMessage("You must enter Password!");
         }
     }

@@ -135,8 +135,14 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<AppUser, AppUserGetVM>();
 
             CreateMap<AppUserGetVM, AppUserUpdateVM>();
-            #endregion                                                                                  
+            #endregion
 
+            #region Home View
+
+            CreateMap<Product, ProductListVM>();
+            CreateMap<Setting, SettingListVM>();
+
+            #endregion
         }
     }
 }

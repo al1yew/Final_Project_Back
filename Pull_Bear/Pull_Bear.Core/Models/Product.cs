@@ -38,6 +38,8 @@ namespace Pull_Bear.Core.Models
         //relations one product - many ...
         public List<ProductImage> ProductImages { get; set; }
         public List<ProductReview> ProductReviews { get; set; }
+        public IEnumerable<Basket> Baskets { get; set; }
+        public IEnumerable<Wishlist> Wishlists { get; set; }
 
 
         //realtions one ... - many products

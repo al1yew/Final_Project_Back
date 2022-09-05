@@ -1,4 +1,4 @@
-﻿
+﻿@model IDictionary<string, string>
 
 <main>
 
@@ -24,20 +24,15 @@
                 <div class="col-lg-6 col-6 firstabout">
                     <p class="mission col-lg-10 col-12">OUR <span>MISSION</span> <br> AND VALUE</p>
                     <p class="col-lg-12 col-12 missiontext">
-                        Young people who have a casual dress sense, who <span>shun stereotypes</span> and who want
-                        to feel good
-                        in whatever they are wearing.
+                        @Html.Raw(Model.FirstOrDefault(x => x.Key == "missiontext1").Value)
                     </p>
-                    <img src="~/assets/images/about/aboutleft.jpg" alt="" class="col-lg-12 col-12 img-fluid">
+                    <img src="~/assets/images/settings/@Model.FirstOrDefault(x => x.Key == "aboutfirstphoto").Value" alt="" class="col-lg-12 col-12 img-fluid">
                 </div>
                 <div class="col-lg-6 col-6 firstabout">
                     <p class="col-lg-12 col-12 missiontext">
-                        Pull&Bear started up in <span>1991</span> with a clear international mission and with the
-                        intention of
-                        dressing young people who are engaged with their environment, who live in the community and
-                        relate to each other.
+                        @Html.Raw(Model.FirstOrDefault(x => x.Key == "missiontext2").Value)
                     </p>
-                    <img src="~/assets/images/about/aboutright.jpg" alt="" class="col-lg-12 col-12 img-fluid">
+                    <img src="~/assets/images/settings/@Model.FirstOrDefault(x => x.Key == "aboutsecondphoto").Value" alt="" class="col-lg-12 col-12 img-fluid">
                 </div>
 
             </div>
@@ -47,16 +42,10 @@
 
     <section class="karusel">
         <div class="carouselmaindivabout">
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
-            <span>PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE PULL&BEAR STYLE</span>
+            @for (int i = 0; i < 11; i++)
+            {
+                <span>@Model.FirstOrDefault(x => x.Key == "karuselabout").Value</span>
+            }
         </div>
     </section>
 
@@ -66,30 +55,25 @@
                 <div class="col-lg-12 col-12">
                     <span class="topyear col-lg-7 col-7">1991</span>
                     <span class="bottomtextyear col-lg-7 col-8">
-                        The Pull&Bear chain of fashion stores was born, a result of a market segmentation strategy
-                        initiated by the Inditex Group.
+                        @Model.FirstOrDefault(x => x.Key == "bottomtextyear1").Value
                     </span>
                 </div>
                 <div class="col-lg-12 col-12">
                     <span class="topyear col-lg-7 col-7">1992</span>
                     <span class="bottomtextyear col-lg-7 col-8">
-                        The ability to understand the concept of global fashion, along with an aggressive price
-                        policy, facilitated its international expansion from 1992 onwards, with the opening of their
-                        first stores in Portugal.
+                        @Model.FirstOrDefault(x => x.Key == "bottomtextyear2").Value
                     </span>
                 </div>
                 <div class="col-lg-12 col-12">
                     <span class="topyear col-lg-7 col-7">1993</span>
                     <span class="bottomtextyear col-lg-7 col-8">
-                        Pull&Bear arrived to Greece and Malta, and quickly gained strong position on both markets.
+                        @Model.FirstOrDefault(x => x.Key == "bottomtextyear3").Value
                     </span>
                 </div>
                 <div class="col-lg-12 col-12">
                     <span class="topyear col-lg-7 col-7">1991</span>
                     <span class="bottomtextyear col-lg-7 col-8">
-                        The first collection for women sees the light of the day. Xdye is also added to the
-                        Pull&Bear line, offering sportier and more technological garments, from the very beginning
-                        linked to the icons of 21st century youth
+                        @Model.FirstOrDefault(x => x.Key == "bottomtextyear4").Value
                     </span>
                 </div>
             </div>
@@ -100,15 +84,15 @@
     <section class="bigphoto">
         <div class="col-lg-12 col-12">
             <div class="imgkeeperabout">
-                <img src="~/assets/images/about/aboutbigbottom.jpg" alt="" class="col-lg-12 col-12 img-fluid">
+                <img src="~/assets/images/settings/@Model.FirstOrDefault(x => x.Key == "aboutbigimage").Value" alt="" class="col-lg-12 col-12 img-fluid">
                 <span class="forabs">
                     NUMBERS
                 </span>
                 <div class="col-lg-3 col-5 textleft">
-                    Turnover at the close of stood at 1,747 million euros, a 12% rise over the figure for 2021.
+                    @Model.FirstOrDefault(x => x.Key == "abouttextleft").Value
                 </div>
                 <div class="col-lg-3 col-5 textright">
-                    More than 179 million items were sold in total, including over 52 million T-shirts.
+                    @Model.FirstOrDefault(x => x.Key == "abouttextright").Value
                 </div>
             </div>
         </div>
@@ -208,51 +192,17 @@
                 <div class="col-lg-12 col-12 allthen">
 
                     <div class="col-lg-5 col-12 left">
-                        <img src="~/assets/images/about/aboutbottomlastphoto.jpg" alt="" class="img-fluid">
+                        <img src="~/assets/images/settings/@Model.FirstOrDefault(x=> x.Key == "aboutbottomlastphoto").Value" alt="" class="img-fluid">
 
                         <div class="firstcar">
 
                             <div class="carouselkeeper bottomtop">
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
+                                @for (int i = 0; i < 11; i++)
+                                {
+                                    <div class="span karuselitem">
+                                        @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp; @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp;
+                                    </div>
+                                }
                             </div>
 
                         </div>
@@ -260,46 +210,12 @@
                         <div class="secondcar">
 
                             <div class="carouselkeeper bottomright">
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
+                                @for (int i = 0; i < 11; i++)
+                                {
+                                    <div class="span karuselitem">
+                                        @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp; @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp;
+                                    </div>
+                                }
                             </div>
 
                         </div>
@@ -307,46 +223,12 @@
                         <div class="thirdcar">
 
                             <div class="carouselkeeper topbottom">
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
+                                @for (int i = 0; i < 11; i++)
+                                {
+                                    <div class="span karuselitem">
+                                        @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp; @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp;
+                                    </div>
+                                }
                             </div>
 
                         </div>
@@ -354,46 +236,12 @@
                         <div class="forthcar">
 
                             <div class="carouselkeeper topleft">
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
-                                <div class="span karuselitem">
-                                    PULL&BEAR COMMUNITY &nbsp;&nbsp; PULL&BEAR
-                                    COMMUNITY &nbsp;&nbsp;
-                                </div>
+                                @for (int i = 0; i < 11; i++)
+                                {
+                                    <div class="span karuselitem">
+                                        @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp; @Model.FirstOrDefault(x => x.Key == "aboutbottomCaroosel").Value &nbsp;&nbsp;
+                                    </div>
+                                }
                             </div>
 
                         </div>
@@ -401,18 +249,13 @@
 
                     <div class="col-lg-6 col-12 right">
                         <p class="col-lg-12 col-12">
-                            Pull&Bear offers their employees a dynamic and international environment where their
-                            ideas are valued and internal promotion is a reality. A great percentage of the
-                            management team began working in the stores. We also believe in employee stability and
-                            continuous training. Interested in working with us? What are you waiting for!
-
+                            @Model.FirstOrDefault(x => x.Key == "lasttextabout1").Value
                         </p>
                         <p class="col-lg-12 col-12">
-                            If you wish to find out about all our job offers both in central services and in stores,
-                            or if you would simply like to send us your curriculum vitae,
+                            @Model.FirstOrDefault(x => x.Key == "lasttextabout2").Value
                         </p>
-                        <a href="mailto:pullandbear@gmail.com">
-                            Write us on pullandbear@gmail.com
+                        <a href="mailto:@Model.FirstOrDefault(x => x.Key == "mailabout").Value">
+                            Write us on @Model.FirstOrDefault(x => x.Key == "mailabout").Value
                         </a>
                     </div>
 

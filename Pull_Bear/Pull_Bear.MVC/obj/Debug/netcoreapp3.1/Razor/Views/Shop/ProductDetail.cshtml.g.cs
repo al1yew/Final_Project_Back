@@ -5,7 +5,6 @@
 namespace AspNetCore
 {
     #line hidden
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -82,8 +81,15 @@ using Pull_Bear.Service.Enums;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 12 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using System;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4247f73624ea877068f52ef82a0e96c482d0e4df", @"/Views/Shop/ProductDetail.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2d01ff808dfe2d9aad29a81f4d3de141de7e831c", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f90fdbbd82cf1e528443f649dfc5e6568ef41406", @"/Views/_ViewImports.cshtml")]
     public class Views_Shop_ProductDetail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -168,7 +174,7 @@ using Pull_Bear.Service.Enums;
             <div class=""row keeper"">
                 <div class=""col-lg-6"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df20028", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df20184", async() => {
                 WriteLiteral("MAIN PAGE");
             }
             );
@@ -186,7 +192,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("&nbsp;/ ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df21397", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df21553", async() => {
                 WriteLiteral("SHOP");
             }
             );
@@ -214,7 +220,7 @@ using Pull_Bear.Service.Enums;
             <div class=""leftmain col-lg-8 col-12"">
                 <div class=""col-lg-6 col-6 mainimgkeeper forzoom "">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df23063", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df23219", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -230,7 +236,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </div>\r\n                <div class=\"col-lg-6 col-6 mainimgkeeper forzoom \">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df24380", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df24536", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -267,7 +273,7 @@ using Pull_Bear.Service.Enums;
                         </div>
                ");
             WriteLiteral("     </div>\r\n                </div>\r\n                <div class=\"photos col-lg-12\">\r\n                    <div class=\"photo col-lg-6 col-6 forzoom \">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df26830", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df26986", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -283,7 +289,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </div>\r\n                    <div class=\"photo col-lg-6 col-6 forzoom \">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df28151", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df28307", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -299,7 +305,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </div>\r\n                    <div class=\"photo col-lg-6 col-6 forzoom \">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df29472", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df29628", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -315,7 +321,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </div>\r\n                    <div class=\"photo col-lg-6 col-6 forzoom \">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df30794", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df30950", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -331,7 +337,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    </div>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"rightmain col-lg-4 col-12\">\r\n                <div class=\"top\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df32191", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df32347", async() => {
                 WriteLiteral(@"
                         <svg width=""24"" height=""21"" viewBox=""0 0 24 21"" fill=""none""
                              xmlns=""http://www.w3.org/2000/svg"">
@@ -363,7 +369,7 @@ using Pull_Bear.Service.Enums;
                     </p>
                     <div class=""col-lg-3 col-5 imgofprod"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df34643", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df34799", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -409,7 +415,7 @@ using Pull_Bear.Service.Enums;
                         </div>
                     </div>
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df37622", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df37778", async() => {
                 WriteLiteral(@"
                         <div class=""col-lg-8 col-12 buydiv forclosesize"">
                             <span class=""sizevalue col-11 forclosesize"">SIZE</span>
@@ -589,9 +595,9 @@ using Pull_Bear.Service.Enums;
                             <div class=""top"">
 
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df54254", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df54410", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df54546", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df54702", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -624,7 +630,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df57068", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df57224", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -659,7 +665,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df59703", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df59859", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -678,14 +684,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df61339", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df61495", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 22238, "\"", 22245, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 22246, "\"", 22251, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df62058", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df62214", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -704,7 +710,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df63649", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df63805", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -720,7 +726,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df64914", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df65070", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -736,7 +742,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df66179", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df66335", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -752,7 +758,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df67444", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df67600", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -821,9 +827,9 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3-8 col-12 product\">\r\n                            <div class=\"top\">\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df74242", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df74398", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df74534", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df74690", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -856,7 +862,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df77056", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df77212", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -891,7 +897,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df79691", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df79847", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -910,14 +916,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df81327", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df81483", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 28726, "\"", 28733, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 28734, "\"", 28739, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df82046", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df82202", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -936,7 +942,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df83637", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df83793", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -952,7 +958,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df84902", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df85058", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -968,7 +974,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df86167", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df86323", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -984,7 +990,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df87432", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df87588", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -1053,9 +1059,9 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3-8 col-12 product\">\r\n                            <div class=\"top\">\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df94230", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df94386", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df94522", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df94678", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1088,7 +1094,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df97044", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df97200", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -1123,7 +1129,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df99679", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df99835", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -1142,14 +1148,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df101315", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df101471", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 35214, "\"", 35221, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 35222, "\"", 35227, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df102035", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df102191", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -1168,7 +1174,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df103627", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df103783", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -1184,7 +1190,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df104893", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df105049", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -1200,7 +1206,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df106159", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df106315", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -1216,7 +1222,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df107425", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df107581", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -1285,9 +1291,9 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3-8 col-12 product\">\r\n                            <div class=\"top\">\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df114224", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df114380", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df114517", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df114673", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1320,7 +1326,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df117040", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df117196", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -1355,7 +1361,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df119676", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df119832", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -1374,14 +1380,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df121313", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df121469", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 41702, "\"", 41709, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 41710, "\"", 41715, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df122033", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df122189", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -1400,7 +1406,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df123625", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df123781", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -1416,7 +1422,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df124891", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df125047", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -1432,7 +1438,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df126157", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df126313", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -1448,7 +1454,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df127423", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df127579", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -1555,9 +1561,9 @@ using Pull_Bear.Service.Enums;
                             <div class=""top"">
 
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df136917", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df137073", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df137210", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df137366", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1590,7 +1596,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df139733", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df139889", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -1625,7 +1631,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df142369", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df142525", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -1644,14 +1650,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df144006", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df144162", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 50782, "\"", 50789, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 50790, "\"", 50795, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df144726", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df144882", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -1670,7 +1676,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df146318", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df146474", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -1686,7 +1692,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df147584", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df147740", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -1702,7 +1708,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df148850", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df149006", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -1718,7 +1724,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df150116", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df150272", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -1787,9 +1793,9 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3-8 col-12 product\">\r\n                            <div class=\"top\">\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df156915", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df157071", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df157208", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df157364", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -1822,7 +1828,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df159731", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df159887", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -1857,7 +1863,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df162367", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df162523", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -1876,14 +1882,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df164004", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df164160", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 57270, "\"", 57277, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 57278, "\"", 57283, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df164724", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df164880", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -1902,7 +1908,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df166316", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df166472", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -1918,7 +1924,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df167582", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df167738", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -1934,7 +1940,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df168848", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df169004", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -1950,7 +1956,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df170114", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df170270", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -2019,9 +2025,9 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3-8 col-12 product\">\r\n                            <div class=\"top\">\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df176913", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df177069", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df177206", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df177362", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2054,7 +2060,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df179729", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df179885", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -2089,7 +2095,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df182365", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df182521", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -2108,14 +2114,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df184002", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df184158", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 63758, "\"", 63765, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 63766, "\"", 63771, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df184722", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df184878", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -2134,7 +2140,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df186314", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df186470", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -2150,7 +2156,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df187580", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df187736", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -2166,7 +2172,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df188846", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df189002", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -2182,7 +2188,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df190112", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df190268", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -2251,9 +2257,9 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3-8 col-12 product\">\r\n                            <div class=\"top\">\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df196911", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df197067", async() => {
                 WriteLiteral("\r\n                                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df197204", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df197360", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2286,7 +2292,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df199727", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df199883", async() => {
                 WriteLiteral(@"
                                     <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                                          xmlns=""http://www.w3.org/2000/svg"">
@@ -2321,7 +2327,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""bottom"">
                                 <div class=""botop col-lg-12 col-12"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df202363", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df202519", async() => {
                 WriteLiteral("SHORT RIBBED DRESS");
             }
             );
@@ -2340,14 +2346,14 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    <span class=\"discprice botopright col-lg-2 col-2\">40€</span>\r\n                                </div>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df204000", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df204156", async() => {
                 WriteLiteral("\r\n                                    <div class=\"bobotleft col-lg-4 col-4\">\r\n                                        <select");
                 BeginWriteAttribute("name", " name=\"", 70246, "\"", 70253, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 70254, "\"", 70259, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df204720", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df204876", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -2366,7 +2372,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df206312", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df206468", async() => {
                     WriteLiteral("S");
                 }
                 );
@@ -2382,7 +2388,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df207578", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df207734", async() => {
                     WriteLiteral("L");
                 }
                 );
@@ -2398,7 +2404,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df208844", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df209000", async() => {
                     WriteLiteral("M");
                 }
                 );
@@ -2414,7 +2420,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df210110", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df210266", async() => {
                     WriteLiteral("XL");
                 }
                 );
@@ -2513,7 +2519,7 @@ using Pull_Bear.Service.Enums;
 
             <div class=""col-lg-12 discover"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df219263", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df219419", async() => {
                 WriteLiteral("\r\n                    DISCOVER MORE\r\n                ");
             }
             );
@@ -2596,7 +2602,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""col-lg-3 col-6 reviewphotos dontclose"">
                                 <div class=""photokeeper col-3 col-lg-3 photomodal"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df224160", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df224316", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2612,7 +2618,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df225528", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df225684", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2628,7 +2634,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df226896", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df227052", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2656,7 +2662,7 @@ using Pull_Bear.Service.Enums;
                                 1 March 2022
                             </div>
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df228579", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df228735", async() => {
                 WriteLiteral(@"
                                 <svg viewBox=""0 0 20 22"" fill=""none"" xmlns=""http://www.w3.org/2000/svg"">
                                     <path d=""M19.3475 11.0677C19.7675 10.5013 20 9.80738 20 9.08535C20 7.9398 19.3725 6.85548 18.3625 6.25081C18.1025 6.09517 17.8064 6.01325 17.505 6.01354H11.51L11.66 2.87793C11.695 2.12019 11.4325 1.40071 10.9225 0.852168C10.6722 0.581797 10.3703 0.36668 10.0353 0.220111C9.70032 0.0735421 9.33946 -0.001365 8.975 1.88293e-05C7.675 1.88293e-05 6.525 0.892989 6.18 2.17121L4.0325 10.1059H0.8C0.3575 10.1059 0 10.4707 0 10.9223V20.2092C0 20.6608 0.3575 21.0256 0.8 21.0256H15.8325C16.0625 21.0256 16.2875 20.9797 16.495 20.8879C17.685 20.3699 18.4525 19.1836 18.4525 17.8671C18.4525 17.5456 18.4075 17.2292 18.3175 16.9231C18.7375 16.3567 18.97 15.6627 18.97 14.9407C18.97 14.6192 18.925 14.3029 18.835 13.9967C19.255 13.4303 19.4875 12.7363 19.4875 12.0143C19.4825 11.6928 19.4375 11.3739 19.3475 11.0677ZM1.8 19.1887V11.9429H3.825V19.1887H1.8ZM17.71 10.1824L17.1625 10.6672L17.51 1");
@@ -2707,7 +2713,7 @@ using Pull_Bear.Service.Enums;
                             <div class=""col-lg-3 col-6 reviewphotos"">
                                 <div class=""photokeeper col-3 col-lg-3 photomodal"">
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df233439", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df233595", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2723,7 +2729,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df234807", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df234963", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2739,7 +2745,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df236175", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df236331", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2767,7 +2773,7 @@ using Pull_Bear.Service.Enums;
                                 1 March 2022
                             </div>
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df237858", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df238014", async() => {
                 WriteLiteral(@"
                                 <svg viewBox=""0 0 20 22"" fill=""none"" xmlns=""http://www.w3.org/2000/svg"">
                                     <path d=""M19.3475 11.0677C19.7675 10.5013 20 9.80738 20 9.08535C20 7.9398 19.3725 6.85548 18.3625 6.25081C18.1025 6.09517 17.8064 6.01325 17.505 6.01354H11.51L11.66 2.87793C11.695 2.12019 11.4325 1.40071 10.9225 0.852168C10.6722 0.581797 10.3703 0.36668 10.0353 0.220111C9.70032 0.0735421 9.33946 -0.001365 8.975 1.88293e-05C7.675 1.88293e-05 6.525 0.892989 6.18 2.17121L4.0325 10.1059H0.8C0.3575 10.1059 0 10.4707 0 10.9223V20.2092C0 20.6608 0.3575 21.0256 0.8 21.0256H15.8325C16.0625 21.0256 16.2875 20.9797 16.495 20.8879C17.685 20.3699 18.4525 19.1836 18.4525 17.8671C18.4525 17.5456 18.4075 17.2292 18.3175 16.9231C18.7375 16.3567 18.97 15.6627 18.97 14.9407C18.97 14.6192 18.925 14.3029 18.835 13.9967C19.255 13.4303 19.4875 12.7363 19.4875 12.0143C19.4825 11.6928 19.4375 11.3739 19.3475 11.0677ZM1.8 19.1887V11.9429H3.825V19.1887H1.8ZM17.71 10.1824L17.1625 10.6672L17.51 1");
@@ -2826,7 +2832,7 @@ using Pull_Bear.Service.Enums;
                                 1 March 2022
                             </div>
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df242776", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df242932", async() => {
                 WriteLiteral(@"
                                 <svg viewBox=""0 0 20 22"" fill=""none"" xmlns=""http://www.w3.org/2000/svg"">
                                     <path d=""M19.3475 11.0677C19.7675 10.5013 20 9.80738 20 9.08535C20 7.9398 19.3725 6.85548 18.3625 6.25081C18.1025 6.09517 17.8064 6.01325 17.505 6.01354H11.51L11.66 2.87793C11.695 2.12019 11.4325 1.40071 10.9225 0.852168C10.6722 0.581797 10.3703 0.36668 10.0353 0.220111C9.70032 0.0735421 9.33946 -0.001365 8.975 1.88293e-05C7.675 1.88293e-05 6.525 0.892989 6.18 2.17121L4.0325 10.1059H0.8C0.3575 10.1059 0 10.4707 0 10.9223V20.2092C0 20.6608 0.3575 21.0256 0.8 21.0256H15.8325C16.0625 21.0256 16.2875 20.9797 16.495 20.8879C17.685 20.3699 18.4525 19.1836 18.4525 17.8671C18.4525 17.5456 18.4075 17.2292 18.3175 16.9231C18.7375 16.3567 18.97 15.6627 18.97 14.9407C18.97 14.6192 18.925 14.3029 18.835 13.9967C19.255 13.4303 19.4875 12.7363 19.4875 12.0143C19.4825 11.6928 19.4375 11.3739 19.3475 11.0677ZM1.8 19.1887V11.9429H3.825V19.1887H1.8ZM17.71 10.1824L17.1625 10.6672L17.51 1");
@@ -2871,7 +2877,7 @@ using Pull_Bear.Service.Enums;
                             <p class=""col-lg-7 col-12"">
                                 These are the be flattering with just the ");
             WriteLiteral("right amount of stretch.\r\n                            </p>\r\n                            <div class=\"col-lg-3 col-6 reviewphotos\">\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df247423", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df247579", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2887,7 +2893,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df248791", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df248947", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2903,7 +2909,7 @@ using Pull_Bear.Service.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </div>\r\n                                <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df250159", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df250315", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -2931,7 +2937,7 @@ using Pull_Bear.Service.Enums;
                                 13 March 2022
                             </div>
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df251850", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df252006", async() => {
                 WriteLiteral(@"
                                 <svg viewBox=""0 0 20 22"" fill=""none"" xmlns=""http://www.w3.org/2000/svg"">
                                     <path d=""M19.3475 11.0677C19.7675 10.5013 20 9.80738 20 9.08535C20 7.9398 19.3725 6.85548 18.3625 6.25081C18.1025 6.09517 17.8064 6.01325 17.505 6.01354H11.51L11.66 2.87793C11.695 2.12019 11.4325 1.40071 10.9225 0.852168C10.6722 0.581797 10.3703 0.36668 10.0353 0.220111C9.70032 0.0735421 9.33946 -0.001365 8.975 1.88293e-05C7.675 1.88293e-05 6.525 0.892989 6.18 2.17121L4.0325 10.1059H0.8C0.3575 10.1059 0 10.4707 0 10.9223V20.2092C0 20.6608 0.3575 21.0256 0.8 21.0256H15.8325C16.0625 21.0256 16.2875 20.9797 16.495 20.8879C17.685 20.3699 18.4525 19.1836 18.4525 17.8671C18.4525 17.5456 18.4075 17.2292 18.3175 16.9231C18.7375 16.3567 18.97 15.6627 18.97 14.9407C18.97 14.6192 18.925 14.3029 18.835 13.9967C19.255 13.4303 19.4875 12.7363 19.4875 12.0143C19.4825 11.6928 19.4375 11.3739 19.3475 11.0677ZM1.8 19.1887V11.9429H3.825V19.1887H1.8ZM17.71 10.1824L17.1625 10.6672L17.51 1");
@@ -2966,7 +2972,7 @@ using Pull_Bear.Service.Enums;
                 </div>
                 <div class=""col-lg-12 col-12 writereview dontclose"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df255465", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df255621", async() => {
                 WriteLiteral(@"
 
                         <div class=""col-lg-3 col-4-5 inpkeeper"">
@@ -2988,7 +2994,7 @@ using Pull_Bear.Service.Enums;
                             <button type=""submit"" class=""addreviewbtn col-lg-12 col-4-5""
                                     f");
                 WriteLiteral("orm=\"postreview\">\r\n                                POST\r\n                            </button>\r\n\r\n                            <select class=\"star_rating col-lg-12 col-7\">\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df257041", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df257197", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -3003,7 +3009,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df258255", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df258411", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -3018,7 +3024,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df259469", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df259625", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -3033,7 +3039,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df260683", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df260839", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -3048,7 +3054,7 @@ using Pull_Bear.Service.Enums;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df261897", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4247f73624ea877068f52ef82a0e96c482d0e4df262053", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.OptionTagHelper>();
@@ -3101,7 +3107,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df265525", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df265681", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3144,7 +3150,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df268153", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df268309", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3187,7 +3193,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df270781", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df270937", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3230,7 +3236,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df273409", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df273565", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3273,7 +3279,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df276037", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df276193", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3316,7 +3322,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df278665", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df278821", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3359,7 +3365,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df281293", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df281449", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -3402,7 +3408,7 @@ using Pull_Bear.Service.Enums;
                 <div class=""col-lg-12 col-12 sliderimgkeeper dontclose"">
 
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df283921", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "4247f73624ea877068f52ef82a0e96c482d0e4df284077", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

@@ -190,7 +190,7 @@ $(document).ready(function () {
                 .then(res => res.json())
                 .then(data => {
                     colorname = data.paletteTitle
-                    alert(`${input.val()} HEXcolor selected, --${colorname}-- returned from fetch, ${select.val()} is size`)
+                    //alert(`${input.val()} HEXcolor selected, --${colorname}-- returned from fetch, ${select.val()} is size`)
                 });
 
             //fetch edirik basketviewmodel
@@ -296,7 +296,7 @@ $(document).ready(function () {
         let a = $('.range-min').val();
         console.log(a, aa)
 
-        alert(`${a} min value, ${aa} max value -- information for fetch`)
+        //alert(`${a} min value, ${aa} max value -- information for fetch`)
     });
 
     $(document).on('keyup', '.input-min, .input-max', function (e) {
@@ -309,7 +309,7 @@ $(document).ready(function () {
             console.log(a)
             console.log(aa)
 
-            alert(`${a} min value, ${aa} max value -- information for fetch`)
+            //alert(`${a} min value, ${aa} max value -- information for fetch`)
         }
     });
 
@@ -604,7 +604,7 @@ $(document).ready(function () {
                 .then(res => res.json())
                 .then(data => {
                     colorname = data.paletteTitle
-                    alert(`${color} HEXcolor selected, --${colorname}-- returned from fetch, ${size} is size, thanks for order!`)
+                    //alert(`${color} HEXcolor selected, --${colorname}-- returned from fetch, ${size} is size, thanks for order!`)
                 });
             //fetch edirik basketviewmodel
         }
@@ -1558,5 +1558,201 @@ $(document).ready(function () {
     }
     //#endregion main page newprods third element removing on phone
 
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region Shop page sorting function
+
+    $(document).on('click', '.sortvmclick, .sortcategoryid, .sortparentcategoryid, .sortbodyfitid, .sortcolorid, .sortsizeid, .sortorderby, .sortselectvalue', function (e) {
+        e.preventDefault();
+
+        if (localStorage.getItem('sort') == null) {
+
+            localStorage.setItem('sort', JSON.stringify([]));
+
+            let bodyObj = {
+                selectValue: 0,
+                orderBy: 0,
+                bodyFitId: 0,
+                categoryId: 0,
+                parentCategoryId: 0,
+                colorId: 0,
+                sizeId: 0,
+                minValue: 0,
+                maxValue: 0,
+                genderId: 0
+            }
+
+            localStorage.setItem('sort', JSON.stringify(bodyObj));
+        }
+
+        let sort = JSON.parse(localStorage.getItem('sort'));
+
+        if ($(this).data('selectvalue') != undefined) {
+            sort.selectValue = $(this).data('selectvalue');
+        }
+
+        if ($(this).data('orderby') != undefined) {
+            sort.orderBy = $(this).data('orderby');
+        }
+
+        if ($(this).data('bodyfitid') != undefined) {
+            sort.bodyFitId = $(this).data('bodyfitid');
+        }
+
+        if ($(this).data('categoryid') != undefined) {
+            sort.categoryId = $(this).data('categoryid');
+        }
+
+        if ($(this).data('parentcategoryid') != undefined) {
+            sort.parentCategoryId = $(this).data('parentcategoryid');
+        }
+
+        if ($(this).data('colorid') != undefined) {
+            sort.colorId = $(this).data('colorid');
+        }
+
+        if ($(this).data('sizeid') != undefined) {
+            sort.sizeId = $(this).data('sizeid');
+        }
+
+        let location = window.location.href;
+
+        if (location.indexOf("genderId") > -1) {
+            let genderId = location.split("genderId=")[1]
+            sort.genderId = genderId
+        }
+
+        localStorage.setItem('sort', JSON.stringify(sort));
+
+        $('.clearsort').fadeIn(150);
+
+        let url = "http://localhost:53427/Shop/CreateSort"
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sort)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.products').html(data)
+            })
+    });
+
+
+    $(document).on('pointerup', '.range-max, .range-min', function () {
+
+        if (localStorage.getItem('sort') == null) {
+
+            localStorage.setItem('sort', JSON.stringify([]));
+
+            let bodyObj = {
+                selectValue: 0,
+                orderBy: 0,
+                bodyFitId: 0,
+                categoryId: 0,
+                parentCategoryId: 0,
+                colorId: 0,
+                sizeId: 0,
+                minValue: 0,
+                maxValue: 0,
+                genderId: 0
+            }
+
+            localStorage.setItem('sort', JSON.stringify(bodyObj));
+        }
+
+        let maxvalue = $('.range-max').val();
+        let minvalue = $('.range-min').val();
+
+        let sort = JSON.parse(localStorage.getItem('sort'));
+
+        sort.maxValue = maxvalue;
+        sort.minValue = minvalue;
+
+        localStorage.setItem('sort', JSON.stringify(sort));
+
+        let url = "http://localhost:53427/Shop/CreateSort"
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sort)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.products').html(data)
+            })
+
+        $('.clearsort').fadeIn(150);
+
+    });
+
+    $(document).on('keyup', '.input-min, .input-max', function (e) {
+
+        if (localStorage.getItem('sort') == null) {
+
+            localStorage.setItem('sort', JSON.stringify([]));
+
+            let bodyObj = {
+                selectValue: 0,
+                orderBy: 0,
+                bodyFitId: 0,
+                categoryId: 0,
+                parentCategoryId: 0,
+                colorId: 0,
+                sizeId: 0,
+                minValue: 0,
+                maxValue: 0,
+                genderId: 0
+            }
+
+            localStorage.setItem('sort', JSON.stringify(bodyObj));
+        }
+
+        if ((e.which >= 48 && e.which <= 57)
+            || (e.which >= 96 && e.which <= 105)
+            || e.which == 8) {
+
+            let minvalue = parseInt($('.input-min').val());
+            let maxvalue = parseInt($('.input-max').val());
+
+            let sort = JSON.parse(localStorage.getItem('sort'));
+
+            sort.maxValue = maxvalue;
+            sort.minValue = minvalue;
+
+            localStorage.setItem('sort', JSON.stringify(sort));
+
+            let url = "http://localhost:53427/Shop/CreateSort"
+
+            fetch(url, {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(sort)
+            })
+                .then(res => res.text())
+                .then(data => {
+                    $('.products').html(data)
+                })
+
+            $('.clearsort').fadeIn(150);
+        }
+    });
+
+    $(document).on('click', '.clearsort', function (e) {
+
+        localStorage.clear();
+        $(this).fadeOut(150);
+        location.reload();
+    });
+
+    //#endregion Shop page sorting function
 });
 

@@ -19,6 +19,9 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public double DiscountPrice { get; set; }
         public int Count { get; set; }
         public bool IsDeleted { get; set; }
+        public Nullable<double> AverageRating { get; set; }
+        public Nullable<int> ReviewCount { get; set; }
+
 
         //realtions one ... - many products
         public CategoryGetVM Category { get; set; }
@@ -32,6 +35,7 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public bool IsHotSale { get; set; }
         public bool IsNew { get; set; }
         public bool IsPreOrder { get; set; }
+        public Nullable<DateTime> CreatedAt { get; set; }
 
         //relations one product - many ...
         public List<ProductImageGetVM> ProductImages { get; set; }

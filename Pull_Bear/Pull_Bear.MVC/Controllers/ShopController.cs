@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
+using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
 using Pull_Bear.Service.ViewModels.SortVMs;
 using System;
 using System.Collections.Generic;
@@ -16,99 +18,19 @@ namespace Pull_Bear.MVC.Controllers
             _shopService = shopService;
         }
 
-        public async Task<IActionResult> Index(/*[FromBody] SortVM sortVM*/)
+        public async Task<IActionResult> Index(int? genderId)
         {
-            #region bilo
-            // IQueryable<Product> products = _context.Products
-            //.Include(p => p.Category)
-            //.Include(p => p.Brand)
-            //.Include(p => p.ProductToColors).ThenInclude(p => p.Color)
-            //.Include(p => p.ProductToSizes).ThenInclude(p => p.Size);
-
-            // if (categoryId != null)
-            // {
-            //     products = products
-            //         .Where(p => p.CategoryId == categoryId);
-            // }
-
-            // if (brandId != null)
-            // {
-            //     products = products
-            //         .Where(p => p.BrandId == brandId);
-            // }
-
-            // if (searchValue != null)
-            // {
-            //     products = products
-            //     .Where(p => p.Name.ToLower().Contains(searchValue.ToLower()) ||
-            //     p.Brand.Name.ToLower().Contains(searchValue.ToLower()) ||
-            //     p.Category.Name.ToLower().Contains(searchValue.ToLower()) ||
-            //     p.Description.ToLower().Contains(searchValue.ToLower()) ||
-            //     p.FirstText.ToLower().Contains(searchValue.ToLower()) ||
-            //     p.SecondText.ToLower().Contains(searchValue.ToLower()));
-            // }
-
-            // if (colorId != null)
-            // {
-            //     products = _context.ProductToColors
-            //        .Include(x => x.Product).Where(e => e.ColorId == colorId).Select(e => e.Product);
-            // }
-
-            // if (sizeId != null)
-            // {
-            //     products = _context.ProductToSizes
-            //         .Include(x => x.Product).Where(e => e.SizeId == sizeId).Select(e => e.Product);
-            // }
-
-            // if (sortby != null && sortby > 0)
-            // {
-            //     if (sortby == 1)
-            //     {
-            //         products = products.OrderBy(c => c.Name);
-            //     }
-            //     else if (sortby == 2)
-            //     {
-            //         products = products.OrderByDescending(c => c.Name);
-            //     }
-            //     else if (sortby == 3)
-            //     {
-            //         products = products.OrderBy(c => c.Price);
-            //     }
-            //     else if (sortby == 4)
-            //     {
-            //         products = products.OrderByDescending(c => c.Price);
-            //     }
-            // }
-
-            // if (sortbycount <= 0)
-            // {
-            //     sortbycount = 5;
-            // }
-
-            // ProductVM productVM = new ProductVM
-            // {
-            //     Products = PaginationList<Product>.Create(products, page, sortbycount),
-            //     Settings = await _context.Settings.ToDictionaryAsync(x => x.Key, x => x.Value),
-            //     Sizes = await _context.Sizes.Include(c => c.ProductToSizes).ThenInclude(pc => pc.Product).ToListAsync(),
-            //     Colors = await _context.Colors.Include(c => c.ProductToColors).ThenInclude(pc => pc.Product).ToListAsync(),
-            //     Categories = await _context.Categories.Include(c => c.Products).ToListAsync(),
-            //     Brands = await _context.Brands.Include(b => b.Products).ToListAsync()
-            // };
-
-            // ViewBag.CategoriesForProductsPage = categoryId;
-            // ViewBag.BrandsForProductsPage = brandId;
-            // ViewBag.HeaderSearchForProductsPage = searchValue;
-            // ViewBag.ColorForProductsPage = colorId;
-            // ViewBag.SizeForProductsPage = sizeId;
-            // ViewBag.Sortby = sortby;
-            // ViewBag.Select = sortbycount;
-
-            //asp-route-categoryId="@ViewBag.CategoriesForProductsPage" asp-route-brandId="@ViewBag.BrandsForProductsPage" asp-route-searchValue="@ViewBag.HeaderSearchForProductsPage" asp-route-colorId="@ViewBag.ColorForProductsPage" asp-route-sizeId="@ViewBag.SizeForProductsPage" asp-route-sortby="@ViewBag.Sortby" asp-route-sortbycount="@ViewBag.Select"
-
-            #endregion
-
-            return View(await _shopService.GetDataAsync());
+            return View(await _shopService.GetDataAsync(genderId));
         }
+
+        public async Task<IActionResult> CreateSort([FromBody] SortVM sortVM)
+        {
+            var a = PaginationList<ProductColorSizeGetVM>.Create(await _shopService.CreateSort(sortVM), 1, sortVM.SelectValue == 0 ? 18 : sortVM.SelectValue);
+
+            return PartialView("_ProductIndexPartial", a);
+        }
+
+
 
         ////[Authorize(Roles = "Member")]
         //public async Task<IActionResult> ProductDetail(int? id)

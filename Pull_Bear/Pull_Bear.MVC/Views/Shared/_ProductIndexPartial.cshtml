@@ -1,6 +1,6 @@
 ﻿@model PaginationList<ProductColorSizeGetVM>
 
-@foreach (ProductColorSizeGetVM productColorSize in Model.GroupBy(x => x.Product).Select(x => x.First()).Where(x => !x.Product.IsDeleted))
+@foreach (ProductColorSizeGetVM productColorSize in Model)
 {
     <div class="col-lg-3-5 col-12 product">
         <div class="top">

@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <ul class="head_categories">
-                    @foreach (CategoryListVM category in Model.Categories.Where(x => x.GenderId == 1 && x.IsMain))
+                    @foreach (CategoryListVM category in Model.Categories.Where(x => x.IsMain))
                     {
                         <li class="headcategoryli">
                             @if (category.IsMain)
@@ -28,7 +28,7 @@
                                 <div class="categorymenu">
                                     <div class="all">
                                         <div class="col-lg-3 left col-12">
-                                            <span class="seeall"><a href="">SEE ALL</a></span>
+                                            <span class="seeall"><a class="sortvmclick sortparentcategoryid" data-parentcategoryid="@category.Id">SEE ALL</a></span>
                                             <span>
                                                 @if (category.IsMain)
                                                 {
@@ -46,7 +46,7 @@
                                         <div class="col-lg-4-5 middle">
                                             <span class="col-lg-12 mainspan">SHOP BY BODY FIT</span>
                                             <div class="bodyfits">
-                                                @foreach (var bodyFit in Model.BodyFits.Where(x => x.GenderId == 1))
+                                                @foreach (var bodyFit in Model.BodyFits)
                                                 {
                                                     <a href="" class="col-lg-3-8 maindiv sortbodyfitid sortvmclick" data-bodyfitid="@bodyFit.Id">
                                                         <span class="imgkeeper">
@@ -105,7 +105,7 @@
                     <div class="sort col-lg-2-2 filterdiv">
                         <span class="sorttype">SORT</span>
                         <ul class="filterul sortbycount" style="height: 170px; overflow-y: scroll;">
-                            <li>SORT</li>
+                            @*<li>SORT</li>*@
                             <li data-selectvalue="6" class="sortselectvalue sortvmclick">6</li>
                             <li data-selectvalue="12" class="sortselectvalue sortvmclick">12</li>
                             <li data-selectvalue="18" class="sortselectvalue sortvmclick">18</li>
@@ -123,7 +123,7 @@
                     <div class="style col-lg-2-2 filterdiv">
                         <span class="sorttype">ORDER BY</span>
                         <ul class="filterul sortbyorder" style="height: 170px; overflow-y: scroll;">
-                            <li>ORDER BY</li>
+                            <li class="default deforderby" data-orderby="0">ORDER BY</li>
                             <li data-orderby="1" class="sortorderby sortvmclick">LOWEST PRICE</li>
                             <li data-orderby="2" class="sortorderby sortvmclick">HIGHEST PRICE</li>
                             <li data-orderby="3" class="sortorderby sortvmclick">NEWEST</li>
@@ -141,10 +141,10 @@
                     <div class="color col-lg-2-2 filterdiv">
                         <span class="sorttype">COLOR</span>
                         <ul class="filterul sortbycolor" style="height: 170px; overflow-y: scroll;">
-                            <li>COLOR</li>
-                            @foreach (ProductColorSizeGetVM color in Model.ProductColorSizes.GroupBy(x => x.Color.HexCode).Select(x => x.First()))
+                            <li class="default defcolor" data-colorid="0">COLOR</li>
+                            @foreach (ColorListVM color in Model.Colors)
                             {
-                                <li class="sortcolorid sortvmclick" data-colorid="@color.Color.Id">@color.Color.Name.ToUpperInvariant()</li>
+                                <li class="sortcolorid sortvmclick" data-colorid="@color.Id">@color.Name.ToUpperInvariant()</li>
                             }
                         </ul>
                         <div class="svgkeeper">
@@ -159,7 +159,7 @@
                     <div class="bodyfit col-lg-2-2 filterdiv">
                         <span class="sorttype">BODY FIT</span>
                         <ul class="filterul sortbybodyfit" style="height: 170px; overflow-y: scroll;">
-                            <li>BODY FIT</li>
+                            <li class="default defbodyfit" data-bodyfitid="0">BODY FIT</li>
                             @foreach (var bodyFit in Model.BodyFits.GroupBy(x => x.Name).Select(x => x.First()))
                             {
                                 <li class="sortbodyfitid sortvmclick" data-bodyfitid="@bodyFit.Id">@bodyFit.Name.ToUpperInvariant()</li>
@@ -184,10 +184,10 @@
                     <div class="size col-lg-2-2 filterdiv">
                         <span class="sorttype">SIZE</span>
                         <ul class="filterul sortbysize" style="height: 170px; overflow-y: scroll;">
-                            <li>SIZE</li>
-                            @foreach (var size in Model.ProductColorSizes.GroupBy(x => x.Size.Name).Select(x => x.First()))
+                            <li class="default defsize" data-sizeid="0">SIZE</li>
+                            @foreach (SizeListVM size in Model.Sizes)
                             {
-                                <li class="sortsizeid sortvmclick" data-sizeid="@size.Size.Id">@size.Size.Name.ToUpperInvariant()</li>
+                                <li class="sortsizeid sortvmclick" data-sizeid="@size.Id">@size.Name.ToUpperInvariant()</li>
                             }
                         </ul>
                         <div class="svgkeeper">
@@ -223,33 +223,12 @@
 
                 <div class="pagination col-lg-12">
                     <ul>
-                        <li class="activepagination"></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        @for (int i = 1; i <= Model.ProductColorSizes.PageCount; i++)
+                        {
+                            <li class="@(Model.ProductColorSizes.Page == i ? "activepagination" : "") sortpage" data-sortpage="@i"></li>
+                        }
                     </ul>
                 </div>
-
-                @*<div class="row justify-content-center w-100 align-items-center d-flex mt-2">
-                        <ul class="pagination d-flex justify-content-center align-content-center">
-                            @if (Model.HasPrev)
-                            {
-                                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Product" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="1">@("<<")</a></li>
-
-                                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Product" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@(Model.Page-1)">@("<")</a></li>
-                            }
-                            @for (int i = 1; i <= Model.PageCount; i++)
-                            {
-                                <li class="page-item @(Model.Page == i ? "active":"")"><a class="page-link" asp-area="Manage" asp-controller="Product" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@i">@i</a></li>
-                            }
-                            @if (Model.HasNext)
-                            {
-                                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Product" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@(Model.Page+1)">@(">")</a></li>
-                                <li class="page-item"><a class="page-link" asp-area="Manage" asp-controller="Product" asp-action="Index" asp-route-type="@ViewBag.Type" asp-route-select="@ViewBag.Select" asp-route-status="@ViewBag.Status" asp-route-page="@Model.PageCount">@(">>")</a></li>
-                            }
-                        </ul>
-                    </div>*@
 
                 <div class="loadmore col-lg-12">
                     <a href="" class="loadmore">LOAD MORE</a>

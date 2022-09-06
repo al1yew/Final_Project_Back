@@ -25,7 +25,9 @@ namespace Pull_Bear.MVC.Controllers
 
         public async Task<IActionResult> CreateSort([FromBody] SortVM sortVM)
         {
-            var a = PaginationList<ProductColorSizeGetVM>.Create(await _shopService.CreateSort(sortVM), 1, sortVM.SelectValue == 0 ? 18 : sortVM.SelectValue);
+            IQueryable<ProductColorSizeGetVM> pcs = await _shopService.CreateSort(sortVM);
+
+            var a = PaginationList<ProductColorSizeGetVM>.Create(pcs, sortVM.Page == 0 ? 1 : sortVM.Page, sortVM.SelectValue == 0 ? 6 : sortVM.SelectValue);
 
             return PartialView("_ProductIndexPartial", a);
         }

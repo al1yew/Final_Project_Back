@@ -1562,30 +1562,37 @@ $(document).ready(function () {
 
     //#region Shop page sorting function
 
-    $(document).on('click', '.sortvmclick, .sortcategoryid, .sortparentcategoryid, .sortbodyfitid, .sortcolorid, .sortsizeid, .sortorderby, .sortselectvalue', function (e) {
-        e.preventDefault();
+    localStorage.clear();
 
-        if (localStorage.getItem('sort') == null) {
+    if (localStorage.getItem('sort') == null) {
 
-            localStorage.setItem('sort', JSON.stringify([]));
+        localStorage.setItem('sort', JSON.stringify([]));
 
-            let bodyObj = {
-                selectValue: 0,
-                orderBy: 0,
-                bodyFitId: 0,
-                categoryId: 0,
-                parentCategoryId: 0,
-                colorId: 0,
-                sizeId: 0,
-                minValue: 0,
-                maxValue: 0,
-                genderId: 0
-            }
-
-            localStorage.setItem('sort', JSON.stringify(bodyObj));
+        let bodyObj = {
+            selectValue: 0,
+            orderBy: 0,
+            bodyFitId: 0,
+            categoryId: 0,
+            parentCategoryId: 0,
+            colorId: 0,
+            sizeId: 0,
+            minValue: 0,
+            maxValue: 0,
+            genderId: 0,
+            page: 0
         }
 
+        localStorage.setItem('sort', JSON.stringify(bodyObj));
+    }
+
+    $(document).on('click', '.sortvmclick, .sortpage, .sortcategoryid, .sortparentcategoryid, .sortbodyfitid, .sortcolorid, .sortsizeid, .sortorderby, .sortselectvalue', function (e) {
+        e.preventDefault();
+
         let sort = JSON.parse(localStorage.getItem('sort'));
+
+        if ($(this).data('sortpage') != undefined) {
+            sort.page = $(this).data('sortpage');
+        }
 
         if ($(this).data('selectvalue') != undefined) {
             sort.selectValue = $(this).data('selectvalue');
@@ -1641,28 +1648,52 @@ $(document).ready(function () {
             })
     });
 
+    $(document).on('click', '.defcolor, .defbodyfit, .deforderby, .defsize', function (e) {
+        e.preventDefault()
+
+        let sort = JSON.parse(localStorage.getItem('sort'));
+
+        if ($(this).data('colorid') != undefined) {
+            sort.colorId = $(this).data('colorid');
+        }
+
+        if ($(this).data('sizeid') != undefined) {
+            sort.sizeId = $(this).data('sizeid');
+        }
+
+        if ($(this).data('orderby') != undefined) {
+            sort.orderBy = $(this).data('orderby');
+        }
+
+        if ($(this).data('bodyfitid') != undefined) {
+            sort.bodyFitId = $(this).data('bodyfitid');
+        }
+
+        let location = window.location.href;
+
+        if (location.indexOf("genderId") > -1) {
+            let genderId = location.split("genderId=")[1]
+            sort.genderId = genderId
+        }
+
+        localStorage.setItem('sort', JSON.stringify(sort));
+
+        let url = "http://localhost:53427/Shop/CreateSort"
+
+        fetch(url, {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sort)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.products').html(data)
+            })
+    });
 
     $(document).on('pointerup', '.range-max, .range-min', function () {
-
-        if (localStorage.getItem('sort') == null) {
-
-            localStorage.setItem('sort', JSON.stringify([]));
-
-            let bodyObj = {
-                selectValue: 0,
-                orderBy: 0,
-                bodyFitId: 0,
-                categoryId: 0,
-                parentCategoryId: 0,
-                colorId: 0,
-                sizeId: 0,
-                minValue: 0,
-                maxValue: 0,
-                genderId: 0
-            }
-
-            localStorage.setItem('sort', JSON.stringify(bodyObj));
-        }
 
         let maxvalue = $('.range-max').val();
         let minvalue = $('.range-min').val();
@@ -1694,32 +1725,15 @@ $(document).ready(function () {
 
     $(document).on('keyup', '.input-min, .input-max', function (e) {
 
-        if (localStorage.getItem('sort') == null) {
-
-            localStorage.setItem('sort', JSON.stringify([]));
-
-            let bodyObj = {
-                selectValue: 0,
-                orderBy: 0,
-                bodyFitId: 0,
-                categoryId: 0,
-                parentCategoryId: 0,
-                colorId: 0,
-                sizeId: 0,
-                minValue: 0,
-                maxValue: 0,
-                genderId: 0
-            }
-
-            localStorage.setItem('sort', JSON.stringify(bodyObj));
-        }
-
         if ((e.which >= 48 && e.which <= 57)
             || (e.which >= 96 && e.which <= 105)
             || e.which == 8) {
 
             let minvalue = parseInt($('.input-min').val());
             let maxvalue = parseInt($('.input-max').val());
+
+            alert(maxvalue)
+            alert(minvalue)
 
             let sort = JSON.parse(localStorage.getItem('sort'));
 
@@ -1751,6 +1765,11 @@ $(document).ready(function () {
         localStorage.clear();
         $(this).fadeOut(150);
         location.reload();
+    });
+
+    $(document).on('click', '.headcategoryli', function () {
+
+        $(window).scrollTop(600)
     });
 
     //#endregion Shop page sorting function

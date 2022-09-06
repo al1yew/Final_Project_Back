@@ -32,18 +32,26 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<ShopVM> GetDataAsync(int? genderId)
         {
-            List<ProductColorSizeGetVM> pcs = _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.Product.GenderId == genderId, "Product", "Color", "Size"));
+            List<ProductColorSizeGetVM> pcs = _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.Product.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "Product", "Color", "Size"));
+
+            pcs = pcs.GroupBy(x => x.Product).Select(x => x.First()).ToList();
 
             IQueryable<ProductColorSizeGetVM> query = pcs.AsQueryable();
 
             ShopVM shopVM = new ShopVM()
             {
-                Products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == genderId, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category")),
-                BodyFits = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == genderId)),
-                Categories = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == genderId, "Children", "Parent")),
+                Products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category")),
+
+                BodyFits = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId))),
+
+                Categories = _mapper.Map<List<CategoryListVM>>(await _unitOfWork.CategoryRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "Children", "Parent")),
+
                 Colors = _mapper.Map<List<ColorListVM>>(await _unitOfWork.ColorRepository.GetAllByExAsync(x => !x.IsDeleted)),
+
                 Sizes = _mapper.Map<List<SizeListVM>>(await _unitOfWork.SizeRepository.GetAllByExAsync(x => !x.IsDeleted)),
+
                 ProductColorSizes = PaginationList<ProductColorSizeGetVM>.Create(query, 1, 6),
+
                 Settings = _mapper.Map<List<SettingListVM>>(await _unitOfWork.SettingRepository.GetAllAsync()).ToDictionary(x => x.Key, x => x.Value)
             };
 
@@ -52,9 +60,11 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<IQueryable<ProductColorSizeGetVM>> CreateSort(SortVM sortVM)
         {
-            var list = _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.Product.GenderId == sortVM.GenderId, "Product", "Color", "Size"));
+            List<ProductColorSizeGetVM> pcs = _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.Product.GenderId == (sortVM.GenderId <= 0 ? 1 : sortVM.GenderId), "Product", "Color", "Size"));
 
-            IQueryable<ProductColorSizeGetVM> query = list.AsQueryable();
+            pcs = pcs.GroupBy(x => x.Product).Select(x => x.First()).ToList();
+
+            IQueryable<ProductColorSizeGetVM> query = pcs.AsQueryable();
 
             if (sortVM == null)
             {

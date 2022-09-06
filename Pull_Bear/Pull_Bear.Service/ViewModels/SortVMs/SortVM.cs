@@ -16,5 +16,6 @@ namespace Pull_Bear.Service.ViewModels.SortVMs
         public double MaxValue { get; set; }
         public int OrderBy { get; set; }
         public int SelectValue { get; set; }
+        public int Page { get; set; }
     }
 }

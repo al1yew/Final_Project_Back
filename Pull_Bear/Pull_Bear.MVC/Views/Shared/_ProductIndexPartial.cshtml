@@ -1,15 +1,15 @@
-﻿@model PaginationList<ProductColorSizeGetVM>
+﻿@model PaginationList<ProductListVM>
 
-@foreach (ProductColorSizeGetVM productColorSize in Model)
+@foreach (ProductListVM product in Model)
 {
     <div class="col-lg-3-5 col-12 product">
         <div class="top">
 
-            <a class="photoimgkeeper" asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@productColorSize.Product.Id">
-                <img class="img-fluid" src="~/assets/images/products/@productColorSize.Product.Id/@productColorSize.Product.ShopImage" alt="">
+            <a class="photoimgkeeper" asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id">
+                <img class="img-fluid" src="~/assets/images/products/@product.Id/@product.ShopImage" alt="">
             </a>
 
-            <a class="wishlist" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@productColorSize.Product.Id">
+            <a class="wishlist" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@product.Id">
                 <svg width="31" height="28" viewBox="0 0 31 28" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.08333 1C4.17192 1 1 4.13933 1 8.0125C1 11.1391 2.23958 18.5596 14.4413 26.0608C14.6599 26.1938 14.9108 26.2642 15.1667 26.2642C15.4225 26.2642 15.6734 26.1938 15.892 26.0608C28.0938 18.5596 29.3333 11.1391 29.3333 8.0125C29.3333 4.13933 26.1614 1 22.25 1C18.3386 1 15.1667 5.25 15.1667 5.25C15.1667 5.25 11.9948 1 8.08333 1Z"
@@ -19,27 +19,27 @@
             </a>
 
             <span class="discount_percent">
-                <span>-@Math.Round(100 - (productColorSize.Product.DiscountPrice / productColorSize.Product.Price * 100))%</span>
+                <span>-@Math.Round(100 - (product.DiscountPrice / product.Price * 100))%</span>
             </span>
         </div>
 
         <div class="bottom">
             <div class="botop col-lg-12 col-12" style="align-items: flex-start;">
-                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@productColorSize.Product.Id" class="botopleft col-lg-9 col-9">@productColorSize.Product.Name</a>
-                <span class="discprice botopright col-lg-2 col-2">@productColorSize.Product.DiscountPrice $</span>
+                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id" class="botopleft col-lg-9 col-9">@product.Name</a>
+                <span class="discprice botopright col-lg-2 col-2">@product.DiscountPrice $</span>
             </div>
             <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage" asp-controller="Basket" asp-action="AddToBasket">
                 <div class="bobotleft col-lg-4 col-4">
                     <select name="" id="" class="size">
                         <option selected value="0">SIZE</option>
-                        @foreach (var size in Model.Where(x => x.ProductId == productColorSize.Product.Id).OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
+                        @foreach (var size in product.ProductColorSizes.OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
                         {
                             <option value="@size.Size.Id">@size.Size.Name</option>
                         }
                     </select>
                 </div>
                 <div class="bobotright col-lg-7 col-7">
-                    @foreach (ProductColorSizeGetVM color in Model.Where(x => x.ProductId == productColorSize.Product.Id).GroupBy(x => x.Color.HexCode).Select(x => x.First()))
+                    @foreach (ProductColorSizeGetVM color in product.ProductColorSizes.GroupBy(x => x.Color.HexCode).Select(x => x.First()))
                     {
                         <input type="radio" name="color" value="@color.Color.HexCode">
                         <div class="colorlabel color_box" style="background-color: @color.Color.HexCode;"></div>

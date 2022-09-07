@@ -2,6 +2,7 @@
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductVMs;
 using Pull_Bear.Service.ViewModels.SortVMs;
 using System;
 using System.Collections.Generic;
@@ -25,50 +26,19 @@ namespace Pull_Bear.MVC.Controllers
 
         public async Task<IActionResult> CreateSort([FromBody] SortVM sortVM)
         {
-            IQueryable<ProductColorSizeGetVM> pcs = await _shopService.CreateSort(sortVM);
+            IQueryable<ProductListVM> products = await _shopService.CreateSort(sortVM);
 
-            var a = PaginationList<ProductColorSizeGetVM>.Create(pcs, sortVM.Page == 0 ? 1 : sortVM.Page, sortVM.SelectValue == 0 ? 6 : sortVM.SelectValue);
+            var a = PaginationList<ProductListVM>.Create(products, sortVM.Page == 0 ? 1 : sortVM.Page, sortVM.SelectValue == 0 ? 6 : sortVM.SelectValue);
 
             return PartialView("_ProductIndexPartial", a);
         }
 
+        public async Task<IActionResult> ProductDetail(int? id)
+        {
+            if (id == null) return BadRequest();
 
-
-        ////[Authorize(Roles = "Member")]
-        //public async Task<IActionResult> ProductDetail(int? id)
-        //{
-        //    if (id == null) return BadRequest();
-
-        //    Product product = await _context.Products
-        //        .Include(p => p.ProductToColors).ThenInclude(p => p.Color)
-        //        .Include(p => p.ProductToSizes).ThenInclude(p => p.Size)
-        //        .Include(p => p.ProductImages)
-        //        .Include(p => p.Brand)
-        //        .Include(p => p.Category)
-        //        .Include(p => p.ProductInformation)
-        //        .FirstOrDefaultAsync(p => p.Id == id);
-
-        //    if (product == null) return NotFound();
-
-        //    ProductReviewVM productReviewVM = new ProductReviewVM
-        //    {
-        //        Name = appUser.Name,
-        //        Email = appUser.Email,
-        //        AppUserId = appUser.Id
-        //    };
-
-        //    ProductDetailVM productDetailVM = new ProductDetailVM
-        //    {
-        //        Product = product,
-        //        Products = await _context.Products.ToListAsync(),
-        //        ProductReviewVM = productReviewVM,
-        //        ProductReviews = await _context.ProductReviews.Where(pr => pr.ProductId == id).ToListAsync()
-        //    };
-
-        //    ViewBag.ProductId = id;
-
-        //    return View(productDetailVM);
-        //}
+            return View(await _shopService.GetProduct(id));
+        }
 
         //public async Task<IActionResult> Search(string search)
         //{

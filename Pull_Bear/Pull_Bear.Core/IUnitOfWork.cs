@@ -21,6 +21,7 @@ namespace Pull_Bear.Core
         ITagRepository TagRepository { get; }
         IBasketRepository BasketRepository { get; }
         IWishlistRepository WishlistRepository { get; }
+        IProductReviewRepository ProductReviewRepository { get; }
         Task<int> CommitAsync();
         int Commit();
     }

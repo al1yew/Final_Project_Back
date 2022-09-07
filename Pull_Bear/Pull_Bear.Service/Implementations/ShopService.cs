@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Pull_Bear.Core;
+using Pull_Bear.Service.Exceptions;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductReviewVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
 using Pull_Bear.Service.ViewModels.SettingVMs;
 using Pull_Bear.Service.ViewModels.ShopVMs;
@@ -32,15 +34,13 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<ShopVM> GetDataAsync(int? genderId)
         {
-            List<ProductColorSizeGetVM> pcs = _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.Product.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "Product", "Color", "Size"));
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
 
-            pcs = pcs.GroupBy(x => x.Product).Select(x => x.First()).ToList();
-
-            IQueryable<ProductColorSizeGetVM> query = pcs.AsQueryable();
+            IQueryable<ProductListVM> query = products.AsQueryable();
 
             ShopVM shopVM = new ShopVM()
             {
-                Products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category")),
+                Products = PaginationList<ProductListVM>.Create(query, 1, 6),
 
                 BodyFits = _mapper.Map<List<BodyFitListVM>>(await _unitOfWork.BodyFitRepository.GetAllByExAsync(x => !x.IsDeleted && x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId))),
 
@@ -50,7 +50,7 @@ namespace Pull_Bear.Service.Implementations
 
                 Sizes = _mapper.Map<List<SizeListVM>>(await _unitOfWork.SizeRepository.GetAllByExAsync(x => !x.IsDeleted)),
 
-                ProductColorSizes = PaginationList<ProductColorSizeGetVM>.Create(query, 1, 6),
+                //ProductColorSizes = PaginationList<ProductColorSizeGetVM>.Create(query, 1, 6),
 
                 Settings = _mapper.Map<List<SettingListVM>>(await _unitOfWork.SettingRepository.GetAllAsync()).ToDictionary(x => x.Key, x => x.Value)
             };
@@ -58,13 +58,11 @@ namespace Pull_Bear.Service.Implementations
             return shopVM;
         }
 
-        public async Task<IQueryable<ProductColorSizeGetVM>> CreateSort(SortVM sortVM)
+        public async Task<IQueryable<ProductListVM>> CreateSort(SortVM sortVM)
         {
-            List<ProductColorSizeGetVM> pcs = _mapper.Map<List<ProductColorSizeGetVM>>(await _unitOfWork.ProductColorSizeRepository.GetAllByExAsync(x => x.Product.GenderId == (sortVM.GenderId <= 0 ? 1 : sortVM.GenderId), "Product", "Color", "Size"));
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (sortVM.GenderId == null || sortVM.GenderId <= 0 ? 1 : sortVM.GenderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
 
-            pcs = pcs.GroupBy(x => x.Product).Select(x => x.First()).ToList();
-
-            IQueryable<ProductColorSizeGetVM> query = pcs.AsQueryable();
+            IQueryable<ProductListVM> query = products.AsQueryable();
 
             if (sortVM == null)
             {
@@ -73,42 +71,42 @@ namespace Pull_Bear.Service.Implementations
 
             if (sortVM.CategoryId > 0)
             {
-                query = query.Where(x => x.Product.CategoryId == sortVM.CategoryId);
+                query = query.Where(x => x.CategoryId == sortVM.CategoryId);
             }
 
             if (sortVM.ParentCategoryId > 0)
             {
-                query = query.Where(x => x.Product.ParentCategoryId == sortVM.ParentCategoryId);
+                query = query.Where(x => x.ParentCategoryId == sortVM.ParentCategoryId);
             }
 
             if (sortVM.BodyFitId > 0)
             {
-                query = query.Where(x => x.Product.BodyFitId == sortVM.BodyFitId);
+                query = query.Where(x => x.BodyFitId == sortVM.BodyFitId);
             }
 
             if (sortVM.ColorId > 0)
             {
-                query = query.Where(x => x.ColorId == sortVM.ColorId);
+                query = query.Where(x => x.ProductColorSizes.Any(x => x.ColorId == sortVM.ColorId));
             }
 
             if (sortVM.SizeId > 0)
             {
-                query = query.Where(x => x.SizeId == sortVM.SizeId);
+                query = query.Where(x => x.ProductColorSizes.Any(x => x.SizeId == sortVM.SizeId));
             }
 
             if (sortVM.GenderId > 0)
             {
-                query = query.Where(x => x.Product.GenderId == sortVM.GenderId);
+                query = query.Where(x => x.GenderId == sortVM.GenderId);
             }
 
             if (sortVM.MinValue > 0)
             {
-                query = query.Where(x => x.Product.DiscountPrice > sortVM.MinValue);
+                query = query.Where(x => x.DiscountPrice > sortVM.MinValue);
             }
 
             if (sortVM.MaxValue > 0)
             {
-                query = query.Where(x => x.Product.DiscountPrice < sortVM.MaxValue);
+                query = query.Where(x => x.DiscountPrice < sortVM.MaxValue);
             }
 
             if (sortVM.OrderBy > 0)
@@ -117,37 +115,42 @@ namespace Pull_Bear.Service.Implementations
                 {
                     case 1:
 
-                        query = query.OrderByDescending(x => x.Product.DiscountPrice);
+                        query = query.OrderByDescending(x => x.DiscountPrice);
 
                         return query;
 
                     case 2:
 
-                        query = query.OrderBy(x => x.Product.DiscountPrice);
+                        query = query.OrderBy(x => x.DiscountPrice);
 
                         return query;
 
                     case 3:
 
-                        query = query.OrderBy(x => x.Product.CreatedAt);
+                        query = query.OrderBy(x => x.CreatedAt);
 
                         return query;
 
                     case 4:
 
-                        query = query.OrderBy(x => x.Product.AverageRating);
+                        query = query.OrderBy(x => x.AverageRating);
 
                         return query;
 
                     case 5:
 
-                        query = query.OrderBy(x => x.Product.ReviewCount);
+                        query = query.OrderBy(x => x.ReviewCount);
 
                         return query;
                 }
             }
 
             return query;
+        }
+
+        public Task<ProductDetailVM> GetProduct(int? id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

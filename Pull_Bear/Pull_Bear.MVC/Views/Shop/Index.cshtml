@@ -218,14 +218,14 @@
                 </div>
 
                 <div class="products col-lg-12" style="align-items: flex-start;">
-                    @await Html.PartialAsync("_ProductIndexPartial", Model.ProductColorSizes)
+                    @await Html.PartialAsync("_ProductIndexPartial", Model.Products)
                 </div>
 
                 <div class="pagination col-lg-12">
                     <ul>
-                        @for (int i = 1; i <= Model.ProductColorSizes.PageCount; i++)
+                        @for (int i = 1; i <= Model.Products.PageCount; i++)
                         {
-                            <li class="@(Model.ProductColorSizes.Page == i ? "activepagination" : "") sortpage" data-sortpage="@i"></li>
+                            <li class="@(Model.Products.Page == i ? "activepagination" : "") sortpage" data-sortpage="@i"></li>
                         }
                     </ul>
                 </div>

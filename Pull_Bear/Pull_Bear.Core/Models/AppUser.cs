@@ -27,6 +27,7 @@ namespace Pull_Bear.Core.Models
         public List<Basket> Baskets { get; set; }
         //public IEnumerable<Order> Orders { get; set; }
         public List<Wishlist> Wishlists { get; set; }
+        public List<ProductReview> ProductReviews { get; set; }
 
     }
 }

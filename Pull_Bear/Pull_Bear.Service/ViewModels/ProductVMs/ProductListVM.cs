@@ -21,7 +21,10 @@ namespace Pull_Bear.Service.ViewModels.ProductVMs
         public bool IsDeleted { get; set; }
         public Nullable<double> AverageRating { get; set; }
         public Nullable<int> ReviewCount { get; set; }
-
+        public string PhotoModelIndicators { get; set; }
+        public string Composition { get; set; }
+        public string Care { get; set; }
+        public string Description { get; set; }
 
         //realtions one ... - many products
         public CategoryGetVM Category { get; set; }

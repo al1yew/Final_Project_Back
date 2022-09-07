@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Pull_Bear.Service.ViewModels.AppUserVMs;
+using Pull_Bear.Service.ViewModels.ProductVMs;
+using Pull_Bear.Service.ViewModels.ReviewImageVMs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Pull_Bear.Core.Models
+namespace Pull_Bear.Service.ViewModels.ProductReviewVMs
 {
-    public class ProductReview
+    public class ProductReviewListVM
     {
         public int Id { get; set; }
         public string Review { get; set; }
@@ -15,13 +18,14 @@ namespace Pull_Bear.Core.Models
 
 
         //relations one review - many ...
-        public List<ReviewImage> ReviewImages { get; set; }
+        public List<ReviewImageListVM> ReviewImages { get; set; }
 
 
         //relations many reviews - one ...
-        public Product Product { get; set; }
+        public ProductGetVM Product { get; set; }
         public int ProductId { get; set; }
-        public AppUser AppUser { get; set; }
+        public AppUserGetVM AppUser { get; set; }
         public string AppUserId { get; set; }
+
     }
 }

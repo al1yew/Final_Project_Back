@@ -23,6 +23,7 @@ namespace Pull_Bear.Data
         private readonly TagRepository _tagRepository;
         private readonly BasketRepository _basketRepository;
         private readonly WishlistRepository _wishlistRepository;
+        private readonly ProductReviewRepository _productReviewRepository;
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -55,6 +56,7 @@ namespace Pull_Bear.Data
         public IBasketRepository BasketRepository => _basketRepository != null ? _basketRepository : new BasketRepository(_context);
 
         public IWishlistRepository WishlistRepository => _wishlistRepository != null ? _wishlistRepository : new WishlistRepository(_context);
+        public IProductReviewRepository ProductReviewRepository => _productReviewRepository != null ? _productReviewRepository : new ProductReviewRepository(_context);
 
 
         public int Commit()

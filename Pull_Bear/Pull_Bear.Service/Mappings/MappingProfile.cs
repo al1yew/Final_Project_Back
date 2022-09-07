@@ -6,8 +6,10 @@ using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
 using Pull_Bear.Service.ViewModels.ProductImageVMs;
+using Pull_Bear.Service.ViewModels.ProductReviewVMs;
 using Pull_Bear.Service.ViewModels.ProductToTagVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
+using Pull_Bear.Service.ViewModels.ReviewImageVMs;
 using Pull_Bear.Service.ViewModels.SettingVMs;
 using Pull_Bear.Service.ViewModels.SizeVMs;
 using Pull_Bear.Service.ViewModels.TagVMs;
@@ -141,6 +143,16 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<Product, ProductListVM>();
             CreateMap<Setting, SettingListVM>();
+
+            #endregion
+
+            #region Product Review and Review Image
+
+            CreateMap<ProductReview, ProductReviewListVM>();
+            CreateMap<ProductReviewListVM, ProductReview>();
+
+            CreateMap<ReviewImage, ReviewImageListVM>();
+            CreateMap<ReviewImageListVM, ReviewImage>();
 
             #endregion
         }

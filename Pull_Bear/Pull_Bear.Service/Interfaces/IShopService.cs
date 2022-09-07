@@ -14,6 +14,7 @@ namespace Pull_Bear.Service.Interfaces
     public interface IShopService
     {
         Task<ShopVM> GetDataAsync(int? genderId);
-        Task<IQueryable<ProductColorSizeGetVM>> CreateSort(SortVM sortVM);
+        Task<IQueryable<ProductListVM>> CreateSort(SortVM sortVM);
+        Task<ProductDetailVM> GetProduct(int? id);
     }
 }

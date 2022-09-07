@@ -194,7 +194,7 @@ namespace Pull_Bear.Service.Implementations
 
             Product product = _mapper.Map<Product>(productCreateVM);
 
-            product.Seria = "ref" + +1;
+            product.Seria = "ref" + (lastId + 1);
             product.Count = productColorSizes.Sum(x => x.Count);
             product.ProductImage = await productCreateVM.ProductPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.ShopImage = await productCreateVM.ShopPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");

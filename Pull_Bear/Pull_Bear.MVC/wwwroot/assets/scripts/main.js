@@ -1556,6 +1556,7 @@ $(document).ready(function () {
 
         $($('.newprodcs').children()[2]).addClass('notformobile');
     }
+
     //#endregion main page newprods third element removing on phone
 
     //---------------------------------------------------------------------------------------------------------------
@@ -1773,5 +1774,38 @@ $(document).ready(function () {
     });
 
     //#endregion Shop page sorting function
+
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region main page newprods third element removing on phone
+
+    $(document).on('submit', '#postreview', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('action');
+
+        fetch(url,
+            {
+                method: 'post',
+                body: new FormData(e.target)
+            })
+            .then(res => res.text())
+            .then(data => {
+                console.log(typeof (data))
+                if (data.length > 0) {
+                    $('.reviews').html('');
+                    $('.reviews').html(data);
+                }
+
+            });
+
+        $('#reviewname').val('')
+        $('#reviewsurname').val('')
+        $('#reviewtext').val('')
+        $('#upload').val('')
+        $('.star_rating').val('')
+    });
+
+    //#endregion main page newprods third element removing on phone
 });
 

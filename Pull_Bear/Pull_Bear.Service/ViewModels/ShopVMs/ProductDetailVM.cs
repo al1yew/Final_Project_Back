@@ -12,5 +12,6 @@ namespace Pull_Bear.Service.ViewModels.ShopVMs
     {
         public ProductGetVM Product { get; set; }
         public List<ProductListVM> Products { get; set; }
+        public WriteReviewVM WriteReviewVM { get; set; }
     }
 }

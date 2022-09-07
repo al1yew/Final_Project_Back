@@ -153,6 +153,12 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<ProductReview, ProductReviewGetVM>();
             CreateMap<ProductReviewGetVM, ProductReview>();
 
+            CreateMap<WriteReviewVM, ProductReview>()
+                .ForMember(des => des.PublishDate, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)))
+                .ForMember(des => des.Review, src => src.MapFrom(x => x.Review.Trim()))
+                .ForMember(des => des.Rating, src => src.MapFrom(x => x.Rating))
+                .ForMember(des => des.Author, src => src.MapFrom(x => (x.Name.Trim() + " " + x.Surname.Trim().Substring(0, 1) + ".")));
+
             CreateMap<ReviewImage, ReviewImageGetVM>();
             CreateMap<ReviewImageGetVM, ReviewImage>();
 

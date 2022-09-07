@@ -2,6 +2,7 @@
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductReviewVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
 using Pull_Bear.Service.ViewModels.SortVMs;
 using System;
@@ -37,7 +38,21 @@ namespace Pull_Bear.MVC.Controllers
         {
             if (id == null) return BadRequest();
 
+            ViewBag.ProductId = id;
+
             return View(await _shopService.GetProduct(id));
+        }
+
+
+        public async Task<IActionResult> AddReview(WriteReviewVM writeReviewVM, int? id)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                return Ok();
+            }
+
+            return PartialView("_ProductDetailReviewPartial", await _shopService.AddReview(writeReviewVM, id));
         }
 
         //public async Task<IActionResult> Search(string search)
@@ -52,44 +67,6 @@ namespace Pull_Bear.MVC.Controllers
         //        .ToListAsync();
 
         //    return PartialView("_SearchPartial", products);
-        //}
-
-        //[HttpPost]
-        ////[Authorize(Roles = "Member")]
-        //public async Task<IActionResult> AddProductReview(ProductReviewVM productReviewVM, int id)
-        //{
-        //    if (!ModelState.IsValid) return Redirect($"http://localhost:15866/Product/Detail/{id}");
-
-        //    if (id == null && id <= 0) return NotFound();
-
-        //    if (await _context.ProductReviews.Where(x => x.ProductId == productReviewVM.ProductId).AnyAsync(pr => pr.Email.Trim().ToLower() == productReviewVM.Email.Trim().ToLower()))
-        //    {
-        //        ModelState.AddModelError("", "You have already placed your review!");
-        //        return Redirect($"http://localhost:15866/Product/Detail/{id}");
-        //    }
-
-        //    ProductReview productReview = new ProductReview
-        //    {
-        //        CreatedAt = DateTime.UtcNow.AddHours(4),
-        //        Email = productReviewVM.Email,
-        //        Name = productReviewVM.Name,
-        //        Rating = productReviewVM.Rating,
-        //        ReviewText = productReviewVM.ReviewText,
-        //        ProductId = id,
-        //        AppUserId = productReviewVM.AppUserId,
-        //    };
-
-        //    Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
-
-        //    product.ReviewCount++;
-
-        //    //await _context.Products.AddAsync(product);
-        //    await _context.ProductReviews.AddAsync(productReview);
-        //    await _context.SaveChangesAsync();
-
-        //    TempData["success"] = "Thanks for review!";
-
-        //    return Redirect($"http://localhost:15866/Product/Detail/{id}");
         //}
     }
 }

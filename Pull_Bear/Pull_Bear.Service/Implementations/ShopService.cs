@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Pull_Bear.Core;
+using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Exceptions;
+using Pull_Bear.Service.Extensions;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
@@ -25,11 +29,13 @@ namespace Pull_Bear.Service.Implementations
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _env;
 
-        public ShopService(IUnitOfWork unitOfWork, IMapper mapper)
+        public ShopService(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment env)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _env = env;
         }
 
         public async Task<ShopVM> GetDataAsync(int? genderId)
@@ -49,8 +55,6 @@ namespace Pull_Bear.Service.Implementations
                 Colors = _mapper.Map<List<ColorListVM>>(await _unitOfWork.ColorRepository.GetAllByExAsync(x => !x.IsDeleted)),
 
                 Sizes = _mapper.Map<List<SizeListVM>>(await _unitOfWork.SizeRepository.GetAllByExAsync(x => !x.IsDeleted)),
-
-                //ProductColorSizes = PaginationList<ProductColorSizeGetVM>.Create(query, 1, 6),
 
                 Settings = _mapper.Map<List<SettingListVM>>(await _unitOfWork.SettingRepository.GetAllAsync()).ToDictionary(x => x.Key, x => x.Value)
             };
@@ -161,9 +165,53 @@ namespace Pull_Bear.Service.Implementations
             {
                 Product = product,
                 Products = products,
+                WriteReviewVM = new WriteReviewVM()
             };
 
             return productDetailVM;
+        }
+
+        public async Task<List<ProductReviewGetVM>> AddReview(WriteReviewVM writeReviewVM, int? id)
+        {
+            if (id == null && id <= 0) throw new NotFoundException("ProductCannot be found!");
+
+            ProductReview productReview = _mapper.Map<ProductReview>(writeReviewVM);
+
+            List<ReviewImage> reviewImages = new List<ReviewImage>();
+
+            if (writeReviewVM.Photos != null)
+            {
+                foreach (IFormFile file in writeReviewVM.Photos)
+                {
+                    ReviewImage reviewImage = new ReviewImage()
+                    {
+                        Image = await file.CreateAsync(_env, "assets", "images", "reviews", $"{id}")
+                    };
+
+                    reviewImages.Add(reviewImage);
+                }
+            }
+
+            productReview.ReviewImages = reviewImages;
+            productReview.ProductId = (int)id;
+
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id);
+
+            if (product.ReviewCount == null)
+            {
+                product.ReviewCount = 1;
+            }
+            else
+            {
+                product.ReviewCount++;
+            }
+
+            await _unitOfWork.ProductReviewRepository.AddAsync(productReview);
+            await _unitOfWork.CommitAsync();
+
+            List<ProductReviewGetVM> productReviews = _mapper.Map<List<ProductReviewGetVM>>(await _unitOfWork.ProductReviewRepository.GetAllByExAsync(x => x.ProductId == id, "ReviewImages"));
+
+            return productReviews;
         }
     }
 }

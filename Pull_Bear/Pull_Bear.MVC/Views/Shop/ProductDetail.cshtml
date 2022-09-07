@@ -33,7 +33,7 @@
                     <div class="col-lg-6 productinfoinner">
                         <div class="top">
                             <span>CONSCIOUS CHOICE</span>
-                            <span class="productseria">REF @product.Id</span>
+                            <span class="productseria">@product.Seria.ToUpperInvariant()</span>
                             <p class="productinfo">
                                 @product.Description
                             </p>
@@ -420,12 +420,12 @@
                         <span class="reviewcount">@product.ReviewCount reviews</span>
                     </div>
                 </div>
-                <div class="col-lg-12 col-12 reviews dontclose">
+                <div class="col-lg-12 col-12 reviews dontclose" id="reviews">
                     @await Html.PartialAsync("_ProductDetailReviewPartial", product.ProductReviews)
                 </div>
 
                 <div class="col-lg-12 col-12 writereview dontclose">
-                    @await Html.PartialAsync("_WriteReviewPartial")
+                    @await Html.PartialAsync("_WriteReviewPartial", Model.WriteReviewVM)
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 ﻿using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
+using Pull_Bear.Service.ViewModels.ProductReviewVMs;
 using Pull_Bear.Service.ViewModels.ProductVMs;
 using Pull_Bear.Service.ViewModels.ShopVMs;
 using Pull_Bear.Service.ViewModels.SortVMs;
@@ -16,5 +17,6 @@ namespace Pull_Bear.Service.Interfaces
         Task<ShopVM> GetDataAsync(int? genderId);
         Task<IQueryable<ProductListVM>> CreateSort(SortVM sortVM);
         Task<ProductDetailVM> GetProduct(int? id);
+        Task<List<ProductReviewGetVM>> AddReview(WriteReviewVM writeReviewVM, int? id);
     }
 }

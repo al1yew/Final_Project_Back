@@ -10,7 +10,6 @@ namespace Pull_Bear.Service.ViewModels.ShopVMs
 {
     public class ProductDetailVM
     {
-        public List<ProductColorSizeGetVM> ProductColorSizes { get; set; }
         public ProductGetVM Product { get; set; }
         public List<ProductListVM> Products { get; set; }
     }

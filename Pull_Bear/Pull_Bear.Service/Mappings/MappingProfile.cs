@@ -110,7 +110,9 @@ namespace Pull_Bear.Service.Mappings
                 .ForMember(des => des.CreatedAt, src => src.MapFrom(x => DateTime.UtcNow.AddHours(4)));
 
             CreateMap<Product, ProductGetVM>()
-                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
+                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes))
+                .ForPath(des => des.ProductReviews, src => src.MapFrom(x => x.ProductReviews))
+                .ForPath(des => des.ProductToTags, src => src.MapFrom(x => x.ProductToTags));
 
             CreateMap<ProductGetVM, ProductUpdateVM>()
                 .ForMember(des => des.MaleBodyFitId, src => src.MapFrom(x => (x.GenderId == 2) ? x.BodyFitId : 0))
@@ -148,11 +150,11 @@ namespace Pull_Bear.Service.Mappings
 
             #region Product Review and Review Image
 
-            CreateMap<ProductReview, ProductReviewListVM>();
-            CreateMap<ProductReviewListVM, ProductReview>();
+            CreateMap<ProductReview, ProductReviewGetVM>();
+            CreateMap<ProductReviewGetVM, ProductReview>();
 
-            CreateMap<ReviewImage, ReviewImageListVM>();
-            CreateMap<ReviewImageListVM, ReviewImage>();
+            CreateMap<ReviewImage, ReviewImageGetVM>();
+            CreateMap<ReviewImageGetVM, ReviewImage>();
 
             #endregion
         }

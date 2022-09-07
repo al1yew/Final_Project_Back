@@ -32,7 +32,7 @@
                 <div class="bobotleft col-lg-4 col-4">
                     <select name="" id="" class="size">
                         <option selected value="0">SIZE</option>
-                        @foreach (var size in product.ProductColorSizes.OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
+                        @foreach (ProductColorSizeGetVM size in product.ProductColorSizes.OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
                         {
                             <option value="@size.Size.Id">@size.Size.Name</option>
                         }

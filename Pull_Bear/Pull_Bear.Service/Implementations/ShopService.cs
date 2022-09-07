@@ -148,9 +148,22 @@ namespace Pull_Bear.Service.Implementations
             return query;
         }
 
-        public Task<ProductDetailVM> GetProduct(int? id)
+        public async Task<ProductDetailVM> GetProduct(int? id)
         {
-            throw new NotImplementedException();
+            ProductGetVM product = _mapper.Map<ProductGetVM>(await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category", "ProductReviews", "ProductReviews.ReviewImages"));
+
+            if (product == null)
+                throw new NotFoundException("Product cannot be found!");
+
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
+
+            ProductDetailVM productDetailVM = new ProductDetailVM()
+            {
+                Product = product,
+                Products = products,
+            };
+
+            return productDetailVM;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Pull_Bear.MVC.Extensions
             services.AddScoped<ISettingService, SettingService>();
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IShopService, ShopService>();
+            services.AddScoped<IHeaderService, HeaderService>();
             //services.AddScoped<ILayoutService, LayoutService>();
 
         }

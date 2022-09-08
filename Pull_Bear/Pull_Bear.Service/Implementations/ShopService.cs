@@ -38,9 +38,9 @@ namespace Pull_Bear.Service.Implementations
             _env = env;
         }
 
-        public async Task<ShopVM> GetDataAsync(int? genderId)
+        public async Task<ShopVM> GetDataAsync(int? genderId, int? parentcategoryid)
         {
-            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId == null || genderId <= 0 ? 1 : genderId) && parentcategoryid != null ? x.ParentCategoryId == parentcategoryid : x.ParentCategoryId > 0, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
 
             IQueryable<ProductListVM> query = products.AsQueryable();
 

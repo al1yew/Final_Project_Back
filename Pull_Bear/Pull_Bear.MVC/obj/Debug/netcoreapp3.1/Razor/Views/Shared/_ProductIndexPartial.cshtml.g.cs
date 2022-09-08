@@ -97,20 +97,27 @@ using Pull_Bear.Service.ViewModels.SizeVMs;
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.Enums;
+using Pull_Bear.Service.ViewModels.HeaderVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 16 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"34d7da860c7f11245516e743e4b9add6d5996580", @"/Views/Shared/_ProductIndexPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"231b02017dd63f6390ef4d19aec0c0f846d63722", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"63973409af873e474a643e7585dfdd808edce88f", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__ProductIndexPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<PaginationList<ProductListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -165,9 +172,9 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("    <div class=\"col-lg-3-5 col-12 product\">\r\n        <div class=\"top\">\r\n\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658011126", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658011333", async() => {
                 WriteLiteral("\r\n                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "34d7da860c7f11245516e743e4b9add6d599658011398", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "34d7da860c7f11245516e743e4b9add6d599658011605", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -232,7 +239,7 @@ AddHtmlAttributeValue("", 357, product.ShopImage, 357, 18, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658015728", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658015935", async() => {
                 WriteLiteral(@"
                 <svg width=""31"" height=""28"" viewBox=""0 0 31 28"" fill=""none""
                      xmlns=""http://www.w3.org/2000/svg"">
@@ -281,7 +288,7 @@ AddHtmlAttributeValue("", 357, product.ShopImage, 357, 18, false);
 #line hidden
 #nullable disable
             WriteLiteral("%</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"bottom\">\r\n            <div class=\"botop col-lg-12 col-12\" style=\"align-items: flex-start;\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658019484", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658019691", async() => {
 #nullable restore
 #line 28 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\Shared\_ProductIndexPartial.cshtml"
                                                                                                                            Write(product.Name);
@@ -329,14 +336,14 @@ AddHtmlAttributeValue("", 357, product.ShopImage, 357, 18, false);
 #line hidden
 #nullable disable
             WriteLiteral(" $</span>\r\n            </div>\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658022663", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658022870", async() => {
                 WriteLiteral("\r\n                <div class=\"bobotleft col-lg-4 col-4\">\r\n                    <select");
                 BeginWriteAttribute("name", " name=\"", 1979, "\"", 1986, 0);
                 EndWriteAttribute();
                 BeginWriteAttribute("id", " id=\"", 1987, "\"", 1992, 0);
                 EndWriteAttribute();
                 WriteLiteral(" class=\"size\">\r\n                        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658023318", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658023525", async() => {
                     WriteLiteral("SIZE");
                 }
                 );
@@ -364,7 +371,7 @@ AddHtmlAttributeValue("", 357, product.ShopImage, 357, 18, false);
 #line hidden
 #nullable disable
                 WriteLiteral("                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658025330", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "34d7da860c7f11245516e743e4b9add6d599658025537", async() => {
 #nullable restore
 #line 37 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\Shared\_ProductIndexPartial.cshtml"
                                                      Write(size.Size.Name);

@@ -20,9 +20,9 @@ namespace Pull_Bear.MVC.Controllers
             _shopService = shopService;
         }
 
-        public async Task<IActionResult> Index(int? genderId)
+        public async Task<IActionResult> Index(int? genderId, int? parentcategoryid)
         {
-            return View(await _shopService.GetDataAsync(genderId));
+            return View(await _shopService.GetDataAsync(genderId, parentcategoryid));
         }
 
         public async Task<IActionResult> CreateSort([FromBody] SortVM sortVM)

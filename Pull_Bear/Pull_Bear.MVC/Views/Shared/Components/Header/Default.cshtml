@@ -1,4 +1,4 @@
-﻿
+﻿@model HeaderVM
 
 <header class="header">
     <div class="container">
@@ -148,13 +148,23 @@
                     </a>
                     <div class="accountinfo">
                         <ul>
-                            <li>
-                                <a asp-controller="Account" asp-action="Login">SIGN IN</a>
-                                <div>
-                                    <span>HAVEN'T GOT AN ACCOUNT? </span>
-                                    <a asp-controller="Account" asp-action="Register">REGISTER!</a>
-                                </div>
-                            </li>
+                            @if (!User.Identity.IsAuthenticated || !User.IsInRole("Member"))
+                            {
+                                <li>
+                                    <a asp-controller="Account" asp-action="Login">SIGN IN</a>
+                                    <div>
+                                        <span>HAVEN'T GOT AN ACCOUNT? </span>
+                                        <a asp-controller="Account" asp-action="Register">REGISTER!</a>
+                                    </div>
+                                </li>
+                            }
+                            else if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                            {
+                                <li>
+                                    <a asp-controller="Account" asp-action="Logout">LOG OUT</a>
+                                </li>
+                            }
+
                             <li>
                                 <a asp-controller="Order" asp-action="Index">
                                     <span>MY PURCHASES</span>
@@ -211,6 +221,20 @@
                                     </span>
                                 </a>
                             </li>
+                            <li>
+                                <a asp-controller="Account" asp-action="Logout">
+                                    <span>LOG OUT</span>
+                                    <span>
+                                        <svg width="43" height="13" viewBox="0 0 43 13" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 5.65C0.806698 5.65 0.649998 5.8067 0.649998 6C0.649998 6.1933 0.806698 6.35 1 6.35L1 5.65ZM41 6.35C41.1933 6.35 41.35 6.1933 41.35 6C41.35 5.8067 41.1933 5.65 41 5.65L41 6.35ZM1 6.35L41 6.35L41 5.65L1 5.65L1 6.35Z"
+                                                  fill="black" />
+                                            <path d="M33.5108 0.703211C33.3469 0.600762 33.131 0.650593 33.0285 0.81451C32.9261 0.978428 32.9759 1.19436 33.1398 1.29681L33.5108 0.703211ZM42 6.4217L42.1855 6.7185C42.2878 6.65454 42.35 6.54237 42.35 6.4217C42.35 6.30102 42.2878 6.18886 42.1855 6.1249L42 6.4217ZM33.1398 11.5466C32.9759 11.649 32.9261 11.865 33.0285 12.0289C33.1309 12.1928 33.3469 12.2426 33.5108 12.1402L33.1398 11.5466ZM33.1398 1.29681L41.8145 6.7185L42.1855 6.1249L33.5108 0.703211L33.1398 1.29681ZM41.8145 6.1249L33.1398 11.5466L33.5108 12.1402L42.1855 6.7185L41.8145 6.1249Z"
+                                                  fill="black" />
+                                        </svg>
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -256,92 +280,26 @@
 
                 <div class="tab_container">
                     <ul id="tab1" class="tab_content">
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman1.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">NEW</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman2.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">CLOTHING</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman3.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">SHOES</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman4.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">BAGS</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman5.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">ACCESSORIES</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman6.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">WHAT TO WEAR TODAY</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman7.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">PACIFIC REPUBLIC</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categorywoman8.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-genderId="1" class="col-9">JOIN LIFE</a>
-                        </li>
+                        @foreach (CategoryListVM category in Model.Categories.Where(x => x.GenderId == 1))
+                        {
+                            <li class="sidebar_menu_li">
+                                <div class="imagekeeper col-2">
+                                    <img src="~/assets/images/categories/@category.Image" class="img-fluid" alt="">
+                                </div>
+                                <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-parentcategoryid="@category.Id" class="col-9">@category.Name.ToUpperInvariant()</a>
+                            </li>
+                        }
                     </ul>
                     <ul id="tab2" class="tab_content">
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categoryman1.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-genderId="2" class="col-9">NEW</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categoryman2.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-genderId="2" class="col-9">CLOTHING</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categoryman3.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-genderId="2" class="col-9">SHOES</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categoryman4.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-genderId="2" class="col-9">ACCESSORIES</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categoryman5.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-genderId="2" class="col-9">XDYE</a>
-                        </li>
-                        <li class="sidebar_menu_li">
-                            <div class="imagekeeper col-2">
-                                <img src="~/assets/images/categories/categoryman6.jpg" class="img-fluid" alt="">
-                            </div>
-                            <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-genderId="2" class="col-9">JOIN LIFE</a>
-                        </li>
+                        @foreach (CategoryListVM category in Model.Categories.Where(x => x.GenderId == 2))
+                        {
+                            <li class="sidebar_menu_li">
+                                <div class="imagekeeper col-2">
+                                    <img src="~/assets/images/categories/@category.Image" class="img-fluid" alt="">
+                                </div>
+                                <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-parentcategoryid="@category.Id" class="col-9">@category.Name.ToUpperInvariant()</a>
+                            </li>
+                        }
                     </ul>
                 </div>
 
@@ -393,6 +351,7 @@
                 <div class="minibasket forclosebasket">
                     <div class="basket_count forclosebasket">BASKET (2)</div>
                     <div class="basket_items forclosebasket">
+
                         <div class="basket_item forclosebasket">
 
                             <div class="col-lg-3 col-3 left forclosebasket">
@@ -440,101 +399,6 @@
                             </div>
                         </div>
 
-                        <div class="basket_item">
-
-                            <div class="col-lg-3 col-3 left">
-                                <a asp-controller="Shop" asp-action="ProductDetail">
-                                    <img class="img-fluid" src="~/assets/images/Products/product18.jpg" alt="">
-                                </a>
-                            </div>
-
-                            <div class="col-lg-9 col-9 right">
-                                <ul class="">
-                                    <li>
-                                        <span>FABRIC SHORTS</span>
-                                        <span class="price col-lg-3 col-3">59€</span>
-                                    </li>
-                                    <li>
-                                        <span>AMOUNT:</span>
-                                        <span class="item_amount"> 2</span>
-                                    </li>
-                                    <li>
-                                        <span>SIZE:</span>
-                                        <span class="item_size">S</span>
-                                    </li>
-                                    <li>
-                                        <span>COLOR:</span>
-                                        <span class="item_size" style="color: #EDC321;">nazvanie cveta</span>
-                                    </li>
-                                    <li>
-                                        <span>TOTAL:</span>
-                                        <span class="amount_price">2 x 59€</span>
-                                        <span class="totalpriceproduct">118€</span>
-                                    </li>
-                                </ul>
-
-                                <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
-                                    <svg width="24"
-                                         height="24" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
-                                              stroke-linejoin="round" />
-                                        <path d="M9.8 9.8V16.95M14.2 9.8V16.95M1 4.3H23" stroke="black"
-                                              stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M7.60034 4.3L9.40929 1H14.6277L16.4003 4.3H7.60034Z" stroke="black"
-                                              stroke-linejoin="round" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="basket_item">
-
-                            <div class="col-lg-3 col-3 left">
-                                <a asp-controller="Shop" asp-action="ProductDetail">
-                                    <img class="img-fluid" src="~/assets/images/Products/product8.jpg" alt="">
-                                </a>
-                            </div>
-
-                            <div class="col-lg-9 col-9 right">
-                                <ul class="">
-                                    <li>
-                                        <span>FABRIC SHORTS</span>
-                                        <span class="price col-lg-3 col-3">59€</span>
-                                    </li>
-                                    <li>
-                                        <span>AMOUNT:</span>
-                                        <span class="item_amount"> 2</span>
-                                    </li>
-                                    <li>
-                                        <span>SIZE:</span>
-                                        <span class="item_size">S</span>
-                                    </li>
-                                    <li>
-                                        <span>COLOR:</span>
-                                        <span class="item_size" style="color: #EDC321;">nazvanie cveta</span>
-                                    </li>
-                                    <li>
-                                        <span>TOTAL:</span>
-                                        <span class="amount_price">2 x 59€</span>
-                                        <span class="totalpriceproduct">118€</span>
-                                    </li>
-                                </ul>
-
-                                <a asp-controller="Basket" asp-action="DeleteFromBasket" class="deletefrombasket classforbasketscssdelete">
-                                    <svg width="24"
-                                         height="24" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
-                                              stroke-linejoin="round" />
-                                        <path d="M9.8 9.8V16.95M14.2 9.8V16.95M1 4.3H23" stroke="black"
-                                              stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M7.60034 4.3L9.40929 1H14.6277L16.4003 4.3H7.60034Z" stroke="black"
-                                              stroke-linejoin="round" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                     <div class="ifbasketisempty d-none">
                         <div class="allforp">
@@ -586,13 +450,23 @@
                 </a>
                 <div class="accountinfo forcloseaccount">
                     <ul class="forcloseaccount">
-                        <li>
-                            <a asp-controller="Account" asp-action="Login" class="">SIGN IN</a>
-                            <div class="">
-                                <span class="">HAVEN'T GOT AN ACCOUNT? </span>
-                                <a asp-controller="Account" asp-action="Register" class="">REGISTER!</a>
-                            </div>
-                        </li>
+                        @if (!User.Identity.IsAuthenticated || !User.IsInRole("Member"))
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Login" class="">SIGN IN</a>
+                                <div class="">
+                                    <span class="">HAVEN'T GOT AN ACCOUNT? </span>
+                                    <a asp-controller="Account" asp-action="Register" class="">REGISTER!</a>
+                                </div>
+                            </li>
+                        }
+                        else if (User.Identity.IsAuthenticated && User.IsInRole("Member"))
+                        {
+                            <li>
+                                <a asp-controller="Account" asp-action="Logout" class="">LOG OUT</a>
+                            </li>
+                        }
+
                         <li>
                             <a asp-controller="Order" asp-action="Index">
                                 <span>MY PURCHASES</span>

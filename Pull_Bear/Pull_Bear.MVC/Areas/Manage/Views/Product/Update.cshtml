@@ -134,8 +134,8 @@
                 @await Html.PartialAsync("_ProductImagePartial", Model.ProductImages)
             </div>
 
+            <p class="text text-danger my-1 col-lg-12">Click Tag to delete it</p>
             <div class="d-flex productTags mb-2 flex-wrap">
-                <p class="text text-danger my-1 col-lg-12">Click Tag to delete it</p>
                 @await Html.PartialAsync("_ProductTagPartial", Model.ProductToTags)
             </div>
 

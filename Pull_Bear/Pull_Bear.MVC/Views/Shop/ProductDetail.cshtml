@@ -94,7 +94,7 @@
                             </div>
                         </div>
                         <span class="openmodalreview col-lg-4 col-6 dontclose">
-                            REVIEW(@product.ReviewCount)
+                            REVIEW(<span class="reviewcount revcount1">@product.ReviewCount</span>)
                         </span>
                         <div class="col-lg-8 col-6 stardiv">
                             @for (int i = 0; i < Math.Round(product.AverageRating); i++)
@@ -404,7 +404,7 @@
                 <p class="firstp col-lg-12 col-12 dontclose">PRODUCT REVIEWS</p>
                 <div class="col-lg-12 col-12 rating dontclose">
                     <div class="col-lg-6 col-5 left ">
-                        <span class="avgrating">@product.AverageRating</span>
+                        <span class="avgrating">@Math.Round(product.AverageRating, 2)</span>
                         <div class="stardiv">
                             @for (int i = 0; i < Math.Round(product.AverageRating); i++)
                             {
@@ -417,7 +417,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-7 right">
-                        <span class="reviewcount">@product.ReviewCount reviews</span>
+                        <span class="reviewcount"><span class="revcount2">@product.ReviewCount</span> reviews</span>
                     </div>
                 </div>
                 <div class="col-lg-12 col-12 reviews dontclose" id="reviews">

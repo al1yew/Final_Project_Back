@@ -43,7 +43,6 @@ namespace Pull_Bear.MVC.Controllers
             return View(await _shopService.GetProduct(id));
         }
 
-
         public async Task<IActionResult> AddReview(WriteReviewVM writeReviewVM, int? id)
         {
             if (!ModelState.IsValid)
@@ -51,22 +50,25 @@ namespace Pull_Bear.MVC.Controllers
                 ModelState.AddModelError("", "");
                 return Ok();
             }
-
+            ViewBag.ProductId = id;
             return PartialView("_ProductDetailReviewPartial", await _shopService.AddReview(writeReviewVM, id));
         }
 
-        //public async Task<IActionResult> Search(string search)
-        //{
-        //    List<Product> products = await _context.Products
-        //        .Where(p => p.Name.ToLower().Contains(search.ToLower()) ||
-        //        p.Brand.Name.ToLower().Contains(search.ToLower()) ||
-        //        p.Category.Name.ToLower().Contains(search.ToLower()) ||
-        //        p.Description.ToLower().Contains(search.ToLower()) ||
-        //        p.FirstText.ToLower().Contains(search.ToLower()) ||
-        //        p.SecondText.ToLower().Contains(search.ToLower()))
-        //        .ToListAsync();
+        public async Task<IActionResult> Search(string search)
+        {
+            var a = await _shopService.Search(search);
 
-        //    return PartialView("_SearchPartial", products);
-        //}
+            return PartialView("_SearchPartial", a);
+        }
+
+        public async Task<IActionResult> GetReviewCount(int? id)
+        {
+            return Json(await _shopService.GetReviewCount(id));
+        }
+
+        public async Task<IActionResult> Like(int? id)
+        {
+            return Json(await _shopService.Like(id));
+        }
     }
 }

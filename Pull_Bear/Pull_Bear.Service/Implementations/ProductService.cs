@@ -93,7 +93,6 @@ namespace Pull_Bear.Service.Implementations
                 throw new RecordDublicateException($"Product Already Exists By Name = {productCreateVM.Name}");
 
             int lastId = _unitOfWork.ProductRepository.GetAllAsync().Result.Count == 0 ? 1 : _unitOfWork.ProductRepository.GetAllAsync().Result.OrderByDescending(x => x.Id).FirstOrDefault().Id;
-            int lastSeria = _unitOfWork.ProductRepository.GetAllAsync().Result.Count == 0 ? 1 : int.Parse(_unitOfWork.ProductRepository.GetAllAsync().Result.OrderByDescending(x => x.Seria).FirstOrDefault().Seria.Substring(3));
 
             #region Product Color Sizes
 
@@ -197,7 +196,6 @@ namespace Pull_Bear.Service.Implementations
             product.Seria = "ref" + (lastId + 1);
             product.Count = productColorSizes.Sum(x => x.Count);
             product.ProductImage = await productCreateVM.ProductPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
-            product.ShopImage = await productCreateVM.ShopPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.MainImage1 = await productCreateVM.MainPhoto1.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.ShopImage = await productCreateVM.ShopPhoto.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");
             product.MainImage2 = await productCreateVM.MainPhoto2.CreateAsync(_env, "assets", "images", "products", $"{lastId + 1}");

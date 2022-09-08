@@ -211,7 +211,44 @@ namespace Pull_Bear.Service.Implementations
 
             List<ProductReviewGetVM> productReviews = _mapper.Map<List<ProductReviewGetVM>>(await _unitOfWork.ProductReviewRepository.GetAllByExAsync(x => x.ProductId == id, "ReviewImages"));
 
+            product.AverageRating = productReviews.Sum(x => x.Rating) / product.ReviewCount;
+            await _unitOfWork.CommitAsync();
+
             return productReviews;
+        }
+
+        public async Task<List<ProductListVM>> Search(string search)
+        {
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(
+                await _unitOfWork.ProductRepository.GetAllByExAsync(
+                p => p.Name.ToLower().Contains(search.ToLower()) ||
+                p.Category.Name.ToLower().Contains(search.ToLower()) ||
+                p.ProductToTags.Any(x => x.Tag.Name.Contains(search)) ||
+                p.Description.ToLower().Contains(search.ToLower()) ||
+                p.BodyFit.Name.ToLower().Contains(search.ToLower()) ||
+                p.Gender.Name.ToLower().Contains(search.ToLower()), "Category", "Gender", "BodyFit", "ProductToTags"));
+
+            return products;
+        }
+
+        public async Task<int> GetReviewCount(int? id)
+        {
+            List<ProductReviewGetVM> productReviews = _mapper.Map<List<ProductReviewGetVM>>(await _unitOfWork.ProductReviewRepository.GetAllByExAsync(x => x.ProductId == id));
+
+            int count = productReviews.Count;
+
+            return count;
+        }
+
+        public async Task<int> Like(int? id)
+        {
+            ProductReview productReview = await _unitOfWork.ProductReviewRepository.GetAsync(x => x.Id == id);
+
+            productReview.LikesCount++;
+
+            await _unitOfWork.CommitAsync();
+
+            return productReview.LikesCount;
         }
     }
 }

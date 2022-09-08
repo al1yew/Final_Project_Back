@@ -1131,43 +1131,6 @@ $(document).ready(function () {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //#region headersearch
-
-    $(document).on('keyup click', '.search_input', function (e) {
-
-        $(this).next().next().show();
-        $($(this).next().children()[0]).attr('name', 'close-outline')
-        $($(this).next().children()[0]).addClass('closesearchheader')
-
-        if ($(this).val() == '') {
-
-            $(this).next().next().hide();
-            $($(this).next().children()[0]).attr('name', 'search-outline')
-            $($(this).next().children()[0]).removeClass('closesearchheader')
-
-        }
-    });
-
-    $(document).on('click', '.closesearchheader', function (e) {
-
-        $(this).attr('name', 'search-outline')
-
-        $(this).parent().prev().attr('value', '')
-
-        $(this).parent().next().hide();
-
-    });
-
-    $(document).on('click', '.headersearchhref', function (e) {
-
-        e.preventDefault();
-
-    });
-
-    //#endregion headersearch
-
-    //---------------------------------------------------------------------------------------------------------------
-
     //#region close toggle windows by clicking outside
 
     //------------ shop page sortirovka menu close on click on document 
@@ -1777,7 +1740,7 @@ $(document).ready(function () {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //#region main page newprods third element removing on phone
+    //#region product detail add review add like
 
     $(document).on('submit', '#postreview', function (e) {
         e.preventDefault();
@@ -1791,12 +1754,17 @@ $(document).ready(function () {
             })
             .then(res => res.text())
             .then(data => {
-                console.log(typeof (data))
-                if (data.length > 0) {
-                    $('.reviews').html('');
-                    $('.reviews').html(data);
-                }
 
+                $('.reviews').html(data);
+
+                let id = $(this).find('.addreviewbtn').data('count')
+
+                fetch(`http://localhost:53427/Shop/GetReviewCount/${id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        $('.revcount1').html(data);
+                        $('.revcount2').html(data);
+                    });
             });
 
         $('#reviewname').val('')
@@ -1806,6 +1774,83 @@ $(document).ready(function () {
         $('.star_rating').val('')
     });
 
-    //#endregion main page newprods third element removing on phone
+    $(document).on('click', '.layk', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        fetch(url, {
+            method: 'GET',
+        })
+            .then(res => res.json())
+            .then(data => {
+                $(this).parent().find('.likecount').html(data)
+            });
+    });
+
+    //#endregion product detail add review add like
+
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region header Search
+
+    $(document).on('keyup click', '.search_input', function (e) {
+
+        $(this).next().next().show();
+        $($(this).next().children()[0]).attr('name', 'close-outline')
+        $($(this).next().children()[0]).addClass('closesearchheader')
+
+        if ($(this).val() == '') {
+
+            $(this).next().next().hide();
+            $($(this).next().children()[0]).attr('name', 'search-outline')
+            $($(this).next().children()[0]).removeClass('closesearchheader')
+        }
+
+        let inputvalue = $(this).val();
+
+        let url = $(this).data('url');
+
+        url = url + '?search=' + inputvalue;
+
+        if (inputvalue) {
+
+            fetch(url)
+                .then(res => res.text())
+                .then(data => {
+                    $(".searchul").html(data);
+                    $(".searchulphone").html(data);
+                })
+        }
+        else {
+            $(".searchul").html('');
+            $(".searchulphone").html('');
+        }
+    });
+
+    $(document).on('click', '.closesearchheader', function (e) {
+
+        $(this).attr('name', 'search-outline')
+
+        $(this).parent().prev().attr('value', '')
+
+        $(this).parent().next().hide();
+
+    });
+
+    $(document).on('click', '.headersearchhref', function (e) {
+        e.preventDefault();
+    });
+
+
+    //#endregion header Search
+
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region header Search
+
+
+
+    //#endregion header Search
 });
 

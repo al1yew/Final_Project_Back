@@ -23,7 +23,7 @@
                 <p class="secondp">
                     We’re happy to see you again!
                 </p>
-                <div asp-validation-summary="ModelOnly"></div>
+                <div asp-validation-summary="ModelOnly" class="text-center text-danger"></div>
                 <form method="post" action="" enctype="multipart/form-data" class="col-lg-6 col-12">
                     <label asp-for="Email"><span>*</span> EMAIL OR PHONE</label>
                     <input id="emaillogin" asp-for="Email" class=" textinp col-12 col-lg-12" required type="text"
@@ -33,6 +33,7 @@
                         <label asp-for="Password"><span>*</span> PASSWORD</label>
                         <input asp-for="Password" placeholder="Enter your password" id="password" class=" textinp col-12 col-lg-12"
                                required type="password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
                         <span class="boshduqjsuchun"></span>
                         <span class="seepass">
                             <svg viewBox="0 0 15 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +51,7 @@
 
                     <div class="bottomlogin col-lg-12 col-12">
                         <span class="col-lg-6 col-6 rememberme">
-                            <input asp-for="RememberMe" class="" type="checkbox" name="" id="rememberme">
+                            <input asp-for="RememberMe" id="rememberme">
                             <label asp-for="RememberMe" class="col-lg-9 col-10">Remember me</label>
                         </span>
                         <span class="col-lg-6 col-6 forgot">

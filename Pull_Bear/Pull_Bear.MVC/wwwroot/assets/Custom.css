@@ -118,3 +118,8 @@
         letter-spacing: 0.08em;
     }
 }
+
+
+.validation-summary-errors ul {
+    list-style: none !important;
+}

@@ -847,7 +847,7 @@ $(document).ready(function () {
     //--------------------------------- product register eye icon
 
     $(document).on('click', '.seepass', function () {
-        $(this).prev().prev().attr('type', 'text');
+        $(this).prev().prev().prev().attr('type', 'text');
         $(this).hide();
         $(this).next().show();
         $(this).prev().prev().focus();
@@ -857,7 +857,7 @@ $(document).ready(function () {
         $(this).prev().prev().prev().attr('type', 'password');
         $(this).hide();
         $(this).prev().show();
-        $(this).prev().prev().prev().focus();
+        $(this).prev().prev().prev().prev().focus();
     });
 
     //#endregion register eye icon

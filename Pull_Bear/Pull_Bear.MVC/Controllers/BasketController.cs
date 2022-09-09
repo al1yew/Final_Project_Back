@@ -62,6 +62,14 @@ namespace Pull_Bear.MVC.Controllers
 
             ProductColorSize productColorSize = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == addToBasketVM.ProductId && x.ColorId == addToBasketVM.ColorId && x.SizeId == addToBasketVM.SizeId, "Product", "Size", "Color");
 
+            productColorSize.Count--;
+
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == addToBasketVM.ProductId);
+
+            product.Count--;
+
+            await _unitOfWork.CommitAsync();
+
             if (!string.IsNullOrWhiteSpace(basket))
             {
                 basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
@@ -93,6 +101,7 @@ namespace Pull_Bear.MVC.Controllers
                         Price = dbProduct.DiscountPrice,
                         SizeName = _unitOfWork.SizeRepository.GetAsync(x => x.Id == addToBasketVM.SizeId).Result.Name,
                         Seria = dbProduct.Seria,
+                        ItemsCount = pcs.Count,
                         Count = 1
                     };
 
@@ -171,6 +180,16 @@ namespace Pull_Bear.MVC.Controllers
 
             if (await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == deleteFromBasketVM.ProductId && x.ColorId == deleteFromBasketVM.ColorId && x.SizeId == deleteFromBasketVM.SizeId && !x.Product.IsDeleted, "Product", "Color", "Size") == null) return NotFound();
 
+            ProductColorSize pcs = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == deleteFromBasketVM.ProductId && x.ColorId == deleteFromBasketVM.ColorId && x.SizeId == deleteFromBasketVM.SizeId, "Product", "Size", "Color");
+
+            pcs.Count += deleteFromBasketVM.CountInBasket;
+
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == deleteFromBasketVM.ProductId);
+
+            product.Count += deleteFromBasketVM.CountInBasket;
+
+            await _unitOfWork.CommitAsync();
+
             string basket = HttpContext.Request.Cookies["basket"];
 
             if (string.IsNullOrWhiteSpace(basket)) return BadRequest();
@@ -212,6 +231,16 @@ namespace Pull_Bear.MVC.Controllers
             if (deleteFromBasketVM == null) return BadRequest();
 
             if (await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == deleteFromBasketVM.ProductId && x.ColorId == deleteFromBasketVM.ColorId && x.SizeId == deleteFromBasketVM.SizeId && !x.Product.IsDeleted, "Product", "Color", "Size") == null) return NotFound();
+
+            ProductColorSize pcs = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == deleteFromBasketVM.ProductId && x.ColorId == deleteFromBasketVM.ColorId && x.SizeId == deleteFromBasketVM.SizeId, "Product", "Size", "Color");
+
+            pcs.Count += deleteFromBasketVM.CountInBasket;
+
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == deleteFromBasketVM.ProductId);
+
+            product.Count += deleteFromBasketVM.CountInBasket;
+
+            await _unitOfWork.CommitAsync();
 
             string basket = HttpContext.Request.Cookies["basket"];
 
@@ -269,11 +298,48 @@ namespace Pull_Bear.MVC.Controllers
 
                 ProductColorSize pcs = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == updateBasketVM.ProductId && x.ColorId == updateBasketVM.ColorId && x.SizeId == updateBasketVM.SizeId);
 
+                Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == updateBasketVM.ProductId);
+
                 if (updateBasketVM.Count <= pcs.Count)
                 {
-                    if (updateBasketVM.Count <= 5)
+                    if (updateBasketVM.Count <= 5 && updateBasketVM.Count >= 0)
                     {
                         basketVM.Count = updateBasketVM.Count <= 0 ? 1 : updateBasketVM.Count;
+
+                        if (updateBasketVM.IsPlus)
+                        {
+                            pcs.Count--;
+                            product.Count--;
+                        }
+                        else if (!updateBasketVM.IsPlus)
+                        {
+                            pcs.Count++;
+                            product.Count++;
+                        }
+
+                        if (updateBasketVM.Count == 0)
+                        {
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                AppUser appUser = await _userManager.Users.Include(u => u.Baskets).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+                                if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
+                                {
+                                    Basket dbBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId == updateBasketVM.ProductId && b.ColorId == updateBasketVM.ColorId && b.SizeId == updateBasketVM.SizeId);
+
+                                    if (dbBasket != null)
+                                    {
+                                        _unitOfWork.BasketRepository.Remove(dbBasket);
+
+                                        await _unitOfWork.CommitAsync();
+                                    }
+                                }
+                            }
+
+                            basketVMs.Remove(basketVM);
+                        }
+
+                        await _unitOfWork.CommitAsync();
                     }
 
                     if (User.Identity.IsAuthenticated)
@@ -286,7 +352,7 @@ namespace Pull_Bear.MVC.Controllers
 
                             if (dbBasket != null)
                             {
-                                if (updateBasketVM.Count <= 5)
+                                if (updateBasketVM.Count <= 5 && updateBasketVM.Count >= 1)
                                 {
                                     dbBasket.Count = basketVM.Count;
                                 }
@@ -333,6 +399,7 @@ namespace Pull_Bear.MVC.Controllers
                     item.ColorName = pcs.Color.Name;
                     item.SizeName = pcs.Size.Name;
                     item.Seria = pcs.Product.Seria;
+                    item.ItemsCount = pcs.Count;
                 }
             }
 

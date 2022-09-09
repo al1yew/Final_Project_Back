@@ -77,6 +77,7 @@ namespace Pull_Bear.Service.Implementations
                         item.ColorName = pcs.Color.Name;
                         item.SizeName = pcs.Size.Name;
                         item.Seria = pcs.Product.Seria;
+                        item.ItemsCount = pcs.Count;
                     }
                 }
             }

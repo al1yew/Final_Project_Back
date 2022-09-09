@@ -10,5 +10,6 @@ namespace Pull_Bear.Service.ViewModels.BasketVMs
         public int ColorId { get; set; }
         public int SizeId { get; set; }
         public int Count { get; set; }
+        public bool IsPlus { get; set; }
     }
 }

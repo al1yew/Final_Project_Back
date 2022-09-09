@@ -757,7 +757,7 @@ $(document).ready(function () {
 
         let count = Number($(this).next().val());
 
-        if (count > 1) {
+        if (count > 0) {
             count--;
             $(this).next().val(count)
         }
@@ -792,7 +792,7 @@ $(document).ready(function () {
 
             url = url + `&count=${count}`
 
-            if (count <= 5) {
+            if (count <= 5 && count > 0) {
                 fetch(url)
                     .then(res => res.text())
                     .then(data => {
@@ -801,10 +801,6 @@ $(document).ready(function () {
             }
         }
     });
-
-    // $(document).on('click', '.confirmcount', function (e) {
-    //     alert('salam')
-    // });
 
     //#endregion basket html product quantity
 
@@ -1108,7 +1104,7 @@ $(document).ready(function () {
         let expire = formData.get('expire').trim()
         let cvv = formData.get('cvv').trim()
 
-        alert($(document.activeElement).val());
+        //alert($(document.activeElement).val());
 
         //vessalam valuesini burda if ile yoxlayib controllere true false gondereceyik, 
         //tipa esli save, to pust budet false, esli make main to true, parametr da
@@ -1162,7 +1158,7 @@ $(document).ready(function () {
         let country = formData.get('country').trim()
         let zipcode = formData.get('zipcode').trim()
 
-        alert($(document.activeElement).val());
+        //alert($(document.activeElement).val());
 
         //vessalam valuesini burda if ile yoxlayib controllere true false gondereceyik, 
         //tipa esli save, to pust budet false, esli make main to true, parametr da
@@ -1763,8 +1759,8 @@ $(document).ready(function () {
             let minvalue = parseInt($('.input-min').val());
             let maxvalue = parseInt($('.input-max').val());
 
-            alert(maxvalue)
-            alert(minvalue)
+            //alert(maxvalue)
+            //alert(minvalue)
 
             let sort = JSON.parse(localStorage.getItem('sort'));
 

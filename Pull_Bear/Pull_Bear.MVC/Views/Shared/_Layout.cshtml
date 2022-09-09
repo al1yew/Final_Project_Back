@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Pull_Bear.Service.Interfaces
+@inject ILayoutService layoutService
+
+@{
+    List<BasketVM> basketVMs = await layoutService.GetBasket();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,7 +43,7 @@
         </div>
     </div>
 
-    @await Component.InvokeAsync("Header")
+    @await Component.InvokeAsync("Header", basketVMs)
 
     @RenderBody()
 

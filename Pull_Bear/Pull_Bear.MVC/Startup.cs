@@ -72,7 +72,7 @@ namespace Pull_Bear.MVC
 
             //app.ExceptionHandling();
 
-            //app.UseSession();
+            app.UseSession();
 
             app.UseRouting();
 

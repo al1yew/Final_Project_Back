@@ -1,0 +1,94 @@
+﻿@model List<BasketVM>
+    @*@if (Model == null)
+        {
+            <div class="ifbasketisempty">
+                <div class="allforp">
+                    <p class="col-lg-10 col-10">
+                        <span>Oops!</span> Looks like you haven't added anything to your Cart!
+                    </p>
+                </div>
+            </div>
+        }
+        else
+        {*@
+    <div class="basket_count forclosebasket">BASKET (<span class="bskcount">@Model.Count</span>)</div>
+    <div class="basket_items forclosebasket ">
+        @foreach (BasketVM item in Model)
+        {
+            <div class="basket_item forclosebasket">
+
+                <div class="col-lg-2-5 col-3 left forclosebasket">
+                    <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.ProductId">
+                        <img class="img-fluid" src="~/assets/images/products/@item.ProductId/@item.ProductImage" alt="">
+                    </a>
+                </div>
+
+                <div class="col-lg-9 col-9 right forclosebasket">
+                    <ul class="forclosebasket">
+                        <li>
+                            <span>@item.Name.ToUpperInvariant()</span>
+                            <span class="price col-lg-3 col-3">@item.Price $</span>
+                        </li>
+                        <li>
+                            <span>AMOUNT:</span>
+                            <span class="item_amount"> @item.Count</span>
+                        </li>
+                        <li>
+                            <span>SIZE:</span>
+                            <span class="item_size">@item.SizeName</span>
+                        </li>
+                        <li>
+                            <span>COLOR:</span>
+                            <span class="item_size" style="color: @item.ColorHexCode;">@item.ColorName</span>
+                        </li>
+                        <li>
+                            <span>TOTAL:</span>
+                            <span class="amount_price">@item.Count x @item.Price $</span>
+                            <span class="totalpriceproduct">@(item.Count * item.Price) $</span>
+                        </li>
+                    </ul>
+
+                    <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-productid="@item.ProductId" class="forclosebasket deletefrombasket classforbasketscssdelete">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
+                                  stroke-linejoin="round" />
+                            <path d="M9.8 9.8V16.95M14.2 9.8V16.95M1 4.3H23" stroke="black"
+                                  stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7.60034 4.3L9.40929 1H14.6277L16.4003 4.3H7.60034Z" stroke="black"
+                                  stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="basketbottombtns forclosebasket ">
+        <div class="top forclosebasket">
+            <div class="left forclosebasket">
+                <div class="lefttop forclosebasket">
+                    TOTAL:
+                </div>
+                <div class="leftbottom forclosebasket">
+                    DELIVERY:
+                </div>
+            </div>
+            <div class="right forclosebasket">
+                <div class="righttop forclosebasket">
+                    @(Model.Count * Model.Sum(x=>x.Price)) $
+                </div>
+                <div class="rightbottom forclosebasket">
+                    FREE
+                </div>
+            </div>
+        </div>
+        <div class="bottom forclosebasket">
+            <div class="left forclosebasket">
+                <a asp-controller="Basket" asp-action="Index">GO TO CART</a>
+            </div>
+            <div class="right forclosebasket">
+                <a asp-controller="Checkout" asp-action="Index">CHECKOUT</a>
+            </div>
+        </div>
+    </div>
+    @*}*@

@@ -148,7 +148,7 @@ $(document).ready(function () {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //#region  form shop page
+    //#region  form shop page  ---- add to basket
 
     //---------------------------------products stranica make input selected
 
@@ -167,7 +167,7 @@ $(document).ready(function () {
         $(this).prev().prop('checked', 'true');
     });
 
-    //---------------------------------products stranica form dla zakaza produkta submit na button
+    //---------------------------------products stranica form dla zakaza produkta submit na button ---- add to basket
 
     $(document).on('submit', '.addingtobasketinshoppage', function (e) {
 
@@ -177,23 +177,27 @@ $(document).ready(function () {
 
         let select = $(this).find('option:selected');
 
-        let colorname = ''
-
-        console.log(select.val())
-        console.log(input.val())
+        let url = $(this).attr('action');
 
         if (input.val() != undefined && select.val() != 0) {
 
-            //misalcun prosto fetch
-
-            fetch(`https://api.color.pizza/v1/${input.val().slice(1)}`)
-                .then(res => res.json())
+            fetch(url,
+                {
+                    method: 'post',
+                    body: new FormData(e.target)
+                })
+                .then(res => res.text())
                 .then(data => {
-                    colorname = data.paletteTitle
-                    //alert(`${input.val()} HEXcolor selected, --${colorname}-- returned from fetch, ${select.val()} is size`)
-                });
 
-            //fetch edirik basketviewmodel
+                    $('.minibasket').html(data);
+
+                    fetch('basket/GetBasket')
+                        .then(res => res.text())
+                        .then(data => {
+                            $(".bskcount").html(data);
+                            console.log(data);
+                        });
+                });
         }
 
         $(this).find('input:checked').prop('checked', false);
@@ -202,7 +206,7 @@ $(document).ready(function () {
 
     });
 
-    //#endregion form shop page
+    //#endregion form shop page  ---- add to basket
 
     //---------------------------------------------------------------------------------------------------------------
 

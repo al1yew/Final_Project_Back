@@ -28,9 +28,9 @@
                 <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id" class="botopleft col-lg-9 col-9">@product.Name</a>
                 <span class="discprice botopright col-lg-2 col-2">@product.DiscountPrice $</span>
             </div>
-            <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage" asp-controller="Basket" asp-action="AddToBasket">
+            <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage" asp-controller="Basket" asp-action="AddToBasket" asp-route-productid="@product.Id">
                 <div class="bobotleft col-lg-4 col-4">
-                    <select name="" id="" class="size">
+                    <select name="sizeid" id="" class="size">
                         <option selected value="0">SIZE</option>
                         @foreach (ProductColorSizeGetVM size in product.ProductColorSizes.OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
                         {
@@ -41,7 +41,7 @@
                 <div class="bobotright col-lg-7 col-7">
                     @foreach (ProductColorSizeGetVM color in product.ProductColorSizes.GroupBy(x => x.Color.HexCode).Select(x => x.First()))
                     {
-                        <input type="radio" name="color" value="@color.Color.HexCode">
+                        <input type="radio" name="colorid" value="@color.Color.Id">
                         <div class="colorlabel color_box" style="background-color: @color.Color.HexCode;"></div>
                     }
                 </div>

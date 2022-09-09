@@ -1,4 +1,4 @@
-﻿using Pull_Bear.Service.ViewModels.HeaderVMs;
+﻿using Pull_Bear.Service.ViewModels.BasketVMs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Pull_Bear.Service.Interfaces
 {
-    public interface IHeaderService
+    public interface ILayoutService
     {
-        Task<HeaderVM> GetData();
+        Task<List<BasketVM>> GetBasket();
     }
 }

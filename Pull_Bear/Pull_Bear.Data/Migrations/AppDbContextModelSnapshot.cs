@@ -253,6 +253,9 @@ namespace Pull_Bear.Data.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -262,17 +265,15 @@ namespace Pull_Bear.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("ProductColorSizeId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("SizeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("ProductColorSizeId");
 
                     b.HasIndex("ProductId");
 
@@ -911,15 +912,11 @@ namespace Pull_Bear.Data.Migrations
                         .WithMany("Baskets")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("Pull_Bear.Core.Models.ProductColorSize", "ProductColorSize")
-                        .WithMany()
-                        .HasForeignKey("ProductColorSizeId")
+                    b.HasOne("Pull_Bear.Core.Models.Product", "Product")
+                        .WithMany("Baskets")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Pull_Bear.Core.Models.Product", null)
-                        .WithMany("Baskets")
-                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.BodyFit", b =>

@@ -6,11 +6,15 @@ namespace Pull_Bear.Service.ViewModels.BasketVMs
 {
     public class BasketVM
     {
-        public int ProductColorSizeId { get; set; }
         public int ProductId { get; set; }
+        public int ColorId { get; set; }
+        public int SizeId { get; set; }
+        public string ColorName { get; set; }
+        public string SizeName { get; set; }
+        public string ColorHexCode { get; set; }
         public int Count { get; set; }
         public string Name { get; set; }
-        public string Image { get; set; }
+        public string ProductImage { get; set; }
         public double Price { get; set; }
     }
 }

@@ -107,7 +107,7 @@
                             }
                         </div>
                     </div>
-                    <form action="" method="post" class="col-12 detailform">
+                    <form method="post" class="col-12 detailform addingtobasketinshoppage" asp-controller="Basket" asp-action="AddToBasket" asp-route-productid="@product.Id">
                         <div class="col-lg-8 col-12 buydiv forclosesize">
                             <span class="sizevalue col-11 forclosesize">SIZE</span>
                             <ul class="buyul buyulsize forclosesize">
@@ -116,7 +116,7 @@
                                 {
                                     <li>
                                         @size.Size.Name
-                                        <input type="radio" name="size" class="sizeinp" value="@size.Size.Id"
+                                        <input type="radio" name="sizeid" class="sizeinp" value="@size.Size.Id"
                                                style="display: none;">
                                     </li>
                                 }
@@ -138,7 +138,7 @@
                                 {
                                     <li>
                                         @color.Color.Name
-                                        <input type="radio" name="color" class="colorinp" value="@color.Color.HexCode"
+                                        <input type="radio" name="colorid" class="colorinp" value="@color.Color.Id"
                                                style="display: none;">
                                     </li>
                                 }
@@ -238,9 +238,9 @@
                                         <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.Id" class="botopleft col-lg-9 col-9">@item.Name.ToUpperInvariant()</a>
                                         <span class="discprice botopright col-lg-2 col-2">@item.DiscountPrice $</span>
                                     </div>
-                                    <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage">
+                                    <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage" asp-controller="Basket" asp-action="AddToBasket" asp-route-productid="@item.Id">
                                         <div class="bobotleft col-lg-4 col-4">
-                                            <select name="" id="" class="size">
+                                            <select name="sizeid" id="" class="size">
                                                 <option selected value="0">SIZE</option>
                                                 @foreach (ProductColorSizeGetVM size in item.ProductColorSizes.OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
                                                 {
@@ -251,7 +251,7 @@
                                         <div class="bobotright col-lg-7 col-7">
                                             @foreach (ProductColorSizeGetVM color in item.ProductColorSizes.GroupBy(x => x.Color.HexCode).Select(x => x.First()))
                                             {
-                                                <input type="radio" name="color" value="@color.Color.HexCode">
+                                                <input type="radio" name="colorid" value="@color.Color.Id">
                                                 <div class="colorlabel color_box" style="background-color: @color.Color.HexCode;"></div>
                                             }
                                         </div>
@@ -269,7 +269,7 @@
                         }
                     </div>
 
-                    <div class="arrows col-lg-4">
+                    <div class="arrows col-lg-4 m-0">
                         <svg style="margin-bottom: 1px;" class="prevfirstdetail" width="85" height="17"
                              viewBox="0 0 85 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M84 9.5C84.2761 9.5 84.5 9.27614 84.5 9C84.5 8.72386 84.2761 8.5 84 8.5V9.5ZM2 8.5C1.72386 8.5 1.5 8.72386 1.5 9C1.5 9.27614 1.72386 9.5 2 9.5L2 8.5ZM84 8.5L2 8.5L2 9.5L84 9.5V8.5Z"
@@ -286,6 +286,7 @@
                                   fill="black" />
                         </svg>
                     </div>
+
                 </div>
             </div>
 
@@ -323,9 +324,9 @@
                                         <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.Id" class="botopleft col-lg-9 col-9">@item.Name.ToUpperInvariant()</a>
                                         <span class="discprice botopright col-lg-2 col-2">@item.DiscountPrice $</span>
                                     </div>
-                                    <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage">
+                                    <form method="post" class="bobottom col-lg-12 col-12 addingtobasketinshoppage" asp-controller="Basket" asp-action="AddToBasket" asp-route-productid="@item.Id">
                                         <div class="bobotleft col-lg-4 col-4">
-                                            <select name="" id="" class="size">
+                                            <select name="sizeid" id="" class="size">
                                                 <option selected value="0">SIZE</option>
                                                 @foreach (ProductColorSizeGetVM size in item.ProductColorSizes.OrderBy(x => (int)Enum.Parse(typeof(SizeList), x.Size.Name)).GroupBy(x => x.Size.Name).Select(x => x.First()))
                                                 {
@@ -336,7 +337,7 @@
                                         <div class="bobotright col-lg-7 col-7">
                                             @foreach (ProductColorSizeGetVM color in item.ProductColorSizes.GroupBy(x => x.Color.HexCode).Select(x => x.First()))
                                             {
-                                                <input type="radio" name="color" value="@color.Color.HexCode">
+                                                <input type="radio" name="colorid" value="@color.Color.Id">
                                                 <div class="colorlabel color_box" style="background-color: @color.Color.HexCode;"></div>
                                             }
                                         </div>
@@ -354,7 +355,7 @@
                         }
                     </div>
 
-                    <div class="arrows col-lg-4">
+                    <div class="arrows col-lg-4 m-0">
                         <svg style="margin-bottom: 1px;" class="prevfirstdetailbottom" width="85" height="17"
                              viewBox="0 0 85 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M84 9.5C84.2761 9.5 84.5 9.27614 84.5 9C84.5 8.72386 84.2761 8.5 84 8.5V9.5ZM2 8.5C1.72386 8.5 1.5 8.72386 1.5 9C1.5 9.27614 1.72386 9.5 2 9.5L2 8.5ZM84 8.5L2 8.5L2 9.5L84 9.5V8.5Z"
@@ -404,7 +405,7 @@
                 <p class="firstp col-lg-12 col-12 dontclose">PRODUCT REVIEWS</p>
                 <div class="col-lg-12 col-12 rating dontclose">
                     <div class="col-lg-6 col-5 left ">
-                        <span class="avgrating">@Math.Round(product.AverageRating, 2)</span>
+                        <span class="avgrating">@Math.Round(product.AverageRating, 1)</span>
                         <div class="stardiv">
                             @for (int i = 0; i < Math.Round(product.AverageRating); i++)
                             {

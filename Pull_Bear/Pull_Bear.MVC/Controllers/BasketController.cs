@@ -313,7 +313,7 @@ namespace Pull_Bear.MVC.Controllers
                         }
                         else if (!updateBasketVM.IsPlus)
                         {
-                            pcs.Count++;
+                            pcs.Count++; 
                             product.Count++;
                         }
 

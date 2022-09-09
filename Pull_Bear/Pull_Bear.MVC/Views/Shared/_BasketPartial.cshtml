@@ -1,68 +1,87 @@
 ﻿@model List<BasketVM>
-    @*@if (Model == null)
-        {
-            <div class="ifbasketisempty">
-                <div class="allforp">
-                    <p class="col-lg-10 col-10">
-                        <span>Oops!</span> Looks like you haven't added anything to your Cart!
-                    </p>
-                </div>
-            </div>
-        }
-        else
-        {*@
+
+<a class="openbasket baskethref forclosebasket" asp-controller="Basket" asp-action="Index">
+    <svg class="forclosebasket" width="26" height="31" viewBox="0 0 28 34" fill="none"
+         xmlns="http://www.w3.org/2000/svg">
+        <path class="cart_path"
+              d="M2.73753 7.0387L2.24128 7.10005L2.24071 7.095L2.73753 7.0387ZM25.539 21.8904L26.0353 21.9518L25.539 21.8904ZM27.1671 8.72275L27.6633 8.7841L27.1671 8.72275ZM4.07752 21.9518L2.2413 7.10005L3.23375 6.97735L5.06996 21.8291L4.07752 21.9518ZM27.6633 8.7841L26.0353 21.9518L25.0428 21.8291L26.6708 8.6614L27.6633 8.7841ZM23.5542 24.145L6.55863 24.145V23.145L23.5542 23.145V24.145ZM25.6784 7.5387L2.73753 7.5387V6.5387L25.6784 6.5387L25.6784 7.5387ZM2.24071 7.095L1.75747 2.83112L2.75111 2.71851L3.23435 6.98239L2.24071 7.095ZM0.267008 1.50004H0L0 0.500036H0.267008L0.267008 1.50004ZM1.75747 2.83112C1.67154 2.0729 1.03007 1.50004 0.267008 1.50004L0.267008 0.500036C1.53879 0.500036 2.60789 1.45482 2.75111 2.71851L1.75747 2.83112ZM26.0353 21.9518C25.8804 23.2043 24.8162 24.145 23.5542 24.145V23.145C24.3114 23.145 24.9499 22.5806 25.0428 21.8291L26.0353 21.9518ZM26.6708 8.6614C26.7446 8.06498 26.2793 7.5387 25.6784 7.5387L25.6784 6.5387C26.8803 6.5387 27.8108 7.59127 27.6633 8.7841L26.6708 8.6614ZM5.06996 21.8291C5.16288 22.5806 5.80137 23.145 6.55863 23.145V24.145C5.29654 24.145 4.23238 23.2043 4.07752 21.9518L5.06996 21.8291Z"
+              fill="#FFFFFF" />
+        <path class="cart_path"
+              d="M10.0856 30.9237C10.0856 29.5837 9.11799 28.4974 7.92439 28.4974C6.73079 28.4974 5.76318 29.5837 5.76318 30.9237C5.76318 32.2637 6.73079 33.3499 7.92439 33.3499C9.11799 33.3499 10.0856 32.2637 10.0856 30.9237Z"
+              stroke="#FFFFFF" />
+        <path class="cart_path"
+              d="M24.4938 30.9237C24.4938 29.5837 23.5262 28.4974 22.3326 28.4974C21.139 28.4974 20.1714 29.5837 20.1714 30.9237C20.1714 32.2637 21.139 33.3499 22.3326 33.3499C23.5262 33.3499 24.4938 32.2637 24.4938 30.9237Z"
+              stroke="#FFFFFF" />
+    </svg>
+    <span class="forclosebasket bskcount">@Model.Count</span>
+</a>
+<div class="minibasket forclosebasket">
     <div class="basket_count forclosebasket">BASKET (<span class="bskcount">@Model.Count</span>)</div>
-    <div class="basket_items forclosebasket ">
-        @foreach (BasketVM item in Model)
-        {
-            <div class="basket_item forclosebasket">
 
-                <div class="col-lg-2-5 col-3 left forclosebasket">
-                    <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.ProductId">
-                        <img class="img-fluid" src="~/assets/images/products/@item.ProductId/@item.ProductImage" alt="">
-                    </a>
-                </div>
-
-                <div class="col-lg-9 col-9 right forclosebasket">
-                    <ul class="forclosebasket">
-                        <li>
-                            <span>@item.Name.ToUpperInvariant()</span>
-                            <span class="price col-lg-3 col-3">@item.Price $</span>
-                        </li>
-                        <li>
-                            <span>AMOUNT:</span>
-                            <span class="item_amount"> @item.Count</span>
-                        </li>
-                        <li>
-                            <span>SIZE:</span>
-                            <span class="item_size">@item.SizeName</span>
-                        </li>
-                        <li>
-                            <span>COLOR:</span>
-                            <span class="item_size" style="color: @item.ColorHexCode;">@item.ColorName</span>
-                        </li>
-                        <li>
-                            <span>TOTAL:</span>
-                            <span class="amount_price">@item.Count x @item.Price $</span>
-                            <span class="totalpriceproduct">@(item.Count * item.Price) $</span>
-                        </li>
-                    </ul>
-
-                    <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-productid="@item.ProductId" class="forclosebasket deletefrombasket classforbasketscssdelete">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
-                                  stroke-linejoin="round" />
-                            <path d="M9.8 9.8V16.95M14.2 9.8V16.95M1 4.3H23" stroke="black"
-                                  stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M7.60034 4.3L9.40929 1H14.6277L16.4003 4.3H7.60034Z" stroke="black"
-                                  stroke-linejoin="round" />
-                        </svg>
-                    </a>
-                </div>
+    @if (Model == null || Model.Count <= 0)
+    {
+        <div class="ifbasketisempty">
+            <div class="allforp">
+                <p class="col-lg-10 col-10 p-0">
+                    <span>Oops!</span> Looks like you haven't added anything to your Cart!
+                </p>
             </div>
-        }
-    </div>
+        </div>
+    }
+    else
+    {
+        <div class="basket_items forclosebasket ">
+            @foreach (BasketVM item in Model)
+            {
+                <div class="basket_item forclosebasket">
+
+                    <div class="col-lg-2-5 col-3 left forclosebasket">
+                        <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.ProductId">
+                            <img class="img-fluid" src="~/assets/images/products/@item.ProductId/@item.ProductImage" alt="">
+                        </a>
+                    </div>
+
+                    <div class="col-lg-9 col-9 right forclosebasket">
+                        <ul class="forclosebasket">
+                            <li>
+                                <span>@item.Name.ToUpperInvariant()</span>
+                                <span class="price col-lg-3 col-3">@item.Price $</span>
+                            </li>
+                            <li>
+                                <span>AMOUNT:</span>
+                                <span class="item_amount"> @item.Count</span>
+                            </li>
+                            <li>
+                                <span>SIZE:</span>
+                                <span class="item_size">@item.SizeName</span>
+                            </li>
+                            <li>
+                                <span>COLOR:</span>
+                                <span class="item_size" style="color: @item.ColorHexCode;">@item.ColorName</span>
+                            </li>
+                            <li>
+                                <span>TOTAL:</span>
+                                <span class="amount_price">@item.Count x @item.Price $</span>
+                                <span class="totalpriceproduct">@(item.Count * item.Price) $</span>
+                            </li>
+                        </ul>
+
+                        <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-productid="@item.ProductId" asp-route-colorid="@item.ColorId" asp-route-sizeid="@item.SizeId" class="forclosebasket deletefrombasket classforbasketscssdelete">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
+                                      stroke-linejoin="round" />
+                                <path d="M9.8 9.8V16.95M14.2 9.8V16.95M1 4.3H23" stroke="black"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M7.60034 4.3L9.40929 1H14.6277L16.4003 4.3H7.60034Z" stroke="black"
+                                      stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
     <div class="basketbottombtns forclosebasket ">
         <div class="top forclosebasket">
             <div class="left forclosebasket">
@@ -75,7 +94,7 @@
             </div>
             <div class="right forclosebasket">
                 <div class="righttop forclosebasket">
-                    @(Model.Count * Model.Sum(x=>x.Price)) $
+                    @(Model.Sum(x=>x.Price * x.Count)) $
                 </div>
                 <div class="rightbottom forclosebasket">
                     FREE
@@ -91,4 +110,4 @@
             </div>
         </div>
     </div>
-    @*}*@
+</div>

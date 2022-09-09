@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Pull_Bear.Core.Models;
+using Pull_Bear.Service.ViewModels.AccountVMs;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
@@ -139,6 +141,8 @@ namespace Pull_Bear.Service.Mappings
             CreateMap<AppUser, AppUserGetVM>();
 
             CreateMap<AppUserGetVM, AppUserUpdateVM>();
+
+            CreateMap<RegisterVM, AppUser>();
             #endregion
 
             #region Home View
@@ -161,6 +165,13 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<ReviewImage, ReviewImageGetVM>();
             CreateMap<ReviewImageGetVM, ReviewImage>();
+
+            #endregion
+
+            #region Basket
+
+            CreateMap<BasketVM, Basket>();
+            CreateMap<Basket, BasketVM>();
 
             #endregion
         }

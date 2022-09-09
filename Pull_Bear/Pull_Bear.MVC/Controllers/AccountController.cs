@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -20,15 +21,17 @@ namespace Pull_Bear.MVC.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
         public AccountController(RoleManager<IdentityRole> roleManager,
             UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager, IUnitOfWork unitOfWork)
+            SignInManager<AppUser> signInManager, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -53,166 +56,44 @@ namespace Pull_Bear.MVC.Controllers
 
             await _signInManager.SignInAsync(appUser, loginVM.RememberMe);
 
-            #region basket
+            string basketCookie = HttpContext.Request.Cookies["basket"];
 
-            //string basketCookie = HttpContext.Request.Cookies["basket"];
+            if (!string.IsNullOrWhiteSpace(basketCookie))
+            {
+                List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basketCookie);
 
-            //if (!string.IsNullOrWhiteSpace(basketCookie))
-            //{
-            //    List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basketCookie);
-            //    //koki prines
-            //    List<Basket> baskets = new List<Basket>();
-            //    //sozdal noviy list uje DBskiy
-            //    foreach (BasketVM basketVM in basketVMs)
-            //    {
-            //        if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-            //        {//esli on koqda to shto to dobavlal v basket, u neqo v DB est basketskie veshi s druqoqo kompa naprimer
-            //            Basket existedBasket = appUser.Baskets.FirstOrDefault(b => b.ProductColorSizeId != basketVM.ProductColorSizeId);
-            //            //ego basket v kotorom netu tex productov kotorie est v basketvm iz kuki
-            //            if (existedBasket == null)
-            //            {//esli on nikoqda nicheqo ne dobavlal v DB basket to sozdayu noviy dobavlayu iz basketVM vse tuda
-            //                Basket basket = new Basket
-            //                {
-            //                    AppUserId = appUser.Id,
-            //                    Name = basketVM.Name,
-            //                    ProductColorSizeId = basketVM.ProductColorSizeId,
-            //                    Count = basketVM.Count
-            //                };
+                foreach (BasketVM basketVM in basketVMs)
+                {
+                    if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
+                    {
+                        Basket existedBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId == basketVM.ProductId && b.ColorId == basketVM.ColorId && b.SizeId == basketVM.SizeId);
 
-            //                baskets.Add(basket);
-            //            }
-            //            else
-            //            {//esli je basket ne null dla kajdogo basket obyekta proverayu esli est to count uvelicivayu
-            //                existedBasket.Count += basketVM.Count;
-            //                basketVM.Count = existedBasket.Count;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Basket basket = new Basket
-            //            {
-            //                AppUserId = appUser.Id,
-            //                ProductId = basketVM.ProductId,
-            //                ProductColorSizeId = basketVM.ProductColorSizeId,
-            //                Count = basketVM.Count
-            //            };
+                        if (existedBasket == null)
+                        {
+                            appUser.Baskets.Add(_mapper.Map<Basket>(basketVM));
+                        }
+                        else
+                        {
+                            existedBasket.Count = basketVM.Count;
+                        }
+                    }
+                    else
+                    {
+                        appUser.Baskets.Add(_mapper.Map<Basket>(basketVM));
+                    }
+                }
 
-            //            baskets.Add(basket);
-            //        }
-            //    }
+                HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(basketVMs));
 
-            //    basketCookie = JsonConvert.SerializeObject(basketVMs);
-
-            //    HttpContext.Response.Cookies.Append("basket", basketCookie);
-
-            //    await _unitOfWork.BasketRepository.AddRangeAsync(baskets);
-            //    await _unitOfWork.CommitAsync();
-            //}
-            //else
-            //{
-            //    if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-            //    {
-            //        List<BasketVM> BasketVMs = new List<BasketVM>();
-
-            //        foreach (Basket basket in appUser.Baskets)
-            //        {
-            //            BasketVM basketVM = new BasketVM
-            //            {
-            //                ProductId = basket.ProductId,
-            //                ProductColorSizeId = basket.ProductColorSizeId,
-            //                Count = basket.Count,
-            //                Price = basket.Price,
-            //                Name = basket.Name
-            //            };
-
-            //            BasketVMs.Add(basketVM);
-            //        }
-
-            //        basketCookie = JsonConvert.SerializeObject(BasketVMs);
-
-            //        HttpContext.Response.Cookies.Append("basket", basketCookie);
-            //    }
-            //}
-            #endregion
-
-            #region wishlist
-
-            //string wishlistcookie = HttpContext.Request.Cookies["wishlist"];
-
-            //if (!string.IsNullOrWhiteSpace(wishlistcookie))
-            //{
-            //    List<WishlistVM> WishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlistcookie);
-
-            //    List<Wishlist> wishlists = new List<Wishlist>();
-
-            //    foreach (WishlistVM wishlistVM in WishlistVMs)
-            //    {
-            //        if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
-            //        {
-            //            Wishlist existedWishlist = appUser.Wishlists.FirstOrDefault(b => b.ProductId != wishlistVM.ProductId);
-
-            //            if (existedWishlist == null)
-            //            {
-            //                Wishlist wishlist = new Wishlist
-            //                {
-            //                    AppUserId = appUser.Id,
-            //                    ProductId = wishlistVM.ProductId,
-            //                    ProductColorSizeId = wishlistVM.ProductColorSizeId,
-            //                    Name = wishlistVM.Name,
-            //                    Price = wishlistVM.Price
-            //                };
-
-            //                wishlists.Add(wishlist);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Wishlist wishlist = new Wishlist
-            //            {
-            //                AppUserId = appUser.Id,
-            //                ProductId = wishlistVM.ProductId,
-            //                ProductColorSizeId = wishlistVM.ProductColorSizeId,
-            //                Name = wishlistVM.Name,
-            //                Price = wishlistVM.Price
-            //            };
-
-            //            wishlists.Add(wishlist);
-            //        }
-            //    }
-
-            //    wishlistcookie = JsonConvert.SerializeObject(WishlistVMs);
-
-            //    HttpContext.Response.Cookies.Append("wishlist", wishlistcookie);
-
-            //    await _unitOfWork.WishlistRepository.AddRangeAsync(wishlists);
-            //    await _unitOfWork.CommitAsync();
-            //}
-            //else
-            //{
-            //    if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
-            //    {
-            //        List<WishlistVM> wishlistVMs = new List<WishlistVM>();
-
-            //        foreach (Wishlist wishlist in appUser.Wishlists)
-            //        {
-            //            WishlistVM wishlistVM = new WishlistVM
-            //            {
-            //                ProductId = wishlist.ProductId,
-            //                ProductColorSizeId = wishlist.ProductColorSizeId,
-            //                Name = wishlist.Name,
-            //                Price = wishlist.Price
-            //            };
-
-            //            wishlistVMs.Add(wishlistVM);
-            //        }
-
-            //        wishlistcookie = JsonConvert.SerializeObject(wishlistVMs);
-
-            //        HttpContext.Response.Cookies.Append("wishlist", wishlistcookie);
-            //    }
-            //}
-
-            #endregion
+                await _unitOfWork.CommitAsync();
+            }
+            else
+            {
+                if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
+                {
+                    HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(_mapper.Map<List<BasketVM>>(appUser.Baskets)));
+                }
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -228,15 +109,7 @@ namespace Pull_Bear.MVC.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            AppUser appUser = new AppUser
-            {
-                Name = registerVM.Name,
-                SurName = registerVM.SurName,
-                UserName = registerVM.UserName,
-                Email = registerVM.Email,
-                GenderId = registerVM.GenderId,
-                PhoneNumber = registerVM.PhoneNumber
-            };
+            AppUser appUser = _mapper.Map<AppUser>(registerVM);
 
             IdentityResult result = await _userManager.CreateAsync(appUser, registerVM.Password);
 
@@ -254,167 +127,27 @@ namespace Pull_Bear.MVC.Controllers
 
             await _signInManager.SignInAsync(appUser, true);
 
-            #region basket
+            string basketCookie = HttpContext.Request.Cookies["basket"];
 
-            //string basketCookie = HttpContext.Request.Cookies["basket"];
+            if (!string.IsNullOrWhiteSpace(basketCookie))
+            {
+                List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basketCookie);
 
-            //if (!string.IsNullOrWhiteSpace(basketCookie))
-            //{
-            //    List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basketCookie);
-            //    //koki prines
-            //    List<Basket> baskets = new List<Basket>();
-            //    //sozdal noviy list uje DBskiy
-            //    foreach (BasketVM basketVM in basketVMs)
-            //    {
-            //        if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-            //        {//esli on koqda to shto to dobavlal v basket, u neqo v DB est basketskie veshi s druqoqo kompa naprimer
-            //            Basket existedBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId != basketVM.ProductId);
-            //            //ego basket v kotorom netu tex productov kotorie est v basketvm iz kuki
-            //            if (existedBasket == null)
-            //            {//esli on nikoqda nicheqo ne dobavlal v DB basket to sozdayu noviy dobavlayu iz basketVM vse tuda
-            //                Basket basket = new Basket
-            //                {
-            //                    AppUserId = appUser.Id,
-            //                    ProductId = basketVM.ProductId,
-            //                    ProductColorSizeId = basketVM.ProductColorSizeId,
-            //                    Count = basketVM.Count
-            //                };
+                if (appUser.Baskets == null)
+                {
+                    appUser.Baskets = _mapper.Map<List<Basket>>(basketVMs);
+                }
+                else
+                {
+                    appUser.Baskets.AddRange(_mapper.Map<List<Basket>>(basketVMs));
+                }
+                
+                basketCookie = JsonConvert.SerializeObject(basketVMs);
 
-            //                baskets.Add(basket);
-            //            }
-            //            else
-            //            {//esli je basket ne null dla kajdogo basket obyekta proverayu esli est to count uvelicivayu
-            //                existedBasket.Count += basketVM.Count;
-            //                basketVM.Count = existedBasket.Count;
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Basket basket = new Basket
-            //            {
-            //                AppUserId = appUser.Id,
-            //                ProductId = basketVM.ProductId,
-            //                ProductColorSizeId = basketVM.ProductColorSizeId,
-            //                Count = basketVM.Count
-            //            };
+                HttpContext.Response.Cookies.Append("basket", basketCookie);
 
-            //            baskets.Add(basket);
-            //        }
-            //    }
-
-            //    basketCookie = JsonConvert.SerializeObject(basketVMs);
-
-            //    HttpContext.Response.Cookies.Append("basket", basketCookie);
-
-            //    await _unitOfWork.BasketRepository.AddRangeAsync(baskets);
-            //    await _unitOfWork.CommitAsync();
-            //}
-            //else
-            //{
-            //    if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-            //    {
-            //        List<BasketVM> BasketVMs = new List<BasketVM>();
-
-            //        foreach (Basket basket in appUser.Baskets)
-            //        {
-            //            BasketVM basketVM = new BasketVM
-            //            {
-            //                ProductId = basket.ProductId,
-            //                ProductColorSizeId = basket.ProductColorSizeId,
-            //                Count = basket.Count,
-            //                Price = basket.Price,
-            //                Name = basket.Name
-            //            };
-
-            //            BasketVMs.Add(basketVM);
-            //        }
-
-            //        basketCookie = JsonConvert.SerializeObject(BasketVMs);
-
-            //        HttpContext.Response.Cookies.Append("basket", basketCookie);
-            //    }
-            //}
-
-            #endregion
-
-            #region wishlist
-
-            //string wishlistcookie = HttpContext.Request.Cookies["wishlist"];
-
-            //if (!string.IsNullOrWhiteSpace(wishlistcookie))
-            //{
-            //    List<WishlistVM> WishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlistcookie);
-
-            //    List<Wishlist> wishlists = new List<Wishlist>();
-
-            //    foreach (WishlistVM wishlistVM in WishlistVMs)
-            //    {
-            //        if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
-            //        {
-            //            Wishlist existedWishlist = appUser.Wishlists.FirstOrDefault(b => b.ProductId != wishlistVM.ProductId);
-
-            //            if (existedWishlist == null)
-            //            {
-            //                Wishlist wishlist = new Wishlist
-            //                {
-            //                    AppUserId = appUser.Id,
-            //                    ProductId = wishlistVM.ProductId,
-            //                    ProductColorSizeId = wishlistVM.ProductColorSizeId,
-            //                    Name = wishlistVM.Name,
-            //                    Price = wishlistVM.Price
-            //                };
-
-            //                wishlists.Add(wishlist);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Wishlist wishlist = new Wishlist
-            //            {
-            //                AppUserId = appUser.Id,
-            //                ProductId = wishlistVM.ProductId,
-            //                ProductColorSizeId = wishlistVM.ProductColorSizeId,
-            //                Name = wishlistVM.Name,
-            //                Price = wishlistVM.Price
-            //            };
-
-            //            wishlists.Add(wishlist);
-            //        }
-            //    }
-
-            //    wishlistcookie = JsonConvert.SerializeObject(WishlistVMs);
-
-            //    HttpContext.Response.Cookies.Append("wishlist", wishlistcookie);
-
-            //    await _unitOfWork.WishlistRepository.AddRangeAsync(wishlists);
-            //    await _unitOfWork.CommitAsync();
-            //}
-            //else
-            //{
-            //    if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
-            //    {
-            //        List<WishlistVM> wishlistVMs = new List<WishlistVM>();
-
-            //        foreach (Wishlist wishlist in appUser.Wishlists)
-            //        {
-            //            WishlistVM wishlistVM = new WishlistVM
-            //            {
-            //                ProductId = wishlist.ProductId,
-            //                ProductColorSizeId = wishlist.ProductColorSizeId,
-            //                Name = wishlist.Name,
-            //                Price = wishlist.Price
-            //            };
-
-            //            wishlistVMs.Add(wishlistVM);
-            //        }
-
-            //        wishlistcookie = JsonConvert.SerializeObject(wishlistVMs);
-
-            //        HttpContext.Response.Cookies.Append("wishlist", wishlistcookie);
-            //    }
-            //}
-
-            #endregion
+                await _unitOfWork.CommitAsync();
+            }
 
             return RedirectToAction("Index", "Home");
         }

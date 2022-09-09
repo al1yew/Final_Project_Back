@@ -16,13 +16,13 @@ using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.ViewComponents.HeaderViewComponent
 {
-    public class Header : ViewComponent
+    public class HeaderViewComponent : ViewComponent
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public Header(UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IMapper mapper)
+        public HeaderViewComponent(UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
@@ -47,17 +47,9 @@ namespace Pull_Bear.MVC.ViewComponents.HeaderViewComponent
                     {
                         foreach (var item in appUser.Baskets)
                         {
-                            if (!basketVMs.Any(b => b.ProductId == item.ProductId))
+                            if (!basketVMs.Any(b => b.ProductId == item.ProductId && b.ColorId == item.ColorId && b.SizeId == item.SizeId))
                             {
-                                BasketVM basketVM = new BasketVM
-                                {
-                                    ProductId = item.ProductId,
-                                    SizeId = item.SizeId,
-                                    ColorId = item.ColorId,
-                                    Name = item.Name,
-                                    Price = item.Price,
-                                    Count = item.Count
-                                };
+                                BasketVM basketVM = _mapper.Map<BasketVM>(item);
 
                                 basketVMs.Add(basketVM);
                             }
@@ -69,13 +61,22 @@ namespace Pull_Bear.MVC.ViewComponents.HeaderViewComponent
                     }
                 }
 
-                foreach (BasketVM basketVM in basketVMs)
+                foreach (BasketVM item in basketVMs)
                 {
-                    Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == basketVM.ProductId, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category");
+                    ProductColorSize pcs = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == item.ProductId && x.ColorId == item.ColorId && x.SizeId == item.SizeId, "Product", "Size", "Color");
 
-                    basketVM.Name = dbProduct.Name;
-                    basketVM.Price = dbProduct.DiscountPrice;
-                    basketVM.ProductImage = dbProduct.ProductImage;
+                    if (pcs != null)
+                    {
+                        item.Name = pcs.Product.Name;
+                        item.Price = pcs.Product.DiscountPrice;
+                        item.ProductImage = pcs.Product.ProductImage;
+                        item.SizeId = pcs.SizeId;
+                        item.ColorId = pcs.ColorId;
+                        item.ColorHexCode = pcs.Color.HexCode;
+                        item.ColorName = pcs.Color.Name;
+                        item.SizeName = pcs.Size.Name;
+                        item.Seria = pcs.Product.Seria;
+                    }
                 }
             }
             else

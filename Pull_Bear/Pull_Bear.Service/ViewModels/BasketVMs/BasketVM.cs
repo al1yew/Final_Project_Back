@@ -16,5 +16,7 @@ namespace Pull_Bear.Service.ViewModels.BasketVMs
         public string Name { get; set; }
         public string ProductImage { get; set; }
         public double Price { get; set; }
+        public string Seria { get; set; }
+        public int ItemsCount { get; set; }
     }
 }

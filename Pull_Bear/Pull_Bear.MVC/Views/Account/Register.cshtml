@@ -18,8 +18,9 @@
 
     <section class="registersection">
         <div class="container">
-            <div class="row all">
+            <div class="row all flex-wrap">
                 <p class="firstp">REGISTER</p>
+                <div asp-validation-summary="ModelOnly" class="text-danger text col-lg-7 col-12 text-center"></div>
                 <form method="post" action="" class="col-lg-6 col-12">
                     <label asp-for="Email" for="email"><span>*</span> EMAIL</label>
                     <input asp-for="Email" id="email" class="col-12 col-lg-12" required type="email">

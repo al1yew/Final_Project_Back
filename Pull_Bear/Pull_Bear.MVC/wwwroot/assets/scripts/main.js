@@ -189,14 +189,7 @@ $(document).ready(function () {
                 .then(res => res.text())
                 .then(data => {
 
-                    $('.minibasket').html(data);
-
-                    fetch('basket/GetBasket')
-                        .then(res => res.text())
-                        .then(data => {
-                            $(".bskcount").html(data);
-                            console.log(data);
-                        });
+                    $('.minibasketfetch').html(data);
                 });
         }
 
@@ -207,6 +200,62 @@ $(document).ready(function () {
     });
 
     //#endregion form shop page  ---- add to basket
+
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region  delete from basket
+
+    if ($.trim($(".basketindex").html())) {
+        $('.minibasket').remove();
+        console.log('salamm')
+    }
+
+    //---------------delete from mini basket
+
+    $(document).on('click', '.classforbasketscssdelete', function (e) {
+        e.preventDefault()
+
+        let url = $(this).attr('href')
+
+        fetch(url,
+            {
+                method: 'post',
+            })
+            .then(res => res.text())
+            .then(data => {
+
+                $('.minibasketfetch').html(data);
+            });
+    });
+
+    //---------------delete from big basket
+
+    $(document).on('click', '.deletefrombasketinbaskethtmlpage', function (e) {
+        e.preventDefault()
+
+        let url = $(this).attr('href')
+
+        fetch(url,
+            {
+                method: 'post',
+            })
+            .then(res => res.text())
+            .then(data => {
+
+                $('.basketforfetch').html(data);
+                $('.minibasket').remove();
+
+                fetch('/Basket/GetBasket')
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.minibasketfetch').html(data);
+                        $('.minibasket').remove();
+                    });
+            });
+    });
+
+    //#endregion  delete from basket
+
 
     //---------------------------------------------------------------------------------------------------------------
 
@@ -312,8 +361,6 @@ $(document).ready(function () {
             let aa = parseInt($('.input-max').val());
             console.log(a)
             console.log(aa)
-
-            //alert(`${a} min value, ${aa} max value -- information for fetch`)
         }
     });
 
@@ -337,11 +384,6 @@ $(document).ready(function () {
         $(this).addClass("yellowli");
 
         $(this).siblings("li").removeClass('yellowli');
-
-        //https://github.com/al1yew?tab=repositories&q=&type=public&language=&sort=name,
-        //znacit nado pridumat kakim budet fetch. Ya budu otpravlat dofiqa variables v 
-        //index, i vse oni budut vot tak zapisivatsa v moy fetchovskiy url
-        //te kotorie user ne vibral, ne otpravlayutsa, ostayutsa pustimi
     });
     //#endregion moya custom sortirovka
 
@@ -602,15 +644,11 @@ $(document).ready(function () {
         if (size != undefined && color != undefined) {
             console.log(size)
             console.log(color)
-            //misalcun prosto fetch
-
             fetch(`https://api.color.pizza/v1/${color.slice(1)}`)
                 .then(res => res.json())
                 .then(data => {
                     colorname = data.paletteTitle
-                    //alert(`${color} HEXcolor selected, --${colorname}-- returned from fetch, ${size} is size, thanks for order!`)
                 });
-            //fetch edirik basketviewmodel
         }
 
         $(this).find('input').prop('checked', false);
@@ -695,33 +733,47 @@ $(document).ready(function () {
     $(document).on('click', '.plus', function (e) {
         e.preventDefault();
 
-        let result = Number($(this).prev().val());
-        console.log(result)
-        result++;
-        $(this).prev().val(result)
+        let count = Number($(this).prev().val());
 
-        // $($(this).parent().children()[0]).fadeIn(180);
+        count++;
 
+        if (count <= 5) {
+            $(this).prev().val(count)
+        }
+
+        let url = $(this).attr('href');
+
+        url = url + `&count=${count}`
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                console.log(data);
+            });
     });
 
     $(document).on('click', '.minus', function (e) {
         e.preventDefault();
 
-        let result = Number($(this).next().val());
-        console.log(result)
+        let count = Number($(this).next().val());
 
-        // $($(this).parent().children()[0]).fadeIn(180);
-
-        if (result > 1) {
-            result--;
-            $(this).next().val(result)
+        if (count > 1) {
+            count--;
+            $(this).next().val(count)
         }
         else {
             $(this).next().val('1')
         }
-        //her defe basilanda fetch edeceyik cookie-de set edeceyik. 
-        //bunun ucun action olacaq onsuzda, add to basket olan.
-        //ya da elave nese birshey 
+
+        let url = $(this).attr('href');
+
+        url = url + `&count=${count}`
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                console.log(data);
+            });
     });
 
     $(document).on('keyup', '.result', function (e) {
@@ -730,12 +782,24 @@ $(document).ready(function () {
             || (e.which >= 96 && e.which <= 105)
             || e.which == 8) {
 
-            // $($(this).parent().children()[0]).fadeIn(180);
+            let url = $(this).prev().attr('href');
 
-            // alert(`${$(this).val()} count of product`);
+            let count = $(this).val();
 
+            if (count >= 5) {
+                $(this).val('5');
+            }
+
+            url = url + `&count=${count}`
+
+            if (count <= 5) {
+                fetch(url)
+                    .then(res => res.text())
+                    .then(data => {
+                        console.log(data);
+                    });
+            }
         }
-
     });
 
     // $(document).on('click', '.confirmcount', function (e) {
@@ -1349,7 +1413,6 @@ $(document).ready(function () {
 
         stars.rebuild();
     }
-    //gl-selectedin attr kotoriy data-value chetotam nado budet vzat i fetchanut kak value
 
     //#endregion clear modal textarea on click ---- star rating
 

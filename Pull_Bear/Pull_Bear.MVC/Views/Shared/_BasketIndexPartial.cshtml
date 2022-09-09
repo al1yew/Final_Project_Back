@@ -1,0 +1,151 @@
+﻿@model List<BasketVM>
+
+@if (Model == null || Model.Count <= 0)
+{
+    <div class="col-lg-12 col-12 basketboshdu">
+        <div class="bskp">
+            <p class="col-lg-8 col-8">
+                <span>Oops!</span> Looks like you haven't added anything to your Cart!
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="left col-lg-8 col-12 ">
+
+        @foreach (BasketVM item in Model)
+        {
+            <div class="basketlement col-lg-12 col-12">
+                <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.ProductId" class="leftleft col-lg-2-5 col-3">
+                    <img class="img-fluid" src="~/assets/images/products/@item.ProductId/@item.ProductImage" alt="">
+                </a>
+                <div class="rightleft col-lg-9 col-9">
+                    <div class="top">
+                        <p class="col-lg-12 col-12">
+                            @item.Name.ToUpperInvariant()
+                        </p>
+                        <span class="price">
+                            @item.Price $
+                        </span>
+                    </div>
+                    <div class="middle">
+                        <div class="col-lg-6 col-6">
+                            <span class="col-lg-4 col-4">
+                                Seria:
+                            </span>
+                            <span class="col-lg-8 col-8">@item.Seria</span>
+                        </div>
+                        <div class="col-lg-6 col-6">
+                            <span class="col-lg-4 col-4">
+                                Size:
+                            </span>
+                            <span class="col-lg-8 col-8">@item.SizeName</span>
+                        </div>
+                        <div class="col-lg-6 col-6">
+                            <span class="col-lg-4 col-4">
+                                Color:
+                            </span>
+                            <span class="col-lg-8 col-8" style="color: @item.ColorHexCode">@item.ColorName</span>
+                        </div>
+                        <div class="col-lg-6 col-6">
+                            <span class="col-lg-4 col-4">
+                                Total:
+                            </span>
+                            <span class="col-lg-8 col-8">@item.Price $</span>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="col-lg-6 col-6 fororderwish">
+                            <a asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@item.ProductId">
+                                <span class="mobilewishlist">
+                                    <svg width="24" height="24" viewBox="0 0 31 28" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.08333 1C4.17192 1 1 4.13933 1 8.0125C1 11.1391 2.23958 18.5596 14.4413 26.0608C14.6599 26.1938 14.9108 26.2642 15.1667 26.2642C15.4225 26.2642 15.6734 26.1938 15.892 26.0608C28.0938 18.5596 29.3333 11.1391 29.3333 8.0125C29.3333 4.13933 26.1614 1 22.25 1C18.3386 1 15.1667 5.25 15.1667 5.25C15.1667 5.25 11.9948 1 8.08333 1Z"
+                                              stroke="black" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                                <span class="compwishlist">ADD TO WISHLIST</span>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-3 col-5 fororderquan" style="position: relative;">
+                            <div class="productquantity">
+                                <a class="minus" asp-controller="Basket" asp-action="UpdateCount" asp-route-productid="@item.ProductId" asp-route-colorid="@item.ColorId" asp-route-sizeid="@item.SizeId">
+                                    <ion-icon name="remove-outline" class="minusicon quantityicon">
+                                    </ion-icon>
+                                </a>
+                                <input type="text" class="result" name="quantityprod" value="@item.Count">
+                                <a class="plus" asp-controller="Basket" asp-action="UpdateCount" asp-route-productid="@item.ProductId" asp-route-colorid="@item.ColorId" asp-route-sizeid="@item.SizeId">
+                                    <ion-icon name="add-outline" class="plusminus quantityicon"></ion-icon>
+                                </a>
+                            </div>
+                            <span class="prodsleft" style="position: absolute;right: 0; bottom: 4px; font-size: 18px; color: var(--yellow); font-family: var(--neuemedium);">
+                                7 left
+                            </span>
+                        </div>
+                        <a asp-controller="Basket" asp-action="DeleteFromCart" asp-route-productid="@item.ProductId" asp-route-colorid="@item.ColorId" asp-route-sizeid="@item.SizeId" class="deletefrombasket deletefrombasketinbaskethtmlpage">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"
+                                      stroke-linejoin="round" />
+                                <path d="M9.8 9.8V16.95M14.2 9.8V16.95M1 4.3H23" stroke="black"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M7.60034 4.3L9.40929 1H14.6277L16.4003 4.3H7.60034Z" stroke="black"
+                                      stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+    <div class="right col-lg-4 col-12 ">
+        <div class="top">
+            <span class="col-lg-4 col-4">Subtotal:</span>
+            <span class="col-lg-7 col-7">
+                @(Model.Sum(x=>x.Price * x.Count)) $
+            </span>
+            <span class="col-lg-4 col-4">Delivery:</span>
+            <span class="col-lg-7 col-7">FREE</span>
+        </div>
+        <div class="middle">
+            <span class="col-lg-4 col-4">Total:</span>
+            <span class="col-lg-7 col-7">
+                @(Model.Sum(x=>x.Price * x.Count)) $
+            </span>
+        </div>
+        <div class="bottom">
+            <a class="checkouthref" asp-controller="Checkout" asp-action="Index">
+                GO TO CHECKOUT
+            </a>
+            <div class="paywith">
+                <span class="col-lg-12 col-12">
+                    You can pay with:
+                </span>
+                <span class="imgkeeper col-lg-1 col-1">
+                    <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                </span>
+                <span class="imgkeeper col-lg-1-5 col-1-5">
+                    <img class="img-fluid" src="~/assets/images/settings/visa.jpg" alt="">
+                </span>
+                <span class="col-lg-12 col-12">
+                    *Prices and delivery charges are not confirmed until payment is made.
+                </span>
+                <span class="col-lg-12 col-12">
+                    *You have a 30-day right to return the order and get a refund of the price paid.
+                    Please read: <a asp-controller="Policy" asp-action="Index">Returns and Refunds.</a>
+                </span>
+                <a asp-controller="Policy" asp-action="Index" class="policyhref">
+                    DELIVERY AND RETURN OPTIONS
+                </a>
+            </div>
+        </div>
+    </div>
+
+}
+

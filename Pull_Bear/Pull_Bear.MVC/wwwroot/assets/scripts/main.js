@@ -696,15 +696,6 @@ $(document).ready(function () {
         $('.modal').removeClass('modalotkroysa');
     });
 
-    // $(document).on('click', '.forzoom', function () {
-
-    //     if ($(window).width() > 576) {
-    //         $(this).find('img').imageZoom({
-    //             zoom: 200
-    //         });
-    //     }
-    // })
-
     $(document).on('mousemove mouseover', '.forzoom', function (e) {
         if ($(window).width() > 576) {
             let img = $(this).children()[0];
@@ -737,6 +728,10 @@ $(document).ready(function () {
 
         count++;
 
+        if (count == 6) {
+            $(this).prev().val('5')
+        }
+
         if (count <= 5) {
             $(this).prev().val(count)
         }
@@ -748,7 +743,14 @@ $(document).ready(function () {
         fetch(url)
             .then(res => res.text())
             .then(data => {
-                console.log(data);
+                $('.basketforfetch').html(data);
+
+                fetch('/Basket/GetBasket')
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.minibasketfetch').html(data);
+                        $('.minibasket').remove();
+                    });
             });
     });
 
@@ -762,7 +764,7 @@ $(document).ready(function () {
             $(this).next().val(count)
         }
         else {
-            $(this).next().val('1')
+            $(this).next().val('0')
         }
 
         let url = $(this).attr('href');
@@ -772,7 +774,14 @@ $(document).ready(function () {
         fetch(url)
             .then(res => res.text())
             .then(data => {
-                console.log(data);
+                $('.basketforfetch').html(data);
+
+                fetch('/Basket/GetBasket')
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.minibasketfetch').html(data);
+                        $('.minibasket').remove();
+                    });
             });
     });
 
@@ -796,7 +805,14 @@ $(document).ready(function () {
                 fetch(url)
                     .then(res => res.text())
                     .then(data => {
-                        console.log(data);
+                        $('.basketforfetch').html(data);
+
+                        fetch('/Basket/GetBasket')
+                            .then(res => res.text())
+                            .then(data => {
+                                $('.minibasketfetch').html(data);
+                                $('.minibasket').remove();
+                            });
                     });
             }
         }

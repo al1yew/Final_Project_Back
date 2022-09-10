@@ -52,23 +52,21 @@ namespace Pull_Bear.MVC.Controllers
 
             Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == addToBasketVM.ProductId, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category");
 
+            ProductColorSize productColorSize = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == addToBasketVM.ProductId && x.ColorId == addToBasketVM.ColorId && x.SizeId == addToBasketVM.SizeId, "Product", "Size", "Color");
+
             if (dbProduct == null) return NotFound();
 
             if (dbProduct.Count <= 0) return BadRequest();
 
+            productColorSize.Count--;
+
+            dbProduct.Count--;
+
+            await _unitOfWork.CommitAsync();
+
             string basket = HttpContext.Request.Cookies["basket"];
 
             List<BasketVM> basketVMs = null;
-
-            ProductColorSize productColorSize = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == addToBasketVM.ProductId && x.ColorId == addToBasketVM.ColorId && x.SizeId == addToBasketVM.SizeId, "Product", "Size", "Color");
-
-            productColorSize.Count--;
-
-            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == addToBasketVM.ProductId);
-
-            product.Count--;
-
-            await _unitOfWork.CommitAsync();
 
             if (!string.IsNullOrWhiteSpace(basket))
             {
@@ -302,9 +300,9 @@ namespace Pull_Bear.MVC.Controllers
 
                 if (updateBasketVM.Count <= pcs.Count)
                 {
-                    if (updateBasketVM.Count <= 5 && updateBasketVM.Count >= 0)
+                    if (updateBasketVM.Count <= 5 && updateBasketVM.Count > 0)
                     {
-                        basketVM.Count = updateBasketVM.Count <= 0 ? 1 : updateBasketVM.Count;
+                        basketVM.Count = updateBasketVM.Count;
 
                         if (updateBasketVM.IsPlus)
                         {
@@ -313,55 +311,33 @@ namespace Pull_Bear.MVC.Controllers
                         }
                         else if (!updateBasketVM.IsPlus)
                         {
-                            pcs.Count++; 
+                            pcs.Count++;
                             product.Count++;
                         }
 
-                        if (updateBasketVM.Count == 0)
+                        if (User.Identity.IsAuthenticated)
                         {
-                            if (User.Identity.IsAuthenticated)
+                            AppUser appUser = await _userManager.Users.Include(u => u.Baskets).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+
+                            if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
                             {
-                                AppUser appUser = await _userManager.Users.Include(u => u.Baskets).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                                Basket dbBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId == updateBasketVM.ProductId && b.ColorId == updateBasketVM.ColorId && b.SizeId == updateBasketVM.SizeId);
 
-                                if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-                                {
-                                    Basket dbBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId == updateBasketVM.ProductId && b.ColorId == updateBasketVM.ColorId && b.SizeId == updateBasketVM.SizeId);
-
-                                    if (dbBasket != null)
-                                    {
-                                        _unitOfWork.BasketRepository.Remove(dbBasket);
-
-                                        await _unitOfWork.CommitAsync();
-                                    }
-                                }
-                            }
-
-                            basketVMs.Remove(basketVM);
-                        }
-
-                        await _unitOfWork.CommitAsync();
-                    }
-
-                    if (User.Identity.IsAuthenticated)
-                    {
-                        AppUser appUser = await _userManager.Users.Include(u => u.Baskets).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-
-                        if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
-                        {
-                            Basket dbBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId == updateBasketVM.ProductId && b.ColorId == updateBasketVM.ColorId && b.SizeId == updateBasketVM.SizeId);
-
-                            if (dbBasket != null)
-                            {
-                                if (updateBasketVM.Count <= 5 && updateBasketVM.Count >= 1)
+                                if (dbBasket != null)
                                 {
                                     dbBasket.Count = basketVM.Count;
                                 }
-
-                                await _unitOfWork.CommitAsync();
                             }
                         }
                     }
+
+                    if (updateBasketVM.Count == 0)
+                    {
+                        return RedirectToAction("DeleteFromCart", new DeleteFromBasketVM { ColorId = updateBasketVM.ColorId, SizeId = updateBasketVM.SizeId, ProductId = updateBasketVM.ProductId, CountInBasket = 1 });
+                    }
                 }
+
+                await _unitOfWork.CommitAsync();
 
                 basket = JsonConvert.SerializeObject(basketVMs);
 

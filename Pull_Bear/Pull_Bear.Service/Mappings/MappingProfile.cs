@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Service.ViewModels.AccountVMs;
+using Pull_Bear.Service.ViewModels.AddressVMs;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
 using Pull_Bear.Service.ViewModels.BasketVMs;
 using Pull_Bear.Service.ViewModels.BodyFitVMs;
+using Pull_Bear.Service.ViewModels.CardVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
@@ -173,6 +175,31 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<BasketVM, Basket>();
             CreateMap<Basket, BasketVM>();
+
+            #endregion
+
+            #region Card
+
+            CreateMap<Card, CardListVM>();
+            CreateMap<CardListVM, Card>();
+
+            CreateMap<Card, CardGetVM>();
+            CreateMap<CardGetVM, Card>();
+
+            CreateMap<CardCreateVM, Card>()
+                .ForMember(des => des.CardHolder, src => src.MapFrom(x => x.Name.ToUpperInvariant() + " " + x.Surname.ToUpperInvariant()));
+
+            #endregion
+
+            #region Address
+
+            CreateMap<Address, AddressListVM>();
+            CreateMap<AddressListVM, Address>();
+
+            CreateMap<Address, AddressGetVM>();
+            CreateMap<AddressGetVM, Address>();
+
+            CreateMap<AddressCreateVM, Address>();
 
             #endregion
         }

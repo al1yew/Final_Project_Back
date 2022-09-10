@@ -167,10 +167,7 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40);
 
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AppUserId1")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("City")
@@ -183,23 +180,8 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("nvarchar(60)")
                         .HasMaxLength(60);
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("IsUpdated")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("ZipCode")
                         .IsRequired()
@@ -208,7 +190,7 @@ namespace Pull_Bear.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId1");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Addresses");
                 });
@@ -392,14 +374,12 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AppUserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AppUserId1")
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("CVV")
-                        .HasColumnType("int")
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(4)")
                         .HasMaxLength(4);
 
                     b.Property<string>("CardHolder")
@@ -412,32 +392,17 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("nvarchar(16)")
                         .HasMaxLength(16);
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ExpireDate")
                         .IsRequired()
                         .HasColumnType("nvarchar(7)")
                         .HasMaxLength(7);
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsUpdated")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId1");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Cards");
                 });
@@ -1023,7 +988,7 @@ namespace Pull_Bear.Data.Migrations
                 {
                     b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
                         .WithMany("Addresses")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.AppUser", b =>
@@ -1057,7 +1022,7 @@ namespace Pull_Bear.Data.Migrations
                 {
                     b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
                         .WithMany("Cards")
-                        .HasForeignKey("AppUserId1");
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.Category", b =>

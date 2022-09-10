@@ -949,9 +949,7 @@ $(document).ready(function () {
     //--------------------------------- checkout forms
 
     $(document).on('click', '.changeinfo', function () {
-        // $('.formaddresskeeper').hide();
         $('.formcardkeeper, .rightcheckout, .formaddresskeeper').hide();
-        // $('.rightcheckout').hide();
         $('.forminfokeeper').fadeIn(200);
         $('.changeinfo').fadeOut(200);
         $('.changeaddress').fadeIn(200);
@@ -1088,7 +1086,7 @@ $(document).ready(function () {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //#region  add new card
+    //#region  add new card --- delete card -- make main card
 
     //--------------------------------- add new card
 
@@ -1106,6 +1104,11 @@ $(document).ready(function () {
 
         $(this).parent().parent().parent().prev().fadeIn(200);
 
+        $('.cvv').val('')
+        $('.expire').val('')
+        $('.cardno').val('')
+        $('.cardname').val('')
+        $('.cardsurname').val('')
     });
 
     $(document).on('submit', '#addnewcardform', function (e) {
@@ -1114,17 +1117,37 @@ $(document).ready(function () {
         const form = document.getElementById('addnewcardform');
         const formData = new FormData(form);
 
-        let cardno = formData.get('cardno').trim()
-        let cardname = formData.get('cardname').trim()
-        let cardsurname = formData.get('cardsurname').trim()
-        let expire = formData.get('expire').trim()
-        let cvv = formData.get('cvv').trim()
+        let cardno = formData.get('cardno')
+        let name = formData.get('name')
+        let surname = formData.get('surname')
+        let expiredate = formData.get('expiredate')
+        let cvv = formData.get('cvv')
+        let ismain = $(document.activeElement).val() == "save" ? false : true
 
-        //alert($(document.activeElement).val());
+        let obj = {
+            CardNo: cardno,
+            Name: name,
+            Surname: surname,
+            ExpireDate: expiredate,
+            CVV: cvv,
+            IsMain: ismain
+        }
 
-        //vessalam valuesini burda if ile yoxlayib controllere true false gondereceyik, 
-        //tipa esli save, to pust budet false, esli make main to true, parametr da
-        //olsun bool main tipa esli main true to saveni kak main esli net to naoborot
+        fetch($(this).attr('action'), {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.cardinozu').remove();
+                $('.cardsforfetch').prepend(data)
+                if ($('.cardinozu').length >= 3) {
+                    $('.cardform').remove()
+                }
+            })
 
         $(this).parent().hide();
         $(this).parent().parent().prev().fadeIn(200);
@@ -1134,12 +1157,37 @@ $(document).ready(function () {
         $('.cardno').val('')
         $('.cardname').val('')
         $('.cardsurname').val('')
-
-        // alert(`${cardno},${cardname},${cardsurname},${expire},${cvv}`)
-
     });
 
-    //#endregion add new card
+
+    //--------------------------------- delete card
+
+    $(document).on('click', '.deleteuserscard', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.cardinozu').remove();
+                $('.cardsforfetch').prepend(data)
+            });
+    });
+
+
+    //--------------------------------- make card main
+
+    $(document).on('click', '.makemaincard', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.cardinozu').remove();
+                $('.cardsforfetch').prepend(data)
+            });
+    });
+
+    //#endregion add new card --- delete card -- make main card
 
     //---------------------------------------------------------------------------------------------------------------
 
@@ -1152,7 +1200,6 @@ $(document).ready(function () {
         $($(this).next().children()[0]).fadeIn(200);
 
         $(this).hide();
-
     });
 
     $(document).on('click', '.cancelnewaddress', function (e) {
@@ -1160,6 +1207,12 @@ $(document).ready(function () {
         $(this).parent().parent().hide();
 
         $(this).parent().parent().parent().prev().fadeIn(200);
+
+        $('.addressaddress1').val('')
+        $('.addressaddress2').val('')
+        $('.addresscountry').val('')
+        $('.addresscity').val('')
+        $('.addresszipcode').val('')
     });
 
     $(document).on('submit', '#addnewaddressform', function (e) {
@@ -1173,12 +1226,33 @@ $(document).ready(function () {
         let city = formData.get('city').trim()
         let country = formData.get('country').trim()
         let zipcode = formData.get('zipcode').trim()
+        let ismain = $(document.activeElement).val() == "save" ? false : true
 
-        //alert($(document.activeElement).val());
+        let obj = {
+            address1: address1,
+            address2: address2,
+            city: city,
+            country: country,
+            zipcode: zipcode,
+            ismain: ismain
+        }
 
-        //vessalam valuesini burda if ile yoxlayib controllere true false gondereceyik, 
-        //tipa esli save, to pust budet false, esli make main to true, parametr da
-        //olsun bool main tipa esli main true to saveni kak main esli net to naoborot
+        fetch($(this).attr('action'), {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(res => res.text())
+            .then(data => {
+                $('.addressinozu').remove();
+                $('.addressforfetch').prepend(data)
+
+                if ($('.addressinozu').length >= 3) {
+                    $('.addressform').remove()
+                }
+            })
 
         $(this).parent().hide();
         $(this).parent().parent().prev().fadeIn(200);
@@ -1188,10 +1262,35 @@ $(document).ready(function () {
         $('.addresscountry').val('')
         $('.addresscity').val('')
         $('.addresszipcode').val('')
-
-        // alert(`${address1},${address2},${city},${country},${zipcode}`)
-
     });
+
+    //--------------------------------- delete address
+
+    $(document).on('click', '.deleteusersaddress', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.addressinozu').remove();
+                $('.addressforfetch').prepend(data)
+            });
+    });
+
+
+    //--------------------------------- make address main
+
+    $(document).on('click', '.makeaddressmain', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.addressinozu').remove();
+                $('.addressforfetch').prepend(data)
+            });
+    });
+
 
     //#endregion add new address
 

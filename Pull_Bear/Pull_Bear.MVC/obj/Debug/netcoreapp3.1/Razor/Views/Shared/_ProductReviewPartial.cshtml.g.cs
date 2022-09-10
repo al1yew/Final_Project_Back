@@ -90,41 +90,55 @@ using Pull_Bear.Service.ViewModels.ColorVMs;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.SizeVMs;
+using Pull_Bear.Service.ViewModels.AddressVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.HeaderVMs;
+using Pull_Bear.Service.ViewModels.SizeVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.BasketVMs;
+using Pull_Bear.Service.ViewModels.HeaderVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.Enums;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 17 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.CardVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7de46f82fca12f7364015db12b27433dcf7d5cf1", @"/Views/Shared/_ProductReviewPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a3fdd7eed046411b4dd42ca0f6d9e11370ec9650", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"adaba8d94ba904a155ae058de52e721c08a6b5b0", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__ProductReviewPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ProductDetailVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -292,7 +306,7 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("                            <div class=\"photokeeper col-3 col-lg-3 photomodal\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7de46f82fca12f7364015db12b27433dcf7d5cf113297", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "7de46f82fca12f7364015db12b27433dcf7d5cf113710", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -366,7 +380,7 @@ AddHtmlAttributeValue("", 2303, img.Image, 2303, 10, false);
 #line hidden
 #nullable disable
             WriteLiteral("                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7de46f82fca12f7364015db12b27433dcf7d5cf116902", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7de46f82fca12f7364015db12b27433dcf7d5cf117315", async() => {
                 WriteLiteral(@"
                         <svg viewBox=""0 0 20 22"" fill=""none"" xmlns=""http://www.w3.org/2000/svg"">
                             <path d=""M19.3475 11.0677C19.7675 10.5013 20 9.80738 20 9.08535C20 7.9398 19.3725 6.85548 18.3625 6.25081C18.1025 6.09517 17.8064 6.01325 17.505 6.01354H11.51L11.66 2.87793C11.695 2.12019 11.4325 1.40071 10.9225 0.852168C10.6722 0.581797 10.3703 0.36668 10.0353 0.220111C9.70032 0.0735421 9.33946 -0.001365 8.975 1.88293e-05C7.675 1.88293e-05 6.525 0.892989 6.18 2.17121L4.0325 10.1059H0.8C0.3575 10.1059 0 10.4707 0 10.9223V20.2092C0 20.6608 0.3575 21.0256 0.8 21.0256H15.8325C16.0625 21.0256 16.2875 20.9797 16.495 20.8879C17.685 20.3699 18.4525 19.1836 18.4525 17.8671C18.4525 17.5456 18.4075 17.2292 18.3175 16.9231C18.7375 16.3567 18.97 15.6627 18.97 14.9407C18.97 14.6192 18.925 14.3029 18.835 13.9967C19.255 13.4303 19.4875 12.7363 19.4875 12.0143C19.4825 11.6928 19.4375 11.3739 19.3475 11.0677ZM1.8 19.1887V11.9429H3.825V19.1887H1.8ZM17.71 10.1824L17.1625 10.6672L17.51 11.3152C17.6245 1");

@@ -51,6 +51,14 @@
     <Compile Remove="Migrations\20220903150003_ChangedLogicsProductPhoto.Designer.cs" />
     <Compile Remove="Migrations\20220905114321_UpdatedTabless.cs" />
     <Compile Remove="Migrations\20220905114321_UpdatedTabless.Designer.cs" />
+    <Compile Remove="Migrations\20220910135411_AddedCardAndAddress.cs" />
+    <Compile Remove="Migrations\20220910135411_AddedCardAndAddress.Designer.cs" />
+    <Compile Remove="Migrations\20220910140622_AddedCardAndAddress.cs" />
+    <Compile Remove="Migrations\20220910140622_AddedCardAndAddress.Designer.cs" />
+    <Compile Remove="Migrations\20220910141300_AddedCardAndAddress.cs" />
+    <Compile Remove="Migrations\20220910141300_AddedCardAndAddress.Designer.cs" />
+    <Compile Remove="Migrations\20220910141731_AddedCardAndAddress.cs" />
+    <Compile Remove="Migrations\20220910141731_AddedCardAndAddress.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

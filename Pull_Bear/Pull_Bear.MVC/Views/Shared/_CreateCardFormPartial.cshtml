@@ -1,0 +1,57 @@
+﻿@model CardCreateVM
+
+
+<div class="cardform col-lg-4 col-12">
+
+    <p class="clicktoaddnewcard">
+        ADD NEW
+    </p>
+
+    <div class="again_allcontent">
+        <div class="allcontent col-lg-12 col-12">
+            <div asp-validation-summary="ModelOnly" class="text text-danger"></div>
+            <form method="post" id="addnewcardform" enctype="multipart/form-data"
+                  class="cardozu col-lg-12 col-12 addnewcardform" asp-controller="Card" asp-action="CreateCard">
+
+                <input asp-for="CardNo" name="cardno" id="cardno" class="col-8 col-lg-8 cardno" type="text"
+                       required placeholder="0000 0000 0000 0000" maxlength="16">
+
+                <span class="col-lg-1-2 col-1-5">
+                    <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                </span>
+
+                <span class="col-lg-1-2 col-1-5">
+                    <img class="img-fluid" src="~/assets/images/settings/visa.jpg" alt="">
+                </span>
+
+                <input asp-for="Name" name="name" id="cardname" class="col-5-8 col-lg-5-8 cardname"
+                       required placeholder="NAME"
+                       title="Name must be contain only letters!">
+
+                <input asp-for="Surname" name="surname" id="cardsurname"
+                       class="col-5-8 col-lg-5-8 cardsurname" placeholder="SURNAME"
+                       required title="Surname must be contain only letters!">
+
+                <input asp-for="ExpireDate" name="expiredate" id="expire" class="col-5-8 col-lg-5-8 expire"
+                       required placeholder="MM/YYYY" pattern="\d{2}\/\d{4}" maxlength="7">
+
+                <input asp-for="CVV" id="cvv" name="cvv" class="col-5-8 col-lg-5-8 cvv" required
+                       placeholder="CVV CODE" pattern="^[0-9]{3,4}$" maxlength="4">
+
+                <button form="addnewcardform" type="submit"
+                        class="cardchangebtn col-lg-2-5 col-2-5" value="save">
+                    SAVE
+                </button>
+
+                <button type="button" class="cancelnewcard col-lg-2-5 col-2-5"
+                        value="save">
+                    CANCEL
+                </button>
+
+                <button form="addnewcardform" type="submit" class="cardchangebtn col-lg-6-5 col-6-5" value="add">SAVE AND MAKE MAIN</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

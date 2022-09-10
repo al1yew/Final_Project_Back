@@ -233,3 +233,7 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Raz
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BasketIndexPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProductReviewPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CardListPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CreateCardFormPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AddressListPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CreateAddressFormPartial.cshtml.g.cs

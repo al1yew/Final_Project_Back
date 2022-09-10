@@ -1,0 +1,50 @@
+﻿@model AddressCreateVM
+
+<div class="addressform col-lg-4 col-12">
+
+    <p class="clicktoaddnewaddress">
+        ADD NEW
+    </p>
+
+    <div class="again_allcontent">
+        <div class="allcontent col-lg-12 col-12">
+            <div asp-validation-summary="ModelOnly" class="text text-danger"></div>
+            <form method="post" id="addnewaddressform" enctype="multipart/form-data"
+                  class="addressozu col-lg-12 col-12 addnewaddressform" asp-controller="Address" asp-action="CreateAddress">
+
+                <input asp-for="Address1" name="address1" class="col-12 col-lg-12 addressaddress1"
+                       id="addressaddress1" type="text" required placeholder="ADDRESS 1">
+
+                <input asp-for="Address2" name="address2" class="col-12 col-lg-12 addressaddress2"
+                       id="addressaddress2" type="text" placeholder="ADDRESS 2">
+
+                <input asp-for="Country" name="country" id="addresscountry"
+                       class="col-12 col-lg-12 addresscountry" type="text" required
+                       placeholder="COUNTRY">
+
+                <input asp-for="City" name="city" id="addresscity" class="col-12 col-lg-12 addresscity"
+                       type="text" required placeholder="CITY">
+
+                <input asp-for="ZipCode" name="zipcode" id="addresszipcode"
+                       class="col-12 col-lg-12 addresszipcode" type="text" required max="10"
+                       maxlength="10" title="ZIP code must be at most 10 characters!"
+                       placeholder="ZIP code">
+
+                <button form="addnewaddressform" type="submit"
+                        class="addresschangebtn col-lg-2-5 col-2-5" value="save">
+                    SAVE
+                </button>
+
+                <button type="button" class="cancelnewaddress col-lg-2-5 col-2-5"
+                        value="save">
+                    CANCEL
+                </button>
+
+                <button form="addnewaddressform" type="submit"
+                        class="addresschangebtn col-lg-6-5 col-6-5" value="add">
+                    SAVE AND MAKE MAIN
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -41,6 +41,11 @@ namespace Pull_Bear.Service.ViewModels.ProductReviewVMs
                         b.AddFailure("You can add max 3 photos!");
                     }
                 }
+
+                if (a.Rating == 0)
+                {
+                    b.AddFailure("You Must select Rating!");
+                }
             });
         }
     }

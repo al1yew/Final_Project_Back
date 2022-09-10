@@ -1,6 +1,6 @@
 ﻿@model WriteReviewVM
 
-<div asp-validation-summary="ModelOnly">   </div>
+<div asp-validation-summary="ModelOnly"></div>
 <form method="post" enctype="multipart/form-data" id="postreview" class="col-lg-12 postreviewform col-12" asp-controller="Shop" asp-action="AddReview" asp-route-id="@ViewBag.ProductId">
     @if (!User.Identity.IsAuthenticated)
     {

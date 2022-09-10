@@ -1,0 +1,59 @@
+﻿@model List<CardListVM>
+
+@foreach (CardListVM card in Model)
+{
+    <div class="cardinozu col-lg-4 col-12">
+        <div class="cardozu col-lg-12 col-12">
+            <span class="col-lg-1-5 col-1-5">
+                <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+            </span>
+            <span class="cardno">
+                @for (int i = 0; i <= 6; i++)
+                {
+                    if (i == 4)
+                    {
+                        @(" ")
+                    }
+
+                    @card.CardNo.ToString()[i]
+                }
+                @for (int i = 7; i < card.CardNo.ToString().Length; i++)
+                {
+                    @("*")
+                }
+            </span>
+            <span class="cardexpire">
+                @card.ExpireDate
+            </span>
+            <span class="cardholder">
+                @card.CardHolder
+            </span>
+            <span class="deletecard">
+                <a asp-controller="Card" asp-action="DeleteCard" asp-route-id="@card.Id" class="deleteuserscard">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.75 4.2998V22.9998H20.25V4.2998H3.75Z" stroke="black"
+                              stroke-linejoin="round" />
+                        <path d="M9.8 9.7998V16.9498M14.2 9.7998V16.9498M1 4.2998H23" stroke="black"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M7.60059 4.3L9.40954 1H14.6279L16.4006 4.3H7.60059Z" stroke="black"
+                              stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </span>
+            @if (card.IsMain)
+            {
+                <span class="ismain">Main Card</span>
+            }
+            else
+            {
+                <span class="makemain">
+                    <a asp-controller="Card" asp-action="MakeMain" asp-route-id="@card.Id" class="makemaincard">
+                        MAKE MAIN
+                    </a>
+                </span>
+            }
+            <span class=" headword">International card</span>
+        </div>
+    </div>
+}

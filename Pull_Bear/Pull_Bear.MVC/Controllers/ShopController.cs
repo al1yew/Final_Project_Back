@@ -48,7 +48,7 @@ namespace Pull_Bear.MVC.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "");
-                return Ok();
+                return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));
             }
             ViewBag.ProductId = id;
             return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));
@@ -65,11 +65,6 @@ namespace Pull_Bear.MVC.Controllers
         {
             return PartialView("_ReviewCountPartial", await _shopService.GetReviewCount(id));
         }
-
-        //public async Task<IActionResult> GetReviewCount(int? id)
-        //{
-        //    return Json(await _shopService.GetReviewCount(id));
-        //}
 
         public async Task<IActionResult> Like(int? id)
         {

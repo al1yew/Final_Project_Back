@@ -11,16 +11,24 @@ namespace Pull_Bear.Service.ViewModels.ProductReviewVMs
         public string Review { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string AppUserId { get; set; }
         public double Rating { get; set; }
         public List<IFormFile> Photos { get; set; }
     }
 
     public class WriteReviewVMValidator : AbstractValidator<WriteReviewVM>
     {
-        public WriteReviewVMValidator()
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public WriteReviewVMValidator(IHttpContextAccessor httpContextAccessor)
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required!");
-            RuleFor(x => x.Surname).NotEmpty().WithMessage("Surname is required!");
+            _httpContextAccessor = httpContextAccessor;
+
+            if (!_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required!");
+                RuleFor(x => x.Surname).NotEmpty().WithMessage("Surname is required!");
+            }
+
             RuleFor(x => x.Review).NotEmpty().WithMessage("Review is required!");
             RuleFor(x => x.Rating).NotEmpty().WithMessage("Rating is required!");
 

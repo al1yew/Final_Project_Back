@@ -51,7 +51,7 @@ namespace Pull_Bear.MVC.Controllers
                 return Ok();
             }
             ViewBag.ProductId = id;
-            return PartialView("_ProductDetailReviewPartial", await _shopService.AddReview(writeReviewVM, id));
+            return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));
         }
 
         public async Task<IActionResult> Search(string search)
@@ -63,8 +63,13 @@ namespace Pull_Bear.MVC.Controllers
 
         public async Task<IActionResult> GetReviewCount(int? id)
         {
-            return Json(await _shopService.GetReviewCount(id));
+            return PartialView("_ReviewCountPartial", await _shopService.GetReviewCount(id));
         }
+
+        //public async Task<IActionResult> GetReviewCount(int? id)
+        //{
+        //    return Json(await _shopService.GetReviewCount(id));
+        //}
 
         public async Task<IActionResult> Like(int? id)
         {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Exceptions;
@@ -30,12 +31,16 @@ namespace Pull_Bear.Service.Implementations
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IWebHostEnvironment _env;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly UserManager<AppUser> _userManager;
 
-        public ShopService(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment env)
+        public ShopService(IUnitOfWork unitOfWork, IMapper mapper, IWebHostEnvironment env, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _env = env;
+            _httpContextAccessor = httpContextAccessor;
+            _userManager = userManager;
         }
 
         public async Task<ShopVM> GetDataAsync(int? genderId, int? parentcategoryid)
@@ -161,19 +166,31 @@ namespace Pull_Bear.Service.Implementations
 
             List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
 
+            AppUser appUser = _userManager.Users.FirstOrDefault(x => x.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
             ProductDetailVM productDetailVM = new ProductDetailVM()
             {
                 Product = product,
                 Products = products,
-                WriteReviewVM = new WriteReviewVM()
+                WriteReviewVM = new WriteReviewVM(),
+                CanWrite = appUser != null ? !product.ProductReviews.Any(x => x.AppUserId == appUser.Id) : false
             };
 
             return productDetailVM;
         }
 
-        public async Task<List<ProductReviewGetVM>> AddReview(WriteReviewVM writeReviewVM, int? id)
+        public async Task<ProductDetailVM> AddReview(WriteReviewVM writeReviewVM, int? id)
         {
             if (id == null && id <= 0) throw new NotFoundException("ProductCannot be found!");
+
+            if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser user = _userManager.Users.FirstOrDefault(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+                writeReviewVM.AppUserId = user.Id;
+                writeReviewVM.Name = user.Name;
+                writeReviewVM.Surname = user.SurName;
+            }
 
             ProductReview productReview = _mapper.Map<ProductReview>(writeReviewVM);
 
@@ -195,15 +212,15 @@ namespace Pull_Bear.Service.Implementations
             productReview.ReviewImages = reviewImages;
             productReview.ProductId = (int)id;
 
-            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id);
+            Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id);
 
-            if (product.ReviewCount == null)
+            if (dbProduct.ReviewCount == null)
             {
-                product.ReviewCount = 1;
+                dbProduct.ReviewCount = 1;
             }
             else
             {
-                product.ReviewCount++;
+                dbProduct.ReviewCount++;
             }
 
             await _unitOfWork.ProductReviewRepository.AddAsync(productReview);
@@ -211,10 +228,27 @@ namespace Pull_Bear.Service.Implementations
 
             List<ProductReviewGetVM> productReviews = _mapper.Map<List<ProductReviewGetVM>>(await _unitOfWork.ProductReviewRepository.GetAllByExAsync(x => x.ProductId == id, "ReviewImages"));
 
-            product.AverageRating = productReviews.Sum(x => x.Rating) / product.ReviewCount;
+            dbProduct.AverageRating = productReviews.Sum(x => x.Rating) / dbProduct.ReviewCount;
             await _unitOfWork.CommitAsync();
 
-            return productReviews;
+            ProductGetVM product = _mapper.Map<ProductGetVM>(await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category", "ProductReviews", "ProductReviews.ReviewImages"));
+
+            if (product == null)
+                throw new NotFoundException("Product cannot be found!");
+
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
+
+            AppUser appUser = _userManager.Users.FirstOrDefault(x => x.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+            ProductDetailVM productDetailVM = new ProductDetailVM()
+            {
+                Product = product,
+                Products = products,
+                WriteReviewVM = new WriteReviewVM(),
+                CanWrite = appUser != null ? !product.ProductReviews.Any(x => x.AppUserId == appUser.Id) : false
+            };
+
+            return productDetailVM;
         }
 
         public async Task<List<ProductListVM>> Search(string search)
@@ -231,13 +265,11 @@ namespace Pull_Bear.Service.Implementations
             return products;
         }
 
-        public async Task<int> GetReviewCount(int? id)
+        public async Task<ProductGetVM> GetReviewCount(int? id)
         {
-            List<ProductReviewGetVM> productReviews = _mapper.Map<List<ProductReviewGetVM>>(await _unitOfWork.ProductReviewRepository.GetAllByExAsync(x => x.ProductId == id));
+            ProductGetVM product = _mapper.Map<ProductGetVM>(await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id));
 
-            int count = productReviews.Count;
-
-            return count;
+            return product;
         }
 
         public async Task<int> Like(int? id)

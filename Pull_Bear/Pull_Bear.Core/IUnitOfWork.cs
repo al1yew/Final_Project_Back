@@ -22,6 +22,8 @@ namespace Pull_Bear.Core
         IBasketRepository BasketRepository { get; }
         IWishlistRepository WishlistRepository { get; }
         IProductReviewRepository ProductReviewRepository { get; }
+        ICardRepository CardRepository { get; }
+        IAddressRepository AddressRepository { get; }
         Task<int> CommitAsync();
         int Commit();
     }

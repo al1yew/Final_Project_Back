@@ -36,6 +36,8 @@ namespace Pull_Bear.Data
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<Card> Cards { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
     }
 }

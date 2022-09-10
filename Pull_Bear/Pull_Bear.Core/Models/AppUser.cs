@@ -28,6 +28,8 @@ namespace Pull_Bear.Core.Models
         //public IEnumerable<Order> Orders { get; set; }
         public List<Wishlist> Wishlists { get; set; }
         public List<ProductReview> ProductReviews { get; set; }
+        public List<Card> Cards { get; set; }
+        public List<Address> Addresses { get; set; }
 
     }
 }

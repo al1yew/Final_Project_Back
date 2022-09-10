@@ -150,6 +150,69 @@ namespace Pull_Bear.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Pull_Bear.Core.Models.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Address2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(22)")
+                        .HasMaxLength(22);
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(60)")
+                        .HasMaxLength(60);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUpdated")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(12)")
+                        .HasMaxLength(12);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId1");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("Pull_Bear.Core.Models.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -320,6 +383,63 @@ namespace Pull_Bear.Data.Migrations
                     b.HasIndex("GenderId");
 
                     b.ToTable("BodyFits");
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.Card", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AppUserId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int")
+                        .HasMaxLength(4);
+
+                    b.Property<string>("CardHolder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("CardNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(16)")
+                        .HasMaxLength(16);
+
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ExpireDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(7)")
+                        .HasMaxLength(7);
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsUpdated")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId1");
+
+                    b.ToTable("Cards");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.Category", b =>
@@ -899,6 +1019,13 @@ namespace Pull_Bear.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Pull_Bear.Core.Models.Address", b =>
+                {
+                    b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
+                        .WithMany("Addresses")
+                        .HasForeignKey("AppUserId1");
+                });
+
             modelBuilder.Entity("Pull_Bear.Core.Models.AppUser", b =>
                 {
                     b.HasOne("Pull_Bear.Core.Models.Gender", "Gender")
@@ -924,6 +1051,13 @@ namespace Pull_Bear.Data.Migrations
                     b.HasOne("Pull_Bear.Core.Models.Gender", "Gender")
                         .WithMany("BodyFits")
                         .HasForeignKey("GenderId");
+                });
+
+            modelBuilder.Entity("Pull_Bear.Core.Models.Card", b =>
+                {
+                    b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
+                        .WithMany("Cards")
+                        .HasForeignKey("AppUserId1");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.Category", b =>

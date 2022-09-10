@@ -68,7 +68,7 @@
                                   stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </a>
-                    <p class="name col-12">@product.Name.ToUpperInvariant()</p>
+                    <p class="name col-12 col-lg-11">@product.Name.ToUpperInvariant()</p>
                     <p class="price col-9">
                         <span class="discprice">@product.DiscountPrice $</span>
                         <span class="pricereal">@product.Price $</span>
@@ -398,36 +398,10 @@
 
     <section class="modalmoy">
         <div class="overlaymodall">
-            <div class="modalall">
-                <span class="closemodal">
-                    <ion-icon name="close-circle"></ion-icon>
-                </span>
-                <p class="firstp col-lg-12 col-12 dontclose">PRODUCT REVIEWS</p>
-                <div class="col-lg-12 col-12 rating dontclose">
-                    <div class="col-lg-6 col-5 left ">
-                        <span class="avgrating">@Math.Round(product.AverageRating, 1)</span>
-                        <div class="stardiv">
-                            @for (int i = 0; i < Math.Round(product.AverageRating); i++)
-                            {
-                                <ion-icon name="star" class="staricon yellow"></ion-icon>
-                            }
-                            @for (int i = 0; i < 5 - Math.Round(product.AverageRating); i++)
-                            {
-                                <ion-icon name="star-outline" class="staricon"></ion-icon>
-                            }
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-7 right">
-                        <span class="reviewcount"><span class="revcount2">@product.ReviewCount</span> reviews</span>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-12 reviews dontclose" id="reviews">
-                    @await Html.PartialAsync("_ProductDetailReviewPartial", product.ProductReviews)
-                </div>
+            <div class="modalall reviewsmodalfetch w-100">
 
-                <div class="col-lg-12 col-12 writereview dontclose">
-                    @await Html.PartialAsync("_WriteReviewPartial", Model.WriteReviewVM)
-                </div>
+                @await Html.PartialAsync("_ProductReviewPartial", Model)
+
             </div>
         </div>
     </section>

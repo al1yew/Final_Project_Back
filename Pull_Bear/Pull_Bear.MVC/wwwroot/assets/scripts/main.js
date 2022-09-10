@@ -1834,16 +1834,7 @@ $(document).ready(function () {
             .then(res => res.text())
             .then(data => {
 
-                $('.reviews').html(data);
-
-                let id = $(this).find('.addreviewbtn').data('count')
-
-                fetch(`http://localhost:53427/Shop/GetReviewCount/${id}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        $('.revcount1').html(data);
-                        $('.revcount2').html(data);
-                    });
+                $('.reviewsmodalfetch').html(data);
             });
 
         $('#reviewname').val('')

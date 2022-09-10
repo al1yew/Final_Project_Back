@@ -17,9 +17,9 @@ namespace Pull_Bear.Service.Interfaces
         Task<ShopVM> GetDataAsync(int? genderId, int? parentcategoryid);
         Task<IQueryable<ProductListVM>> CreateSort(SortVM sortVM);
         Task<ProductDetailVM> GetProduct(int? id);
-        Task<List<ProductReviewGetVM>> AddReview(WriteReviewVM writeReviewVM, int? id);
+        Task<ProductDetailVM> AddReview(WriteReviewVM writeReviewVM, int? id);
         Task<List<ProductListVM>> Search(string search);
-        Task<int> GetReviewCount(int? id);
+        Task<ProductGetVM> GetReviewCount(int? id);
         Task<int> Like(int? id);
     }
 }

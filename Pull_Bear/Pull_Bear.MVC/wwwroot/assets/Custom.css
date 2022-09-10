@@ -80,6 +80,10 @@
         color: var(--yellow);
         font-family: var(--neuemedium);
     }
+
+    .rightmain .top .wishlist {
+        top: 9% !important;
+    }
 }
 
 @media(min-width: 1200px) and (max-width: 1349px) {
@@ -118,6 +122,10 @@
         font-size: 12px;
         color: var(--yellow);
         font-family: var(--neuemedium);
+    }
+
+    .rightmain .top .wishlist {
+        top: 9% !important;
     }
 }
 
@@ -166,6 +174,10 @@
         font-size: 16px;
         color: var(--yellow);
         font-family: var(--neuemedium);
+    }
+
+    .rightmain .top .wishlist {
+        top: 9% !important;
     }
 }
 

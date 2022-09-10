@@ -11,6 +11,7 @@ namespace Pull_Bear.Service.ViewModels.ProductReviewVMs
         public int Id { get; set; }
         public string Review { get; set; }
         public string Author { get; set; }
+        public string AppUserId { get; set; }
         public DateTime PublishDate { get; set; }
         public double Rating { get; set; }
         public int LikesCount { get; set; }

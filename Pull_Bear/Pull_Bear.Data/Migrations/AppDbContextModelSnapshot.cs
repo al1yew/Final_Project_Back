@@ -546,22 +546,14 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
+                    b.Property<string>("CityCountry")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -569,6 +561,9 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeliveredAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")

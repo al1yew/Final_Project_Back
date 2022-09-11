@@ -237,3 +237,9 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Raz
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_AddressListPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CreateAddressFormPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Order\CreateOrder.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutAddAccountInfoFormPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutAddAddressFormPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutAddCardFormPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutFormPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutSubmitFormPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutBasketsPartial.cshtml.g.cs

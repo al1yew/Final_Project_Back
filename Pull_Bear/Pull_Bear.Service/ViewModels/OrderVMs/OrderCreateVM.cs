@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using Pull_Bear.Core.Enums;
+using Pull_Bear.Service.ViewModels.AddressVMs;
+using Pull_Bear.Service.ViewModels.CardVMs;
 using Pull_Bear.Service.ViewModels.OrderItemVMs;
 using System;
 using System.Collections.Generic;
@@ -9,36 +11,40 @@ namespace Pull_Bear.Service.ViewModels.OrderVMs
 {
     public class OrderCreateVM
     {
-        public string Name { get; set; }
-
-        public string SurName { get; set; }
-
         public double Price { get; set; }
 
+        public string FullName { get; set; }
         public string Email { get; set; }
-
         public string PhoneNumber { get; set; }
 
+        public string Address { get; set; }
+        public string CityCountry { get; set; }
+        public string ZipCode { get; set; }
+
         public string Address1 { get; set; }
-
         public string Address2 { get; set; }
-
         public string Country { get; set; }
-
         public string City { get; set; }
 
-        public string ZipCode { get; set; }
+        public string CardNo { get; set; }
+        public string CVV { get; set; }
+        public string CardHolder { get; set; }
+        public string ExpireDate { get; set; }
+
         public string AppUserId { get; set; }
+
+        public List<CardListVM> Cards { get; set; }
+        public List<AddressListVM> Addresses { get; set; }
         public IEnumerable<OrderItemListVM> OrderItems { get; set; }
         public OrderStatus OrderStatus { get; set; }
+
     }
 
     public class OrderCreateVMValidator : AbstractValidator<OrderCreateVM>
     {
         public OrderCreateVMValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name is required!");
-            RuleFor(x => x.SurName).NotEmpty().WithMessage("Surname is required!");
+            RuleFor(x => x.FullName).NotEmpty().WithMessage("Full Name is required!");
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required!");
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone Number is required!");
             RuleFor(x => x.Address1).NotEmpty().WithMessage("Address1 is required!");

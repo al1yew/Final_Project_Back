@@ -46,7 +46,6 @@ namespace Pull_Bear.Service.Implementations
             dbAppUser.Name = appUserUpdateVM.Name.Trim();
             dbAppUser.SurName = appUserUpdateVM.SurName.Trim();
             dbAppUser.Email = appUserUpdateVM.Email.Trim();
-            dbAppUser.UserName = appUserUpdateVM.UserName;
             dbAppUser.PhoneNumber = appUserUpdateVM.PhoneNumber.Trim();
 
             IdentityResult identityResult = await _userManager.UpdateAsync(dbAppUser);

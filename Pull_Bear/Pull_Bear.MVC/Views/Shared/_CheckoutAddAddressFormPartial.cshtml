@@ -1,0 +1,37 @@
+﻿@model AddressCreateVM
+
+<div class="formaddresskeeper formkeeper col-lg-5 col-12">
+    <span class="closeform">
+        <ion-icon name="close-circle-outline"></ion-icon>
+    </span>
+    <form id="changeaddressform" method="post" action="" class="col-lg-12 col-12 changeaddressform">
+        <label asp-for="Address1" for="address1"><span>*</span>ADDRESS</label>
+        <input asp-for="Address1" name="address1" class="col-12 col-lg-12" id="address1" required>
+
+        <label asp-for="Address2" for="address2"><span>*</span>ADDRESS 2</label>
+        <input asp-for="Address2" name="address2" class="col-12 col-lg-12" id="address2">
+
+        <label asp-for="Country" for="country"><span>*</span> COUNTRY</label>
+        <input asp-for="Country" name="country" id="country" class="col-12 col-lg-12" required>
+
+        <div class="checkoutcity col-6 col-lg-6">
+            <label asp-for="City" for="city"><span>*</span> CITY</label>
+            <input asp-for="City" name="city" id="city" class="col-12 col-lg-12" required>
+        </div>
+
+        <div class="checkoutcountry col-6 col-lg-6">
+            <label asp-for="ZipCode" for="zipcode"><span>*</span> ZIP CODE</label>
+            <input asp-for="ZipCode" name="zipcode" id="zipcode" class="col-12 col-lg-12" required
+                   max="10" maxlength="10" title="ZIP code must be at most 10 characters!">
+        </div>
+
+        <div class="checkoutcity col-5-8 col-lg-5-8">
+            <button form="changeaddressform" type="submit" class="addresschangebtn " value="save">SAVE</button>
+        </div>
+
+        <div class="checkoutcity col-5-8 col-lg-5-8">
+            <button form="changeaddressform" type="submit" class="addresschangebtn " value="dontsave">DON'T SAVE</button>
+        </div>
+
+    </form>
+</div>

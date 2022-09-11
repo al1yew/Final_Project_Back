@@ -1,0 +1,99 @@
+﻿@model OrderCreateVM
+
+<form method="post" id="orderform" class="leftcheckout col-lg-5 col-12" asp-controller="Order" asp-action="CreateOrder">
+    <div class="top col-lg-12 col-12">
+        <div class="col-lg-12 col-12">
+            <span class="col-lg-8 col-8">MY INFORMATION</span>
+            <span class="col-lg-4 col-4 changeinfo">CHANGE</span>
+        </div>
+
+        <input asp-for="FullName" id="fullnameorder" class="col-lg-12 col-12" readonly>
+        <input asp-for="PhoneNumber" id="phoneorder" class="col-lg-12 col-12" readonly>
+        <input asp-for="Email" id="emailorder" class="col-lg-12 col-12" readonly>
+    </div>
+
+    <div class="bottom col-lg-12 col-12">
+
+
+        @if (!String.IsNullOrWhiteSpace(Model.CityCountry.Trim()))
+        {
+            <div class="col-lg-12 col-12">
+                <span class="col-lg-8 col-8">DELIVERY</span>
+                <span class="col-lg-4 col-4 changeaddress">CHANGE</span>
+
+                @if (Model.Addresses.Count > 1)
+                {
+                    <span class="openaddressmodal dontclose">SELECT</span>
+                }
+            </div>
+
+            <input asp-for="Address" id="addressorder" class="col-lg-12 col-12" readonly />
+            <input asp-for="CityCountry" id="citycountryorder" class="col-lg-12 col-12" readonly>
+        }
+        else
+        {
+            <div class="col-lg-12 col-12 addaddressform">
+                <input asp-for="Address1" class="col-12 col-lg-12" id="address1" required placeholder="Address 1">
+
+                <input asp-for="Address2" class="col-12 col-lg-12" id="address2" placeholder="Address 2">
+
+                <input asp-for="Country" id="country" class="col-5-8 col-lg-5-8" required placeholder="Country">
+
+                <input asp-for="City" id="city" class="col-5-8 col-lg-5-8" required placeholder="City">
+
+                <input asp-for="ZipCode" id="zipcode" class="col-5-8 col-lg-5-8" required placeholder="ZIP code" max="10" maxlength="10" title="ZIP code must be at most 10 characters!">
+            </div>
+        }
+    </div>
+
+    <div class="carddiv col-lg-12 col-12">
+        @if (!String.IsNullOrWhiteSpace(Model.CardHolder.Trim()))
+        {
+            <div class="col-lg-12 col-12 bashliq">
+                <span class="col-lg-8 col-8">MY CARD</span>
+                <span class="col-lg-4 col-4 changecard">CHANGE</span>
+
+                @if (Model.Cards.Count > 1)
+                {
+                    <span class="opencardmodal dontclose">SELECT</span>
+                }
+            </div>
+
+            <span class="col-lg-12 col-12">International card</span>
+            <div class="cardozu col-lg-10 col-12">
+                <span class="col-lg-1-5 col-2">
+                    <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                </span>
+                <input asp-for="CardNo" id="cardnoorder" readonly>
+                <input asp-for="ExpireDate" id="cardexpireorder" readonly>
+                <input asp-for="CardHolder" id="cardholderorder" readonly>
+            </div>
+        }
+    </div>
+
+    @if (String.IsNullOrWhiteSpace(Model.CardNo.Trim()))
+    {
+        <div class="cardform col-lg-10 col-12">
+            <div class="again_allcontent">
+                <div class="allcontent col-lg-12 col-12">
+                    <div class="cardozu col-lg-12 col-12 ">
+                        <input asp-for="CardNo" id="cardno" class="col-8 col-lg-8 cardno" required placeholder="0000 0000 0000 0000" maxlength="16">
+
+                        <span class="col-lg-1-2 col-1-5">
+                            <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+                        </span>
+                        <span class="col-lg-1-2 col-1-5">
+                            <img class="img-fluid" src="~/assets/images/settings/visa.jpg" alt="">
+                        </span>
+
+                        <input asp-for="CardHolder" id="cardname" class="col-12 col-lg-12 cardname" required placeholder="NAME" title="Name must be contain only letters!">
+
+                        <input asp-for="ExpireDate" id="expire" class="col-5-8 col-lg-5-8 expire" required placeholder="MM/YYYY" pattern="\d{2}\/\d{4}" maxlength="7">
+
+                        <input asp-for="CVV" id="cvv" class="col-5-8 col-lg-5-8 cvv" required placeholder="CVV CODE" pattern="^[0-9]{3,4}$" maxlength="4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</form>

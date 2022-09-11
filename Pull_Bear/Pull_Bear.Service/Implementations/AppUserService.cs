@@ -175,7 +175,6 @@ namespace Pull_Bear.Service.Implementations
             dbAppUser.Name = appUserCreateVM.Name;
             dbAppUser.SurName = appUserCreateVM.SurName;
             dbAppUser.Email = appUserCreateVM.Email;
-            dbAppUser.UserName = appUserCreateVM.UserName;
             dbAppUser.IsAdmin = appUserCreateVM.IsAdmin;
             dbAppUser.PhoneNumber = appUserCreateVM.PhoneNumber;
             dbAppUser.UpdatedAt = DateTime.UtcNow.AddHours(4);

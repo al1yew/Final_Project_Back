@@ -15,10 +15,8 @@ namespace Pull_Bear.Data.Configurations
             builder.Property(x => x.SurName).IsRequired();
             builder.Property(x => x.PhoneNumber).IsRequired();
             builder.Property(x => x.Email).IsRequired();
-            builder.Property(x => x.Address1).IsRequired();
-            builder.Property(x => x.Address2).IsRequired();
-            builder.Property(x => x.City).IsRequired();
-            builder.Property(x => x.Country).IsRequired();
+            builder.Property(x => x.Address).IsRequired();
+            builder.Property(x => x.CityCountry).IsRequired();
             builder.Property(x => x.ZipCode).IsRequired();
         }
     }

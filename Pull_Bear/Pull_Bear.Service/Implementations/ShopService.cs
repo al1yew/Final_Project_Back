@@ -124,13 +124,13 @@ namespace Pull_Bear.Service.Implementations
                 {
                     case 1:
 
-                        query = query.OrderByDescending(x => x.DiscountPrice);
+                        query = query.OrderBy(x => x.DiscountPrice);
 
                         return query;
 
                     case 2:
 
-                        query = query.OrderBy(x => x.DiscountPrice);
+                        query = query.OrderByDescending(x => x.DiscountPrice);
 
                         return query;
 

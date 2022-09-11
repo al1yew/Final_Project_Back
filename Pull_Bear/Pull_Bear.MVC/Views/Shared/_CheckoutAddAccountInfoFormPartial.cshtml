@@ -1,0 +1,30 @@
+﻿@model AppUserUpdateVM
+
+<div class="forminfokeeper formkeeper col-lg-5 col-12">
+    <span class="closeform">
+        <ion-icon name="close-circle-outline"></ion-icon>
+    </span>
+    <div asp-validation-summary="ModelOnly"></div>
+    <form id="changeaccountinfoform" method="post" class="col-lg-12 col-12 changeaccountinfoform" asp-controller="Order" asp-action="UpdateUser">
+
+        <div class="checkoutaccinfoname col-6 col-lg-6">
+            <label asp-for="Name" for="name"><span>*</span> NAME</label>
+            <input asp-for="Name" id="name" name="name" class="col-12 col-lg-12" type="text" required pattern="[a-zA-Z]+" title="Name must contain only letters!">
+        </div>
+
+        <div class="checkoutaccinfosurname col-6 col-lg-6">
+            <label asp-for="SurName" for="surname"><span>*</span> SURNAME</label>
+            <input asp-for="SurName" id="surname" name="surname" class="col-12 col-lg-12" type="text" required pattern="[a-zA-Z]+" title="Surame must contain only letters!">
+        </div>
+
+        <label asp-for="PhoneNumber" for="phone"><span>*</span> PHONE</label>
+        <input asp-for="PhoneNumber" name="phonenumber" type="tel" id="phone" pattern="^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$" required title="Phone must contain +yourcountrycode!">
+
+        <label asp-for="Email" for="email"><span>*</span> EMAIL</label>
+        <input asp-for="Email" name="email" id="email" class="col-12 col-lg-12" required type="email" title="Email must contain Email address!">
+
+        <button form="changeaccountinfoform" type="submit" class="regsiterbtn" value="save">
+            SAVE
+        </button>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+﻿@model List<BasketVM>
+
+<div class="top">
+    <span class="col-lg-4 col-4">Subtotal:</span>
+    <span class="col-lg-7 col-7">@Model.Sum(x => x.Count * x.Price) $</span>
+    <span class="col-lg-4 col-4">Delivery:</span>
+    <span class="col-lg-7 col-7">FREE</span>
+</div>
+<div class="middle">
+    <span class="col-lg-4 col-4">Total:</span>
+    <span class="col-lg-7 col-7">@Model.Sum(x => x.Count * x.Price) $</span>
+</div>
+<div class="bottom">
+    <button type="submit" form="orderform" class="aldiq">
+        PAY FOR ORDER
+    </button>
+    <div class="paywith">
+        <span class="col-lg-12 col-12">
+            By continuing you agree to P&B's
+            <a asp-controller="Policy" asp-action="Index">
+                General Terms and Conditions.
+            </a>
+        </span>
+        <a class="col-lg-12 col-12" asp-controller="Faq" asp-action="Index">
+            Need help? See our customer service pages.
+        </a>
+        <a asp-controller="Policy" asp-action="Index" class="policyhref">
+            DELIVERY AND RETURN OPTIONS
+        </a>
+    </div>
+</div>

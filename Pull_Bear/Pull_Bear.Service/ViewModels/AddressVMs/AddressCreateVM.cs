@@ -13,6 +13,7 @@ namespace Pull_Bear.Service.ViewModels.AddressVMs
         public string City { get; set; }
         public string ZipCode { get; set; }
         public bool IsMain { get; set; }
+        public bool Save { get; set; }
         public string AppUserId { get; set; }
     }
 

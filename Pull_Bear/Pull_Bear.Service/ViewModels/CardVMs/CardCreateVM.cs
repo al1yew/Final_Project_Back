@@ -13,6 +13,7 @@ namespace Pull_Bear.Service.ViewModels.CardVMs
         public string Surname { get; set; }
         public string ExpireDate { get; set; }
         public bool IsMain { get; set; }
+        public bool Save { get; set; }
         public string AppUserId { get; set; }
     }
 

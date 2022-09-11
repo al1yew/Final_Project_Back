@@ -235,6 +235,8 @@ $(document).ready(function () {
 
         let url = $(this).attr('href')
 
+        let scroll = $('.basketforscroll').scrollTop()
+
         fetch(url,
             {
                 method: 'post',
@@ -244,12 +246,14 @@ $(document).ready(function () {
 
                 $('.basketforfetch').html(data);
                 $('.minibasket').remove();
+                $('.basketforscroll').scrollTop(scroll)
 
                 fetch('/Basket/GetBasket')
                     .then(res => res.text())
                     .then(data => {
                         $('.minibasketfetch').html(data);
                         $('.minibasket').remove();
+                        $('.basketforscroll').scrollTop(scroll)
                     });
             });
     });
@@ -740,16 +744,19 @@ $(document).ready(function () {
 
         url = url + `&count=${count}`
 
+        let scroll = $('.basketforscroll').scrollTop()
+
         fetch(url)
             .then(res => res.text())
             .then(data => {
                 $('.basketforfetch').html(data);
-
+                $('.basketforscroll').scrollTop(scroll)
                 fetch('/Basket/GetBasket')
                     .then(res => res.text())
                     .then(data => {
                         $('.minibasketfetch').html(data);
                         $('.minibasket').remove();
+                        $('.basketforscroll').scrollTop(scroll)
                     });
             });
     });
@@ -771,16 +778,20 @@ $(document).ready(function () {
 
         url = url + `&count=${count}`
 
+        let scroll = $('.basketforscroll').scrollTop()
+
         fetch(url)
             .then(res => res.text())
             .then(data => {
                 $('.basketforfetch').html(data);
+                $('.basketforscroll').scrollTop(scroll)
 
                 fetch('/Basket/GetBasket')
                     .then(res => res.text())
                     .then(data => {
                         $('.minibasketfetch').html(data);
                         $('.minibasket').remove();
+                        $('.basketforscroll').scrollTop(scroll)
                     });
             });
     });
@@ -801,17 +812,21 @@ $(document).ready(function () {
 
             url = url + `&count=${count}`
 
+            let scroll = $('.basketforscroll').scrollTop()
+
             if (count <= 5 && count > 0) {
                 fetch(url)
                     .then(res => res.text())
                     .then(data => {
                         $('.basketforfetch').html(data);
+                        $('.basketforscroll').scrollTop(scroll)
 
                         fetch('/Basket/GetBasket')
                             .then(res => res.text())
                             .then(data => {
                                 $('.minibasketfetch').html(data);
                                 $('.minibasket').remove();
+                                $('.basketforscroll').scrollTop(scroll)
                             });
                     });
             }
@@ -959,15 +974,38 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('submit', '.changeaccountinfoform', function (e) {
+    $(document).on('submit', '#changeaccountinfoform', function (e) {
         e.preventDefault();
 
         const form = document.getElementById('changeaccountinfoform');
         const formData = new FormData(form);
 
-        $('#fullnameorder').attr('value', `${formData.get('name').trim()} ${formData.get('surname').trim()}`)
-        $('#phoneorder').attr('value', formData.get('phone').trim())
-        $('#emailorder').attr('value', formData.get('email').trim())
+        let name = formData.get('name').trim()
+        let surname = formData.get('surname').trim()
+        let email = formData.get('email').trim()
+        let phone = formData.get('phonenumber').trim()
+
+        let obj = {
+            name: name,
+            surname: surname,
+            email: email,
+            phoneNumber: phone
+        };
+
+        fetch($(this).attr('action'), {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(res => {
+                if (res.status != 406) {
+                    $('#fullnameorder').attr('value', `${formData.get('name').trim()} ${formData.get('surname').trim()}`)
+                    $('#phoneorder').attr('value', formData.get('phonenumber').trim())
+                    $('#emailorder').attr('value', formData.get('email').trim())
+                }
+            })
 
         $('#name').val('')
         $('#surname').val('')
@@ -995,22 +1033,50 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('submit', '.changeaddressform', function (e) {
+    $(document).on('submit', '#changeaddressform', function (e) {
         e.preventDefault();
 
         const form = document.getElementById('changeaddressform');
         const formData = new FormData(form);
 
-        $('#addressorder').attr('value', `${formData.get('address1').trim()}, ${formData.get('address2') != '' ? formData.get('address2').trim() + ', ' : ''}${formData.get('zipcode').trim()}`)
-        $('#citycountryorder').attr('value', `${formData.get('city').trim()}, ${formData.get('country').trim()}`)
+
+        let address1 = formData.get('address1').trim()
+        let address2 = formData.get('address2').trim()
+        let city = formData.get('city').trim()
+        let country = formData.get('country').trim()
+        let zipcode = formData.get('zipcode').trim()
+        let save = $(document.activeElement).val() == "save" ? true : false
+
+        let obj = {
+            address1: address1,
+            address2: address2,
+            city: city,
+            country: country,
+            zipcode: zipcode,
+            save: save
+        }
+
+        if (!save) {
+            fetch($(this).attr('action'), {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(res => {
+                    if (res.status != 406) {
+                        $('#addressorder').attr('value', `${formData.get('address1').trim()}, ${formData.get('address2') != '' ? formData.get('address2').trim() + ', ' : ''}${formData.get('zipcode').trim()}`)
+                        $('#citycountryorder').attr('value', `${formData.get('city').trim()}, ${formData.get('country').trim()}`)
+                    }
+                });
+        }
 
         $('#address1').val('')
         $('#address2').val('')
         $('#country').val('')
         $('#city').val('')
         $('#zipcode').val('')
-
-        //burdan sonra uje fetch edeceyik
 
         $('.formaddresskeeper').hide();
         $('.rightcheckout').fadeIn(200);
@@ -1032,26 +1098,56 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('submit', '.changecardform', function (e) {
+    $(document).on('submit', '#changecardform', function (e) {
         e.preventDefault();
 
         const form = document.getElementById('changecardform');
         const formData = new FormData(form);
 
-        $('#cardnoorder').attr('value', `${formData.get('cardno').trim()}`)
-        $('#cardexpireorder').attr('value', `${formData.get('expire').trim()}`)
-        $('#cardholderorder').attr('value', `${formData.get('cardname').trim()} ${formData.get('cardsurname').trim()}`)
 
-        $('#cvv').val('')
-        $('#expire').val('')
-        $('#cardno').val('')
-        $('#cardname').val('')
-        $('#cardsurname').val('')
+        let cardno = formData.get('cardno')
+        let name = formData.get('name')
+        let surname = formData.get('surname')
+        let expiredate = formData.get('expiredate')
+        let cvv = formData.get('cvv')
+        let save = $(document.activeElement).val() == "save" ? true : false
 
-        //sonra da hamsini fetch edirik
+        let obj = {
+            CardNo: cardno,
+            Name: name,
+            Surname: surname,
+            ExpireDate: expiredate,
+            CVV: cvv,
+            Save: save
+        }
+
+        if (!save) {
+            fetch($(this).attr('action'), {
+                method: 'Post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(res => {
+                    if (res.status != 406) {
+                        $('#cardnoorder').attr('value', `${formData.get('cardno').trim()}`)
+                        $('#cardexpireorder').attr('value', `${formData.get('expiredate').trim()}`)
+                        $('#cardholderorder').attr('value', `${formData.get('name').trim()} ${formData.get('surname').trim()}`)
+                    }
+                });
+        }
+
+        $('#cvv').val('');
+        $('#expire').val('');
+        $('#cardno').val('');
+        $('#cardname').val('');
+        $('#cardsurname').val('');
+
         $('.formcardkeeper').hide();
         $('.rightcheckout').fadeIn(200);
         $('.changecard').fadeIn(200);
+
         if ($(window).width() < 576) {
             $(window).scrollTop(0)
         }
@@ -1158,7 +1254,6 @@ $(document).ready(function () {
         $('.cardname').val('')
         $('.cardsurname').val('')
     });
-
 
     //--------------------------------- delete card
 
@@ -1681,10 +1776,9 @@ $(document).ready(function () {
 
     $(document).on('click', '.cardinozu', function () {
 
-        $('#cardnoorder').attr('value', `${$('.cardno').text().trim()}`)
-        $('#cardexpireorder').attr('value', `${$('.cardexpire').text().trim()}`)
-        $('#cardholderorder').attr('value', `${$('.cardholder').text().trim()}`)
-
+        $('#cardnoorder').attr('value', `${$(this).find('.cardno').text().trim()}`)
+        $('#cardexpireorder').attr('value', `${$(this).find('.cardexpire').text().trim()}`)
+        $('#cardholderorder').attr('value', `${$(this).find('.cardholder').text().trim()}`)
     });
 
     //#endregion open close checkout page modals
@@ -1911,7 +2005,14 @@ $(document).ready(function () {
 
     $(document).on('click', '.headcategoryli', function () {
 
-        $(window).scrollTop(600)
+        if ($(window).width() > 576) {
+            $(window).scrollTop(600)
+        }
+    });
+
+    $(document).on('click', '.sortpage', function () {
+
+        $(window).scrollTop(200)
     });
 
     //#endregion Shop page sorting function
@@ -2045,5 +2146,12 @@ $(document).ready(function () {
     //}
 
     //#endregion Toastr
+
+
+    //---------------------------------------------------------------------------------------------------------------
+
+    //#region 
+
+    //#endregion 
 });
 

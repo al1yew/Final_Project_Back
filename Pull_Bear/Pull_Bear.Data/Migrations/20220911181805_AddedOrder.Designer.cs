@@ -10,7 +10,7 @@ using Pull_Bear.Data;
 namespace Pull_Bear.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220911112150_AddedOrder")]
+    [Migration("20220911181805_AddedOrder")]
     partial class AddedOrder
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -548,22 +548,14 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
+                    b.Property<string>("CityCountry")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -571,6 +563,9 @@ namespace Pull_Bear.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeliveredAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")

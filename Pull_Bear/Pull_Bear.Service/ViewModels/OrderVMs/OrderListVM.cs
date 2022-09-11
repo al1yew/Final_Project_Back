@@ -31,6 +31,10 @@ namespace Pull_Bear.Service.ViewModels.OrderVMs
 
         public string ZipCode { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+        public DateTime DeliveredAt { get; set; }
+        public bool IsDeleted { get; set; }
+
 
         //relations 
         public AppUserGetVM AppUser { get; set; }

@@ -14,6 +14,7 @@ namespace Pull_Bear.Service.ViewModels.OrderItemVMs
         public string Name { get; set; }
         public int ColorId { get; set; }
         public int SizeId { get; set; }
+        public int TrackingNumber { get; set; }
 
         //relations with product and order------ each order has orderitem and each orderitem is product
         public ProductGetVM Product { get; set; }

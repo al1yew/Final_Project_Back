@@ -27,6 +27,7 @@ namespace Pull_Bear.Core.Models
 
         public string ZipCode { get; set; }
 
+        public Nullable<DateTime> DeliveredAt { get; set; }
 
         //relations 
         public AppUser AppUser { get; set; }

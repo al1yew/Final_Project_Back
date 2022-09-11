@@ -26,6 +26,7 @@ namespace Pull_Bear.Data
         private readonly ProductReviewRepository _productReviewRepository;
         private readonly CardRepository _cardRepository;
         private readonly AddressRepository _addressRepository;
+        private readonly OrderRepository _orderRepository;
         private readonly AppDbContext _context;
 
         public UnitOfWork(AppDbContext context)
@@ -64,6 +65,8 @@ namespace Pull_Bear.Data
         public ICardRepository CardRepository => _cardRepository != null ? _cardRepository : new CardRepository(_context);
 
         public IAddressRepository AddressRepository => _addressRepository != null ? _addressRepository : new AddressRepository(_context);
+
+        public IOrderRepository OrderRepository => _orderRepository != null ? _orderRepository : new OrderRepository(_context);
 
 
         public int Commit()

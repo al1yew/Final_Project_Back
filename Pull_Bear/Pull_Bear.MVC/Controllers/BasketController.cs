@@ -58,7 +58,10 @@ namespace Pull_Bear.MVC.Controllers
 
             if (dbProduct.Count <= 0) return BadRequest();
 
-            productColorSize.Count--;
+            if (productColorSize != null)
+            {
+                productColorSize.Count--;
+            }
 
             dbProduct.Count--;
 

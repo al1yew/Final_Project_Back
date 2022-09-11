@@ -40,6 +40,8 @@ namespace Pull_Bear.Core.Models
         public List<ProductReview> ProductReviews { get; set; }
         public IEnumerable<Basket> Baskets { get; set; }
         public IEnumerable<Wishlist> Wishlists { get; set; }
+        public IEnumerable<OrderItem> OrderItems { get; set; }
+
 
 
         //realtions one ... - many products

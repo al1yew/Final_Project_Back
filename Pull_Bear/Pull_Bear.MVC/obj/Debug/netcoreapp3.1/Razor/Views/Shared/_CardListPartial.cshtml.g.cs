@@ -139,13 +139,20 @@ using Pull_Bear.Service.Enums;
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 21 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dc3b27ecb5a5eef064cd7256c9e7734f30a85322", @"/Views/Shared/_CardListPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f6e98df9a516aab60fa167526ff8e930f212568", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"465f79969dfba53331212cbacc2507202e62b27f", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__CardListPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<CardListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -191,7 +198,7 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("    <div class=\"cardinozu col-lg-4 col-12\">\r\n        <div class=\"cardozu col-lg-12 col-12\">\r\n            <span class=\"col-lg-1-5 col-1-5\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dc3b27ecb5a5eef064cd7256c9e7734f30a853229888", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "dc3b27ecb5a5eef064cd7256c9e7734f30a8532210077", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -291,7 +298,7 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n            </span>\r\n            <span class=\"deletecard\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc3b27ecb5a5eef064cd7256c9e7734f30a8532213844", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc3b27ecb5a5eef064cd7256c9e7734f30a8532214034", async() => {
                 WriteLiteral(@"
                     <svg width=""24"" height=""24"" viewBox=""0 0 24 24"" fill=""none""
                          xmlns=""http://www.w3.org/2000/svg"">
@@ -354,7 +361,7 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("                <span class=\"makemain\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc3b27ecb5a5eef064cd7256c9e7734f30a8532217671", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "dc3b27ecb5a5eef064cd7256c9e7734f30a8532217861", async() => {
                 WriteLiteral("\r\n                        MAKE MAIN\r\n                    ");
             }
             );

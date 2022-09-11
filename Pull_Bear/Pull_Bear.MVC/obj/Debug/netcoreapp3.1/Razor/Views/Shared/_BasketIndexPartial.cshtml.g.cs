@@ -139,13 +139,20 @@ using Pull_Bear.Service.Enums;
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 21 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0f227a529d4c4d6c3733bd008d686d8c0abc6d04", @"/Views/Shared/_BasketIndexPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8f6e98df9a516aab60fa167526ff8e930f212568", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"465f79969dfba53331212cbacc2507202e62b27f", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__BasketIndexPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<BasketVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -224,9 +231,9 @@ else
 #line hidden
 #nullable disable
             WriteLiteral("            <div class=\"basketlement col-lg-12 col-12\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0415193", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0415382", async() => {
                 WriteLiteral("\r\n                    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0415469", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0415658", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -376,7 +383,7 @@ WriteAttributeValue(" ", 2051, item.ColorHexCode, 2052, 18, false);
 #line hidden
 #nullable disable
             WriteLiteral(" $</span>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"bottom\">\r\n                        <div class=\"col-lg-6 col-6 fororderwish\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0423665", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0423854", async() => {
                 WriteLiteral(@"
                                 <span class=""mobilewishlist"">
                                     <svg width=""24"" height=""24"" viewBox=""0 0 31 28"" fill=""none""
@@ -419,7 +426,7 @@ WriteAttributeValue(" ", 2051, item.ColorHexCode, 2052, 18, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </div>\r\n\r\n                        <div class=\"col-lg-3 col-5 fororderquan\">\r\n                            <div class=\"productquantity\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0427302", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0427491", async() => {
                 WriteLiteral("\r\n                                    <ion-icon name=\"remove-outline\" class=\"minusicon quantityicon\">\r\n                                    </ion-icon>\r\n                                ");
             }
             );
@@ -491,7 +498,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0432767", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0432956", async() => {
                 WriteLiteral("\r\n                                    <ion-icon name=\"add-outline\" class=\"plusminus quantityicon\"></ion-icon>\r\n                                ");
             }
             );
@@ -561,7 +568,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral(" left\r\n                            </span>\r\n                        </div>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0438173", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0438362", async() => {
                 WriteLiteral(@"
                             <svg width=""24"" height=""24"" viewBox=""0 0 24 24"" fill=""none""
                                  xmlns=""http://www.w3.org/2000/svg"">
@@ -672,7 +679,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
 #line hidden
 #nullable disable
             WriteLiteral(" $\r\n            </span>\r\n        </div>\r\n        <div class=\"bottom\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0445505", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0445694", async() => {
                 WriteLiteral("\r\n                GO TO CHECKOUT\r\n            ");
             }
             );
@@ -691,7 +698,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            <div class=\"paywith\">\r\n                <span class=\"col-lg-12 col-12\">\r\n                    You can pay with:\r\n                </span>\r\n                <span class=\"imgkeeper col-lg-1 col-1\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0447240", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0447429", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -707,7 +714,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </span>\r\n                <span class=\"imgkeeper col-lg-1-5 col-1-5\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0448551", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0448740", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -730,7 +737,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
                 <span class=""col-lg-12 col-12"">
                     *You have a 30-day right to return the order and get a refund of the price paid.
                     Please read: ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0450127", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0450316", async() => {
                 WriteLiteral("Returns and Refunds.");
             }
             );
@@ -748,7 +755,7 @@ WriteAttributeValue("", 4348, item.Count, 4348, 11, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </span>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0451550", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f227a529d4c4d6c3733bd008d686d8c0abc6d0451739", async() => {
                 WriteLiteral("\r\n                    DELIVERY AND RETURN OPTIONS\r\n                ");
             }
             );

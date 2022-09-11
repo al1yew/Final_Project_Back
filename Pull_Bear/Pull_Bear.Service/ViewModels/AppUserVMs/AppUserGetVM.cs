@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pull_Bear.Service.ViewModels.OrderVMs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,7 @@ namespace Pull_Bear.Service.ViewModels.AppUserVMs
         public bool IsAdmin { get; set; }
         public bool IsDeleted { get; set; }
         public bool PhoneNumberConfirmed { get; set; }
+        public IEnumerable<OrderListVM> Orders { get; set; }
 
     }
 }

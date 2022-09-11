@@ -177,7 +177,7 @@ namespace Pull_Bear.Service.Implementations
             dbAppUser.Email = appUserCreateVM.Email;
             dbAppUser.UserName = appUserCreateVM.UserName;
             dbAppUser.IsAdmin = appUserCreateVM.IsAdmin;
-            dbAppUser.PhoneNumber = appUserCreateVM.Phone;
+            dbAppUser.PhoneNumber = appUserCreateVM.PhoneNumber;
             dbAppUser.UpdatedAt = DateTime.UtcNow.AddHours(4);
 
             IdentityResult result = await _userManager.UpdateAsync(dbAppUser);

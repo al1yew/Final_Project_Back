@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.CardVMs;
 using System;
@@ -17,6 +18,7 @@ namespace Pull_Bear.MVC.Controllers
             _cardService = cardService;
         }
 
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> Index()
         {
             CardIndexVM cardIndexVM = new CardIndexVM() { CardCreateVM = new CardCreateVM(), Cards = await _cardService.GetAllAsync() };
@@ -24,6 +26,7 @@ namespace Pull_Bear.MVC.Controllers
             return View(cardIndexVM);
         }
 
+        [Authorize(Roles = "Member")]
         [HttpPost]
         public async Task<IActionResult> CreateCard([FromBody] CardCreateVM cardCreateVM)
         {
@@ -38,6 +41,7 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_CardListPartial", await _cardService.GetAllAsync());
         }
 
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> DeleteCard(int? id)
         {
             await _cardService.DeleteAsync(id);
@@ -45,6 +49,7 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_CardListPartial", await _cardService.GetAllAsync());
         }
 
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> MakeMain(int? id)
         {
             await _cardService.MakeMain(id);

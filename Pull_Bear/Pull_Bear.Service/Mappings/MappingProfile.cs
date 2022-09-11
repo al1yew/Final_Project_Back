@@ -144,6 +144,9 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<AppUserGetVM, AppUserUpdateVM>();
 
+            CreateMap<AppUser, AppUserUpdateVM>();
+            CreateMap<AppUserUpdateVM, AppUser>();
+
             CreateMap<RegisterVM, AppUser>();
             #endregion
 

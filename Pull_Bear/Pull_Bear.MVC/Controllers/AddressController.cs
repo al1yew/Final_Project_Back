@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.AddressVMs;
 using System;
@@ -17,6 +18,7 @@ namespace Pull_Bear.MVC.Controllers
             _addressService = addressService;
         }
 
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> Index()
         {
             AddressIndexVM addressIndexVM = new AddressIndexVM() { AddressCreateVM = new AddressCreateVM(), Addresses = await _addressService.GetAllAsync() };
@@ -24,6 +26,7 @@ namespace Pull_Bear.MVC.Controllers
             return View(addressIndexVM);
         }
 
+        [Authorize(Roles = "Member")]
         [HttpPost]
         public async Task<IActionResult> CreateAddress([FromBody] AddressCreateVM addressCreateVM)
         {
@@ -38,6 +41,7 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_AddressListPartial", await _addressService.GetAllAsync());
         }
 
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> DeleteAddress(int? id)
         {
             await _addressService.DeleteAsync(id);
@@ -45,6 +49,7 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_AddressListPartial", await _addressService.GetAllAsync());
         }
 
+        [Authorize(Roles = "Member")]
         public async Task<IActionResult> MakeMain(int? id)
         {
             await _addressService.MakeMain(id);

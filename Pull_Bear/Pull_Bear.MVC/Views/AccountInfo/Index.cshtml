@@ -1,4 +1,4 @@
-﻿
+﻿@model AppUserUpdateVM
 
 <main>
     <section class="whereareyou">
@@ -18,87 +18,69 @@
     <section class="accountinfoall">
         <div class="container">
             <div class="row all">
-
                 <p class="firstp">ACCOUNT INFORMATION</p>
-
-                <form action="" method="post" class="accountform" id="accountform">
-
+                <div asp-validation-summary="ModelOnly"></div>
+                <form method="post" class="accountform" id="accountform" asp-controller="AccountInfo" asp-action="Update">
                     <div class="col-lg-6 col-12 left">
-
                         <div class="col-lg-12 col-12 head">
-                            Account information
+                            CHANGE INFORMATION
                         </div>
 
                         <div class="col-lg-5-8 col-5-8">
-                            <label for="formname">NAME</label>
-                            <input class="col-lg-12 col-12" type="text" name="formname" id="formname" required>
+                            <label asp-for="Name" for="formname">NAME</label>
+                            <input asp-for="Name" class="col-lg-12 col-12" id="formname">
                         </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
 
                         <div class="col-lg-5-8 col-5-8">
-                            <label for="formsurname">SURNAME</label>
-                            <input class="col-lg-12 col-12" type="text" name="formsurname" id="formsurname"
-                                   required>
+                            <label asp-for="SurName" for="formsurname">SURNAME</label>
+                            <input asp-for="SurName" class="col-lg-12 col-12" id="formsurname">
                         </div>
+                        <span asp-validation-for="SurName" class="text-danger"></span>
 
                         <div class="col-lg-12 col-12">
-                            <label for="formemail">EMAIL</label>
-                            <input class="col-lg-12 col-12" type="email" name="formemail" id="formemail" required>
+                            <label asp-for="Email" for="formemail">EMAIL</label>
+                            <input asp-for="Email" class="col-lg-12 col-12" type="email" id="formemail">
                         </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
 
-                        <div class="col-lg-5-8 col-5-8">
-                            <label for="formphone">PHONE</label>
-                            <input class="col-lg-12 col-12" type="tel" name="formphone" id="formphone" required>
+                        <div class="col-lg-12 col-12">
+                            <label asp-for="PhoneNumber" for="formphone">PHONE</label>
+                            <input asp-for="PhoneNumber" class="col-lg-12 col-12" type="tel" id="formphone">
                         </div>
-
-                        <div class="col-lg-5-8 col-5-8 genderdiv">
-                            <div class="col-lg-6 col-6">
-                                <label for="formwoman">WOMAN</label>
-                                <input type="radio" name="gender" id="formwoman">
-                            </div>
-                            <div class="col-lg-6 col-6">
-                                <label for="formman">MAN</label>
-                                <input type="radio" name="gender" id="formman">
-                            </div>
-                        </div>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
 
                         <div class="col-lg-12 col-12">
                             <button type="submit" form="accountform" value="saveaccount">
                                 SAVE
                             </button>
                         </div>
-
                     </div>
-
                     <div class="col-lg-4 col-12 right">
                         <div class="col-lg-12 col-12 head">
                             CHANGE PASSWORD
                         </div>
 
                         <div class="col-lg-12 col-12">
-                            <label for="foroldpassword">CURRENT PASSWORD</label>
-                            <input class="col-lg-12 col-12" type="text" name="foroldpassword" id="foroldpassword"
-                                   required>
+                            <label asp-for="CurrentPassword" for="foroldpassword">CURRENT PASSWORD</label>
+                            <input asp-for="CurrentPassword" class="col-lg-12 col-12" id="foroldpassword">
+                            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
                         </div>
 
                         <div class="col-lg-12 col-12">
-                            <label for="fornewpassword">NEW PASSWORD</label>
-                            <input class="col-lg-12 col-12" type="text" name="fornewpassword" id="fornewpassword"
-                                   required>
+                            <label asp-for="NewPassword" for="fornewpassword">NEW PASSWORD</label>
+                            <input asp-for="NewPassword" class="col-lg-12 col-12" id="fornewpassword">
+                            <span asp-validation-for="NewPassword" class="text-danger"></span>
                         </div>
 
                         <div class="col-lg-12 col-12">
-                            <label for="fornewpasswordconfirm">CONFIRM PASSWORD</label>
-                            <input class="col-lg-12 col-12" type="text" name="fornewpasswordconfirm"
-                                   id="fornewpasswordconfirm" required>
+                            <label asp-for="ConfirmPassword" for="fornewpasswordconfirm">CONFIRM PASSWORD</label>
+                            <input asp-for="ConfirmPassword" class="col-lg-12 col-12"
+                                   id="fornewpasswordconfirm">
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
 
-                        <div class="col-lg-12 col-12">
-                            <button type="submit" form="accountform" value="savepassword">
-                                SAVE
-                            </button>
-                        </div>
                     </div>
-
                 </form>
             </div>
         </div>

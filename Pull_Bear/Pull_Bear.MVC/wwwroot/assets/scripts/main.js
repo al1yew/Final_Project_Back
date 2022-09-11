@@ -2016,10 +2016,34 @@ $(document).ready(function () {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //#region header Search
+    //#region Toastr
 
+    //if ($('#successInput').val()) {
+    //    toastr["success"]($('#successInput').val(), $('#successInput').val().split(' ')[0])
+    //}
 
+    //toastr.options = {
+    //    "closeButton": false,
+    //    "debug": false,
+    //    "newestOnTop": false,
+    //    "progressBar": false,
+    //    "positionClass": "toast-bottom-right",
+    //    "preventDuplicates": false,
+    //    "onclick": null,
+    //    "showDuration": "300",
+    //    "hideDuration": "1000",
+    //    "timeOut": "1000",
+    //    "extendedTimeOut": "500",
+    //    "showEasing": "swing",
+    //    "hideEasing": "linear",
+    //    "showMethod": "fadeIn",
+    //    "hideMethod": "fadeOut"
+    //}
 
-    //#endregion header Search
+    //if ($('#infoinput').val()) {
+    //    toastr["info"]($('#infoinput').val(), $('#infoinput').val().split(' ')[0])
+    //}
+
+    //#endregion Toastr
 });
 

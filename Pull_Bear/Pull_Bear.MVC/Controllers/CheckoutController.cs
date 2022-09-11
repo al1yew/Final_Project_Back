@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Pull_Bear.MVC.Controllers
 {
     public class CheckoutController : Controller
     {
+        [Authorize(Roles = "Member")]
         public IActionResult Index()
         {
             return View();

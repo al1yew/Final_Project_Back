@@ -25,6 +25,7 @@ namespace Pull_Bear.Core
         ICardRepository CardRepository { get; }
         IAddressRepository AddressRepository { get; }
         IOrderRepository OrderRepository { get; }
+        IContactRepository ContactRepository { get; }
         Task<int> CommitAsync();
         int Commit();
     }

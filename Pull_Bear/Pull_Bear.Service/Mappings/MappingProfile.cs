@@ -8,6 +8,7 @@ using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CardVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
+using Pull_Bear.Service.ViewModels.ContactVMs;
 using Pull_Bear.Service.ViewModels.OrderItemVMs;
 using Pull_Bear.Service.ViewModels.OrderVMs;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
@@ -244,6 +245,12 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<ProductGetVM, Product>()
               .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
+
+            #endregion
+
+            #region Contact
+
+            CreateMap<ContactCreateVM, Contact>();
 
             #endregion
         }

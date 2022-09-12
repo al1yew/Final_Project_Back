@@ -46,12 +46,6 @@ namespace Pull_Bear.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateOrder()
         {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "");
-                return View("CreateOrder");
-            }
-
             OrderIndexVM orderIndexVM = await _orderService.GetOrderViewModel();
 
             if (orderIndexVM.Baskets.Count <= 0)
@@ -105,6 +99,13 @@ namespace Pull_Bear.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderCreateVM orderCreateVM)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                TempData["error"] = "Error!";
+                return View("CreateOrder");
+            }
+
             await _orderService.CreateOrder(orderCreateVM);
 
             return RedirectToAction("Index", "Home");

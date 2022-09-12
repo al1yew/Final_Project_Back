@@ -37,15 +37,17 @@
 
 <body class="body">
 
+    @if (TempData["error"] != null)
+    {
+        <input type="hidden" id="errorinput" value="@TempData["error"]" />
+    }
+
     @if (TempData["success"] != null)
     {
         <input type="hidden" id="successInput" value="@TempData["success"]" />
     }
 
-    @if (TempData["error"] != null)
-    {
-        <input type="hidden" id="errorinput" value="@TempData["error"]" />
-    }
+
 
     <input type="hidden" id="fetchinput" value="" />
 

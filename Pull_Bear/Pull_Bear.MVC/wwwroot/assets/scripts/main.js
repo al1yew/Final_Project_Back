@@ -2227,8 +2227,8 @@ $(document).ready(function () {
         "hideMethod": "fadeOut"
     }
 
-    if ($('#infoinput').val()) {
-        toastr["info"]($('#infoinput').val(), $('#infoinput').val().split(' ')[0])
+    if ($('#errorinput').val()) {
+        toastr["error"]($('#errorinput').val(), $('#errorinput').val().split(' ')[0])
     }
 
     toastr.options = {

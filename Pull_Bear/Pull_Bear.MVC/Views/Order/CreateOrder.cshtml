@@ -25,7 +25,7 @@
                 @await Html.PartialAsync("_CheckoutFormPartial", Model.OrderCreateVM)
 
                 <div class="rightcheckout col-lg-5 col-12">
-                    @await Html.PartialAsync("_CheckoutSubmitFormPartial", Model.Baskets)
+                    @await Html.PartialAsync("_CheckoutSubmitFormPartial", Model.Baskets.Sum(x => x.Count * x.Price))
                 </div>
 
                 @await Html.PartialAsync("_CheckoutAddAccountInfoFormPartial", Model.AppUserUpdateVM)
@@ -35,12 +35,7 @@
                 @await Html.PartialAsync("_CheckoutAddCardFormPartial", Model.CardCreateVM)
 
                 <div class="boughtorders col-lg-12 col-12">
-                    <p class="orderdet col-lg-12 col-12">
-                        ORDER DETAILS
-                    </p>
-
                     @await Html.PartialAsync("_CheckoutBasketsPartial", Model.Baskets)
-                    @* deletebasketelementfromcheckout *@
                 </div>
             </div>
         </div>
@@ -52,31 +47,8 @@
             <div class="container dontclose">
                 <div class="row all">
                     <p class="firstp col-lg-12 col-12">MY CARDS</p>
-                    <div class="carddiv col-lg-12 col-12">
-                        @foreach (var item in Model.AppUserGetVM.Cards)
-                        {
-                            <div class="cardinozu col-lg-4 col-12">
-                                <div class="cardozu col-lg-12 col-12">
-                                    <span class="col-lg-1-5 col-1-5">
-                                        <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
-                                    </span>
-                                    <span class="cardno">
-                                        @item.CardNo
-                                    </span>
-                                    <span class="cardexpire">
-                                        @item.ExpireDate
-                                    </span>
-                                    <span class="cardholder">
-                                        @item.CardHolder
-                                    </span>
-                                    <span class=" headword">International card</span>
-                                    @if (item.IsMain)
-                                    {
-                                        <span class="ismain">Main Card</span>
-                                    }
-                                </div>
-                            </div>
-                        }
+                    <div class="carddiv carddivforfetch col-lg-12 col-12">
+                        @await Html.PartialAsync("_CheckoutCurrentUserCardPartial", Model.AppUserGetVM.Cards)
                     </div>
                 </div>
             </div>
@@ -90,53 +62,7 @@
                 <div class="row all">
                     <p class="firstp col-lg-12 col-12">MY ADDRESSES</p>
                     <div class="addressdiv col-lg-12 col-12">
-
-                        @foreach (var item in Model.AppUserGetVM.Addresses)
-                        {
-                            <div class="addressinozu col-lg-4 col-12">
-                                <div class="addressozu col-lg-12 col-12">
-
-                                    <div class="top">
-                                        <span class="cityname col-lg-12 col-12">
-                                            City: <span class="cityvalue">@item.City</span>
-                                        </span>
-                                        <span class="countryname col-lg-12 col-12">
-                                            Country: <span class="countryvalue">@item.Country</span>
-                                        </span>
-                                    </div>
-                                    <div class="bottom">
-                                        <span class="address1name col-lg-12 col-12">
-                                            <span class="col-lg-12 col-12">
-                                                Address1:
-                                            </span>
-                                            <span class="col-lg-12 address1value">
-                                                @item.Address1
-                                            </span>
-                                        </span>
-                                        <span class="address2name col-lg-12 col-12">
-                                            <span class="col-lg-12 col-12">
-                                                Address2:
-                                            </span>
-                                            <span class="col-lg-12 col-12 address2value">
-                                                @item.Address2
-                                            </span>
-                                        </span>
-                                        <span class="zipcodename col-lg-12 col-12">
-                                            <span class="col-lg-12 col-12">
-                                                ZIP code:
-                                            </span>
-                                            <span class="col-lg-12 col-12 zipcodevalue">
-                                                @item.ZipCode
-                                            </span>
-                                        </span>
-                                        @if (item.IsMain)
-                                        {
-                                            <span class=" ismain">Main Address</span>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        }
+                        @await Html.PartialAsync("_CheckoutCurrentUserAddressPartial", Model.AppUserGetVM.Addresses)
                     </div>
                 </div>
             </div>

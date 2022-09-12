@@ -1,0 +1,48 @@
+﻿@model List<AddressListVM>
+
+@foreach (var item in Model)
+{
+    <div class="addressinozu col-lg-4 col-12">
+        <div class="addressozu col-lg-12 col-12">
+
+            <div class="top">
+                <span class="cityname col-lg-12 col-12">
+                    City: <span class="cityvalue">@item.City</span>
+                </span>
+                <span class="countryname col-lg-12 col-12">
+                    Country: <span class="countryvalue">@item.Country</span>
+                </span>
+            </div>
+            <div class="bottom">
+                <span class="address1name col-lg-12 col-12">
+                    <span class="col-lg-12 col-12">
+                        Address1:
+                    </span>
+                    <span class="col-lg-12 address1value">
+                        @item.Address1
+                    </span>
+                </span>
+                <span class="address2name col-lg-12 col-12">
+                    <span class="col-lg-12 col-12">
+                        Address2:
+                    </span>
+                    <span class="col-lg-12 col-12 address2value">
+                        @item.Address2
+                    </span>
+                </span>
+                <span class="zipcodename col-lg-12 col-12">
+                    <span class="col-lg-12 col-12">
+                        ZIP code:
+                    </span>
+                    <span class="col-lg-12 col-12 zipcodevalue">
+                        @item.ZipCode
+                    </span>
+                </span>
+                @if (item.IsMain)
+                {
+                    <span class=" ismain">Main Address</span>
+                }
+            </div>
+        </div>
+    </div>
+}

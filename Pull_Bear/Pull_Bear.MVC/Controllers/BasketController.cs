@@ -424,8 +424,5 @@ namespace Pull_Bear.MVC.Controllers
 
             return PartialView("_BasketPartial", await _getBasketItemAsync(basketVMs));
         }
-
-
-
     }
 }

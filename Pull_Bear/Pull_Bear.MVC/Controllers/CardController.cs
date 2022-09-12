@@ -27,6 +27,12 @@ namespace Pull_Bear.MVC.Controllers
         }
 
         [Authorize(Roles = "Member")]
+        public async Task<IActionResult> GetCards()
+        {
+            return PartialView("_CheckoutCurrentUserCardPartial", await _cardService.GetAllAsync());
+        }
+
+        [Authorize(Roles = "Member")]
         [HttpPost]
         public async Task<IActionResult> CreateCard([FromBody] CardCreateVM cardCreateVM)
         {

@@ -1004,6 +1004,10 @@ $(document).ready(function () {
                     $('#fullnameorder').attr('value', `${formData.get('name').trim()} ${formData.get('surname').trim()}`)
                     $('#phoneorder').attr('value', formData.get('phonenumber').trim())
                     $('#emailorder').attr('value', formData.get('email').trim())
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
                 }
             })
 
@@ -1011,8 +1015,6 @@ $(document).ready(function () {
         $('#surname').val('')
         $('#email').val('')
         $('#phone').val('')
-
-        //burdan sonra uje fetch edeceyik
 
         $('.forminfokeeper').hide();
         $('.rightcheckout').fadeIn(200);
@@ -1039,7 +1041,6 @@ $(document).ready(function () {
         const form = document.getElementById('changeaddressform');
         const formData = new FormData(form);
 
-
         let address1 = formData.get('address1').trim()
         let address2 = formData.get('address2').trim()
         let city = formData.get('city').trim()
@@ -1056,21 +1057,33 @@ $(document).ready(function () {
             save: save
         }
 
-        if (!save) {
-            fetch($(this).attr('action'), {
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(obj)
-            })
-                .then(res => {
-                    if (res.status != 406) {
-                        $('#addressorder').attr('value', `${formData.get('address1').trim()}, ${formData.get('address2') != '' ? formData.get('address2').trim() + ', ' : ''}${formData.get('zipcode').trim()}`)
-                        $('#citycountryorder').attr('value', `${formData.get('city').trim()}, ${formData.get('country').trim()}`)
-                    }
-                });
-        }
+        fetch($(this).attr('action'), {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(res => {
+                if (res.status != 406) {
+                    $('#addressorder').attr('value', `${formData.get('address1').trim()}, ${formData.get('address2') != '' ? formData.get('address2').trim() : ''}`);
+                    $('#citycountryorder').attr('value', `${formData.get('city').trim()}, ${formData.get('country').trim()}`);
+                    $('#zipcodeorder').attr('value', `${formData.get('zipcode').trim()}`);
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
+
+                fetch('/Address/GetAddresses')
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.addressdiv').html(data)
+                        if ($('.addressdiv addressinozu').length >= 3) {
+                            $('.changeaddress').remove();
+                        }
+                    })
+            });
 
         $('#address1').val('')
         $('#address2').val('')
@@ -1104,7 +1117,6 @@ $(document).ready(function () {
         const form = document.getElementById('changecardform');
         const formData = new FormData(form);
 
-
         let cardno = formData.get('cardno')
         let name = formData.get('name')
         let surname = formData.get('surname')
@@ -1121,22 +1133,33 @@ $(document).ready(function () {
             Save: save
         }
 
-        if (!save) {
-            fetch($(this).attr('action'), {
-                method: 'Post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(obj)
-            })
-                .then(res => {
-                    if (res.status != 406) {
-                        $('#cardnoorder').attr('value', `${formData.get('cardno').trim()}`)
-                        $('#cardexpireorder').attr('value', `${formData.get('expiredate').trim()}`)
-                        $('#cardholderorder').attr('value', `${formData.get('name').trim()} ${formData.get('surname').trim()}`)
-                    }
-                });
-        }
+        fetch($(this).attr('action'), {
+            method: 'Post',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(obj)
+        })
+            .then(res => {
+                if (res.status != 406) {
+                    $('#cardnoorder').attr('value', `${formData.get('cardno').trim()}`);
+                    $('#cardexpireorder').attr('value', `${formData.get('expiredate').trim()}`);
+                    $('#cardholderorder').attr('value', `${formData.get('name').trim()} ${formData.get('surname').trim()}`);
+                    toastr["success"]("Done!");
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
+
+                fetch('/Card/GetCards')
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.carddivforfetch').html(data)
+                        if ($('.carddivforfetch cardinozu').length >= 3) {
+                            $('.changecard').remove();
+                        }
+                    })
+            });
 
         $('#cvv').val('');
         $('#expire').val('');
@@ -1164,6 +1187,36 @@ $(document).ready(function () {
         }
     });
 
+    //---------delete form basket in checkout page
+
+    $(document).on('click', '.deletebasketelementfromcheckout', function (e) {
+        e.preventDefault()
+
+        let url = $(this).attr('href')
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+
+                $('.boughtorders').html(data);
+                $('.minibasket').remove();
+
+                fetch('/Basket/GetBasket')
+                    .then(res => res.text())
+                    .then(data => {
+                        $('.minibasketfetch').html(data);
+                        $('.minibasket').remove();
+
+                        fetch('/Order/Getbasket')
+                            .then(res => res.text())
+                            .then(data => {
+                                $('.rightcheckout').html(data);
+                            })
+                    });
+            });
+    });
+
+
     //#endregion checkout forms
 
     //---------------------------------------------------------------------------------------------------------------
@@ -1176,6 +1229,38 @@ $(document).ready(function () {
 
         $($(this).next()).slideToggle(200);
 
+    });
+
+    //--------------------------------- orders index page fetch for sort
+
+    $(document).on('click', '.categoriesfororder', function (e) {
+        e.preventDefault();
+
+        fetch($($(this).children()[0]).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.orders').html(data);
+            });
+    });
+
+    //--------------------------------- orders index page fetch sorting by search
+
+    $(document).on('keyup', '.search_input_order', function (e) {
+        e.preventDefault();
+
+        let inputvalue = $(this).val();
+
+        let url = $(this).data('url');
+
+        url = url + '?search=' + inputvalue;
+
+        if (inputvalue) {
+            fetch(url)
+                .then(res => res.text())
+                .then(data => {
+                    $(".orders").html(data);
+                });
+        }
     });
 
     //#endregion order page toggle menu
@@ -1769,8 +1854,9 @@ $(document).ready(function () {
 
     $(document).on('click', '.addressinozu', function () {
 
-        $('#addressorder').attr('value', `${$(this).find('.address1value').text().trim()}, ${$(this).find('.address2value').text().trim().length > 0 ? $(this).find('.address2value').text().trim() + ', ' : ''}${$(this).find('.zipcodevalue').text().trim()}`)
+        $('#addressorder').attr('value', `${$(this).find('.address1value').text().trim()}, ${$(this).find('.address2value').text().trim().length > 0 ? $(this).find('.address2value').text().trim() : ''}`)
         $('#citycountryorder').attr('value', `${$(this).find('.cityvalue').text().trim()}, ${$(this).find('.countryvalue').text().trim()}`)
+        $('#zipcodeorder').attr('value', `${$(this).find('.zipcodevalue').text().trim()}`)
 
     });
 
@@ -2119,31 +2205,49 @@ $(document).ready(function () {
 
     //#region Toastr
 
-    //if ($('#successInput').val()) {
-    //    toastr["success"]($('#successInput').val(), $('#successInput').val().split(' ')[0])
-    //}
+    if ($('#successInput').val()) {
+        toastr["success"]($('#successInput').val(), $('#successInput').val().split(' ')[0])
+    }
 
-    //toastr.options = {
-    //    "closeButton": false,
-    //    "debug": false,
-    //    "newestOnTop": false,
-    //    "progressBar": false,
-    //    "positionClass": "toast-bottom-right",
-    //    "preventDuplicates": false,
-    //    "onclick": null,
-    //    "showDuration": "300",
-    //    "hideDuration": "1000",
-    //    "timeOut": "1000",
-    //    "extendedTimeOut": "500",
-    //    "showEasing": "swing",
-    //    "hideEasing": "linear",
-    //    "showMethod": "fadeIn",
-    //    "hideMethod": "fadeOut"
-    //}
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "3000",
+        "hideDuration": "1000",
+        "timeOut": "3000",
+        "extendedTimeOut": "3000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 
-    //if ($('#infoinput').val()) {
-    //    toastr["info"]($('#infoinput').val(), $('#infoinput').val().split(' ')[0])
-    //}
+    if ($('#infoinput').val()) {
+        toastr["info"]($('#infoinput').val(), $('#infoinput').val().split(' ')[0])
+    }
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "3000",
+        "hideDuration": "1000",
+        "timeOut": "1000",
+        "extendedTimeOut": "3000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 
     //#endregion Toastr
 

@@ -16,6 +16,7 @@ namespace Pull_Bear.Core.Repositories
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> ex, params string[] includes);
         void Remove(TEntity entity);
         Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> ex);
+        Task UpdateAsync(TEntity entity);
 
     }
 }

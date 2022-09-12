@@ -1,14 +1,14 @@
-﻿@model List<BasketVM>
+﻿@model double
 
 <div class="top">
     <span class="col-lg-4 col-4">Subtotal:</span>
-    <span class="col-lg-7 col-7">@Model.Sum(x => x.Count * x.Price) $</span>
+    <span class="col-lg-7 col-7">@Model $</span>
     <span class="col-lg-4 col-4">Delivery:</span>
     <span class="col-lg-7 col-7">FREE</span>
 </div>
 <div class="middle">
     <span class="col-lg-4 col-4">Total:</span>
-    <span class="col-lg-7 col-7">@Model.Sum(x => x.Count * x.Price) $</span>
+    <span class="col-lg-7 col-7">@Model $</span>
 </div>
 <div class="bottom">
     <button type="submit" form="orderform" class="aldiq">

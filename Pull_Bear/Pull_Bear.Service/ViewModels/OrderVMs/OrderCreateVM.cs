@@ -2,7 +2,6 @@
 using Pull_Bear.Core.Enums;
 using Pull_Bear.Service.ViewModels.AddressVMs;
 using Pull_Bear.Service.ViewModels.CardVMs;
-using Pull_Bear.Service.ViewModels.OrderItemVMs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,7 +34,6 @@ namespace Pull_Bear.Service.ViewModels.OrderVMs
 
         public List<CardListVM> Cards { get; set; }
         public List<AddressListVM> Addresses { get; set; }
-        public IEnumerable<OrderItemListVM> OrderItems { get; set; }
         public OrderStatus OrderStatus { get; set; }
 
     }

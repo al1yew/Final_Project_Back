@@ -21,6 +21,11 @@ namespace Pull_Bear.Service.ViewModels.AddressVMs
     {
         public AddressCreateVMValidator()
         {
+            RuleFor(x => x.Address1).NotEmpty().WithMessage("Address1 is required!");
+            RuleFor(x => x.City).NotEmpty().WithMessage("City is required!");
+            RuleFor(x => x.Country).NotEmpty().WithMessage("Country is required!");
+            RuleFor(x => x.ZipCode).NotEmpty().WithMessage("ZipCode is required!");
+
             RuleFor(x => x.Address1.Length).LessThanOrEqualTo(40).WithMessage("Address 1 must be max 40 symbols!");
             RuleFor(x => x.Address2.Length).LessThanOrEqualTo(40).WithMessage("Address 2 must be max 40 symbols!");
             RuleFor(x => x.City.Length).LessThanOrEqualTo(22).WithMessage("City must be max 22 symbols!");

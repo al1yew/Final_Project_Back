@@ -243,3 +243,6 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Raz
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutFormPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutSubmitFormPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutBasketsPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutCurrentUserCardPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CheckoutCurrentUserAddressPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrdersPartial.cshtml.g.cs

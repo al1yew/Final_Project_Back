@@ -1,21 +1,25 @@
 ﻿@model List<BasketVM>
 
-@foreach (BasketVM basket in Model)
-{
-    <div class="col-lg-2-5 col-3">
-        <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@basket.ProductId" class="proddet">
-            <img class="img-fluid" src="~/assets/images/products/@basket.ProductId/@basket.Product.ProductImage" alt="">
-        </a>
-        <a asp-controller="Order" asp-action="DeleteFromBasket" asp-route-id="@basket.ProductId" class="deletebasketelementfromcheckout">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.25 3.69995V19H16.75V3.69995H3.25Z" stroke="black"
-                      stroke-linejoin="round" />
-                <path d="M8.2 8.19995V14.05M11.8 8.19995V14.05M1 3.69995H19" stroke="black"
-                      stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M6.40039 3.7L7.88044 1H12.15L13.6004 3.7H6.40039Z" stroke="black"
-                      stroke-linejoin="round" />
-            </svg>
-        </a>
-    </div>
-}
+    <p class="orderdet col-lg-12 col-12">
+        ORDER DETAILS
+    </p>
+
+    @foreach (BasketVM basket in Model)
+    {
+        <div class="col-lg-2-5 col-3">
+            <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@basket.ProductId" class="proddet">
+                <img class="img-fluid" src="~/assets/images/products/@basket.ProductId/@basket.Product.ProductImage" alt="">
+            </a>
+            <a asp-controller="Order" asp-action="DeleteFromBasket" asp-route-productid="@basket.ProductId" asp-route-colorid="@basket.ColorId" asp-route-sizeid="@basket.SizeId" class="deletebasketelementfromcheckout">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.25 3.69995V19H16.75V3.69995H3.25Z" stroke="black"
+                          stroke-linejoin="round" />
+                    <path d="M8.2 8.19995V14.05M11.8 8.19995V14.05M1 3.69995H19" stroke="black"
+                          stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6.40039 3.7L7.88044 1H12.15L13.6004 3.7H6.40039Z" stroke="black"
+                          stroke-linejoin="round" />
+                </svg>
+            </a>
+        </div>
+    }

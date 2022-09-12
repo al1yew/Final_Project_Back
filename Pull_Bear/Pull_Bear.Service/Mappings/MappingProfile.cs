@@ -8,6 +8,7 @@ using Pull_Bear.Service.ViewModels.BodyFitVMs;
 using Pull_Bear.Service.ViewModels.CardVMs;
 using Pull_Bear.Service.ViewModels.CategoryVMs;
 using Pull_Bear.Service.ViewModels.ColorVMs;
+using Pull_Bear.Service.ViewModels.OrderItemVMs;
 using Pull_Bear.Service.ViewModels.OrderVMs;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
 using Pull_Bear.Service.ViewModels.ProductImageVMs;
@@ -209,21 +210,40 @@ namespace Pull_Bear.Service.Mappings
 
             #region Order
 
-            CreateMap<Order, OrderListVM>();
+            CreateMap<Order, OrderListVM>()
+                .ForPath(des => des.OrderItems, src => src.MapFrom(x => x.OrderItems))
+                .ForMember(des => des.DeliveredAt, src => src.MapFrom(x => x.DeliveredAt != null ? x.DeliveredAt : null));
+
+            CreateMap<OrderItem, OrderItemListVM>();
+            CreateMap<OrderItemListVM, OrderItem>();
+
             CreateMap<OrderListVM, Order>();
 
             CreateMap<OrderCreateVM, Order>();
 
             CreateMap<AppUser, OrderCreateVM>()
-                .ForMember(des => des.Address, src => src.MapFrom(x => x.Addresses.Where(x => x.IsMain).Select(x => x.Address1).FirstOrDefault() + " " + (x.Addresses.Where(x => x.IsMain).Select(x => x.Address2).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.Address2).FirstOrDefault() + ", " : " ") + x.Addresses.Where(x => x.IsMain).Select(x => x.ZipCode).FirstOrDefault()))
-                .ForMember(des => des.CityCountry, src => src.MapFrom(x => (x.Addresses.Where(x => x.IsMain).Select(x => x.City).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.City).FirstOrDefault() + ", " : "") + x.Addresses.Where(x => x.IsMain).Select(x => x.Country).FirstOrDefault()))
+                .ForMember(des => des.FullName, src => src.MapFrom(x => x.Name + " " + x.SurName))
+                .ForMember(des => des.Address, src => src.MapFrom(x => (x.Addresses.Where(x => x.IsMain).Select(x => x.Address1).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.Address1).FirstOrDefault() + ", " : "") + (x.Addresses.Where(x => x.IsMain).Select(x => x.Address2).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.Address2).FirstOrDefault() + ", " : "")))
+                .ForMember(des => des.ZipCode, src => src.MapFrom(x => (x.Addresses.Where(x => x.IsMain).Select(x => x.ZipCode).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.ZipCode).FirstOrDefault() : "")))
+                .ForMember(des => des.CityCountry, src => src.MapFrom(x => (x.Addresses.Where(x => x.IsMain).Select(x => x.City).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.City).FirstOrDefault() + ", " : "") + (x.Addresses.Where(x => x.IsMain).Select(x => x.Country).FirstOrDefault() != null ? x.Addresses.Where(x => x.IsMain).Select(x => x.Country).FirstOrDefault() + ", " : "")))
                 .ForMember(des => des.CardNo, src => src.MapFrom(x => (x.Cards.Where(x => x.IsMain).Select(x => x.CardNo).FirstOrDefault()) != null ? x.Cards.Where(x => x.IsMain).Select(x => x.CardNo).FirstOrDefault() : ""))
                 .ForMember(des => des.CardHolder, src => src.MapFrom(x => (x.Cards.Where(x => x.IsMain).Select(x => x.CardHolder).FirstOrDefault() != null ? x.Cards.Where(x => x.IsMain).Select(x => x.CardHolder).FirstOrDefault() : "")))
                 .ForMember(des => des.CVV, src => src.MapFrom(x => (x.Cards.Where(x => x.IsMain).Select(x => x.CVV).FirstOrDefault() != null ? x.Cards.Where(x => x.IsMain).Select(x => x.CVV).FirstOrDefault() : "")))
-                .ForMember(des => des.ExpireDate, src => src.MapFrom(x => (x.Cards.Where(x => x.IsMain).Select(x => x.ExpireDate).FirstOrDefault() != null ? x.Cards.Where(x => x.IsMain).Select(x => x.ExpireDate).FirstOrDefault() : "")))
-                .ForMember(des => des.FullName, src => src.MapFrom(x => x.Name + " " + x.SurName))
-                .ForMember(des => des.PhoneNumber, src => src.MapFrom(x => x.PhoneNumber))
-                .ForMember(des => des.Email, src => src.MapFrom(x => x.Email));
+                .ForMember(des => des.ExpireDate, src => src.MapFrom(x => (x.Cards.Where(x => x.IsMain).Select(x => x.ExpireDate).FirstOrDefault() != null ? x.Cards.Where(x => x.IsMain).Select(x => x.ExpireDate).FirstOrDefault() : "")));
+
+            CreateMap<OrderCreateVM, Order>();
+
+            CreateMap<Product, ProductGetVM>()
+                .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
+
+            Random random = new Random();
+
+            CreateMap<Basket, OrderItem>()
+                .ForMember(des => des.Id, src => src.MapFrom(x => 0))
+                .ForMember(des => des.TrackingNumber, src => src.MapFrom(x => random.Next()));
+
+            CreateMap<ProductGetVM, Product>()
+              .ForPath(des => des.ProductColorSizes, src => src.MapFrom(x => x.ProductColorSizes));
 
             #endregion
         }

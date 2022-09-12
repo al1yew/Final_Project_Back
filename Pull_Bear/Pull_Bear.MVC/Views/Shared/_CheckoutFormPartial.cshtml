@@ -19,7 +19,10 @@
         {
             <div class="col-lg-12 col-12">
                 <span class="col-lg-8 col-8">DELIVERY</span>
-                <span class="col-lg-4 col-4 changeaddress">CHANGE</span>
+                @if (Model.Addresses.Count < 3)
+                {
+                    <span class="col-lg-4 col-4 changeaddress">CHANGE</span>
+                }
 
                 @if (Model.Addresses.Count > 1)
                 {
@@ -29,6 +32,7 @@
 
             <input asp-for="Address" id="addressorder" class="col-lg-12 col-12" readonly />
             <input asp-for="CityCountry" id="citycountryorder" class="col-lg-12 col-12" readonly>
+            <input asp-for="ZipCode" id="zipcodeorder" class="col-lg-12 col-12" readonly>
         }
         else
         {
@@ -51,7 +55,11 @@
         {
             <div class="col-lg-12 col-12 bashliq">
                 <span class="col-lg-8 col-8">MY CARD</span>
-                <span class="col-lg-4 col-4 changecard">CHANGE</span>
+
+                @if (Model.Cards.Count < 3)
+                {
+                    <span class="col-lg-4 col-4 changecard">CHANGE</span>
+                }
 
                 @if (Model.Cards.Count > 1)
                 {

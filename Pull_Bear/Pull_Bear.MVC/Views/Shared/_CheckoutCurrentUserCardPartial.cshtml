@@ -1,0 +1,26 @@
+﻿@model List<CardListVM>
+
+@foreach (var item in Model)
+{
+    <div class="cardinozu col-lg-4 col-12">
+        <div class="cardozu col-lg-12 col-12">
+            <span class="col-lg-1-5 col-1-5">
+                <img class="img-fluid" src="~/assets/images/settings/mastercard.jpg" alt="">
+            </span>
+            <span class="cardno">
+                @item.CardNo
+            </span>
+            <span class="cardexpire">
+                @item.ExpireDate
+            </span>
+            <span class="cardholder">
+                @item.CardHolder
+            </span>
+            <span class=" headword">International card</span>
+            @if (item.IsMain)
+            {
+                <span class="ismain">Main Card</span>
+            }
+        </div>
+    </div>
+}

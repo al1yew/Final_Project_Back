@@ -82,5 +82,10 @@ namespace Pull_Bear.Data.Repositories
         {
             _context.Set<TEntity>().Remove(entity);
         }
+
+        public async Task UpdateAsync(TEntity entity)
+        {
+            _context.Set<TEntity>().Update(entity);
+        }
     }
 }

@@ -10,8 +10,8 @@ using Pull_Bear.Data;
 namespace Pull_Bear.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220911181805_AddedOrder")]
-    partial class AddedOrder
+    [Migration("20220912164908_Update")]
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,7 +165,6 @@ namespace Pull_Bear.Data.Migrations
                         .HasMaxLength(40);
 
                     b.Property<string>("Address2")
-                        .IsRequired()
                         .HasColumnType("nvarchar(40)")
                         .HasMaxLength(40);
 
@@ -572,15 +571,15 @@ namespace Pull_Bear.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsUpdated")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
@@ -591,10 +590,6 @@ namespace Pull_Bear.Data.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -607,44 +602,7 @@ namespace Pull_Bear.Data.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("Pull_Bear.Core.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ColorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SizeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItem");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.Product", b =>
@@ -1149,21 +1107,6 @@ namespace Pull_Bear.Data.Migrations
                     b.HasOne("Pull_Bear.Core.Models.AppUser", "AppUser")
                         .WithMany("Orders")
                         .HasForeignKey("AppUserId");
-                });
-
-            modelBuilder.Entity("Pull_Bear.Core.Models.OrderItem", b =>
-                {
-                    b.HasOne("Pull_Bear.Core.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Pull_Bear.Core.Models.Product", "Product")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Pull_Bear.Core.Models.Product", b =>

@@ -4,12 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.AddressVMs;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 using Pull_Bear.Service.ViewModels.CardVMs;
 using Pull_Bear.Service.ViewModels.OrderVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Pull_Bear.MVC.Controllers
 {
@@ -30,6 +32,17 @@ namespace Pull_Bear.MVC.Controllers
             return View(await _orderService.GetOrders());
         }
 
+        public async Task<IActionResult> SortOrders(string sortvalue)
+        {
+            return PartialView("_OrdersPartial", await _orderService.SortOrders(sortvalue));
+        }
+
+        public async Task<IActionResult> Search(string search)
+        {
+            return PartialView("_OrdersPartial", await _orderService.Search(search));
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> CreateOrder()
         {
@@ -39,35 +52,30 @@ namespace Pull_Bear.MVC.Controllers
                 return View("CreateOrder");
             }
 
-            return View(await _orderService.GetOrderViewModel());
+            OrderIndexVM orderIndexVM = await _orderService.GetOrderViewModel();
+
+            if (orderIndexVM.Baskets.Count <= 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(orderIndexVM);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateCard([FromBody] CardCreateVM cardCreateVM)
         {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "");
-                return View("CreateOrder");
-            }
+            if (!ModelState.IsValid) return StatusCode(406);
 
-            await _orderService.CreateCard(cardCreateVM);
-
-            return Ok();
+            return PartialView("_CheckoutCurrentUserCardPartial", await _orderService.CreateCard(cardCreateVM));
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAddress([FromBody] AddressCreateVM addressCreateVM)
         {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "");
-                return View("CreateOrder");
-            }
+            if (!ModelState.IsValid) return StatusCode(406);
 
-            await _orderService.CreateAddress(addressCreateVM);
-
-            return Ok();
+            return PartialView("_CheckoutCurrentUserAddressPartial", await _orderService.CreateAddress(addressCreateVM));
         }
 
         [HttpPost]
@@ -85,10 +93,26 @@ namespace Pull_Bear.MVC.Controllers
             return StatusCode(200);
         }
 
+        public async Task<IActionResult> DeleteFromBasket(DeleteFromBasketVM deleteFromBasketVM)
+        {
+            if (deleteFromBasketVM == null) return BadRequest();
+
+            List<BasketVM> baskets = await _orderService.DeleteFromBasket(deleteFromBasketVM);
+
+            return PartialView("_CheckoutBasketsPartial", baskets);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder(OrderCreateVM orderCreateVM)
         {
-            return View();
+            await _orderService.CreateOrder(orderCreateVM);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> GetBasket()
+        {
+            return PartialView("_CheckoutSubmitFormPartial", await _orderService.GetBasket());
         }
     }
 }

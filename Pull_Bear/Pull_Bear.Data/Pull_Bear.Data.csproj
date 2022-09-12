@@ -59,10 +59,26 @@
     <Compile Remove="Migrations\20220910141300_AddedCardAndAddress.Designer.cs" />
     <Compile Remove="Migrations\20220910141731_AddedCardAndAddress.cs" />
     <Compile Remove="Migrations\20220910141731_AddedCardAndAddress.Designer.cs" />
+    <Compile Remove="Migrations\20220910181054_AddedCardAndAddress.cs" />
+    <Compile Remove="Migrations\20220910181054_AddedCardAndAddress.Designer.cs" />
     <Compile Remove="Migrations\20220911111328_AddedOrder.cs" />
     <Compile Remove="Migrations\20220911111328_AddedOrder.Designer.cs" />
     <Compile Remove="Migrations\20220911112150_AddedOrder.cs" />
     <Compile Remove="Migrations\20220911112150_AddedOrder.Designer.cs" />
+    <Compile Remove="Migrations\20220911181805_AddedOrder.cs" />
+    <Compile Remove="Migrations\20220911181805_AddedOrder.Designer.cs" />
+    <Compile Remove="Migrations\20220912114246_AddedOrder.cs" />
+    <Compile Remove="Migrations\20220912114246_AddedOrder.Designer.cs" />
+    <Compile Remove="Migrations\20220912114737_AddedOrder.cs" />
+    <Compile Remove="Migrations\20220912114737_AddedOrder.Designer.cs" />
+    <Compile Remove="Migrations\20220912115825_AddedOrder.cs" />
+    <Compile Remove="Migrations\20220912115825_AddedOrder.Designer.cs" />
+    <Compile Remove="Migrations\20220912140912_AddedOrder.cs" />
+    <Compile Remove="Migrations\20220912140912_AddedOrder.Designer.cs" />
+    <Compile Remove="Migrations\20220912152041_AddedAddressORderCard.cs" />
+    <Compile Remove="Migrations\20220912152041_AddedAddressORderCard.Designer.cs" />
+    <Compile Remove="Migrations\20220912153926_AddedAddressORderCard.cs" />
+    <Compile Remove="Migrations\20220912153926_AddedAddressORderCard.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

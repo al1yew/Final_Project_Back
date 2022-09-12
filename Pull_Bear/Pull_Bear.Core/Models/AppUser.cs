@@ -23,7 +23,7 @@ namespace Pull_Bear.Core.Models
 
         //relations many to many
         public List<Basket> Baskets { get; set; }
-        public IEnumerable<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
         public List<Wishlist> Wishlists { get; set; }
         public List<ProductReview> ProductReviews { get; set; }
         public List<Card> Cards { get; set; }

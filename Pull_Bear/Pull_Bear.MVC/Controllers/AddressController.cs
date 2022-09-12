@@ -27,6 +27,12 @@ namespace Pull_Bear.MVC.Controllers
         }
 
         [Authorize(Roles = "Member")]
+        public async Task<IActionResult> GetAddresses()
+        {
+            return PartialView("_CheckoutCurrentUserAddressPartial", await _addressService.GetAllAsync());
+        }
+
+        [Authorize(Roles = "Member")]
         [HttpPost]
         public async Task<IActionResult> CreateAddress([FromBody] AddressCreateVM addressCreateVM)
         {

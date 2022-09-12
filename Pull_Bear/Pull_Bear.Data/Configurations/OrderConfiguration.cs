@@ -11,8 +11,7 @@ namespace Pull_Bear.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.Property(x => x.Name).IsRequired();
-            builder.Property(x => x.SurName).IsRequired();
+            builder.Property(x => x.FullName).IsRequired();
             builder.Property(x => x.PhoneNumber).IsRequired();
             builder.Property(x => x.Email).IsRequired();
             builder.Property(x => x.Address).IsRequired();

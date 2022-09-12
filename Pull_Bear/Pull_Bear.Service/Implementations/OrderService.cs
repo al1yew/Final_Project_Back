@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Pull_Bear.Core;
+using Pull_Bear.Core.Enums;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Exceptions;
 using Pull_Bear.Service.Interfaces;
@@ -60,15 +62,15 @@ namespace Pull_Bear.Service.Implementations
             return orderIndexVM;
         }
 
-        public async Task CreateCard(CardCreateVM cardCreateVM)
+        public async Task<List<CardListVM>> CreateCard(CardCreateVM cardCreateVM)
         {
             if (await _unitOfWork.CardRepository.IsExistAsync(x => x.CardNo == cardCreateVM.CardNo))
                 throw new RecordDublicateException($"Card Already Exists!");
 
+            AppUser appUser = _userManager.Users.Include(x => x.Cards).FirstOrDefault(x => x.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
             if (cardCreateVM.Save)
             {
-                AppUser appUser = _userManager.Users.Include(x => x.Cards).FirstOrDefault(x => x.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
-
                 if (appUser.Cards.Count < 3)
                 {
                     Card newcard = _mapper.Map<Card>(cardCreateVM);
@@ -81,14 +83,16 @@ namespace Pull_Bear.Service.Implementations
                     await _unitOfWork.CommitAsync();
                 }
             }
+
+            return _mapper.Map<List<CardListVM>>(await _unitOfWork.CardRepository.GetAllByExAsync(x => x.AppUserId == appUser.Id));
         }
 
-        public async Task CreateAddress(AddressCreateVM addressCreateVM)
+        public async Task<List<AddressListVM>> CreateAddress(AddressCreateVM addressCreateVM)
         {
+            AppUser appUser = _userManager.Users.Include(x => x.Addresses).FirstOrDefault(x => x.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
             if (addressCreateVM.Save)
             {
-                AppUser appUser = _userManager.Users.Include(x => x.Addresses).FirstOrDefault(x => x.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
-
                 if (appUser.Addresses.Count < 3)
                 {
                     Address newAddress = _mapper.Map<Address>(addressCreateVM);
@@ -100,6 +104,8 @@ namespace Pull_Bear.Service.Implementations
                     await _unitOfWork.CommitAsync();
                 }
             }
+
+            return _mapper.Map<List<AddressListVM>>(await _unitOfWork.AddressRepository.GetAllByExAsync(x => x.AppUserId == appUser.Id));
         }
 
         public async Task<List<string>> UpdateUser(AppUserUpdateVM appUserUpdateVM)
@@ -128,9 +134,171 @@ namespace Pull_Bear.Service.Implementations
             return errors;
         }
 
-        public Task CreateOrder(OrderCreateVM orderCreateVM)
+        public async Task<List<BasketVM>> DeleteFromBasket(DeleteFromBasketVM deleteFromBasketVM)
         {
-            throw new NotImplementedException();
+            if (await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == deleteFromBasketVM.ProductId && x.ColorId == deleteFromBasketVM.ColorId && x.SizeId == deleteFromBasketVM.SizeId && !x.Product.IsDeleted, "Product", "Color", "Size") == null) throw new NotFoundException("Product cannot be found!");
+
+            ProductColorSize pcs = await _unitOfWork.ProductColorSizeRepository.GetAsync(x => x.ProductId == deleteFromBasketVM.ProductId && x.ColorId == deleteFromBasketVM.ColorId && x.SizeId == deleteFromBasketVM.SizeId, "Product", "Size", "Color");
+
+            pcs.Count += deleteFromBasketVM.CountInBasket;
+
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == deleteFromBasketVM.ProductId);
+
+            product.Count += deleteFromBasketVM.CountInBasket;
+
+            await _unitOfWork.CommitAsync();
+
+            string basket = _httpContextAccessor.HttpContext.Request.Cookies["basket"];
+
+            if (string.IsNullOrWhiteSpace(basket)) throw new BadRequestException("Basket is null!");
+
+            List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+            BasketVM basketVM = basketVMs.Find(b => b.ProductId == deleteFromBasketVM.ProductId && b.ColorId == deleteFromBasketVM.ColorId && b.SizeId == deleteFromBasketVM.SizeId);
+
+            if (basketVM == null) throw new NotFoundException("Basket cannot be found!");
+
+            if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users.Include(u => u.Baskets).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+                if (appUser.Baskets != null && appUser.Baskets.Count() > 0)
+                {
+                    Basket dbBasket = appUser.Baskets.FirstOrDefault(b => b.ProductId == deleteFromBasketVM.ProductId && b.ColorId == deleteFromBasketVM.ColorId && b.SizeId == deleteFromBasketVM.SizeId);
+
+                    if (dbBasket != null)
+                    {
+                        _unitOfWork.BasketRepository.Remove(dbBasket);
+
+                        await _unitOfWork.CommitAsync();
+                    }
+                }
+            }
+
+            basketVMs.Remove(basketVM);
+
+            basket = JsonConvert.SerializeObject(basketVMs);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("basket", basket);
+
+            AppUser user = await _userManager.Users.Include(u => u.Baskets).ThenInclude(u => u.Product).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+            return _mapper.Map<List<BasketVM>>(user.Baskets);
+        }
+
+        public async Task CreateOrder(OrderCreateVM orderCreateVM)
+        {
+            if (orderCreateVM == null) throw new BadRequestException("Basket is null!");
+
+            AppUser appUser = await _userManager.Users.Include(u => u.Baskets).ThenInclude(x => x.Product).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+            List<OrderItem> orderItems = _mapper.Map<List<OrderItem>>(appUser.Baskets);
+
+            Order order = _mapper.Map<Order>(orderCreateVM);
+
+            order.AppUserId = appUser.Id;
+            order.OrderStatus = OrderStatus.Pending;
+            order.Price = orderItems.Sum(x => x.Count * x.Price);
+            order.CreatedAt = DateTime.UtcNow.AddHours(4);
+            order.OrderItems = orderItems;
+            order.DeliveredAt = null;
+
+            List<Basket> userbaskets = await _unitOfWork.BasketRepository.GetAllByExAsync(x => x.AppUserId == appUser.Id);
+
+            foreach (Basket item in userbaskets)
+            {
+                _unitOfWork.BasketRepository.Remove(item);
+            }
+
+            await _unitOfWork.OrderRepository.AddAsync(order);
+            await _unitOfWork.CommitAsync();
+
+            string basket = _httpContextAccessor.HttpContext.Request.Cookies["basket"];
+
+            List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+            basketVMs = new List<BasketVM>();
+
+            basket = JsonConvert.SerializeObject(basketVMs);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("basket", basket);
+        }
+
+
+        public async Task<double> GetBasket()
+        {
+            string basket = _httpContextAccessor.HttpContext.Request.Cookies["basket"];
+
+            List<BasketVM> basketVMs = null;
+
+            basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+            return basketVMs.Sum(x => x.Count * x.Price);
+        }
+
+        public async Task<List<OrderListVM>> SortOrders(string sortvalue)
+        {
+            AppUser appUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+
+            switch (sortvalue)
+            {
+                case "Pending":
+
+                    List<OrderListVM> orders1 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id && x.OrderStatus == OrderStatus.Pending, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+                    return orders1;
+
+                case "Rejected":
+
+                    List<OrderListVM> orders2 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id && x.OrderStatus == OrderStatus.Rejected, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+                    return orders2;
+
+                case "Shipped":
+
+                    List<OrderListVM> orders3 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id && x.OrderStatus == OrderStatus.Shipped, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+                    return orders3;
+
+                case "Delivered":
+
+                    List<OrderListVM> orders4 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id && x.OrderStatus == OrderStatus.Delivered, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+                    return orders4;
+
+                case "Courier":
+
+                    List<OrderListVM> orders5 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id && x.OrderStatus == OrderStatus.Courier, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+                    return orders5;
+
+                case "Accepted":
+
+                    List<OrderListVM> orders6 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id && x.OrderStatus == OrderStatus.Accepted, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+                    return orders6;
+
+                case "All":
+
+                    List<OrderListVM> orders = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+                    return orders;
+
+                default:
+
+                    List<OrderListVM> orders12 = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+                    return orders12;
+            }
+        }
+
+        public async Task<List<OrderListVM>> Search(string search)
+        {
+            AppUser appUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
+
+            List<OrderListVM> orders = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+            orders = orders.Where(x => x.OrderItems.Any(x => x.TrackingNumber.ToString().Contains(search))).ToList();
+
+            return orders;
         }
     }
 }

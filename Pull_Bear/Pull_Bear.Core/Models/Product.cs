@@ -43,7 +43,6 @@ namespace Pull_Bear.Core.Models
         public IEnumerable<OrderItem> OrderItems { get; set; }
 
 
-
         //realtions one ... - many products
         public Category Category { get; set; }
         public int CategoryId { get; set; }

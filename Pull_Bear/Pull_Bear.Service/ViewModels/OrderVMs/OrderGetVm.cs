@@ -1,6 +1,5 @@
 ﻿using Pull_Bear.Core.Enums;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
-using Pull_Bear.Service.ViewModels.OrderItemVMs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,7 +34,6 @@ namespace Pull_Bear.Service.ViewModels.OrderVMs
         //relations 
         public AppUserGetVM AppUser { get; set; }
         public string AppUserId { get; set; }
-        public IEnumerable<OrderItemListVM> OrderItems { get; set; }
         public OrderStatus OrderStatus { get; set; }
     }
 }

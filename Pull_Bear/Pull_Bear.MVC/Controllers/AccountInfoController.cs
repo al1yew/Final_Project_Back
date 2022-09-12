@@ -28,16 +28,19 @@ namespace Pull_Bear.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(AppUserUpdateVM appUserUpdateVM)
         {
-            if (!ModelState.IsValid) return View("Index", appUserUpdateVM);
+            if (!ModelState.IsValid)
+            {
+                TempData["error"] = "Error!";
+                return View("Index", appUserUpdateVM);
+            }
 
             foreach (var item in await _accountInfoService.UpdateUser(appUserUpdateVM))
             {
                 ModelState.AddModelError("", item);
-
                 return View("Index");
             }
 
-            //TempData["success"] = "Account is updated!";
+            TempData["success"] = "Success!";
 
             return RedirectToAction("Index");
         }

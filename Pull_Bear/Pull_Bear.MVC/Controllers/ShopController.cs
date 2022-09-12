@@ -48,9 +48,11 @@ namespace Pull_Bear.MVC.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "");
+                TempData["error"] = "Error!";
                 return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));
             }
             ViewBag.ProductId = id;
+            TempData["success"] = "Thanks for review!";
             return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));
         }
 

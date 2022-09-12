@@ -39,11 +39,12 @@ namespace Pull_Bear.MVC.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "");
+                TempData["error"] = "Error!";
                 return PartialView("_CardListPartial", await _cardService.GetAllAsync());
             }
 
             await _cardService.CreateAsync(cardCreateVM);
-
+            TempData["success"] = "Success!";
             return PartialView("_CardListPartial", await _cardService.GetAllAsync());
         }
 

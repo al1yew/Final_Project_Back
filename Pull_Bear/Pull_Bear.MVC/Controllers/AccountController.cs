@@ -45,7 +45,7 @@ namespace Pull_Bear.MVC.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            AppUser appUser = await _userManager.Users.Include(u => u.Baskets).FirstOrDefaultAsync(u => (u.NormalizedEmail == loginVM.Email.Trim().ToUpperInvariant() || u.NormalizedUserName == loginVM.Email.Trim().ToUpperInvariant()) && !u.IsAdmin && !u.IsDeleted);
+            AppUser appUser = await _userManager.Users.Include(u => u.Baskets).Include(x => x.Wishlists).FirstOrDefaultAsync(u => (u.NormalizedEmail == loginVM.Email.Trim().ToUpperInvariant() || u.NormalizedUserName == loginVM.Email.Trim().ToUpperInvariant()) && !u.IsAdmin && !u.IsDeleted);
 
             if (appUser == null || appUser.IsAdmin || !await _userManager.CheckPasswordAsync(appUser, loginVM.Password))
             {
@@ -55,6 +55,8 @@ namespace Pull_Bear.MVC.Controllers
             }
 
             await _signInManager.SignInAsync(appUser, loginVM.RememberMe);
+
+            #region Basket
 
             string basketCookie = HttpContext.Request.Cookies["basket"];
 
@@ -95,6 +97,47 @@ namespace Pull_Bear.MVC.Controllers
                 }
             }
 
+            #endregion
+
+            #region Wishlist
+
+            string wishlistCookie = HttpContext.Request.Cookies["wishlist"];
+
+            if (!string.IsNullOrWhiteSpace(wishlistCookie))
+            {
+                List<WishlistVM> wishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlistCookie);
+
+                foreach (WishlistVM wishlistVM in wishlistVMs)
+                {
+                    if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
+                    {
+                        Wishlist existedwishlist = appUser.Wishlists.FirstOrDefault(b => b.ProductId == wishlistVM.ProductId);
+
+                        if (existedwishlist == null)
+                        {
+                            appUser.Wishlists.Add(_mapper.Map<Wishlist>(wishlistVM));
+                        }
+                    }
+                    else
+                    {
+                        appUser.Wishlists.Add(_mapper.Map<Wishlist>(wishlistVM));
+                    }
+                }
+
+                HttpContext.Response.Cookies.Append("wishlist", JsonConvert.SerializeObject(wishlistVMs));
+
+                await _unitOfWork.CommitAsync();
+            }
+            else
+            {
+                if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
+                {
+                    HttpContext.Response.Cookies.Append("wishlist", JsonConvert.SerializeObject(_mapper.Map<List<WishlistVM>>(appUser.Wishlists)));
+                }
+            }
+
+            #endregion
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -127,6 +170,8 @@ namespace Pull_Bear.MVC.Controllers
 
             await _signInManager.SignInAsync(appUser, true);
 
+            #region Basket
+
             string basketCookie = HttpContext.Request.Cookies["basket"];
 
             if (!string.IsNullOrWhiteSpace(basketCookie))
@@ -141,13 +186,41 @@ namespace Pull_Bear.MVC.Controllers
                 {
                     appUser.Baskets.AddRange(_mapper.Map<List<Basket>>(basketVMs));
                 }
-                
+
                 basketCookie = JsonConvert.SerializeObject(basketVMs);
 
                 HttpContext.Response.Cookies.Append("basket", basketCookie);
 
                 await _unitOfWork.CommitAsync();
             }
+
+            #endregion
+
+            #region Wishlist
+
+            string wishlistCookie = HttpContext.Request.Cookies["wishlist"];
+
+            if (!string.IsNullOrWhiteSpace(wishlistCookie))
+            {
+                List<WishlistVM> wishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlistCookie);
+
+                if (appUser.Wishlists == null)
+                {
+                    appUser.Wishlists = _mapper.Map<List<Wishlist>>(wishlistVMs);
+                }
+                else
+                {
+                    appUser.Wishlists.AddRange(_mapper.Map<List<Wishlist>>(wishlistVMs));
+                }
+
+                wishlistCookie = JsonConvert.SerializeObject(wishlistVMs);
+
+                HttpContext.Response.Cookies.Append("wishlist", wishlistCookie);
+
+                await _unitOfWork.CommitAsync();
+            }
+
+            #endregion
 
             return RedirectToAction("Index", "Home");
         }

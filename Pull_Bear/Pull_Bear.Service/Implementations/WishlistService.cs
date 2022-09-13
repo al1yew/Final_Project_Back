@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
+using Pull_Bear.Service.Exceptions;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.WishlistVMs;
 using System;
@@ -30,52 +32,162 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<List<WishlistVM>> GetWishlists()
         {
-            AppUser appUser = await _userManager.Users.Include(u => u.Wishlists).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+            string wishlist = _httpContextAccessor.HttpContext.Request.Cookies["wishlist"];
 
-            return _mapper.Map<List<WishlistVM>>(appUser.Wishlists);
+            List<WishlistVM> wishlistVMs = null;
+
+            if (!string.IsNullOrWhiteSpace(wishlist))
+            {
+                wishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlist);
+            }
+            else
+            {
+                wishlistVMs = new List<WishlistVM>();
+            }
+
+            return await _getWishlistItems(wishlistVMs);
         }
 
         public async Task<bool> AddToWishlist(int? id)
         {
-            AppUser appUser = await _userManager.Users.Include(u => u.Wishlists).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+            Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id);
 
-            if (appUser == null) return false;
+            if (dbProduct == null) return false;
 
-            if (!appUser.Wishlists.Any(x => x.ProductId == id))
+            string wishlist = _httpContextAccessor.HttpContext.Request.Cookies["wishlist"];
+
+            List<WishlistVM> wishlistVMs = null;
+
+            if (!string.IsNullOrWhiteSpace(wishlist))
             {
-                Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id);
+                wishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlist);
+            }
+            else
+            {
+                wishlistVMs = new List<WishlistVM>();
+            }
 
-                if (dbProduct == null) return false;
-
-                Wishlist wishlist = new Wishlist()
+            if (!wishlistVMs.Exists(w => w.ProductId == id))
+            {
+                WishlistVM wishlistVM = new WishlistVM
                 {
                     Name = dbProduct.Name,
                     Price = dbProduct.Price,
                     ProductId = dbProduct.Id,
                     Image = dbProduct.ShopImage,
-                    DiscountPrice = dbProduct.DiscountPrice
+                    DiscountPrice = dbProduct.DiscountPrice,
                 };
 
-                appUser.Wishlists.Add(wishlist);
+                wishlistVMs.Add(wishlistVM);
+            }
+
+            if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users.Include(u => u.Wishlists).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+                if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
+                {
+                    Wishlist dbWishlist = appUser.Wishlists.FirstOrDefault(b => b.ProductId == id);
+
+                    if (dbWishlist == null)
+                    {
+                        Wishlist newWishlist = new Wishlist()
+                        {
+                            Name = dbProduct.Name,
+                            Price = dbProduct.Price,
+                            ProductId = dbProduct.Id,
+                            Image = dbProduct.ShopImage,
+                            DiscountPrice = dbProduct.DiscountPrice
+                        };
+
+                        appUser.Wishlists.Add(newWishlist);
+                    }
+                }
+                else
+                {
+                    List<Wishlist> wishlists = new List<Wishlist>
+                    {
+                        new Wishlist{
+                            Name = dbProduct.Name,
+                            Price = dbProduct.Price,
+                            ProductId = dbProduct.Id,
+                            Image = dbProduct.ShopImage,
+                            DiscountPrice = dbProduct.DiscountPrice
+                        }
+                    };
+
+                    appUser.Wishlists = wishlists;
+                }
 
                 await _unitOfWork.CommitAsync();
             }
+
+            wishlist = JsonConvert.SerializeObject(wishlistVMs);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("wishlist", wishlist);
 
             return true;
         }
 
         public async Task<List<WishlistVM>> DeleteFromWishlist(int? id)
         {
-            Wishlist wishlist = await _unitOfWork.WishlistRepository.GetAsync(x => x.Id == id);
+            if (id == null) throw new BadRequestException("Id is null!");
 
-            _unitOfWork.WishlistRepository.Remove(wishlist);
-            await _unitOfWork.CommitAsync();
+            if (!await _unitOfWork.ProductRepository.IsExistAsync(p => p.Id == id)) throw new NotFoundException("Product cannot be found!");
 
-            AppUser appUser = await _userManager.Users.Include(u => u.Wishlists).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+            string wishlist = _httpContextAccessor.HttpContext.Request.Cookies["wishlist"];
 
-            List<WishlistVM> wishlists = _mapper.Map<List<WishlistVM>>(await _unitOfWork.WishlistRepository.GetAllByExAsync(x => x.AppUserId == appUser.Id));
+            if (string.IsNullOrWhiteSpace(wishlist)) throw new BadRequestException("Wishlist cookie is null!");
 
-            return wishlists;
+            List<WishlistVM> wishlistVMs = JsonConvert.DeserializeObject<List<WishlistVM>>(wishlist);
+
+            WishlistVM wishlistVM = wishlistVMs.Find(b => b.ProductId == id);
+
+            if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users.Include(u => u.Wishlists).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+
+                if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
+                {
+                    Wishlist dbWishlist = await _unitOfWork.WishlistRepository.GetAsync(x => x.Id == id);
+
+                    if (dbWishlist != null)
+                    {
+                        _unitOfWork.WishlistRepository.Remove(dbWishlist);
+
+                        await _unitOfWork.CommitAsync();
+                    }
+                }
+            }
+
+            wishlistVMs.Remove(wishlistVM);
+
+            wishlist = JsonConvert.SerializeObject(wishlistVMs);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("wishlist", wishlist);
+
+            return await _getWishlistItems(wishlistVMs);
+        }
+
+        private async Task<List<WishlistVM>> _getWishlistItems(List<WishlistVM> wishlistVMs)
+        {
+            if (_httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                AppUser appUser = await _userManager.Users.Include(u => u.Wishlists).FirstOrDefaultAsync(u => u.UserName == _httpContextAccessor.HttpContext.User.Identity.Name);
+            }
+
+            foreach (WishlistVM item in wishlistVMs)
+            {
+                Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == item.ProductId);
+
+                item.Name = dbProduct.Name;
+                item.Price = dbProduct.Price;
+                item.ProductId = dbProduct.Id;
+                item.Image = dbProduct.ShopImage;
+                item.DiscountPrice = dbProduct.DiscountPrice;
+            }
+
+            return wishlistVMs;
         }
     }
 }

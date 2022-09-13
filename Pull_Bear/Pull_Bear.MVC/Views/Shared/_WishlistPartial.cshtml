@@ -23,7 +23,7 @@ else
             </span>
             <span class="text-end col-lg-2 col-3">@item.Price $</span>
             <span class="discpercent">-@Math.Round((100 - (100 * (item.DiscountPrice / item.Price)))) %</span>
-            <a asp-controller="Wishlist" asp-action="DeleteFromWishlist" asp-route-id="@item.Id" class="removefromwishlist">
+            <a asp-controller="Wishlist" asp-action="DeleteFromWishlist" asp-route-id="@item.ProductId" class="removefromwishlist">
                 <ion-icon name="remove-circle-outline"></ion-icon>
             </a>
         </div>

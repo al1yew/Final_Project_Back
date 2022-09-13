@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.WishlistVMs;
 using System;

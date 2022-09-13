@@ -259,6 +259,8 @@ namespace Pull_Bear.Service.Mappings
 
             CreateMap<Wishlist, WishlistVM>();
 
+            CreateMap<WishlistVM, Wishlist>();
+
             #endregion
         }
     }

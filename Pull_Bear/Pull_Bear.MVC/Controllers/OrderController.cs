@@ -57,6 +57,22 @@ namespace Pull_Bear.MVC.Controllers
         }
 
         [HttpPost]
+        public async Task<IActionResult> CreateOrder(OrderCreateVM orderCreateVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "");
+                TempData["error"] = "Error!";
+                return RedirectToAction("CreateOrder");
+            }
+
+            await _orderService.CreateOrder(orderCreateVM);
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpPost]
         public async Task<IActionResult> CreateCard([FromBody] CardCreateVM cardCreateVM)
         {
             if (!ModelState.IsValid) return StatusCode(406);
@@ -94,21 +110,6 @@ namespace Pull_Bear.MVC.Controllers
             List<BasketVM> baskets = await _orderService.DeleteFromBasket(deleteFromBasketVM);
 
             return PartialView("_CheckoutBasketsPartial", baskets);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateOrder(OrderCreateVM orderCreateVM)
-        {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "");
-                TempData["error"] = "Error!";
-                return View("CreateOrder");
-            }
-
-            await _orderService.CreateOrder(orderCreateVM);
-
-            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> GetBasket()

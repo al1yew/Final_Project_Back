@@ -95,9 +95,9 @@ namespace Pull_Bear.Service.Implementations
 
             OrderIndexVM orderIndexVM = new OrderIndexVM()
             {
-                AddressCreateVM = new AddressCreateVM(),
-                AppUserUpdateVM = new AppUserUpdateVM(),
-                CardCreateVM = new CardCreateVM(),
+                //AddressCreateVM = new AddressCreateVM(),
+                //AppUserUpdateVM = new AppUserUpdateVM(),
+                //CardCreateVM = new CardCreateVM(),
                 OrderCreateVM = _mapper.Map<OrderCreateVM>(appUser),
                 AppUserGetVM = _mapper.Map<AppUserGetVM>(appUser),
                 Baskets = _mapper.Map<List<BasketVM>>(appUser.Baskets)

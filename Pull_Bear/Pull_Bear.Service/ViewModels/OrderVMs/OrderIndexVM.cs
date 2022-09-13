@@ -12,9 +12,9 @@ namespace Pull_Bear.Service.ViewModels.OrderVMs
     {
         public OrderCreateVM OrderCreateVM { get; set; }
         public AppUserGetVM AppUserGetVM { get; set; }
-        public AddressCreateVM AddressCreateVM { get; set; }
-        public CardCreateVM CardCreateVM { get; set; }
-        public AppUserUpdateVM AppUserUpdateVM { get; set; }
+        //public AddressCreateVM AddressCreateVM { get; set; }
+        //public CardCreateVM CardCreateVM { get; set; }
+        //public AppUserUpdateVM AppUserUpdateVM { get; set; }
         public List<BasketVM> Baskets { get; set; }
     }
 }

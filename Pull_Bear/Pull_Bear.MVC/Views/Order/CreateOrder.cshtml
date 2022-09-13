@@ -28,11 +28,11 @@
                     @await Html.PartialAsync("_CheckoutSubmitFormPartial", Model.Baskets.Sum(x => x.Count * x.Price))
                 </div>
 
-                @await Html.PartialAsync("_CheckoutAddAccountInfoFormPartial", Model.AppUserUpdateVM)
+                @await Html.PartialAsync("_CheckoutAddAccountInfoFormPartial", new AppUserUpdateVM())
 
-                @await Html.PartialAsync("_CheckoutAddAddressFormPartial", Model.AddressCreateVM)
+                @await Html.PartialAsync("_CheckoutAddAddressFormPartial", new AddressCreateVM())
 
-                @await Html.PartialAsync("_CheckoutAddCardFormPartial", Model.CardCreateVM)
+                @await Html.PartialAsync("_CheckoutAddCardFormPartial", new CardCreateVM())
 
                 <div class="boughtorders col-lg-12 col-12">
                     @await Html.PartialAsync("_CheckoutBasketsPartial", Model.Baskets)

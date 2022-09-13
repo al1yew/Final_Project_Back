@@ -987,7 +987,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.closepass', function () {
-        $(this).prev().prev().prev().attr('type', 'password');
+        $(this).prev().prev().prev().prev().attr('type', 'password');
         $(this).hide();
         $(this).prev().show();
         $(this).prev().prev().prev().prev().focus();
@@ -1288,8 +1288,6 @@ $(document).ready(function () {
         e.preventDefault();
 
         let inputvalue = $(this).val();
-
-        //let url = $(this).data('url');
 
         let url = window.location.href + '/Search' + '?search=' + inputvalue;
 
@@ -2013,7 +2011,7 @@ $(document).ready(function () {
 
         $('.clearsort').fadeIn(150);
 
-        let url = "http://localhost:53427/Shop/CreateSort"
+        let url = new URL('../Shop/CreateSort', window.location.href)
 
         fetch(url, {
             method: 'Post',
@@ -2025,7 +2023,7 @@ $(document).ready(function () {
             .then(res => res.text())
             .then(data => {
                 $('.products').html(data)
-            })
+            });
     });
 
     $(document).on('click', '.defcolor, .defbodyfit, .deforderby, .defsize', function (e) {
@@ -2058,7 +2056,7 @@ $(document).ready(function () {
 
         localStorage.setItem('sort', JSON.stringify(sort));
 
-        let url = "http://localhost:53427/Shop/CreateSort"
+        let url = new URL('../Shop/CreateSort', window.location.href)
 
         fetch(url, {
             method: 'Post',
@@ -2070,7 +2068,7 @@ $(document).ready(function () {
             .then(res => res.text())
             .then(data => {
                 $('.products').html(data)
-            })
+            });
     });
 
     $(document).on('pointerup', '.range-max, .range-min', function () {
@@ -2085,7 +2083,7 @@ $(document).ready(function () {
 
         localStorage.setItem('sort', JSON.stringify(sort));
 
-        let url = "http://localhost:53427/Shop/CreateSort"
+        let url = new URL('../Shop/CreateSort', window.location.href)
 
         fetch(url, {
             method: 'Post',
@@ -2097,7 +2095,7 @@ $(document).ready(function () {
             .then(res => res.text())
             .then(data => {
                 $('.products').html(data)
-            })
+            });
 
         $('.clearsort').fadeIn(150);
 
@@ -2112,9 +2110,6 @@ $(document).ready(function () {
             let minvalue = parseInt($('.input-min').val());
             let maxvalue = parseInt($('.input-max').val());
 
-            //alert(maxvalue)
-            //alert(minvalue)
-
             let sort = JSON.parse(localStorage.getItem('sort'));
 
             sort.maxValue = maxvalue;
@@ -2122,7 +2117,7 @@ $(document).ready(function () {
 
             localStorage.setItem('sort', JSON.stringify(sort));
 
-            let url = "http://localhost:53427/Shop/CreateSort"
+            let url = new URL('../Shop/CreateSort', window.location.href)
 
             fetch(url, {
                 method: 'Post',
@@ -2223,12 +2218,11 @@ $(document).ready(function () {
 
         let inputvalue = $(this).val();
 
-        let url = $(this).data('url');
+        let url = new URL('../Shop/Search', window.location.href)
 
-        url = url + '?search=' + inputvalue;
+        url = url.href + '?search=' + inputvalue;
 
         if (inputvalue) {
-
             fetch(url)
                 .then(res => res.text())
                 .then(data => {

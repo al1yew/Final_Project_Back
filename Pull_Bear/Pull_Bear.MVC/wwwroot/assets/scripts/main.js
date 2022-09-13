@@ -148,6 +148,45 @@ $(document).ready(function () {
 
     //---------------------------------------------------------------------------------------------------------------
 
+    //#region  add to wishlist and remove from wishlist
+
+    //----------------------------------------------------- add to wishlist
+
+    $(document).on('click', '.addtowishlist', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        fetch(url)
+            .then(res => {
+                if (res.status != 406) {
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
+            });
+    });
+
+    //----------------------------------------------------- remove from wishlist
+
+    $(document).on('click', '.removefromwishlist', function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+
+                $('.wishlistpartial').html(data);
+            });
+    });
+
+    //#endregion add to wishlist and remove from wishlist
+
+    //---------------------------------------------------------------------------------------------------------------
+
     //#region  form shop page  ---- add to basket
 
     //---------------------------------products stranica make input selected

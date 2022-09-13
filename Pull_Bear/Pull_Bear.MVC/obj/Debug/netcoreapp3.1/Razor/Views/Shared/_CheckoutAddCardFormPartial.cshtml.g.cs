@@ -125,55 +125,62 @@ using Pull_Bear.Service.ViewModels.AppUserVMs;
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.BasketVMs;
+using Pull_Bear.Service.ViewModels.WishlistVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.OrderVMs;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.ContactVMs;
+using Pull_Bear.Service.ViewModels.OrderVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 21 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.CardVMs;
+using Pull_Bear.Service.ViewModels.ContactVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 22 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.Enums;
+using Pull_Bear.Service.ViewModels.CardVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 23 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Core.Enums;
+using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 24 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 25 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c2c7eab128062f620c5bfb2323db0129e9c29c5a", @"/Views/Shared/_CheckoutAddCardFormPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"75e5bb6a94d0c28cd1174b0f71b261a67a6cc24e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b8f68898f74a05c868dfe5b772d5e36d12c5c44", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__CheckoutAddCardFormPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CardCreateVM>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid col-lg-6 col-6"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -259,7 +266,7 @@ using System;
         <div class=""right col-lg-3 col-3"">
             <span class=""first col-6 col-lg-8"">
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a20305", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a20514", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -275,7 +282,7 @@ using System;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            </span>\r\n            <span class=\"second col-4 col-lg-4\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a21596", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a21805", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -291,7 +298,7 @@ using System;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            </span>\r\n        </div>\r\n    </div>\r\n\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a22857", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a23066", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.ValidationSummaryTagHelper>();
@@ -313,9 +320,9 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ValidationSummaryTagHelper.ValidationSumma
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a24490", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a24699", async() => {
                 WriteLiteral("\r\n\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a24761", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a24970", async() => {
                     WriteLiteral("<span>*</span> CARD NUMBER");
                 }
                 );
@@ -338,7 +345,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a26434", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a26643", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -370,7 +377,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n\r\n        <div class=\"checkoutcity col-6 col-lg-6\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a29109", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a29318", async() => {
                     WriteLiteral("<span>*</span>NAME");
                 }
                 );
@@ -393,7 +400,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a30776", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a30985", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -424,7 +431,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        </div>\r\n\r\n        <div class=\"checkoutcountry col-6 col-lg-6\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a33385", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a33594", async() => {
                     WriteLiteral("<span>*</span>SURNAME");
                 }
                 );
@@ -447,7 +454,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a35058", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a35267", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -478,7 +485,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        </div>\r\n\r\n        <div class=\"checkoutcity col-6 col-lg-6\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a37667", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a37876", async() => {
                     WriteLiteral("<span>*</span>EXPIRE DATE");
                 }
                 );
@@ -501,7 +508,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a39347", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a39556", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
@@ -534,7 +541,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        </div>\r\n\r\n        <div class=\"checkoutcountry col-6 col-lg-6\">\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a42138", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("label", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c2c7eab128062f620c5bfb2323db0129e9c29c5a42347", async() => {
                     WriteLiteral("<span>*</span>CVV/CVC");
                 }
                 );
@@ -557,7 +564,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LabelTagHelper.For = ModelExpressionProvid
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a43807", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("input", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "c2c7eab128062f620c5bfb2323db0129e9c29c5a44016", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();

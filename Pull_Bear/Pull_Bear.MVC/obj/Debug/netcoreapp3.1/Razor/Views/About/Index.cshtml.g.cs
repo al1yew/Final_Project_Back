@@ -125,55 +125,62 @@ using Pull_Bear.Service.ViewModels.AppUserVMs;
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.BasketVMs;
+using Pull_Bear.Service.ViewModels.WishlistVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.OrderVMs;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.ContactVMs;
+using Pull_Bear.Service.ViewModels.OrderVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 21 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.CardVMs;
+using Pull_Bear.Service.ViewModels.ContactVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 22 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.Enums;
+using Pull_Bear.Service.ViewModels.CardVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 23 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Core.Enums;
+using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 24 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 25 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d0f5870e22dd33bd3979c7f64b69bb9d31524830", @"/Views/About/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"75e5bb6a94d0c28cd1174b0f71b261a67a6cc24e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b8f68898f74a05c868dfe5b772d5e36d12c5c44", @"/Views/_ViewImports.cshtml")]
     public class Views_About_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IDictionary<string, string>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -218,7 +225,7 @@ using System;
             <div class=""row keeper"">
                 <div class=""col-lg-6"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0f5870e22dd33bd3979c7f64b69bb9d315248309500", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d0f5870e22dd33bd3979c7f64b69bb9d315248309709", async() => {
                 WriteLiteral("MAIN PAGE");
             }
             );
@@ -258,7 +265,7 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                    </p>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483011719", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483011928", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -291,7 +298,7 @@ AddHtmlAttributeValue("", 1024, Model.FirstOrDefault(x => x.Key == "aboutfirstph
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                    </p>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483013942", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483014151", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -400,7 +407,7 @@ AddHtmlAttributeValue("", 1447, Model.FirstOrDefault(x => x.Key == "aboutsecondp
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                    </span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </section>\r\n\r\n    <section class=\"bigphoto\">\r\n        <div class=\"col-lg-12 col-12\">\r\n            <div class=\"imgkeeperabout\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483019135", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483019344", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -542,7 +549,7 @@ AddHtmlAttributeValue("", 3516, Model.FirstOrDefault(x => x.Key == "aboutbigimag
                 </p>
  ");
             WriteLiteral("               <div class=\"col-lg-12 col-12 allthen\">\r\n\r\n                    <div class=\"col-lg-5 col-12 left\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483026112", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "d0f5870e22dd33bd3979c7f64b69bb9d3152483026321", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

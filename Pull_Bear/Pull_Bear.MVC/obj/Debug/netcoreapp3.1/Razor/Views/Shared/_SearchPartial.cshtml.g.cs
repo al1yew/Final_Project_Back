@@ -125,55 +125,62 @@ using Pull_Bear.Service.ViewModels.AppUserVMs;
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.BasketVMs;
+using Pull_Bear.Service.ViewModels.WishlistVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.OrderVMs;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.ContactVMs;
+using Pull_Bear.Service.ViewModels.OrderVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 21 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.CardVMs;
+using Pull_Bear.Service.ViewModels.ContactVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 22 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.Enums;
+using Pull_Bear.Service.ViewModels.CardVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 23 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Core.Enums;
+using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 24 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 25 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8aea55a5643ce9ad6c889f7739a06c9118e28f78", @"/Views/Shared/_SearchPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"75e5bb6a94d0c28cd1174b0f71b261a67a6cc24e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b8f68898f74a05c868dfe5b772d5e36d12c5c44", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__SearchPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<ProductListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("alt", new global::Microsoft.AspNetCore.Html.HtmlString(""), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -215,9 +222,9 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("    <li>\r\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8aea55a5643ce9ad6c889f7739a06c9118e28f789163", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8aea55a5643ce9ad6c889f7739a06c9118e28f789372", async() => {
                 WriteLiteral("\r\n            <span class=\"col-lg-2 col-2\">\r\n                ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8aea55a5643ce9ad6c889f7739a06c9118e28f789481", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "8aea55a5643ce9ad6c889f7739a06c9118e28f789690", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

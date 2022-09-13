@@ -20,6 +20,7 @@ using Pull_Bear.Service.ViewModels.ReviewImageVMs;
 using Pull_Bear.Service.ViewModels.SettingVMs;
 using Pull_Bear.Service.ViewModels.SizeVMs;
 using Pull_Bear.Service.ViewModels.TagVMs;
+using Pull_Bear.Service.ViewModels.WishlistVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -251,6 +252,12 @@ namespace Pull_Bear.Service.Mappings
             #region Contact
 
             CreateMap<ContactCreateVM, Contact>();
+
+            #endregion
+
+            #region Wishlist
+
+            CreateMap<Wishlist, WishlistVM>();
 
             #endregion
         }

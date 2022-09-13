@@ -125,55 +125,62 @@ using Pull_Bear.Service.ViewModels.AppUserVMs;
 #nullable disable
 #nullable restore
 #line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.BasketVMs;
+using Pull_Bear.Service.ViewModels.WishlistVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.OrderVMs;
+using Pull_Bear.Service.ViewModels.BasketVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.ContactVMs;
+using Pull_Bear.Service.ViewModels.OrderVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 21 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels.CardVMs;
+using Pull_Bear.Service.ViewModels.ContactVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 22 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.Enums;
+using Pull_Bear.Service.ViewModels.CardVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 23 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
-using Pull_Bear.Core.Enums;
+using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 24 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 25 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\_ViewImports.cshtml"
 using System;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f209344f45e43c11ae533c3ca83cf75be26e88b0", @"/Views/Shared/_OrdersPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"75e5bb6a94d0c28cd1174b0f71b261a67a6cc24e", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7b8f68898f74a05c868dfe5b772d5e36d12c5c44", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__OrdersPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<OrderListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-fluid"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -287,7 +294,7 @@ using System;
 #line hidden
 #nullable disable
             WriteLiteral("                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f209344f45e43c11ae533c3ca83cf75be26e88b013249", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f209344f45e43c11ae533c3ca83cf75be26e88b013458", async() => {
                 WriteLiteral("\r\n                        <div class=\"col-lg-6 col-12\">\r\n                            <div class=\"col-lg-12 first\">\r\n                                ");
 #nullable restore
 #line 48 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Views\Shared\_OrdersPartial.cshtml"
@@ -409,7 +416,7 @@ using System;
 #line hidden
 #nullable disable
                 WriteLiteral(" $</span>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"col-lg-1 col-2\">\r\n                            ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f209344f45e43c11ae533c3ca83cf75be26e88b019481", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "f209344f45e43c11ae533c3ca83cf75be26e88b019690", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

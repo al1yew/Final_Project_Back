@@ -61,7 +61,7 @@
 
             <div class="rightmain col-lg-4 col-12">
                 <div class="top">
-                    <a asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@product.Id" class="wishlist">
+                    <a asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@product.Id" class="wishlist addtowishlist">
                         <svg width="24" height="21" viewBox="0 0 24 21" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M6.5 1C3.4629 1 1 3.36095 1 6.27378C1 8.62513 1.9625 14.2057 11.4368 19.8471C11.6065 19.9471 11.8013 20 12 20C12.1987 20 12.3935 19.9471 12.5632 19.8471C22.0375 14.2057 23 8.62513 23 6.27378C23 3.36095 20.5371 1 17.5 1C14.4629 1 12 4.19623 12 4.19623C12 4.19623 9.5371 1 6.5 1Z"
@@ -219,7 +219,7 @@
                                         <img class="img-fluid" src="~/assets/images/products/@item.Id/@item.ShopImage" alt="">
                                     </a>
 
-                                    <a class="wishlist" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@item.Id">
+                                    <a class="wishlist addtowishlist" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@item.Id">
                                         <svg width="31" height="28" viewBox="0 0 31 28" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8.08333 1C4.17192 1 1 4.13933 1 8.0125C1 11.1391 2.23958 18.5596 14.4413 26.0608C14.6599 26.1938 14.9108 26.2642 15.1667 26.2642C15.4225 26.2642 15.6734 26.1938 15.892 26.0608C28.0938 18.5596 29.3333 11.1391 29.3333 8.0125C29.3333 4.13933 26.1614 1 22.25 1C18.3386 1 15.1667 5.25 15.1667 5.25C15.1667 5.25 11.9948 1 8.08333 1Z"
@@ -305,7 +305,7 @@
                                         <img class="img-fluid" src="~/assets/images/products/@item.Id/@item.ShopImage" alt="">
                                     </a>
 
-                                    <a class="wishlist" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@item.Id">
+                                    <a class="wishlist addtowishlist" asp-controller="Wishlist" asp-action="AddToWishlist" asp-route-id="@item.Id">
                                         <svg width="31" height="28" viewBox="0 0 31 28" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path d="M8.08333 1C4.17192 1 1 4.13933 1 8.0125C1 11.1391 2.23958 18.5596 14.4413 26.0608C14.6599 26.1938 14.9108 26.2642 15.1667 26.2642C15.4225 26.2642 15.6734 26.1938 15.892 26.0608C28.0938 18.5596 29.3333 11.1391 29.3333 8.0125C29.3333 4.13933 26.1614 1 22.25 1C18.3386 1 15.1667 5.25 15.1667 5.25C15.1667 5.25 11.9948 1 8.08333 1Z"

@@ -1019,23 +1019,24 @@ namespace Pull_Bear.Data.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<double>("DiscountPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int>("ProductColorSizeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ProductId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("ProductColorSizeId");
 
                     b.HasIndex("ProductId");
 
@@ -1261,15 +1262,11 @@ namespace Pull_Bear.Data.Migrations
                         .WithMany("Wishlists")
                         .HasForeignKey("AppUserId");
 
-                    b.HasOne("Pull_Bear.Core.Models.ProductColorSize", "ProductColorSize")
-                        .WithMany()
-                        .HasForeignKey("ProductColorSizeId")
+                    b.HasOne("Pull_Bear.Core.Models.Product", "Product")
+                        .WithMany("Wishlists")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Pull_Bear.Core.Models.Product", null)
-                        .WithMany("Wishlists")
-                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

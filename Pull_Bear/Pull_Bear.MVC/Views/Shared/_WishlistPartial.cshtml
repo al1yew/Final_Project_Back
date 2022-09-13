@@ -1,0 +1,31 @@
+﻿@model List<WishlistVM>
+
+@if (Model == null || Model.Count <= 0)
+{
+    <div class="col-lg-12 col-12 wishlistboshdu">
+        <div class="wishlistbosh">
+            <p class="col-lg-8 col-8">
+                <span>Oops!</span> Looks like you haven't added anything to your Wishlist!
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    @foreach (WishlistVM item in Model)
+    {
+        <div class="col-lg-3-8 col-5-8 wishlistitem mt-2 mb-2">
+            <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@item.ProductId">
+                <img class="img-fluid" src="./assets/images/products/@item.ProductId/@item.Image" alt="">
+            </a>
+            <span class="col-lg-10 col-9 text-start">
+                @item.Name.ToUpperInvariant()
+            </span>
+            <span class="text-end col-lg-2 col-3">@item.Price $</span>
+            <span class="discpercent">-@Math.Round((100 - (100 * (item.DiscountPrice / item.Price)))) %</span>
+            <a asp-controller="Wishlist" asp-action="DeleteFromWishlist" asp-route-id="@item.Id" class="removefromwishlist">
+                <ion-icon name="remove-circle-outline"></ion-icon>
+            </a>
+        </div>
+    }
+}

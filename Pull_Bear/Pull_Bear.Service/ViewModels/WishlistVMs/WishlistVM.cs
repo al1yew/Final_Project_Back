@@ -6,10 +6,11 @@ namespace Pull_Bear.Service.ViewModels.WishlistVMs
 {
     public class WishlistVM
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
         public double Price { get; set; }
-        public int ProductColorSizeId { get; set; }
+        public double DiscountPrice { get; set; }
         public int ProductId { get; set; }
 
     }

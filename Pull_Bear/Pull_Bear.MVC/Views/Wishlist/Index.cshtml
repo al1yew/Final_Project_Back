@@ -1,0 +1,29 @@
+﻿@model List<WishlistVM>
+
+<main>
+
+    <section class="whereareyou">
+        <div class="where">.</div>
+    </section>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <div class="row keeper">
+                <div class="col-lg-6">
+                    <a href="index.html">MAIN PAGE</a>&nbsp;/ WISHLIST
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishlist">
+        <div class="container">
+            <div class="row all wishlistpartial">
+
+                @await Html.PartialAsync("_WishlistPartial", Model)
+
+            </div>
+        </div>
+    </section>
+</main>
+

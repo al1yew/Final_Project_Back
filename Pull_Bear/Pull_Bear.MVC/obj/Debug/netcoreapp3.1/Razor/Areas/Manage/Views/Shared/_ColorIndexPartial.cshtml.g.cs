@@ -98,20 +98,41 @@ using Pull_Bear.Service.ViewModels.AppUserVMs;
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.OrderItemVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.OrderVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
 using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b85a45fbf72d99baa15d3041f645cd64d1ea90da", @"/Areas/Manage/Views/Shared/_ColorIndexPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f0142f1bcfe29b95b33bf8ba10793e331d1a9ee9", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5d062b668211512316e1353cd5adfc7ec7aba299", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Shared__ColorIndexPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<PaginationList<ColorListVM>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-warning"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -246,7 +267,7 @@ WriteAttributeValue("", 1174, colorListVM.IsDeleted ? "red" : "green", 1174, 42,
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                <td class=\"col-lg-1 col-1 text-wrap\">\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b85a45fbf72d99baa15d3041f645cd64d1ea90da12901", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b85a45fbf72d99baa15d3041f645cd64d1ea90da13545", async() => {
                 WriteLiteral("Update");
             }
             );
@@ -291,7 +312,7 @@ WriteAttributeValue("", 1174, colorListVM.IsDeleted ? "red" : "green", 1174, 42,
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b85a45fbf72d99baa15d3041f645cd64d1ea90da16040", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b85a45fbf72d99baa15d3041f645cd64d1ea90da16684", async() => {
                 WriteLiteral("Restore");
             }
             );
@@ -370,7 +391,7 @@ WriteAttributeValue("", 1174, colorListVM.IsDeleted ? "red" : "green", 1174, 42,
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b85a45fbf72d99baa15d3041f645cd64d1ea90da21492", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b85a45fbf72d99baa15d3041f645cd64d1ea90da22136", async() => {
                 WriteLiteral("Delete");
             }
             );

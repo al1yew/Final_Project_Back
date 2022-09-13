@@ -98,20 +98,41 @@ using Pull_Bear.Service.ViewModels.AppUserVMs;
 #nullable disable
 #nullable restore
 #line 15 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
-using Pull_Bear.Service.ViewModels;
+using Pull_Bear.Service.ViewModels.OrderItemVMs;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 16 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels.OrderVMs;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 18 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Core.Enums;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 19 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
+using Pull_Bear.Service.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 20 "C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\Areas\Manage\Views\_ViewImports.cshtml"
 using Pull_Bear.Service.Enums;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8344cb61ea6117daada868ed5337fdd15124f701", @"/Areas/Manage/Views/Shared/_SettingIndexPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f0142f1bcfe29b95b33bf8ba10793e331d1a9ee9", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5d062b668211512316e1353cd5adfc7ec7aba299", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Shared__SettingIndexPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IDictionary<string, string>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("updateForm d-flex justify-content-between flex-wrap"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -172,7 +193,7 @@ using Pull_Bear.Service.Enums;
             BeginWriteAttribute("class", " class=\"", 220, "\"", 228, 0);
             EndWriteAttribute();
             WriteLiteral(">\r\n                <a style=\"padding: 7px;\" class=\"Updatebtn btn btn-primary\">Update</a>\r\n            </div>\r\n            <div class=\"d-none\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8344cb61ea6117daada868ed5337fdd15124f7018625", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8344cb61ea6117daada868ed5337fdd15124f7019269", async() => {
                 WriteLiteral("\r\n                    <input class=\"form-control\"");
                 BeginWriteAttribute("name", " name=\"", 567, "\"", 583, 1);
 #nullable restore

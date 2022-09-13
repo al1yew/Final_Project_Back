@@ -248,3 +248,6 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Raz
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_OrdersPartial.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Wishlist\Index.cshtml.g.cs
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_WishlistPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Order\Index.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_OrderIndexPartial.cshtml.g.cs
+C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Order\Update.cshtml.g.cs

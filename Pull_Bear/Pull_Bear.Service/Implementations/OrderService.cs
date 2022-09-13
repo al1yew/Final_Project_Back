@@ -36,6 +36,41 @@ namespace Pull_Bear.Service.Implementations
             _userManager = userManager;
         }
 
+        public async Task<IQueryable<OrderListVM>> GetAllOrders(int? ordertype, int select)
+        {
+            List<OrderListVM> orders = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllAsync("OrderItems.Product", "AppUser", "OrderItems", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+            IQueryable<OrderListVM> query = orders.AsQueryable();
+
+            if (ordertype != null && ordertype > 0)
+            {
+                switch (ordertype)
+                {
+                    case 1:
+                        query = query.Where(x => x.OrderStatus == OrderStatus.Pending);
+                        break;
+                    case 2:
+                        query = query.Where(x => x.OrderStatus == OrderStatus.Accepted);
+                        break;
+                    case 3:
+                        query = query.Where(x => x.OrderStatus == OrderStatus.Rejected);
+                        break;
+                    case 4:
+                        query = query.Where(x => x.OrderStatus == OrderStatus.Rejected);
+                        break;
+                    case 5:
+                        query = query.Where(x => x.OrderStatus == OrderStatus.Shipped);
+                        break;
+                    case 6:
+                        query = query.Where(x => x.OrderStatus == OrderStatus.Shipped);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return query;
+        }
+
         public async Task<List<OrderListVM>> GetOrders()
         {
             AppUser appUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
@@ -43,6 +78,15 @@ namespace Pull_Bear.Service.Implementations
             List<OrderListVM> orders = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllByExAsync(x => !x.IsDeleted && x.AppUserId == appUser.Id, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
 
             return orders;
+        }
+
+        public async Task<OrderListVM> GetOrderById(int? id)
+        {
+            if (id == null) throw new NotFoundException("Order cannot be found!");
+
+            OrderListVM order = _mapper.Map<OrderListVM>(await _unitOfWork.OrderRepository.GetAsync(x => x.Id == id, "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+
+            return order;
         }
 
         public async Task<OrderIndexVM> GetOrderViewModel()
@@ -299,6 +343,27 @@ namespace Pull_Bear.Service.Implementations
             orders = orders.Where(x => x.OrderItems.Any(x => x.TrackingNumber.ToString().Contains(search))).ToList();
 
             return orders;
+        }
+
+        public async Task UpdateOrder(int? id, OrderStatus orderStatus)
+        {
+            if (id == null) throw new BadRequestException("Id is null!");
+
+            Order order = await _unitOfWork.OrderRepository.GetAsync(x => x.Id == id);
+
+            if (order == null) throw new NotFoundException("Order cannot be found!");
+
+            if (orderStatus != OrderStatus.Rejected)
+            {
+                order.OrderStatus = orderStatus;
+            }
+
+            if (orderStatus == OrderStatus.Delivered)
+            {
+                order.DeliveredAt = DateTime.UtcNow.AddHours(4);
+            }
+
+            await _unitOfWork.CommitAsync();
         }
     }
 }

@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="~/manage/vendors/typicons/typicons.css">
     <link rel="stylesheet" href="~/manage/vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="~/manage/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="~/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
     <link rel="stylesheet" href="/resources/demos/style.css">
 
     <!-- MDBootstrap -->
@@ -249,6 +251,13 @@
                             <span class="menu-title">Users</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Manage" asp-controller="Order" asp-action="Index">
+                            <i class="mdi mdi-grid-large menu-icon"></i>
+                            <span class="menu-title">Orders</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- partial -->
@@ -292,6 +301,8 @@
     <!-- Ion icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- Ion icons -->
+    <srcipt src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></srcipt>
     @* MY SCRIPT *@
     <script src="~/manage/CustomJS/Custom.js" asp-append-version="true"></script>
 

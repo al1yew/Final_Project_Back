@@ -50,6 +50,13 @@
     });
 
 
+    //----------------------------------------------- Toggle Gender Select option in Category Create View
+
+    $(document).on('click', '.tgl', function () {
+
+        $(this).parent().find('.tgltbl').toggle(300);
+    });
+
     //----------------------------------------------- Clear another select option val in Category Create view 
 
     $(document).on('change', '.ismaleselect', function () {

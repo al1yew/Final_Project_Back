@@ -1,0 +1,74 @@
+﻿@model PaginationList<OrderListVM>
+
+@{
+    int no = Model.ItemsCount * (Model.Page - 1);
+    int itemNo = 0;
+}
+
+<table class="table table-bordered table-striped tblContent">
+    <thead>
+        <tr>
+            <th class="col-lg-1 col-1 text-wrap">№</th>
+            <th class="col-lg-1 col-1 text-wrap">Name</th>
+            <th class="col-lg-1 col-1 text-wrap">Price</th>
+            <th class="col-lg-1 col-1 text-wrap">Phone</th>
+            <th class="col-lg-1 col-1 text-wrap">Address</th>
+            <th class="col-lg-1 col-1 text-wrap">City & Country & Zipcode</th>
+            <th class="col-lg-1 col-1 text-wrap">Status</th>
+            <th class="col-lg-1 col-1 text-wrap">Update</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (OrderListVM order in Model)
+        {
+            no++;
+            <tr class=" tgl">
+                <td class="col-lg-1 col-1 text-wrap text-center p-1">@no</td>
+                <td class="col-lg-1 col-1 text-wrap text-center p-1">@order.FullName</td>
+                <td class="col-lg-1 col-1 text-wrap">@order.Price $</td>
+                <td class="col-lg-1 col-1 text-wrap">@order.PhoneNumber</td>
+                <td class="col-lg-1 col-1 text-wrap">@order.Address</td>
+                <td class="col-lg-1 col-1 text-wrap">@order.CityCountry @order.ZipCode</td>
+                <td class="col-lg-1 col-1 text-wrap">@order.OrderStatus</td>
+                <td class="col-lg-1 col-1 text-wrap">
+                    <a class="btn btn-warning" asp-area="Manage" asp-controller="Order" asp-action="Update" asp-route-id="@order.Id">Update</a>
+                </td>
+            </tr>
+
+            <tr class="tgltbl" style="display: none">
+                <td colspan="10">
+                    <div>
+                        <table class="table table-active">
+                            <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Price</th>
+                                    <th>Count</th>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Color</th>
+                                    <th>Tr. No</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in order.OrderItems)
+                                {
+                                    itemNo++;
+                                    <tr>
+                                        <td class="">@itemNo</td>
+                                        <td class=" text-wrap">@item.Price</td>
+                                        <td class=" text-wrap">@item.Count</td>
+                                        <td class=" text-wrap">@item.Name</td>
+                                        <td class=" text-wrap">@item.Product.ProductColorSizes.Select(x => x.Size).FirstOrDefault(x => x.Id == item.SizeId).Name</td>
+                                        <td class=" text-wrap">@item.Product.ProductColorSizes.Select(x => x.Color).FirstOrDefault(x => x.Id == item.ColorId).Name</td>
+                                        <td class=" text-wrap">@item.TrackingNumber</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

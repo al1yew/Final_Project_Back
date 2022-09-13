@@ -246,7 +246,6 @@ $(document).ready(function () {
 
     if ($.trim($(".basketindex").html())) {
         $('.minibasket').remove();
-        console.log('salamm')
     }
 
     //---------------delete from mini basket
@@ -2294,6 +2293,8 @@ $(document).ready(function () {
     //---------------------------------------------------------------------------------------------------------------
 
     //#region 
+
+
 
     //#endregion 
 });

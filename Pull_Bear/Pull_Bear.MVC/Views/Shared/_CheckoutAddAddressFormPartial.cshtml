@@ -4,8 +4,10 @@
     <span class="closeform">
         <ion-icon name="close-circle-outline"></ion-icon>
     </span>
+
+    <div asp-validation-summary="ModelOnly" class="text text-danger"></div>
     <form id="changeaddressform" method="post" class="col-lg-12 col-12 changeaddressform" asp-controller="Order" asp-action="CreateAddress">
-        <label asp-for="Address1" for="address1"><span>*</span>ADDRESS</label>
+        <label asp-for="Address1" for="address1"><span>*</span>ADDRESS 1</label>
         <input asp-for="Address1" name="address1" class="col-12 col-lg-12" id="address1" required>
 
         <label asp-for="Address2" for="address2"><span>*</span>ADDRESS 2</label>

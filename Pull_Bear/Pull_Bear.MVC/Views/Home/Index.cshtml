@@ -302,12 +302,11 @@
 
     <section id="eighth">
         <div class="top ">
-            @foreach (var item in Model.Settings.Where(x => x.Key == "footerslider"))
+            @for (int i = 0; i < 11; i++)
             {
                 <div>
-                    @item.Value &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Model.Settings.FirstOrDefault(x => x.Key == "footerslider").Value &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
-
             }
         </div>
         <form method="post" class="mailform col-lg-8 col-10" asp-controller="Contact" asp-action="SendMail">

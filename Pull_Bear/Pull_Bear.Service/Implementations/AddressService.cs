@@ -67,7 +67,12 @@ namespace Pull_Bear.Service.Implementations
                         dbAddress.IsMain = false;
                     }
 
-                    newAddress.IsMain = addressCreateVM.IsMain;
+                    newAddress.IsMain = true;
+                }
+
+                if (appUser.Addresses.Count == 0)
+                {
+                    newAddress.IsMain = true;
                 }
 
                 await _unitOfWork.AddressRepository.AddAsync(newAddress);

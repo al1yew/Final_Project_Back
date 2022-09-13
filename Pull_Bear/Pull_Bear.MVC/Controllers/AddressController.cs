@@ -39,12 +39,11 @@ namespace Pull_Bear.MVC.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "");
-                TempData["error"] = "Error!";
-                return PartialView("_AddressListPartial", await _addressService.GetAllAsync());
+                //return PartialView("_AddressListPartial", await _addressService.GetAllAsync());
+                return StatusCode(406);
             }
 
             await _addressService.CreateAsync(addressCreateVM);
-            TempData["success"] = "Success!";
             return PartialView("_AddressListPartial", await _addressService.GetAllAsync());
         }
 

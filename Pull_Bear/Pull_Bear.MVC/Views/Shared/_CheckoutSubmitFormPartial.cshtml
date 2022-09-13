@@ -11,9 +11,12 @@
     <span class="col-lg-7 col-7">@Model $</span>
 </div>
 <div class="bottom">
-    <button type="submit" form="orderform" class="aldiq">
-        PAY FOR ORDER
-    </button>
+    @if (Model != 0)
+    {
+        <button type="submit" form="orderform" class="aldiq">
+            PAY FOR ORDER
+        </button>
+    }
     <div class="paywith">
         <span class="col-lg-12 col-12">
             By continuing you agree to P&B's

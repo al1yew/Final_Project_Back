@@ -178,7 +178,7 @@ $(document).ready(function () {
         fetch(url)
             .then(res => res.text())
             .then(data => {
-
+                toastr["success"]("Done!")
                 $('.wishlistpartial').html(data);
             });
     });
@@ -229,13 +229,18 @@ $(document).ready(function () {
                 .then(data => {
 
                     $('.minibasketfetch').html(data);
+
+                    fetch("/Basket/GetBasketIndexItems/")
+                        .then(res => res.text())
+                        .then(data => {
+                            $('.basketforfetch').html(data)
+                        });
                 });
         }
 
         $(this).find('input:checked').prop('checked', false);
         $(this).find('.markicon').remove();
-        $(this).find('select').val('0')
-
+        $(this).find('select').val('0');
     });
 
     //#endregion form shop page  ---- add to basket
@@ -243,6 +248,8 @@ $(document).ready(function () {
     //---------------------------------------------------------------------------------------------------------------
 
     //#region  delete from basket
+
+    //-- get location of user
 
     if ($.trim($(".basketindex").html())) {
         $('.minibasket').remove();
@@ -261,8 +268,9 @@ $(document).ready(function () {
             })
             .then(res => res.text())
             .then(data => {
-
                 $('.minibasketfetch').html(data);
+                $('.minibasket').css('width', `${$(window).width() * 0.9}`)
+                $('.minibasket').show();
             });
     });
 
@@ -297,7 +305,6 @@ $(document).ready(function () {
     });
 
     //#endregion  delete from basket
-
 
     //---------------------------------------------------------------------------------------------------------------
 
@@ -411,6 +418,7 @@ $(document).ready(function () {
     //---------------------------------------------------------------------------------------------------------------
 
     //#region moya custom sortirovka
+
     $(document).on('click', '.filterdiv', function () {
 
         $($(this).find('ul')).toggle();
@@ -486,8 +494,7 @@ $(document).ready(function () {
 
     //--------------------------------- get location of website to change header design
     //ne xochu shto b header i footer menalis na raznix stranickax poetomu budu delat js
-
-
+    //home daki header bashqa sehifelerden ferglenir, bashqalarinda shekil yoxdu. Backendde header footer componentdi, deyishmek istmeirem
     $(document).on('ready', function () {
 
         if ($('.where').text()) {
@@ -496,7 +503,6 @@ $(document).ready(function () {
             $(".computer").css("padding", "13px 0");
             $(".mobile").css("padding", "15px 10px");
         }
-
     });
 
     //#endregion get location of user on website
@@ -592,12 +598,6 @@ $(document).ready(function () {
         ]
     });
 
-    //#endregion product detail page slider
-
-    //---------------------------------------------------------------------------------------------------------------
-
-    //#region product detail page slider bottom 
-
     //--------------------------------- product detail page slider bottom
 
     $('.related_items').slick({
@@ -642,11 +642,12 @@ $(document).ready(function () {
         ]
     });
 
-    //#endregion product detail page slider bottom
+    //#endregion product detail page slider
 
     //---------------------------------------------------------------------------------------------------------------
 
     //#region product detail page form
+
     $(document).on('click', '.buydiv', function () {
 
         $($(this).find('ul')).toggle();
@@ -691,6 +692,8 @@ $(document).ready(function () {
                     colorname = data.paletteTitle
                 });
         }
+
+        //sifte fetchi de basha dushduk
 
         $(this).find('input').prop('checked', false);
 
@@ -786,14 +789,17 @@ $(document).ready(function () {
         fetch(url)
             .then(res => res.text())
             .then(data => {
+
                 $('.basketforfetch').html(data);
-                $('.basketforscroll').scrollTop(scroll)
+                $('.basketforscroll').scrollTop(scroll);
+
                 fetch('/Basket/GetBasket')
                     .then(res => res.text())
                     .then(data => {
+
                         $('.minibasketfetch').html(data);
                         $('.minibasket').remove();
-                        $('.basketforscroll').scrollTop(scroll)
+                        $('.basketforscroll').scrollTop(scroll);
                     });
             });
     });
@@ -920,11 +926,6 @@ $(document).ready(function () {
         ]
     });
 
-    //#endregion basket first slider
-
-    //---------------------------------------------------------------------------------------------------------------
-
-    //#region basket slider second
 
     //--------------------------------- product detail page slider
 
@@ -970,11 +971,11 @@ $(document).ready(function () {
         ]
     });
 
-    //#endregion basket slider second
+    //#endregion basket first slider
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //#region register eye icon
+    //#region login register eye icon
 
     //--------------------------------- product register eye icon
 
@@ -992,7 +993,7 @@ $(document).ready(function () {
         $(this).prev().prev().prev().prev().focus();
     });
 
-    //#endregion register eye icon
+    //#endregion login register eye icon
 
     //---------------------------------------------------------------------------------------------------------------
 
@@ -1248,6 +1249,7 @@ $(document).ready(function () {
                             .then(res => res.text())
                             .then(data => {
                                 $('.rightcheckout').html(data);
+
                             })
                     });
             });
@@ -1273,7 +1275,7 @@ $(document).ready(function () {
     $(document).on('click', '.categoriesfororder', function (e) {
         e.preventDefault();
 
-        fetch($($(this).children()[0]).attr('href'))
+        fetch($(this).attr('href'))
             .then(res => res.text())
             .then(data => {
                 $('.orders').html(data);
@@ -1287,9 +1289,9 @@ $(document).ready(function () {
 
         let inputvalue = $(this).val();
 
-        let url = $(this).data('url');
+        //let url = $(this).data('url');
 
-        url = url + '?search=' + inputvalue;
+        let url = window.location.href + '/Search' + '?search=' + inputvalue;
 
         if (inputvalue) {
             fetch(url)
@@ -1298,6 +1300,10 @@ $(document).ready(function () {
                     $(".orders").html(data);
                 });
         }
+    });
+
+    $(document).on('click', '.xz', function (e) {
+        e.preventDefault()
     });
 
     //#endregion order page toggle menu
@@ -1360,8 +1366,14 @@ $(document).ready(function () {
         })
             .then(res => res.text())
             .then(data => {
-                $('.cardinozu').remove();
-                $('.cardsforfetch').prepend(data)
+                if (data.length > 0) {
+                    $('.cardinozu').remove();
+                    $('.cardsforfetch').prepend(data)
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
                 if ($('.cardinozu').length >= 3) {
                     $('.cardform').remove()
                 }
@@ -1387,6 +1399,7 @@ $(document).ready(function () {
             .then(data => {
                 $('.cardinozu').remove();
                 $('.cardsforfetch').prepend(data)
+                toastr["success"]("Done!")
             });
     });
 
@@ -1401,6 +1414,7 @@ $(document).ready(function () {
             .then(data => {
                 $('.cardinozu').remove();
                 $('.cardsforfetch').prepend(data)
+                toastr["success"]("Done!")
             });
     });
 
@@ -1463,9 +1477,14 @@ $(document).ready(function () {
         })
             .then(res => res.text())
             .then(data => {
-                $('.addressinozu').remove();
-                $('.addressforfetch').prepend(data)
-
+                if (data.length > 0) {
+                    $('.addressinozu').remove();
+                    $('.addressforfetch').prepend(data)
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
                 if ($('.addressinozu').length >= 3) {
                     $('.addressform').remove()
                 }
@@ -1491,6 +1510,7 @@ $(document).ready(function () {
             .then(data => {
                 $('.addressinozu').remove();
                 $('.addressforfetch').prepend(data)
+                toastr["success"]("Done!")
             });
     });
 
@@ -1505,6 +1525,7 @@ $(document).ready(function () {
             .then(data => {
                 $('.addressinozu').remove();
                 $('.addressforfetch').prepend(data)
+                toastr["success"]("Done!")
             });
     });
 
@@ -2126,7 +2147,7 @@ $(document).ready(function () {
         location.reload();
     });
 
-    $(document).on('click', '.headcategoryli', function () {
+    $(document).on('click', '.shoppagecaegory', function () {
 
         if ($(window).width() > 576) {
             $(window).scrollTop(600)
@@ -2254,10 +2275,10 @@ $(document).ready(function () {
         "positionClass": "toast-bottom-right",
         "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "3000",
+        "showDuration": "1000",
         "hideDuration": "1000",
-        "timeOut": "3000",
-        "extendedTimeOut": "3000",
+        "timeOut": "1000",
+        "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
@@ -2276,10 +2297,10 @@ $(document).ready(function () {
         "positionClass": "toast-bottom-right",
         "preventDuplicates": false,
         "onclick": null,
-        "showDuration": "3000",
+        "showDuration": "1000",
         "hideDuration": "1000",
         "timeOut": "1000",
-        "extendedTimeOut": "3000",
+        "extendedTimeOut": "1000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
@@ -2287,7 +2308,6 @@ $(document).ready(function () {
     }
 
     //#endregion Toastr
-
 
     //---------------------------------------------------------------------------------------------------------------
 

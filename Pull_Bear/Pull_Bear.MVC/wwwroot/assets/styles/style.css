@@ -18485,8 +18485,8 @@ a:hover {
   position: absolute;
   top: 33%;
   right: 2%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
 }
 
@@ -18496,8 +18496,8 @@ a:hover {
   top: 31%;
   right: 2%;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 }
 
 .registersection .all form .passworddiv .infopass {
@@ -18980,8 +18980,8 @@ a:hover {
     top: 37%;
     right: 3%;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
   }
   .loginsection .all form .passworddiv .closepass {
     position: absolute;
@@ -18989,8 +18989,8 @@ a:hover {
     top: 36%;
     right: 3%;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
   }
   .loginsection .all form .passworddiv .infopass {
     font-family: var(--neueregular);
@@ -23654,7 +23654,7 @@ a:hover {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 2000%;
+    width: 2200%;
   }
   .karusel .carouselmaindivabout span {
     font-family: var(--neuemedium);
@@ -24231,7 +24231,7 @@ a:hover {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 2000%;
+    width: 2200%;
   }
   .karusel .carouselmaindivabout span {
     font-family: var(--neuemedium);
@@ -24520,7 +24520,7 @@ a:hover {
   }
   .rabotaysnami .all .allthen .left,
   .rabotaysnami .all .allthen .right {
-    padding: 10 px;
+    padding: 20px;
   }
   .rabotaysnami .all .allthen .left {
     position: relative;
@@ -24746,7 +24746,7 @@ a:hover {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: 2000%;
+    width: 2200%;
   }
   .karusel .carouselmaindivabout span {
     font-family: var(--neuemedium);
@@ -25372,6 +25372,10 @@ a:hover {
   #wishlist .all .wishlistitem .removefromwishlist:hover {
     color: black;
   }
+}
+
+.validation-summary-errors ul {
+  padding: 0 !important;
 }
 
 @font-face {

@@ -45,11 +45,6 @@ namespace Pull_Bear.Service.ViewModels.OrderVMs
             RuleFor(x => x.FullName).NotEmpty().WithMessage("Full Name is required!");
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required!");
             RuleFor(x => x.PhoneNumber).NotEmpty().WithMessage("Phone Number is required!");
-            RuleFor(x => x.Address1).NotEmpty().WithMessage("Address1 is required!");
-            RuleFor(x => x.Address2).NotEmpty().WithMessage("Address2 is required!");
-            RuleFor(x => x.Country).NotEmpty().WithMessage("Country is required!");
-            RuleFor(x => x.City).NotEmpty().WithMessage("City is required!");
-            RuleFor(x => x.ZipCode).NotEmpty().WithMessage("ZipCode is required!");
         }
     }
 }

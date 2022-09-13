@@ -30,7 +30,7 @@ namespace Pull_Bear.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                TempData["error"] = "Error!";
+                ModelState.AddModelError("", "");
                 return View("Index", appUserUpdateVM);
             }
 
@@ -39,8 +39,6 @@ namespace Pull_Bear.MVC.Controllers
                 ModelState.AddModelError("", item);
                 return View("Index");
             }
-
-            TempData["success"] = "Success!";
 
             return RedirectToAction("Index");
         }

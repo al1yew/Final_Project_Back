@@ -89,7 +89,16 @@
                                 <span class="col-12">AVAILABLE COLORS:</span>
                                 @foreach (var item in product.ProductColorSizes.GroupBy(x => x.Color.HexCode).Select(x => x.First()))
                                 {
-                                    <span class="col-3">@item.Color.Name.ToUpperInvariant()</span>
+                                    <span class="col-3">
+                                        @if (@item.Color.Name.ToUpperInvariant().Length > 10)
+                                        {
+                                            @item.Color.Name.ToUpperInvariant().Substring(10)
+                                        }
+                                        else
+                                        {
+                                            @item.Color.Name.ToUpperInvariant()
+                                        }
+                                    </span>
                                 }
                             </div>
                         </div>

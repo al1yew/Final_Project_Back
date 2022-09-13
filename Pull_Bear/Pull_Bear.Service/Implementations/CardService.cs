@@ -74,6 +74,11 @@ namespace Pull_Bear.Service.Implementations
                     newcard.IsMain = cardCreateVM.IsMain;
                 }
 
+                if (appUser.Cards.Count == 0)
+                {
+                    newcard.IsMain = true;
+                }
+
                 await _unitOfWork.CardRepository.AddAsync(newcard);
                 await _unitOfWork.CommitAsync();
             }

@@ -6,7 +6,7 @@
 
     @foreach (BasketVM basket in Model)
     {
-        <div class="col-lg-2-5 col-3">
+        <div class="col-lg-2-5 checkoutbasketitem col-3">
             <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@basket.ProductId" class="proddet">
                 <img class="img-fluid" src="~/assets/images/products/@basket.ProductId/@basket.Product.ProductImage" alt="">
             </a>

@@ -17,15 +17,15 @@ namespace Pull_Bear.Service.ViewModels.AddressVMs
         public string AppUserId { get; set; }
     }
 
-    //public class AddressCreateVMValidator : AbstractValidator<AddressCreateVM>
-    //{
-    //    public AddressCreateVMValidator()
-    //    {
-    //        RuleFor(x => x.Address1.Length).LessThanOrEqualTo(40).WithMessage("Address 1 must be max 40 symbols!");
-    //        RuleFor(x => x.Address2.Length).LessThanOrEqualTo(40).WithMessage("Address 2 must be max 40 symbols!");
-    //        RuleFor(x => x.City.Length).LessThanOrEqualTo(22).WithMessage("City must be max 22 symbols!");
-    //        RuleFor(x => x.Country.Length).LessThanOrEqualTo(60).WithMessage("Country must be max 60 symbols!");
-    //        RuleFor(x => x.ZipCode.Length).LessThanOrEqualTo(12).WithMessage("Zip code must be max 12 symbols!");
-    //    }
-    //}
+    public class AddressCreateVMValidator : AbstractValidator<AddressCreateVM>
+    {
+        public AddressCreateVMValidator()
+        {
+            RuleFor(x => x.Address1.Length).LessThanOrEqualTo(40).WithMessage("Address 1 must be max 40 symbols!");
+            RuleFor(x => x.Address2.Length).LessThanOrEqualTo(40).WithMessage("Address 2 must be max 40 symbols!");
+            RuleFor(x => x.City.Length).LessThanOrEqualTo(22).WithMessage("City must be max 22 symbols!");
+            RuleFor(x => x.Country.Length).LessThanOrEqualTo(60).WithMessage("Country must be max 60 symbols!");
+            RuleFor(x => x.ZipCode.Length).LessThanOrEqualTo(12).WithMessage("Zip code must be max 12 symbols!");
+        }
+    }
 }

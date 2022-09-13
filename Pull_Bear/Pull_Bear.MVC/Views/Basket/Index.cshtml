@@ -17,36 +17,39 @@
         </div>
     </section>
 
-    <section class="basketfirst">
-        <div class="container">
-            <div class="row all">
-                <div class="col-lg-4 keeper">
-                    <div class="top">
-                        FREE SHIPPING
+    @if (Model.BasketVM.Count > 0)
+    {
+        <section class="basketfirst">
+            <div class="container">
+                <div class="row all">
+                    <div class="col-lg-4 keeper">
+                        <div class="top">
+                            FREE SHIPPING
+                        </div>
+                        <div class="bottom">
+                            ON ALL ORDERS OVER 150€
+                        </div>
                     </div>
-                    <div class="bottom">
-                        ON ALL ORDERS OVER 150€
+                    <div class="col-lg-4 keeper">
+                        <div class="top">
+                            DUTES AND TAXES INCLUDED
+                        </div>
+                        <div class="bottom">
+                            NO EXTRA CHARGES AT CHECKOUT
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 keeper">
-                    <div class="top">
-                        DUTES AND TAXES INCLUDED
-                    </div>
-                    <div class="bottom">
-                        NO EXTRA CHARGES AT CHECKOUT
-                    </div>
-                </div>
-                <div class="col-lg-4 keeper">
-                    <div class="top">
-                        SPEED
-                    </div>
-                    <div class="bottom">
-                        DELIVERY TIME: 3-5 WORKING DAYS
+                    <div class="col-lg-4 keeper">
+                        <div class="top">
+                            SPEED
+                        </div>
+                        <div class="bottom">
+                            DELIVERY TIME: 3-5 WORKING DAYS
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    }
 
     <section class="basketsecond">
         <p class="firstp">YOUR BASKET</p>

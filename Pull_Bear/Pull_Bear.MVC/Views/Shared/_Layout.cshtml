@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="~/assets/styles/plugins/animate.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="icon" href="~/assets/images/settings/favicon_pb.png">
+
     <link rel="stylesheet" href="~/assets/styles/style.css" asp-append-version="true">
 
     <link rel="stylesheet" href="~/assets/Custom.css" asp-append-version="true">
@@ -37,17 +39,15 @@
 
 <body class="body">
 
-    @if (TempData["error"] != null)
-    {
-        <input type="hidden" id="errorinput" value="@TempData["error"]" />
-    }
+    @*@if (TempData["error"] != null)
+        {
+            <input type="hidden" id="errorinput" value="@TempData["error"]" />
+        }
 
-    @if (TempData["success"] != null)
-    {
-        <input type="hidden" id="successInput" value="@TempData["success"]" />
-    }
-
-
+        @if (TempData["success"] != null)
+        {
+            <input type="hidden" id="successInput" value="@TempData["success"]" />
+        }*@
 
     <input type="hidden" id="fetchinput" value="" />
 

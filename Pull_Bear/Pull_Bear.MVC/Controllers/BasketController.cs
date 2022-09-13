@@ -279,6 +279,17 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_BasketIndexPartial", await _getBasketItemAsync(basketVMs));
         }
 
+        public async Task<IActionResult> GetBasketIndexItems()
+        {
+            string basket = HttpContext.Request.Cookies["basket"];
+
+            if (string.IsNullOrWhiteSpace(basket)) return BadRequest();
+
+            List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+            return PartialView("_BasketIndexPartial", await _getBasketItemAsync(basketVMs));
+        }
+
         public async Task<IActionResult> UpdateCount(UpdateBasketVM updateBasketVM)
         {
             if (updateBasketVM == null) return BadRequest();

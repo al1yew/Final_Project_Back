@@ -16,7 +16,7 @@
                 <ul class="head_categories">
                     @foreach (CategoryListVM category in Model.Categories.Where(x => x.IsMain))
                     {
-                        <li class="headcategoryli">
+                        <li class="headcategoryli shoppagecaegory">
                             @if (category.IsMain)
                             {
                                 <a href="" class="categoryhref sortvmclick sortparentcategoryid" data-parentcategoryid="@category.Id">

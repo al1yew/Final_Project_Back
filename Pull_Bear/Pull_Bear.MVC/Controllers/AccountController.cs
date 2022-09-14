@@ -307,7 +307,7 @@ namespace Pull_Bear.MVC.Controllers
             client.Credentials = new NetworkCredential("pullandbear.az@gmail.com", "yrjizuufmdacaslu");
             client.EnableSsl = true;
             string text = "Please click the button to reset your password!";
-            var message = await EmailSender.SendMail("pullandbear.az@gmail.com", appUser.Email, link, "Confirm Email", "Confirm", text);
+            var message = await EmailSender.SendMail("pullandbear.az@gmail.com", appUser.Email, link, "Reset Password", "Reset", text);
             message.IsBodyHtml = true;
             client.Send(message);
             message.Dispose();

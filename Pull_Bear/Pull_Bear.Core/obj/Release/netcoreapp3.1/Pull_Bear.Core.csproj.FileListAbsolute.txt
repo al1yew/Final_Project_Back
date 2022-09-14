@@ -11,3 +11,16 @@ C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.dll
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.pdb
 C:\Users\hp\Desktop\Back_End\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.genruntimeconfig.cache
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\bin\Release\netcoreapp3.1\Pull_Bear.Core.deps.json
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\bin\Release\netcoreapp3.1\Pull_Bear.Core.runtimeconfig.json
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\bin\Release\netcoreapp3.1\Pull_Bear.Core.runtimeconfig.dev.json
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\bin\Release\netcoreapp3.1\Pull_Bear.Core.dll
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\bin\Release\netcoreapp3.1\Pull_Bear.Core.pdb
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.csproj.AssemblyReference.cache
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.AssemblyInfoInputs.cache
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.AssemblyInfo.cs
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.csproj.CoreCompileInputs.cache
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.dll
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.pdb
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.Core\obj\Release\netcoreapp3.1\Pull_Bear.Core.genruntimeconfig.cache

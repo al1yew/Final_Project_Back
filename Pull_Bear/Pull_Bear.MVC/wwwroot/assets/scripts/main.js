@@ -2004,8 +2004,8 @@ $(document).ready(function () {
 
         let location = window.location.href;
 
-        if (location.indexOf("genderId") > -1) {
-            let genderId = location.split("genderId=")[1]
+        if (location.indexOf("genderid") > -1) {
+            let genderId = location.split("genderid=")[1]
             sort.genderId = genderId
         }
 
@@ -2051,8 +2051,8 @@ $(document).ready(function () {
 
         let location = window.location.href;
 
-        if (location.indexOf("genderId") > -1) {
-            let genderId = location.split("genderId=")[1]
+        if (location.indexOf("genderid") > -1) {
+            let genderId = location.split("genderid=")[1]
             sort.genderId = genderId
         }
 
@@ -2085,8 +2085,8 @@ $(document).ready(function () {
 
         let location = window.location.href;
 
-        if (location.indexOf("genderId") > -1) {
-            let genderId = location.split("genderId=")[1]
+        if (location.indexOf("genderid") > -1) {
+            let genderId = location.split("genderid=")[1]
             sort.genderId = genderId
         }
 
@@ -2126,8 +2126,8 @@ $(document).ready(function () {
 
             let location = window.location.href;
 
-            if (location.indexOf("genderId") > -1) {
-                let genderId = location.split("genderId=")[1]
+            if (location.indexOf("genderid") > -1) {
+                let genderId = location.split("genderid=")[1]
                 sort.genderId = genderId
             }
 
@@ -2323,7 +2323,22 @@ $(document).ready(function () {
 
     //#region 
 
+    $(document).on('submit', '#accountform', function (e) {
+        e.preventDefault()
 
+        fetch($(this).attr('action'), {
+            method: 'post',
+            body: new FormData(e.target)
+        })
+            .then(res => {
+                if (res.status != 406) {
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
+            });
+    });
 
     //#endregion 
 });

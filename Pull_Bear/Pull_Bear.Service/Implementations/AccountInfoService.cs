@@ -1,15 +1,20 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Exceptions;
+using Pull_Bear.Service.Extensions.EmailSender;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 

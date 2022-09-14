@@ -2323,7 +2323,22 @@ $(document).ready(function () {
 
     //#region 
 
+    $(document).on('submit', '#accountform', function (e) {
+        e.preventDefault()
 
+        fetch($(this).attr('action'), {
+            method: 'post',
+            body: new FormData(e.target)
+        })
+            .then(res => {
+                if (res.status != 406) {
+                    toastr["success"]("Done!")
+                }
+                else {
+                    toastr["error"]("Error!")
+                }
+            });
+    });
 
     //#endregion 
 });

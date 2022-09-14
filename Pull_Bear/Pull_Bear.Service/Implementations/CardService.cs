@@ -110,7 +110,7 @@ namespace Pull_Bear.Service.Implementations
 
             if (appUser.Cards != null)
             {
-                if (appUser.Addresses.FirstOrDefault(x => x.IsMain) != null)
+                if (appUser.Cards.FirstOrDefault(x => x.IsMain) != null)
                 {
                     appUser.Cards.FirstOrDefault(x => x.IsMain).IsMain = false;
                 }

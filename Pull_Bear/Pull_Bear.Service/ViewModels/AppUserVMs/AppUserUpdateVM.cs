@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Pull_Bear.Service.ViewModels.AppUserVMs
@@ -12,8 +13,11 @@ namespace Pull_Bear.Service.ViewModels.AppUserVMs
         public string SurName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
+        [DataType(DataType.Password)]
         public string NewPassword { get; set; }
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
         public bool IsAdmin { get; set; }
     }
@@ -30,6 +34,17 @@ namespace Pull_Bear.Service.ViewModels.AppUserVMs
             RuleFor(x => x.PhoneNumber).Matches(@"^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$").WithMessage("Phone is in incorrect variant");
             RuleFor(x => x.Email).NotEmpty().EmailAddress().WithMessage("Email is required in right format!");
             RuleFor(x => x.NewPassword).Equal(x => x.ConfirmPassword).WithMessage("Password does not match to Confirm Password!");
+
+            RuleFor(x => x).Custom((x, y) =>
+            {
+                if (x.NewPassword != null)
+                {
+                    if (x.NewPassword.Length < 8)
+                    {
+                        y.AddFailure("Password must be at least 8 characters!");
+                    }
+                }
+            });
         }
     }
 }

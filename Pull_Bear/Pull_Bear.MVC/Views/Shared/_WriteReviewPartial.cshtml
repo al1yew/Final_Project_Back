@@ -16,16 +16,16 @@
         </div>
     }
 
-    <textarea asp-for="Review" class="@(User.Identity.IsAuthenticated ? "col-lg-9 col-9" : "col-lg-6 col-6") reviewarea" id="reviewtext"
+    <textarea asp-for="Review" class="@(User.Identity.IsAuthenticated ? "col-lg-9 col-12" : "col-lg-6 col-6") reviewarea" id="reviewtext"
               placeholder="Your review..." required></textarea>
     <span asp-validation-for="Review" class="text-danger"></span>
 
-    <span class="clearreview" style="right: 22.7%;">
+    <span class="clearreview">
         <ion-icon name="close-outline" class="clearreviewicon"></ion-icon>
     </span>
 
-    <label for="upload">
-        <ion-icon name="cloud-upload-outline" style="font-size: 35px; cursor:pointer"></ion-icon>
+    <label for="upload" class="uploadimg">
+        <ion-icon name="cloud-upload-outline" class="ionik"></ion-icon>
         <input asp-for="Photos" multiple type="file" id="upload" style="display:none">
     </label>
 
@@ -42,7 +42,6 @@
             <option value="2"></option>
             <option value="1"></option>
         </select>
-        <span asp-validation-for="Rating" class="text-danger"></span>
 
     </div>
 </form>

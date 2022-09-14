@@ -18,7 +18,7 @@ namespace Pull_Bear.MVC.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper; 
 
         public OrderController(IOrderService orderService, IMapper mapper)
         {

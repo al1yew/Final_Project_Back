@@ -13,7 +13,7 @@ namespace Pull_Bear.MVC.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        public AboutController(IUnitOfWork unitOfWork, IMapper mapper)
+        public AboutController(IUnitOfWork unitOfWork, IMapper mapper) 
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

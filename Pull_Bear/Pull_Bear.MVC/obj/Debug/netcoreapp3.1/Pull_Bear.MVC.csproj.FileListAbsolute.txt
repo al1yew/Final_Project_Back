@@ -718,7 +718,6 @@ D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MV
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\_ViewImports.cshtml.g.cs
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\_ViewStart.cshtml.g.cs
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
-D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\AccountInfo\ConfirmEmail.cshtml.g.cs
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\AccountInfo\Update.cshtml.g.cs
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Account\ConfirmEmail.cshtml.g.cs
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Account\EmailHasBeenSent.cshtml.g.cs
@@ -773,3 +772,4 @@ D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MV
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Pull_Bear.MVC.dll
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Pull_Bear.MVC.pdb
 D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Pull_Bear.MVC.genruntimeconfig.cache
+D:\programming\Final Project\Back_End_kotoriy_ya_commitil\Pull_Bear\Pull_Bear.MVC\obj\Debug\netcoreapp3.1\Razor\Views\AccountInfo\Confirm.cshtml.g.cs

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Controllers
-{
+{ 
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;

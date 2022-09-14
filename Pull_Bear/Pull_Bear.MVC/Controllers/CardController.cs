@@ -12,7 +12,7 @@ namespace Pull_Bear.MVC.Controllers
     public class CardController : Controller
     {
         private readonly ICardService _cardService;
-
+         
         public CardController(ICardService cardService)
         {
             _cardService = cardService;

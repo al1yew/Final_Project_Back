@@ -8,7 +8,7 @@ namespace Pull_Bear.MVC.Controllers
 {
     public class FaqController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index() 
         {
             return View();
         }

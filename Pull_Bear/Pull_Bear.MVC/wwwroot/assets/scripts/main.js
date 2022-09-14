@@ -2234,9 +2234,11 @@ $(document).ready(function () {
 
         let inputvalue = $(this).val();
 
-        let url = new URL('../Shop/Search', window.location.href)
+        //let url = new URL('../Shop/Search', window.location.href)
 
-        url = url.href + '?search=' + inputvalue;
+        //url = url.href + '?search=' + inputvalue;
+
+        let url = "/Shop/Search" + '?search=' + inputvalue;
 
         if (inputvalue) {
             fetch(url)
@@ -2331,11 +2333,21 @@ $(document).ready(function () {
             body: new FormData(e.target)
         })
             .then(res => {
-                if (res.status != 406) {
+                if (res.status == 200) {
                     toastr["success"]("Done!")
+                    $('#foroldpassword').val('');
+                    $('#fornewpassword').val('');
+                    $('#fornewpasswordconfirm').val('');
                 }
-                else {
+                else if (res.status == 406) {
                     toastr["error"]("Error!")
+                }
+                else if (res.status == 201) {
+                    toastr["info"]("We have sent confirmation to your email.")
+                    toastr["success"]("Done!")
+                    $('#foroldpassword').val('');
+                    $('#fornewpassword').val('');
+                    $('#fornewpasswordconfirm').val('');
                 }
             });
     });

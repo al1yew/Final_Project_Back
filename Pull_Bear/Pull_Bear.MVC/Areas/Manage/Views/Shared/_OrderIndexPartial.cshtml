@@ -60,7 +60,7 @@
                                         <td class=" text-wrap">@item.Count</td>
                                         <td class=" text-wrap">@item.Name</td>
                                         <td class=" text-wrap">@item.Product.ProductColorSizes.Select(x => x.Size).FirstOrDefault(x => x.Id == item.SizeId).Name</td>
-                                        <td class=" text-wrap">@item.Product.ProductColorSizes.Select(x => x.Color).FirstOrDefault(x => x.Id == item.ColorId).Name</td>
+                                        <td class=" text-wrap">@item.Product.ProductColorSizes.Select(x=>x.Color).FirstOrDefault(x=>x.Id==item.ColorId).Name</td>
                                         <td class=" text-wrap">@item.TrackingNumber</td>
                                     </tr>
                                 }

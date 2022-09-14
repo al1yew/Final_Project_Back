@@ -1,21 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
 using Pull_Bear.Service.Exceptions;
-using Pull_Bear.Service.Extensions.EmailSender;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Pull_Bear.Service.Implementations
@@ -23,14 +14,12 @@ namespace Pull_Bear.Service.Implementations
     public class AccountInfoService : IAccountInfoService
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AccountInfoService(UserManager<AppUser> userManager, IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public AccountInfoService(UserManager<AppUser> userManager, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
-            _unitOfWork = unitOfWork;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -44,7 +33,8 @@ namespace Pull_Bear.Service.Implementations
             return appUser;
         }
 
-        public async Task<List<string>> UpdateUser(AppUserUpdateVM appUserUpdateVM)
+
+        public async Task<bool> UpdateUser(AppUserUpdateVM appUserUpdateVM)
         {
             AppUser dbAppUser = await _userManager.FindByNameAsync(_httpContextAccessor.HttpContext.User.Identity.Name);
 
@@ -55,39 +45,18 @@ namespace Pull_Bear.Service.Implementations
 
             IdentityResult identityResult = await _userManager.UpdateAsync(dbAppUser);
 
-            List<string> errors = new List<string>();
-
-            if (!identityResult.Succeeded)
-            {
-                foreach (var item in identityResult.Errors)
-                {
-                    errors.Add(item.Description);
-                }
-
-                return errors;
-            }
+            if (!identityResult.Succeeded) return true;
 
             if (appUserUpdateVM.NewPassword != null && appUserUpdateVM.ConfirmPassword != null && appUserUpdateVM.CurrentPassword != null)
             {
-                if (await _userManager.CheckPasswordAsync(dbAppUser, appUserUpdateVM.CurrentPassword) && appUserUpdateVM.CurrentPassword == appUserUpdateVM.NewPassword)
-                {
-                    errors.Add("New password cannot be same as current!");
-                }
+                if (!await _userManager.CheckPasswordAsync(dbAppUser, appUserUpdateVM.CurrentPassword) || appUserUpdateVM.CurrentPassword == appUserUpdateVM.NewPassword) return true;
 
                 IdentityResult result = await _userManager.ChangePasswordAsync(dbAppUser, appUserUpdateVM.CurrentPassword, appUserUpdateVM.NewPassword);
 
-                if (!identityResult.Succeeded)
-                {
-                    foreach (var item in identityResult.Errors)
-                    {
-                        errors.Add(item.Description);
-                    }
-
-                    return errors;
-                }
+                if (!identityResult.Succeeded) return true;
             }
 
-            return errors;
+            return false;
         }
     }
 }

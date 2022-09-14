@@ -36,19 +36,6 @@ namespace Pull_Bear.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "");
-                return StatusCode(406);
-            }
-
-            List<string> errors = await _accountInfoService.UpdateUser(appUserUpdateVM);
-
-            if (errors.Count > 0)
-            {
-                foreach (var item in errors)
-                {
-                    ModelState.AddModelError("", item);
-                }
-
                 return StatusCode(406);
             }
 
@@ -56,9 +43,21 @@ namespace Pull_Bear.MVC.Controllers
 
             if (appUser.NormalizedEmail != appUserUpdateVM.Email.Trim().ToUpperInvariant())
             {
+                if (await _accountInfoService.UpdateUser(appUserUpdateVM))
+                {
+                    return StatusCode(406);
+                }
+
                 await ConfirmEmail(appUserUpdateVM.Email);
 
-                return View("ConfirmEmail");
+                return StatusCode(201);
+            }
+            else
+            {
+                if (await _accountInfoService.UpdateUser(appUserUpdateVM))
+                {
+                    return StatusCode(406);
+                }
             }
 
             return Ok();
@@ -96,7 +95,7 @@ namespace Pull_Bear.MVC.Controllers
 
             await _userManager.UpdateAsync(appUser);
 
-            return RedirectToAction("Index", "home");
+            return View();
         }
     }
 }

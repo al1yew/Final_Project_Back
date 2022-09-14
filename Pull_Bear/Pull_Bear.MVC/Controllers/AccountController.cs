@@ -17,7 +17,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
-namespace Pull_Bear.MVC.Controllers
+namespace Pull_Bear.MVC.Controllers 
 {
     public class AccountController : Controller
     {

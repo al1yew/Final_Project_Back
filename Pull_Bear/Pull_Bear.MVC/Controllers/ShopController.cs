@@ -15,7 +15,7 @@ namespace Pull_Bear.MVC.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly IShopService _shopService;
+        private readonly IShopService _shopService; 
         public ShopController(IShopService shopService)
         {
             _shopService = shopService;
@@ -35,7 +35,6 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_ProductIndexPartial", a);
         }
 
-        [Authorize(Roles = ("Member"))]
         public async Task<IActionResult> ProductDetail(int? id)
         {
             if (id == null) return BadRequest();
@@ -54,6 +53,7 @@ namespace Pull_Bear.MVC.Controllers
                 TempData["error"] = "Error!";
                 return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));
             }
+
             ViewBag.ProductId = id;
             TempData["success"] = "Thanks for review!";
             return PartialView("_ProductReviewPartial", await _shopService.AddReview(writeReviewVM, id));

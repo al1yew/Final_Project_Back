@@ -50,11 +50,11 @@
     });
 
 
-    //----------------------------------------------- Toggle Gender Select option in Category Create View
+    //----------------------------------------------- Toggle table in order partial
 
     $(document).on('click', '.tgl', function () {
 
-        $(this).parent().find('.tgltbl').toggle(300);
+        $(this).next().toggle(300);
     });
 
     //----------------------------------------------- Clear another select option val in Category Create view 
@@ -277,9 +277,11 @@
 
         $('.closesearch').show();
 
-        let url = $(this).data('url');
+        //let url = new URL('../Manage/Search/Search', window.location.href)
 
-        url = url + '?search=' + inputvalue;
+        let url = "/Manage/Search/Search" + '?search=' + inputvalue;
+
+        //url = + '?search=' + inputvalue;
 
         if (inputvalue) {
 
@@ -322,9 +324,9 @@
 
         let inputvalue = $('.layoutsearch').val();
 
-        let searchurl = $('.layoutsearch').data('url');
+        let url = new URL('../Manage/Search/Search', window.location.href)
 
-        searchurl = searchurl + '?search=' + inputvalue;
+        url = url.href + '?search=' + inputvalue;
 
         fetch(url)
             .then(res => res.text())

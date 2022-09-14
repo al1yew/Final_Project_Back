@@ -10,7 +10,7 @@ namespace Pull_Bear.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly IHomeService _homeService;
-
+         
         public HomeController(IHomeService homeService)
         {
             _homeService = homeService;

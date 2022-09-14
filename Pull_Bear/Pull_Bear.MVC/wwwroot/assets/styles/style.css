@@ -7477,10 +7477,12 @@ p {
         -ms-flex-align: center;
             align-items: center;
     width: 100%;
+    padding: 0;
+    margin: 0;
   }
   #clothing .all .pagination ul li {
     background-color: black;
-    width: 7%;
+    width: 10%;
     padding: 2px;
     cursor: pointer;
     -webkit-transition: 0.2s;

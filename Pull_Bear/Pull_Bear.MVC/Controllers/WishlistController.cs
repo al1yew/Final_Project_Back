@@ -19,7 +19,7 @@ namespace Pull_Bear.MVC.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {
+        { 
             return View(await _wishlistService.GetWishlists());
         }
 

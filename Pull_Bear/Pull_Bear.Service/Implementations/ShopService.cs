@@ -45,7 +45,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<ShopVM> GetDataAsync(int genderId, int parentcategoryid)
         {
-            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId <= 0 ? 1 : genderId) && !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId <= 0 ? 1 : genderId) && !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "BodyFit", "Gender", "Category"));
 
             if (parentcategoryid > 0)
             {
@@ -74,7 +74,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<IQueryable<ProductListVM>> CreateSort(SortVM sortVM)
         {
-            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (sortVM.GenderId <= 0 ? 1 : sortVM.GenderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (sortVM.GenderId <= 0 ? 1 : sortVM.GenderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "BodyFit", "Gender", "Category"));
 
             IQueryable<ProductListVM> query = products.AsQueryable();
 

@@ -38,7 +38,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<IQueryable<OrderListVM>> GetAllOrders(int? ordertype, int select)
         {
-            List<OrderListVM> orders = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllAsync("OrderItems.Product", "AppUser", "OrderItems", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
+            List<OrderListVM> orders = _mapper.Map<List<OrderListVM>>(await _unitOfWork.OrderRepository.GetAllAsync("AppUser", "OrderItems", "OrderItems.Product", "OrderItems.Product.ProductColorSizes", "OrderItems.Product.ProductColorSizes.Color", "OrderItems.Product.ProductColorSizes.Size"));
 
             IQueryable<OrderListVM> query = orders.AsQueryable();
 
@@ -68,6 +68,7 @@ namespace Pull_Bear.Service.Implementations
                         break;
                 }
             }
+
             return query;
         }
 

@@ -9,6 +9,6 @@ namespace Pull_Bear.Service.Interfaces
     public interface IAccountInfoService
     {
         Task<AppUserUpdateVM> GetUser();
-        Task<List<string>> UpdateUser(AppUserUpdateVM appUserUpdateVM);
+        Task<bool> UpdateUser(AppUserUpdateVM appUserUpdateVM);
     }
 }

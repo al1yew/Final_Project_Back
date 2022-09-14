@@ -35,7 +35,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<IQueryable<ProductListVM>> GetAllAsync(int? status, int? type)
         {
-            List<ProductListVM> productListVMs = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllAsync("ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender"));
+            List<ProductListVM> productListVMs = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllAsync("ProductColorSizes", "ProductColorSizes.Size", "ProductColorSizes.Color", "Category", "BodyFit", "Gender"));
 
             IQueryable<ProductListVM> query = productListVMs.AsQueryable();
 
@@ -79,7 +79,7 @@ namespace Pull_Bear.Service.Implementations
             if (id == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");
 
-            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id && !x.IsDeleted, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
+            Product product = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
 
             ProductGetVM productGetVM = _mapper.Map<ProductGetVM>(product);
 
@@ -218,7 +218,11 @@ namespace Pull_Bear.Service.Implementations
             //    throw new RecordDublicateException($"Product Already Exists By Name = {productUpdateVM.Name}");
             //ele product varki mende adi eynidi, Pull BEar saytindaki kimi, amma productun ozu ferglenir
 
-            Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => !x.IsDeleted && x.Id == productUpdateVM.Id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
+            Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => x.Id == productUpdateVM.Id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
+
+            //duzdu, productlarin updatedinde IsDeleted Yoxlanilsa yaxshi oar, amma mentigsizdir, Admin istese Deleted olan produtu da update ede biler
+            // niye? cunki vaxt kecdikce belke hemin productu Restore etdi? ona gore product ucun isDeleted yoxlamiram. Obyekt boyukdur, Her defe 
+            //delete restore edib DB-mi yormasin.
 
             if (dbProduct == null)
                 throw new NotFoundException($"Product Cannot be found By id = {id}");

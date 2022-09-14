@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.ProductColorSizeVMs;
@@ -34,6 +35,7 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_ProductIndexPartial", a);
         }
 
+        [Authorize(Roles = ("Member"))]
         public async Task<IActionResult> ProductDetail(int? id)
         {
             if (id == null) return BadRequest();
@@ -43,6 +45,7 @@ namespace Pull_Bear.MVC.Controllers
             return View(await _shopService.GetProduct(id));
         }
 
+        [Authorize(Roles = ("Member"))]
         public async Task<IActionResult> AddReview(WriteReviewVM writeReviewVM, int? id)
         {
             if (!ModelState.IsValid)
@@ -68,6 +71,7 @@ namespace Pull_Bear.MVC.Controllers
             return PartialView("_ReviewCountPartial", await _shopService.GetReviewCount(id));
         }
 
+        [Authorize(Roles = ("Member"))]
         public async Task<IActionResult> Like(int? id)
         {
             return Json(await _shopService.Like(id));

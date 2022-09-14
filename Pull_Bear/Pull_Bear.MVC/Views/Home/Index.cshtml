@@ -45,7 +45,7 @@
                 <a class="seemore" asp-controller="Shop" asp-action="Index">SEE MORE</a>
             </div>
             <div class="sliderfirst">
-                @foreach (ProductListVM product in prods.Where(x => x.IsPreOrder))
+                @foreach (ProductListVM product in prods.Where(x => x.IsHotSale).Skip(2).Take(12))
                 {
                     <div class="slider_element">
                         <div class="imagekeeper">
@@ -122,7 +122,7 @@
 
         <div class="newprodcs container">
 
-            @foreach (var item in prods.Where(x => x.IsHotSale).OrderByDescending(x => x.DiscountPrice).Take(3))
+            @foreach (var item in prods.Where(x => x.IsHotSale).OrderByDescending(x => x.DiscountPrice).Skip(8).Take(3))
             {
                 <div class="newprodcs_element">
                     <div class="empty_space"></div>
@@ -153,7 +153,7 @@
             <div class="slider">
 
 
-                @foreach (var item in prods.Where(x => x.IsPreOrder))
+                @foreach (var item in prods.Where(x => x.IsPreOrder).Skip(5).Take(18))
                 {
                     <div class="slider_element">
                         <div class="imagekeeper">

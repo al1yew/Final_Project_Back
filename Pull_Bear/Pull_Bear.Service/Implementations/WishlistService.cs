@@ -149,7 +149,7 @@ namespace Pull_Bear.Service.Implementations
 
                 if (appUser.Wishlists != null && appUser.Wishlists.Count() > 0)
                 {
-                    Wishlist dbWishlist = await _unitOfWork.WishlistRepository.GetAsync(x => x.Id == id);
+                    Wishlist dbWishlist = await _unitOfWork.WishlistRepository.GetAsync(x => x.ProductId == id && x.AppUserId == appUser.Id);
 
                     if (dbWishlist != null)
                     {

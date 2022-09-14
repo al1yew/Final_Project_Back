@@ -5581,11 +5581,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
       "projectName": "Pull_Bear.Core",
-      "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+      "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

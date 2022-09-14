@@ -17,7 +17,7 @@ namespace Pull_Bear.MVC.Controllers
             _contactService = contactService;
         }
 
-        public IActionResult Index()
+        public IActionResult Contact()
         {
             return View();
         }
@@ -27,8 +27,8 @@ namespace Pull_Bear.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "");
-                return View("Index");
+                ModelState.AddModelError("", "Complete all inputs!");
+                return View(contactCreateVM);
             }
 
             await _contactService.Contact(contactCreateVM);

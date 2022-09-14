@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cg78vUYMa5PzzoALoCGwt6O2Hy3ilUh5qMuz+OM8AMBm6Ai/tU6+VJCmb0HcGLR/yWntGT9Ittw7IXKSWOkguw==",
+  "dgSpecHash": "uKoQX0W/6NGVWr6qEd4pTbcP3J8AyjaRbbKGEGLGXGAKchyBdxdINZBGG80J3750GOD1+dF1eUzXTBw3QnFtxw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

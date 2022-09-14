@@ -66,7 +66,7 @@
                             </li>
                         </ul>
 
-                        <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-productid="@item.ProductId" asp-route-colorid="@item.ColorId" asp-route-sizeid="@item.SizeId" class="forclosebasket deletefrombasket classforbasketscssdelete">
+                        <a asp-controller="Basket" asp-action="DeleteFromBasket" asp-route-productid="@item.ProductId" asp-route-colorid="@item.ColorId" asp-route-sizeid="@item.SizeId" asp-route-countinbasket="@item.Count" class="forclosebasket deletefrombasket classforbasketscssdelete">
                             <svg class="forclosebasket" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path class="forclosebasket" d="M3.75 4.3V23H20.25V4.3H3.75Z" stroke="black"

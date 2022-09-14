@@ -213,9 +213,10 @@ namespace Pull_Bear.Service.Implementations
             if (id != productUpdateVM.Id)
                 throw new BadRequestException($"Id's are not the same!");
 
-            if (await _unitOfWork.ProductRepository.IsExistAsync(c => !c.IsDeleted
-            && (c.Name.ToLower() == productUpdateVM.Name.Trim().ToLower() && c.GenderId == productUpdateVM.GenderId && c.Id != productUpdateVM.Id)))
-                throw new RecordDublicateException($"Product Already Exists By Name = {productUpdateVM.Name}");
+            //if (await _unitOfWork.ProductRepository.IsExistAsync(c => !c.IsDeleted
+            //&& (c.Name.ToLower() == productUpdateVM.Name.Trim().ToLower() && c.GenderId == productUpdateVM.GenderId && c.Id != productUpdateVM.Id)))
+            //    throw new RecordDublicateException($"Product Already Exists By Name = {productUpdateVM.Name}");
+            //ele product varki mende adi eynidi, Pull BEar saytindaki kimi, amma productun ozu ferglenir
 
             Product dbProduct = await _unitOfWork.ProductRepository.GetAsync(x => !x.IsDeleted && x.Id == productUpdateVM.Id, "ProductColorSizes", "ProductToTags", "ProductColorSizes.Size", "ProductColorSizes.Color", "ProductToTags.Tag", "ProductImages", "Category", "BodyFit", "Gender");
 

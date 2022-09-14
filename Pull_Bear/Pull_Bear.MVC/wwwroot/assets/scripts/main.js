@@ -2083,6 +2083,13 @@ $(document).ready(function () {
         sort.maxValue = maxvalue;
         sort.minValue = minvalue;
 
+        let location = window.location.href;
+
+        if (location.indexOf("genderId") > -1) {
+            let genderId = location.split("genderId=")[1]
+            sort.genderId = genderId
+        }
+
         localStorage.setItem('sort', JSON.stringify(sort));
 
         let url = new URL('../Shop/CreateSort', window.location.href)
@@ -2116,6 +2123,13 @@ $(document).ready(function () {
 
             sort.maxValue = maxvalue;
             sort.minValue = minvalue;
+
+            let location = window.location.href;
+
+            if (location.indexOf("genderId") > -1) {
+                let genderId = location.split("genderId=")[1]
+                sort.genderId = genderId
+            }
 
             localStorage.setItem('sort', JSON.stringify(sort));
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj": {}
+    "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
+    "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
         "projectName": "Pull_Bear.Core",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -96,14 +96,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
+    "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
         "projectName": "Pull_Bear.Data",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -124,8 +124,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
+              "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
               }
             }
           }
@@ -192,14 +192,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj": {
+    "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj",
         "projectName": "Pull_Bear.MVC",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.MVC\\Pull_Bear.MVC.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.MVC\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -220,11 +220,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj"
+              "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj"
               },
-              "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj"
+              "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj"
               }
             }
           }
@@ -298,14 +298,14 @@
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj": {
+    "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
         "projectName": "Pull_Bear.Service",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
+        "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\Pull_Bear.Service.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Service\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -326,11 +326,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
+              "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
               },
-              "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Back_End\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj"
+              "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
+                "projectPath": "C:\\Users\\hp\\Desktop\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj"
               }
             }
           }

@@ -45,7 +45,7 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task<ShopVM> GetDataAsync(int genderId, int parentcategoryid)
         {
-            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId <= 0 ? 1 : genderId), "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
+            List<ProductListVM> products = _mapper.Map<List<ProductListVM>>(await _unitOfWork.ProductRepository.GetAllByExAsync(x => x.GenderId == (genderId <= 0 ? 1 : genderId) && !x.IsDeleted, "ProductColorSizes", "ProductColorSizes.Color", "ProductColorSizes.Size", "ProductImages", "BodyFit", "Gender", "Category"));
 
             if (parentcategoryid > 0)
             {

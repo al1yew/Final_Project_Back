@@ -219,7 +219,7 @@
                 <div class="completing_div">
                     <div class="completing_products col-lg-12">
 
-                        @foreach (var item in products.Where(x => x.IsNew).Take(8))
+                        @foreach (var item in products.Where(x => x.IsNew).Skip(4).Take(8))
                         {
                             <div class="col-lg-3-8 col-12 product">
                                 <div class="top">
@@ -305,7 +305,7 @@
                 </p>
                 <div class="relateditems_div">
                     <div class="related_items col-lg-12 col-12">
-                        @foreach (var item in products.Where(x => x.IsHotSale).Take(8))
+                        @foreach (var item in products.Where(x => x.IsHotSale).Skip(5).Take(11))
                         {
                             <div class="col-lg-3-8 col-12 product">
                                 <div class="top">

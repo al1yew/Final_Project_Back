@@ -247,6 +247,16 @@ namespace Pull_Bear.Service.Implementations
             order.OrderItems = orderItems;
             order.DeliveredAt = null;
 
+            if (orderCreateVM.Address == null)
+            {
+                order.Address = orderCreateVM.Address1 + ", " + orderCreateVM.Address2 + ", ";
+            }
+
+            if (orderCreateVM.CityCountry == null)
+            {
+                order.CityCountry = orderCreateVM.City + ", " + orderCreateVM.Country;
+            }
+
             List<Basket> userbaskets = await _unitOfWork.BasketRepository.GetAllByExAsync(x => x.AppUserId == appUser.Id);
 
             foreach (Basket item in userbaskets)

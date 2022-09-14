@@ -269,8 +269,10 @@ $(document).ready(function () {
             .then(res => res.text())
             .then(data => {
                 $('.minibasketfetch').html(data);
-                $('.minibasket').css('width', `${$(window).width() * 0.9}`)
                 $('.minibasket').show();
+                if ($(window).width() < 576) {
+                    $('.minibasket').css('width', `${$(window).width() * 0.9}`)
+                }
             });
     });
 

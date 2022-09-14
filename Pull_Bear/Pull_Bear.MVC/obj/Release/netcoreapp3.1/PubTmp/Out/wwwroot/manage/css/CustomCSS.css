@@ -1,0 +1,13 @@
+﻿.closesearch {
+    position: absolute;
+    top: 56%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 876543;
+}
+
+.closeke {
+    position: relative;
+}

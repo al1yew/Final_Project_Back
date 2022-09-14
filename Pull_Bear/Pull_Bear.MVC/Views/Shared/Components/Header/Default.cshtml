@@ -18,7 +18,7 @@
                     <a asp-controller="Faq" asp-action="Index">FAQ</a>
                 </div>
                 <div class="search col-lg-2-2">
-                    <input class="search_input " id="header_search" placeholder="SEARCH" type="text" >
+                    <input class="search_input " id="header_search" placeholder="SEARCH" type="text">
                     <a href="aparacag search controllere" class="headersearchhref">
                         <ion-icon name="search-outline" class="search_icon"></ion-icon>
                     </a>
@@ -182,7 +182,7 @@
                                 <div class="imagekeeper col-2">
                                     <img src="~/assets/images/categories/@category.Image" class="img-fluid" alt="">
                                 </div>
-                                <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-parentcategoryid="@category.Id" class="col-9">@category.Name.ToUpperInvariant()</a>
+                                <a data-rel="woman" asp-controller="Shop" asp-action="Index" asp-route-parentcategoryid="@category.Id" asp-route-genderid="1" class="col-9">@category.Name.ToUpperInvariant()</a>
                             </li>
                         }
                     </ul>
@@ -193,12 +193,11 @@
                                 <div class="imagekeeper col-2">
                                     <img src="~/assets/images/categories/@category.Image" class="img-fluid" alt="">
                                 </div>
-                                <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-parentcategoryid="@category.Id" class="col-9">@category.Name.ToUpperInvariant()</a>
+                                <a data-rel="man" asp-controller="Shop" asp-action="Index" asp-route-parentcategoryid="@category.Id" asp-route-genderid="2" class="col-9">@category.Name.ToUpperInvariant()</a>
                             </li>
                         }
                     </ul>
                 </div>
-
                 <ul class="footer_sidebar">
                     <li>
                         <a asp-controller="Basket" asp-action="Index">CART</a>
@@ -229,7 +228,6 @@
             </div>
 
             <div class="cart minibasketfetch col-1 forclosebasket">
-
                 @await Html.PartialAsync("_BasketPartial", Model.BasketVMs)
             </div>
 

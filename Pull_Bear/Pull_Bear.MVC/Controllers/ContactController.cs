@@ -28,11 +28,8 @@ namespace Pull_Bear.MVC.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "");
-                TempData["error"] = "Error!";
                 return View("Index");
             }
-
-            TempData["success"] = "Success!";
 
             await _contactService.Contact(contactCreateVM);
 

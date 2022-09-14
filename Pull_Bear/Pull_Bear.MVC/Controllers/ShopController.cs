@@ -20,7 +20,7 @@ namespace Pull_Bear.MVC.Controllers
             _shopService = shopService;
         }
 
-        public async Task<IActionResult> Index(int? genderId, int? parentcategoryid)
+        public async Task<IActionResult> Index(int genderId, int parentcategoryid)
         {
             return View(await _shopService.GetDataAsync(genderId, parentcategoryid));
         }

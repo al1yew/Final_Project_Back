@@ -228,7 +228,45 @@ namespace Pull_Bear.MVC.Controllers
 
             #endregion
 
-            return RedirectToAction("Index", "Home");
+            await ConfirmEmail(registerVM.Email);
+
+            return View("ConfirmEmail");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmEmail(string email)
+        {
+            AppUser appUser = await _userManager.FindByEmailAsync(email);
+
+            string token = await _userManager.GenerateEmailConfirmationTokenAsync(appUser);
+
+            string link = Url.Action("Confirm", "Account", new { email = appUser.Email, token = token }, Request.Scheme);
+
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("pullandbear.az@gmail.com", "yrjizuufmdacaslu");
+            client.EnableSsl = true;
+            string text = "Please click the button to confirm your email!";
+            var message = await EmailSender.SendMail("pullandbear.az@gmail.com", appUser.Email, link, "Confirm Email", "Confirm", text);
+            message.IsBodyHtml = true;
+            client.Send(message);
+            message.Dispose();
+
+            return Ok();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Confirm(string email)
+        {
+            AppUser appUser = await _userManager.FindByEmailAsync(email);
+
+            appUser.EmailConfirmed = true;
+
+            await _userManager.UpdateAsync(appUser);
+
+            return RedirectToAction("Index", "home");
         }
 
         public async Task<IActionResult> Logout()

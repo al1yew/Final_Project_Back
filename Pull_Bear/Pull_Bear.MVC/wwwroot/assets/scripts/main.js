@@ -2022,7 +2022,7 @@ $(document).ready(function () {
         })
             .then(res => res.text())
             .then(data => {
-                $('.products').html(data)
+                $('.fetchprods').html(data)
             });
     });
 
@@ -2067,7 +2067,7 @@ $(document).ready(function () {
         })
             .then(res => res.text())
             .then(data => {
-                $('.products').html(data)
+                $('.fetchprods').html(data)
             });
     });
 
@@ -2094,7 +2094,7 @@ $(document).ready(function () {
         })
             .then(res => res.text())
             .then(data => {
-                $('.products').html(data)
+                $('.fetchprods').html(data)
             });
 
         $('.clearsort').fadeIn(150);
@@ -2128,7 +2128,7 @@ $(document).ready(function () {
             })
                 .then(res => res.text())
                 .then(data => {
-                    $('.products').html(data)
+                    $('.fetchprods').html(data)
                 })
 
             $('.clearsort').fadeIn(150);

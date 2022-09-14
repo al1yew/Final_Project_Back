@@ -88,9 +88,10 @@ namespace Pull_Bear.Service.Implementations
 
         public async Task CreateAsync(ProductCreateVM productCreateVM)
         {
-            if (await _unitOfWork.ProductRepository.IsExistAsync(c => !c.IsDeleted
-            && (c.Name.ToLower() == productCreateVM.Name.Trim().ToLower() && c.GenderId == productCreateVM.GenderId)))
-                throw new RecordDublicateException($"Product Already Exists By Name = {productCreateVM.Name}");
+            //if (await _unitOfWork.ProductRepository.IsExistAsync(c => !c.IsDeleted
+            //&& (c.Name.ToLower() == productCreateVM.Name.Trim().ToLower() && c.GenderId == productCreateVM.GenderId)))
+            //    throw new RecordDublicateException($"Product Already Exists By Name = {productCreateVM.Name}");
+            //ele product varki mende adi eynidi, Pull BEar saytindaki kimi, amma productun ozu ferglenir
 
             int lastId = _unitOfWork.ProductRepository.GetAllAsync().Result.Count == 0 ? 1 : _unitOfWork.ProductRepository.GetAllAsync().Result.OrderByDescending(x => x.Id).FirstOrDefault().Id;
 

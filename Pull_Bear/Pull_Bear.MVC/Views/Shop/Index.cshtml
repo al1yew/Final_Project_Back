@@ -216,21 +216,8 @@
                     </div>
                 </div>
 
-                <div class="products col-lg-12" style="align-items: flex-start;">
-                    @await Html.PartialAsync("_ProductIndexPartial", Model.Products)
-                </div>
-
-                <div class="pagination col-lg-12">
-                    <ul>
-                        @for (int i = 1; i <= Model.Products.PageCount; i++)
-                        {
-                            <li class="@(Model.Products.Page == i ? "activepagination" : "") sortpage" data-sortpage="@i"></li>
-                        }
-                    </ul>
-                </div>
-
-                <div class="loadmore col-lg-12">
-                    <a href="" class="loadmore">LOAD MORE</a>
+                <div class="fetchprods">
+                        @await Html.PartialAsync("_ProductIndexPartial", Model.Products)
                 </div>
 
             </div>

@@ -149,17 +149,17 @@ namespace Pull_Bear.MVC.Controllers
                     if (pcs != null)
                     {
                         List<Basket> baskets = new List<Basket>
-                    {
-                        new Basket
                         {
-                            ProductId = addToBasketVM.ProductId,
-                            SizeId = addToBasketVM.SizeId,
-                            ColorId = addToBasketVM.ColorId,
-                            Name = dbProduct.Name,
-                            Price = dbProduct.DiscountPrice,
-                            Count = 1
-                        }
-                    };
+                            new Basket
+                            {
+                                ProductId = addToBasketVM.ProductId,
+                                SizeId = addToBasketVM.SizeId,
+                                ColorId = addToBasketVM.ColorId,
+                                Name = dbProduct.Name,
+                                Price = dbProduct.DiscountPrice,
+                                Count = 1
+                            }
+                        };
 
                         appUser.Baskets = baskets;
                     }

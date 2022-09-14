@@ -46,6 +46,11 @@ namespace Pull_Bear.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateOrder()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             OrderIndexVM orderIndexVM = await _orderService.GetOrderViewModel();
 
             if (orderIndexVM.Baskets.Count <= 0)

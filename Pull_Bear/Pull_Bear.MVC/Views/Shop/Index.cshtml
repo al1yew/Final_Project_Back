@@ -16,7 +16,7 @@
                 <ul class="head_categories">
                     @foreach (CategoryListVM category in Model.Categories.Where(x => x.IsMain))
                     {
-                        <li class="headcategoryli shoppagecaegory">
+                        <li class="headcategoryli shoppagecaegory" style="cursor: pointer">
                             @if (category.IsMain)
                             {
                                 <a href="" class="categoryhref sortvmclick sortparentcategoryid" data-parentcategoryid="@category.Id">
@@ -29,7 +29,7 @@
                                     <div class="all">
                                         <div class="col-lg-3 left col-12">
                                             <span class="seeall"><a class="sortvmclick sortparentcategoryid" data-parentcategoryid="@category.Id">SEE ALL</a></span>
-                                            <span>
+                                            <span style="cursor: pointer">
                                                 @if (category.IsMain)
                                                 {
                                                     @category.Name.ToUpperInvariant()
@@ -38,7 +38,7 @@
                                             <ul>
                                                 @foreach (var item in Model.Categories.Where(x => x.ParentId == category.Id && !x.IsMain))
                                                 {
-                                                    <li> <a class="sortcategoryid sortvmclick" data-categoryid="@item.Id">@item.Name.ToUpperInvariant()</a> </li>
+                                                    <li style="cursor: pointer"> <a class="sortcategoryid sortvmclick" data-categoryid="@item.Id">@item.Name.ToUpperInvariant()</a> </li>
                                                 }
                                             </ul>
                                         </div>
@@ -49,7 +49,7 @@
                                                 @foreach (var bodyFit in Model.BodyFits)
                                                 {
                                                     <a href="" class="col-lg-3-8 maindiv sortbodyfitid sortvmclick" data-bodyfitid="@bodyFit.Id">
-                                                        <span class="imgkeeper">
+                                                        <span class="imgkeeper" >
                                                             <img class="img-fluid"
                                                                  src="~/assets/images/bodyfit/@bodyFit.Image" alt="">
                                                         </span>

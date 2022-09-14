@@ -2,15 +2,19 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Pull_Bear.Core;
 using Pull_Bear.Core.Models;
+using Pull_Bear.Service.Extensions.EmailSender;
 using Pull_Bear.Service.ViewModels.AccountVMs;
 using Pull_Bear.Service.ViewModels.BasketVMs;
 using Pull_Bear.Service.ViewModels.WishlistVMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Controllers
@@ -22,16 +26,18 @@ namespace Pull_Bear.MVC.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ILogger<AccountController> _logger;
 
         public AccountController(RoleManager<IdentityRole> roleManager,
             UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager, IUnitOfWork unitOfWork, IMapper mapper)
+            SignInManager<AppUser> signInManager, IUnitOfWork unitOfWork, IMapper mapper, ILogger<AccountController> logger)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -230,6 +236,93 @@ namespace Pull_Bear.MVC.Controllers
             await _signInManager.SignOutAsync();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordVM forgotPasswordVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Email is not correct!");
+                return View(forgotPasswordVM);
+            }
+
+            AppUser appUser = await _userManager.FindByEmailAsync(forgotPasswordVM.Email);
+
+            if (appUser == null)
+            {
+                return View();
+            }
+
+            string token = await _userManager.GeneratePasswordResetTokenAsync(appUser);
+
+            string link = Url.Action("ResetPassword", "Account", new { email = forgotPasswordVM.Email, token = token }, Request.Scheme);
+
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("pullandbear.az@gmail.com", "yrjizuufmdacaslu");
+            client.EnableSsl = true;
+            string text = "Please click the button to reset your password!";
+            var message = await EmailSender.SendMail("pullandbear.az@gmail.com", appUser.Email, link, "Confirm Email", "Confirm", text);
+            message.IsBodyHtml = true;
+            client.Send(message);
+            message.Dispose();
+
+            return View("EmailHasBeenSent");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ResetPassword(string token, string email)
+        {
+            if (token == null && email == null)
+            {
+                ModelState.AddModelError("", "Invalid password or email!");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(UserResetPasswordVM resetPasswordVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Provided data is incorrect!");
+                return View(resetPasswordVM);
+            }
+
+            AppUser appUser = await _userManager.FindByEmailAsync(resetPasswordVM.Email);
+
+            if (appUser == null)
+            {
+                return View("ResetPassword");
+            }
+
+            IdentityResult result = await _userManager.ResetPasswordAsync(appUser, resetPasswordVM.Token, resetPasswordVM.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                }
+
+                return View(resetPasswordVM);
+            }
+
+            return RedirectToAction("ResetPasswordConfirmed");
+        }
+
+        public IActionResult ResetPasswordConfirmed()
+        {
+            return View();
         }
     }
 }

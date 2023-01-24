@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "thmmJ6xFgCd27ANZK9ru6onG5d1C7hs755kP6HSTtowrqtp03PB9JqHDJMan5khhJRigROZkKV16x33DJuO/LQ==",
+  "dgSpecHash": "BgN8BTW17Ra6SC/GWkSKHDrjnagdTSsnGBdkQCJzqQXZ5kJJW7uM1fJL9L7+DaiLSVSGUiO/anY2bmM3zVljNA==",
   "success": true,
-  "projectFilePath": "D:\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
+  "projectFilePath": "D:\\programming\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.28\\microsoft.aspnetcore.cryptography.internal.3.1.28.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.28\\microsoft.aspnetcore.cryptography.keyderivation.3.1.28.nupkg.sha512",

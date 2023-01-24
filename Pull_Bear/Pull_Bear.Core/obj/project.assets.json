@@ -5581,11 +5581,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+      "projectUniqueName": "D:\\programming\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
       "projectName": "Pull_Bear.Core",
-      "projectPath": "D:\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+      "projectPath": "D:\\programming\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "D:\\programming\\Final Project\\Back_End_kotoriy_ya_commitil\\Pull_Bear\\Pull_Bear.Core\\obj\\",
+      "outputPath": "D:\\programming\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5666,7 +5666,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
       }
     }
   }

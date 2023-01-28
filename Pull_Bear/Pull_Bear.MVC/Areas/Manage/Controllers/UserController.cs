@@ -7,10 +7,8 @@ using Pull_Bear.Service.Interfaces;
 using Pull_Bear.Service.ViewModels;
 using Pull_Bear.Service.ViewModels.AccountVMs;
 using Pull_Bear.Service.ViewModels.AppUserVMs;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Pull_Bear.MVC.Areas.Manage.Controllers
@@ -20,16 +18,12 @@ namespace Pull_Bear.MVC.Areas.Manage.Controllers
     public class UserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IAppUserService _appUserService;
         private readonly IMapper _mapper;
 
-        public UserController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IAppUserService appUserService, IMapper mapper)
+        public UserController(UserManager<AppUser> userManager, IAppUserService appUserService, IMapper mapper)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
             _appUserService = appUserService;
             _mapper = mapper;
         }

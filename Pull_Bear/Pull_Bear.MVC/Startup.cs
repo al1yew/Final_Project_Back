@@ -69,7 +69,7 @@ namespace Pull_Bear.MVC
                 app.UseDeveloperExceptionPage();
             }
 
-            app.ExceptionHandling();
+            //app.ExceptionHandling();
             //budu
 
             app.UseSession();

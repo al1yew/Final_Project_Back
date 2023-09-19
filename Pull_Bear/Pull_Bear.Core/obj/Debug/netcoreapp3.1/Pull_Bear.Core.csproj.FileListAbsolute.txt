@@ -10,3 +10,16 @@ C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Core\ob
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.dll
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.genruntimeconfig.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.deps.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.runtimeconfig.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.runtimeconfig.dev.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\bin\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Core\obj\Debug\netcoreapp3.1\Pull_Bear.Core.genruntimeconfig.cache

@@ -14,3 +14,19 @@ C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Data\ob
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.dll
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.pdb
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.genruntimeconfig.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.deps.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.runtimeconfig.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.runtimeconfig.dev.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Data.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Core.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\bin\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.csproj.CopyComplete
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Data\obj\Debug\netcoreapp3.1\Pull_Bear.Data.genruntimeconfig.cache

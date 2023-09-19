@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {}
+    "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
         "projectName": "Pull_Bear.Core",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\obj\\",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -83,7 +83,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -92,24 +93,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
         "projectName": "Pull_Bear.Data",
-        "projectPath": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\obj\\",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\Pull_Bear.Data.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -124,8 +125,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
-                "projectPath": "C:\\Users\\hp\\Desktop\\Final Project\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
+              "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj": {
+                "projectPath": "C:\\Users\\ASUS\\Desktop\\Final_Project_Back\\Pull_Bear\\Pull_Bear.Core\\Pull_Bear.Core.csproj"
               }
             }
           }
@@ -179,7 +180,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -188,7 +190,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

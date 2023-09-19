@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Pull_Bear.MVC.props" />
+</Project>

@@ -13,3 +13,18 @@ C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Service
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.csproj.CopyComplete
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.dll
 C:\Users\hp\Desktop\Final Project\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Service.deps.json
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Service.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Service.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Core.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Data.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Core.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\bin\Debug\netcoreapp3.1\Pull_Bear.Data.pdb
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.csproj.AssemblyReference.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.csproj.CopyComplete
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.dll
+C:\Users\ASUS\Desktop\Final_Project_Back\Pull_Bear\Pull_Bear.Service\obj\Debug\netcoreapp3.1\Pull_Bear.Service.pdb
